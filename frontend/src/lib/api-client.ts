@@ -4,9 +4,11 @@ import type {
   District,
   ModelComparison,
   NewsSummary,
+  PersonaSummary,
   Prediction,
   PredictionHistory,
   PredictionSummary,
+  PrefectureMapData,
   YouTubeSummary,
 } from "@/types";
 
@@ -66,4 +68,12 @@ export async function fetchNewsSummary(): Promise<NewsSummary> {
 
 export async function fetchModelComparison(): Promise<ModelComparison> {
   return fetchJSON("/news/model-comparison");
+}
+
+export async function fetchPersonaSummary(): Promise<PersonaSummary> {
+  return fetchJSON("/personas/summary");
+}
+
+export async function fetchMapSummary(): Promise<PrefectureMapData[]> {
+  return fetchJSON("/districts/map-summary");
 }

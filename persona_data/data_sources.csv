@@ -1,0 +1,29 @@
+データカテゴリ,ファイル名,データ項目,主要出典,出典機関,出典URL,データ基準年,粒度,備考
+人口統計,prefecture_demographics.json,総人口,国勢調査（令和2年）,総務省統計局,https://www.stat.go.jp/data/kokusei/2020/,2020,都道府県別,5年ごと実施の全数調査
+人口統計,prefecture_demographics.json,有権者数,国勢調査 18歳以上人口から推計,総務省統計局,https://www.stat.go.jp/data/kokusei/2020/,2020,都道府県別,18歳以上人口を有権者数として推計
+人口統計,prefecture_demographics.json,年齢分布（18〜29歳〜70歳以上）,国勢調査 年齢別人口,総務省統計局,https://www.stat.go.jp/data/kokusei/2020/,2020,都道府県別,6区分（18-29/30-39/40-49/50-59/60-69/70+）
+人口統計,prefecture_demographics.json,性別比率,国勢調査 男女別人口,総務省統計局,https://www.stat.go.jp/data/kokusei/2020/,2020,都道府県別,男女比率
+人口統計,prefecture_demographics.json,世帯構成,国勢調査 世帯類型別,総務省統計局,https://www.stat.go.jp/data/kokusei/2020/,2020,都道府県別,単身/夫婦のみ/核家族/三世代/その他
+人口統計,prefecture_demographics.json,都市化分類・都市化率,国勢調査 人口集中地区（DID）,総務省統計局,https://www.stat.go.jp/data/kokusei/2020/,2020,都道府県別,DID人口比率による分類
+社会経済,socioeconomic_indicators.json,産業構造（一次/二次/三次）,経済センサス,総務省統計局,https://www.stat.go.jp/data/e-census/,2021,都道府県別,産業大分類別就業者割合
+社会経済,socioeconomic_indicators.json,平均年収,賃金構造基本統計調査,厚生労働省,https://www.mhlw.go.jp/toukei/itiran/roudou/chingin/kouzou/,2023,都道府県別,きまって支給する現金給与額から年収推計
+社会経済,socioeconomic_indicators.json,失業率,労働力調査,総務省統計局,https://www.stat.go.jp/data/roudou/,2023,都道府県別（一部地域別）,完全失業率
+社会経済,socioeconomic_indicators.json,大卒率,国勢調査 教育程度別人口,総務省統計局,https://www.stat.go.jp/data/kokusei/2020/,2020,都道府県別,大学・大学院卒業者の割合
+社会経済,socioeconomic_indicators.json,主要産業,経済センサス・県民経済計算,総務省統計局・内閣府,https://www.esri.cao.go.jp/jp/sna/sonota/kenmin/kenmin_top.html,2021,都道府県別,県内総生産の産業別構成から判定
+社会経済,socioeconomic_indicators.json,生活費指数（全国平均=100）,消費者物価地域差指数,総務省統計局,https://www.stat.go.jp/data/cpi/,2023,都道府県別,全国平均を100とした相対指数
+社会経済,socioeconomic_indicators.json,高齢化依存率,人口推計・国勢調査,総務省統計局,https://www.stat.go.jp/data/jinsui/,2023,都道府県別,65歳以上人口÷15〜64歳人口
+政治傾向,political_tendencies.json,投票率（2021年・2017年衆院選）,衆議院議員総選挙結果,総務省選挙部,https://www.soumu.go.jp/senkyo/senkyo_s/data/shugiin/,2021/2017,都道府県別,小選挙区投票率
+政治傾向,political_tendencies.json,政党支持率傾向,衆議院比例代表得票率,総務省選挙部,https://www.soumu.go.jp/senkyo/senkyo_s/data/shugiin/,2021,都道府県別,比例代表の政党別得票率を基に推計
+政治傾向,political_tendencies.json,イデオロギースペクトラム（保守/中道/革新）,各種世論調査・選挙結果から推計,NHK・朝日新聞・読売新聞等,（各社世論調査）,2021-2024,都道府県別,複数の世論調査と選挙結果から総合的に推計
+政治傾向,political_tendencies.json,政治関心度（高/中/低）,明るい選挙推進協会 意識調査,明るい選挙推進協会,https://www.akaruisenkyo.or.jp/,2021,都道府県別,投票後アンケート調査等から推計
+政治傾向,political_tendencies.json,浮動票率,各種世論調査（支持政党なし率）,NHK・各新聞社,（各社世論調査）,2021-2024,都道府県別,支持政党なし層の比率と過去の投票変動から推計
+地域課題,regional_issues.json,主要地域課題（3〜5件/県）,地方自治体総合計画・知事施政方針,各都道府県庁,（各都道府県公式サイト）,2023-2024,都道府県別,各県の総合戦略・重点施策から主要課題を抽出
+地域課題,regional_issues.json,課題優先度ランキング（8分野）,住民意識調査・選挙公約分析,各都道府県・各政党,（各都道府県・各政党公式サイト）,2023-2024,都道府県別,経済/社会保障/安全保障/教育/環境/地方創生/憲法改正/防災
+地域課題,regional_issues.json,課題別有利政党,政党公約・政策比較,各政党マニフェスト,（各政党公式サイト）,2024,都道府県別,各課題に対する政策提案の実績・主張から判定
+地域課題,regional_issues.json,地域固有要因,報道・自治体資料,各報道機関・自治体,（各種報道・自治体資料）,2023-2024,都道府県別,その地域特有の政治・社会的背景要因
+有権者プロフィール,voter_profiles.json,ペルソナ類型別構成比（12類型）,国勢調査・労働力調査・各種統計から推計,総務省統計局・厚生労働省,https://www.stat.go.jp/,2020-2023,都道府県別,年齢/職業/世帯構成から12類型の人口構成比を推計
+シミュレーション設定,persona_config.json,12ペルソナ類型定義,投票行動研究・政治学文献から設計,学術研究・選挙分析,（政治学・選挙研究文献）,2024,類型定義,年齢層/職業/政治関心/投票確率/浮動性を設定
+シミュレーション設定,persona_config.json,投票決定要因ウェイト（6要因）,投票行動研究・世論調査分析,明るい選挙推進協会・学術研究,https://www.akaruisenkyo.or.jp/,2021,モデルパラメータ,政党忠誠度0.30/政策一致度0.25/候補者魅力0.20/メディア影響0.10/地域つながり0.10/戦略的投票0.05
+シミュレーション設定,persona_config.json,投票率修正係数（天候・競争度・国民関心）,過去の選挙データ分析,総務省選挙部・学術研究,https://www.soumu.go.jp/senkyo/,2017-2021,モデルパラメータ,天候/選挙競争度/国民的関心度による投票率変動幅
+選挙区基礎情報,backend/app/data/districts_sample.json,選挙区定義（289小選挙区）,衆議院小選挙区区割り,総務省,https://www.soumu.go.jp/senkyo/senkyo_s/news/touhyou/shugiin.html,2024,選挙区別,区名/対象地域/都道府県コード
+選挙区基礎情報,backend/app/data/districts_sample.json,候補者情報,各種報道・選挙公報,各選挙管理委員会,（各都道府県選管サイト）,2024,候補者別,氏名/政党/年齢/現職区分/当選回数/重複立候補

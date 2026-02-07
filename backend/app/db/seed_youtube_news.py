@@ -1,8 +1,10 @@
 """Generate sample YouTube analytics, news articles, polling, and 7-model seat predictions."""
 from __future__ import annotations
 
+import csv
 import random
 from datetime import datetime, timedelta
+from pathlib import Path
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -12,11 +14,47 @@ from app.models.youtube import YouTubeChannel, YouTubeDailyStats, YouTubeSentime
 
 random.seed(42)
 
-PARTY_IDS = ["ldp", "chudo", "ishin", "dpfp", "jcp", "reiwa", "sansei", "genzei", "hoshuto"]
+# Path to YouTube CSV data directory
+YOUTUBE_DATA_DIR = Path(__file__).resolve().parent.parent.parent.parent / "persona_data" / "youtube"
+
+
+def _find_latest_youtube_folder() -> Path | None:
+    """Find the most recent date-stamped folder in the YouTube data directory."""
+    if not YOUTUBE_DATA_DIR.exists():
+        return None
+    folders = sorted(
+        [f for f in YOUTUBE_DATA_DIR.iterdir() if f.is_dir() and f.name[:4].isdigit()],
+        key=lambda f: f.name,
+        reverse=True,
+    )
+    return folders[0] if folders else None
+
+
+def _load_channels_csv(csv_path: Path) -> list[dict]:
+    """Load channels from CSV file."""
+    rows = []
+    with open(csv_path, encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            rows.append(row)
+    return rows
+
+
+def _load_videos_csv(csv_path: Path) -> list[dict]:
+    """Load videos from CSV file."""
+    rows = []
+    with open(csv_path, encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            rows.append(row)
+    return rows
+
+PARTY_IDS = ["ldp", "chudo", "ishin", "dpfp", "jcp", "reiwa", "sansei", "genzei", "hoshuto", "mirai"]
 PARTY_NAMES_JA = {
     "ldp": "自由民主党", "chudo": "中道改革連合", "ishin": "日本維新の会",
     "dpfp": "国民民主党", "jcp": "日本共産党", "reiwa": "れいわ新選組",
     "sansei": "参政党", "genzei": "減税日本", "hoshuto": "日本保守党",
+    "mirai": "チームみらい",
 }
 
 ISSUES = ["消費税・物価", "安全保障", "移民政策", "経済政策", "社会福祉", "政治改革"]
@@ -69,8 +107,8 @@ MODEL_DEFINITIONS = [
 
 # Approximate seat baselines per party (total 465)
 SEAT_BASELINES = {
-    "ldp": 190, "chudo": 110, "ishin": 45, "dpfp": 35, "jcp": 24,
-    "reiwa": 18, "sansei": 10, "genzei": 8, "hoshuto": 6,
+    "ldp": 186, "chudo": 108, "ishin": 44, "dpfp": 34, "jcp": 23,
+    "reiwa": 17, "sansei": 10, "genzei": 8, "hoshuto": 6, "mirai": 5,
 }
 
 
@@ -84,76 +122,198 @@ async def seed_youtube_data(session: AsyncSession) -> None:
     if existing:
         return
 
-    # Channels
-    channel_data = [
-        ("ldp", "自民党公式チャンネル", 350000, 4500, 200000000),
-        ("chudo", "中道改革連合チャンネル", 180000, 2200, 80000000),
-        ("ishin", "日本維新の会チャンネル", 220000, 3000, 120000000),
-        ("dpfp", "国民民主党チャンネル", 150000, 1800, 60000000),
-        ("jcp", "日本共産党チャンネル", 95000, 1500, 40000000),
-        ("reiwa", "れいわ新選組チャンネル", 280000, 2800, 150000000),
-        ("sansei", "参政党チャンネル", 120000, 1200, 35000000),
-        ("genzei", "減税日本チャンネル", 85000, 800, 20000000),
-        ("hoshuto", "日本保守党チャンネル", 160000, 1000, 45000000),
-    ]
+    latest_folder = _find_latest_youtube_folder()
 
-    channels = []
-    for party_id, name, subs, vids, views in channel_data:
-        ch = YouTubeChannel(
-            channel_id=f"UC_{party_id}_sample",
-            party_id=party_id,
-            channel_name=name,
-            subscriber_count=subs + random.randint(-10000, 10000),
-            video_count=vids + random.randint(-100, 100),
-            total_views=views + random.randint(-1000000, 1000000),
-            recent_avg_views=random.randint(5000, 80000),
-            growth_rate=round(random.uniform(-0.02, 0.15), 4),
-        )
-        channels.append(ch)
-        session.add(ch)
+    # --- Load channels from CSV or use fallback ---
+    party_channel_map: dict[str, str] = {}
 
-    # Videos (200 sample)
+    if latest_folder and (latest_folder / "channels.csv").exists():
+        channel_rows = _load_channels_csv(latest_folder / "channels.csv")
+        for row in channel_rows:
+            subs = int(row["subscriber_count"])
+            vids = int(row["video_count"])
+            views = int(row["total_views"])
+            ch = YouTubeChannel(
+                channel_id=row["channel_id"],
+                party_id=row["party_id"],
+                channel_name=row["channel_name"],
+                channel_url=row["channel_url"],
+                subscriber_count=subs + random.randint(-10000, 10000),
+                video_count=vids + random.randint(-100, 100),
+                total_views=views + random.randint(-1000000, 1000000),
+                recent_avg_views=random.randint(5000, 80000),
+                growth_rate=round(random.uniform(-0.02, 0.15), 4),
+            )
+            session.add(ch)
+            party_channel_map[row["party_id"]] = row["channel_id"]
+    else:
+        # Fallback: hardcoded channel data
+        channel_data = [
+            ("ldp", "自民党", "UCh0U3yF_rTrgSRSMDRsKOig",
+             "https://www.youtube.com/@jaborecall", 350000, 4500, 200000000),
+            ("chudo", "立憲民主党 / 中道改革連合", "UC9FwuMfMJFVfLkSStXuCzBg",
+             "https://www.youtube.com/@cdp_kokkai", 180000, 2200, 80000000),
+            ("ishin", "日本維新の会", "UC5oLra_AnqsmTGRP6mNXmOg",
+             "https://www.youtube.com/@nipponishin", 220000, 3000, 120000000),
+            ("dpfp", "国民民主党", "UCJfBTJMRMPmSQzYB5IjVxOQ",
+             "https://www.youtube.com/@DPFPofficial", 150000, 1800, 60000000),
+            ("jcp", "日本共産党", "UCY6DTfC4R_a7FMkEFMgIJ1g",
+             "https://www.youtube.com/@jaborecall", 95000, 1500, 40000000),
+            ("reiwa", "れいわ新選組", "UCgIIlSmbGB5QPUFMHnCikOA",
+             "https://www.youtube.com/@reiwa_shinsengumi", 280000, 2800, 150000000),
+            ("sansei", "参政党", "UCYKz3AB_VWRkW2JZNNoFlgg",
+             "https://www.youtube.com/@sanseito", 120000, 1200, 35000000),
+            ("genzei", "減税日本 / 河村たかし", "UCrM_VVScEWRcjGCvZfbFGdg",
+             "https://www.youtube.com/@genzeinippon", 85000, 800, 20000000),
+            ("hoshuto", "日本保守党", "UCE-KNChLKJfI8jfPdtRPFgg",
+             "https://www.youtube.com/@nihonhoshuto", 160000, 1000, 45000000),
+            ("mirai", "チームみらい", "UCdoKzWYAFadD4fLxnBHUamA",
+             "https://www.youtube.com/@team_mirai", 75000, 600, 15000000),
+        ]
+        for party_id, name, ch_id, ch_url, subs, vids, views in channel_data:
+            ch = YouTubeChannel(
+                channel_id=ch_id,
+                party_id=party_id,
+                channel_name=name,
+                channel_url=ch_url,
+                subscriber_count=subs + random.randint(-10000, 10000),
+                video_count=vids + random.randint(-100, 100),
+                total_views=views + random.randint(-1000000, 1000000),
+                recent_avg_views=random.randint(5000, 80000),
+                growth_rate=round(random.uniform(-0.02, 0.15), 4),
+            )
+            session.add(ch)
+            party_channel_map[party_id] = ch_id
+
+    # --- Load videos from CSV or generate ---
     start_date = datetime(2026, 1, 1)
     end_date = datetime(2026, 2, 7)
     announcement_date = datetime(2026, 1, 27)
 
-    video_titles = [
-        "{party}の経済政策を徹底解説", "{party}党首が語る選挙戦略",
-        "【速報】{party}の最新政策発表", "{party}vs{party2}徹底比較",
-        "{issue}について{party}の政策分析", "選挙区情勢：{party}の勝機は？",
-        "{party}街頭演説ハイライト", "記者会見：{party}党首が国民に訴え",
-    ]
+    if latest_folder and (latest_folder / "videos.csv").exists():
+        video_rows = _load_videos_csv(latest_folder / "videos.csv")
+        used_ids: set[str] = set()
 
-    for i in range(200):
-        pub_date = _random_date(start_date, end_date)
-        party = random.choice(PARTY_IDS)
-        party2 = random.choice([p for p in PARTY_IDS if p != party])
-        issue = random.choice(ISSUES)
+        for i, row in enumerate(video_rows):
+            party = row["party_mention"]
+            channel_party = row.get("channel_party_id", party)
+            video_url = row["video_url"]
 
-        title_template = random.choice(video_titles)
-        title = title_template.format(
-            party=PARTY_NAMES_JA[party],
-            party2=PARTY_NAMES_JA.get(party2, ""),
-            issue=issue,
-        )
+            # Extract video_id from URL or generate a unique one
+            vid_id = None
+            if video_url and "watch?v=" in video_url:
+                vid_id = video_url.split("watch?v=")[-1].split("&")[0]
+            if not vid_id or vid_id in used_ids:
+                chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-"
+                vid_id = "".join(random.choice(chars) for _ in range(11))
+                while vid_id in used_ids:
+                    vid_id = "".join(random.choice(chars) for _ in range(11))
+            used_ids.add(vid_id)
 
-        # More views after announcement
-        base_views = random.randint(500, 50000)
-        if pub_date >= announcement_date:
-            base_views = int(base_views * random.uniform(1.5, 3.0))
+            # Parse published_date
+            pub_date_str = row.get("published_date", "")
+            try:
+                pub_date = datetime.strptime(pub_date_str, "%Y-%m-%d")
+            except (ValueError, TypeError):
+                pub_date = _random_date(start_date, end_date)
 
-        session.add(YouTubeVideo(
-            video_id=f"sample_vid_{i:04d}",
-            channel_id=f"UC_{party}_sample",
-            title=title,
-            published_at=pub_date,
-            view_count=base_views,
-            like_count=int(base_views * random.uniform(0.02, 0.08)),
-            comment_count=int(base_views * random.uniform(0.005, 0.03)),
-            party_mention=party,
-            issue_category=random.choice(ISSUES),
-            sentiment_score=round(random.uniform(-1.0, 1.0), 3),
-        ))
+            base_views = random.randint(500, 50000)
+            if pub_date >= announcement_date:
+                base_views = int(base_views * random.uniform(1.5, 3.0))
+
+            session.add(YouTubeVideo(
+                video_id=vid_id,
+                channel_id=party_channel_map.get(channel_party, channel_party),
+                title=row["title"],
+                video_url=video_url if video_url and "PLACEHOLDER" not in video_url else None,
+                published_at=pub_date,
+                view_count=base_views,
+                like_count=int(base_views * random.uniform(0.02, 0.08)),
+                comment_count=int(base_views * random.uniform(0.005, 0.03)),
+                party_mention=party,
+                issue_category=row.get("issue_category", random.choice(ISSUES)),
+                sentiment_score=round(random.uniform(-1.0, 1.0), 3),
+            ))
+
+        # Generate additional random videos to fill up to 200
+        existing_count = len(video_rows)
+        video_titles = [
+            "{party}の経済政策を徹底解説", "{party}党首が語る選挙戦略",
+            "【速報】{party}の最新政策発表", "{party}vs{party2}徹底比較",
+            "{issue}について{party}の政策分析", "選挙区情勢：{party}の勝機は？",
+            "{party}街頭演説ハイライト", "記者会見：{party}党首が国民に訴え",
+        ]
+        for _i in range(max(0, 200 - existing_count)):
+            pub_date = _random_date(start_date, end_date)
+            party = random.choice(PARTY_IDS)
+            party2 = random.choice([p for p in PARTY_IDS if p != party])
+            issue = random.choice(ISSUES)
+            title_template = random.choice(video_titles)
+            title = title_template.format(
+                party=PARTY_NAMES_JA[party],
+                party2=PARTY_NAMES_JA.get(party2, ""),
+                issue=issue,
+            )
+            base_views = random.randint(500, 50000)
+            if pub_date >= announcement_date:
+                base_views = int(base_views * random.uniform(1.5, 3.0))
+            chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-"
+            vid_id = "".join(random.choice(chars) for _ in range(11))
+            while vid_id in used_ids:
+                vid_id = "".join(random.choice(chars) for _ in range(11))
+            used_ids.add(vid_id)
+
+            session.add(YouTubeVideo(
+                video_id=vid_id,
+                channel_id=party_channel_map.get(party, party),
+                title=title,
+                video_url=None,
+                published_at=pub_date,
+                view_count=base_views,
+                like_count=int(base_views * random.uniform(0.02, 0.08)),
+                comment_count=int(base_views * random.uniform(0.005, 0.03)),
+                party_mention=party,
+                issue_category=random.choice(ISSUES),
+                sentiment_score=round(random.uniform(-1.0, 1.0), 3),
+            ))
+    else:
+        # Fallback: fully generated videos
+        video_titles = [
+            "{party}の経済政策を徹底解説", "{party}党首が語る選挙戦略",
+            "【速報】{party}の最新政策発表", "{party}vs{party2}徹底比較",
+            "{issue}について{party}の政策分析", "選挙区情勢：{party}の勝機は？",
+            "{party}街頭演説ハイライト", "記者会見：{party}党首が国民に訴え",
+        ]
+        for i in range(200):
+            pub_date = _random_date(start_date, end_date)
+            party = random.choice(PARTY_IDS)
+            party2 = random.choice([p for p in PARTY_IDS if p != party])
+            issue = random.choice(ISSUES)
+            title_template = random.choice(video_titles)
+            title = title_template.format(
+                party=PARTY_NAMES_JA[party],
+                party2=PARTY_NAMES_JA.get(party2, ""),
+                issue=issue,
+            )
+            base_views = random.randint(500, 50000)
+            if pub_date >= announcement_date:
+                base_views = int(base_views * random.uniform(1.5, 3.0))
+            chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-"
+            vid_id = "".join(random.choice(chars) for _ in range(11))
+
+            session.add(YouTubeVideo(
+                video_id=vid_id,
+                channel_id=party_channel_map.get(party, party),
+                title=title,
+                video_url=None,
+                published_at=pub_date,
+                view_count=base_views,
+                like_count=int(base_views * random.uniform(0.02, 0.08)),
+                comment_count=int(base_views * random.uniform(0.005, 0.03)),
+                party_mention=party,
+                issue_category=random.choice(ISSUES),
+                sentiment_score=round(random.uniform(-1.0, 1.0), 3),
+            ))
 
     # Sentiments per party
     for party_id in PARTY_IDS:
@@ -240,6 +400,7 @@ async def seed_news_data(session: AsyncSession) -> None:
     base_rates = {
         "ldp": 28.0, "chudo": 18.0, "ishin": 12.0, "dpfp": 8.0,
         "jcp": 5.0, "reiwa": 4.5, "sansei": 3.0, "genzei": 2.0, "hoshuto": 2.5,
+        "mirai": 1.5,
     }
 
     for week in range(6):

@@ -1,6 +1,7 @@
 import { fetchModelComparison } from "@/lib/api-client";
 import { PARTY_COLORS, PARTY_NAMES } from "@/lib/constants";
 import ModelComparisonChart from "@/components/charts/ModelComparisonChart";
+import ModelDetailCard from "@/components/models/ModelDetailCard";
 
 export const revalidate = 1200;
 
@@ -30,6 +31,9 @@ export default async function ModelsPage() {
         <p className="text-gray-500 text-sm">
           7つの予測モデルによる議席予測の比較分析（YouTube・ニュース・世論調査ベース）
         </p>
+        <p className="text-gray-400 text-xs mt-1">
+          各モデルカードをクリックすると、計算式・重み・パラメータの詳細を確認できます
+        </p>
       </section>
 
       {/* Chart */}
@@ -38,50 +42,13 @@ export default async function ModelsPage() {
         <ModelComparisonChart data={data} />
       </section>
 
-      {/* Model Descriptions */}
+      {/* Model Descriptions - Expandable Cards */}
       <section className="mb-10">
         <h2 className="text-xl font-bold mb-4">モデル説明</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {data.models.map((model) => {
-            const totalSeats = Object.values(model.predictions).reduce((a, b) => a + b, 0);
-            const topParty = Object.entries(model.predictions).sort(([, a], [, b]) => b - a)[0];
-
-            return (
-              <div
-                key={model.model_number}
-                className="bg-white border border-gray-200 rounded-lg p-5"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-1 rounded">
-                    M{model.model_number}
-                  </span>
-                  <h3 className="font-bold text-sm">{model.model_name}</h3>
-                </div>
-                <p className="text-xs text-gray-600 mb-3">{model.description}</p>
-                <div className="text-xs text-gray-500 mb-3">
-                  データソース: {model.data_sources}
-                </div>
-                <div className="border-t pt-3 space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">予測総議席</span>
-                    <span className="font-bold">{totalSeats}</span>
-                  </div>
-                  {topParty && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-500">第一党</span>
-                      <span className="font-bold flex items-center gap-1">
-                        <span
-                          className="w-2 h-2 rounded-full inline-block"
-                          style={{ backgroundColor: PARTY_COLORS[topParty[0]] || "#999" }}
-                        />
-                        {PARTY_NAMES[topParty[0]] || topParty[0]} ({topParty[1]}議席)
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+          {data.models.map((model) => (
+            <ModelDetailCard key={model.model_number} model={model} />
+          ))}
         </div>
       </section>
 

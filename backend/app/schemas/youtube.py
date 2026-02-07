@@ -11,6 +11,7 @@ class YouTubeChannelResponse(BaseModel):
     channel_id: str
     party_id: Optional[str]
     channel_name: str
+    channel_url: Optional[str]
     subscriber_count: int
     video_count: int
     total_views: int
@@ -26,6 +27,7 @@ class YouTubeVideoResponse(BaseModel):
     video_id: str
     channel_id: str
     title: str
+    video_url: Optional[str]
     published_at: datetime
     view_count: int
     like_count: int

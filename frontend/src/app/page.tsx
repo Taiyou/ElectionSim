@@ -4,6 +4,7 @@ import {
   fetchBattleground,
   fetchYouTubeSummary,
   fetchNewsSummary,
+  fetchPersonaSummary,
 } from "@/lib/api-client";
 import SeatDistribution from "@/components/charts/SeatDistribution";
 import DistrictCard from "@/components/prediction/DistrictCard";
@@ -15,6 +16,7 @@ export default async function DashboardPage() {
   let battleground;
   let ytSummary;
   let newsSummary;
+  let personaSummary;
 
   try {
     [summary, battleground] = await Promise.all([
@@ -37,11 +39,12 @@ export default async function DashboardPage() {
     );
   }
 
-  // Fetch YouTube and news summaries (non-blocking, optional)
+  // Fetch YouTube, news, and persona summaries (non-blocking, optional)
   try {
-    [ytSummary, newsSummary] = await Promise.all([
+    [ytSummary, newsSummary, personaSummary] = await Promise.all([
       fetchYouTubeSummary(),
       fetchNewsSummary(),
+      fetchPersonaSummary(),
     ]);
   } catch {
     // These are optional data sources - dashboard still works without them
@@ -166,10 +169,10 @@ export default async function DashboardPage() {
       </section>
 
       {/* Data Sources Summary */}
-      {(ytSummary || newsSummary) && (
+      {(ytSummary || newsSummary || personaSummary) && (
         <section className="mb-10">
           <h2 className="text-xl font-bold mb-4">データソース概要</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {ytSummary && (
               <Link href="/youtube" className="block">
                 <div className="bg-red-50 border border-red-200 rounded-lg p-5 hover:shadow-md transition">
@@ -193,6 +196,19 @@ export default async function DashboardPage() {
                     <p>平均論調: <span className={`font-bold ${newsSummary.avg_tone >= 0 ? "text-green-600" : "text-red-600"}`}>{newsSummary.avg_tone.toFixed(3)}</span></p>
                   </div>
                   <p className="text-xs text-indigo-500 mt-3">詳細を見る →</p>
+                </div>
+              </Link>
+            )}
+            {personaSummary && (
+              <Link href="/personas" className="block">
+                <div className="bg-purple-50 border border-purple-200 rounded-lg p-5 hover:shadow-md transition">
+                  <h3 className="font-bold text-purple-700 mb-2">ペルソナ分析</h3>
+                  <div className="space-y-1 text-sm text-gray-600">
+                    <p>ペルソナ類型: <span className="font-bold">{personaSummary.total_archetypes}</span></p>
+                    <p>対象都道府県: <span className="font-bold">{personaSummary.total_prefectures}</span></p>
+                    <p>平均投票率: <span className="font-bold">{(personaSummary.avg_turnout_probability * 100).toFixed(1)}%</span></p>
+                  </div>
+                  <p className="text-xs text-purple-500 mt-3">詳細を見る →</p>
                 </div>
               </Link>
             )}

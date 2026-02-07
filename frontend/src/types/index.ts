@@ -117,6 +117,7 @@ export interface YouTubeChannel {
   channel_id: string;
   party_id: string | null;
   channel_name: string;
+  channel_url: string | null;
   subscriber_count: number;
   video_count: number;
   total_views: number;
@@ -130,6 +131,7 @@ export interface YouTubeVideo {
   video_id: string;
   channel_id: string;
   title: string;
+  video_url: string | null;
   published_at: string;
   view_count: number;
   like_count: number;
@@ -217,6 +219,71 @@ export interface NewsSummary {
   polling: NewsPolling[];
   source_breakdown: Record<string, number>;
   party_coverage_counts: Record<string, number>;
+}
+
+// Persona types
+export interface PersonaArchetype {
+  id: string;
+  name_ja: string;
+  age_range: [number, number];
+  turnout_probability: number;
+  swing_tendency: string;
+  typical_concerns: string[];
+}
+
+export interface VotingDecisionFactor {
+  name: string;
+  weight: number;
+  description: string;
+}
+
+export interface RegionalIssue {
+  issue: string;
+  count: number;
+  priority_avg: number;
+}
+
+export interface PersonaSummary {
+  total_prefectures: number;
+  total_archetypes: number;
+  avg_turnout_probability: number;
+  avg_swing_voter_ratio: number;
+  archetypes: PersonaArchetype[];
+  national_archetype_distribution: Record<string, number>;
+  top_regional_issues: RegionalIssue[];
+  voting_factors: VotingDecisionFactor[];
+}
+
+// Map types
+export interface PartyCount {
+  party_id: string;
+  count: number;
+}
+
+export interface CandidateBrief {
+  name: string;
+  party_id: string;
+  is_incumbent: boolean;
+  age: number | null;
+  previous_wins: number;
+}
+
+export interface DistrictBrief {
+  id: string;
+  name: string;
+  district_number: number;
+  candidate_count: number;
+  candidates: CandidateBrief[];
+}
+
+export interface PrefectureMapData {
+  prefecture_code: number;
+  prefecture_name: string;
+  total_districts: number;
+  total_candidates: number;
+  leading_party_id: string;
+  party_breakdown: PartyCount[];
+  districts: DistrictBrief[];
 }
 
 // Model comparison types

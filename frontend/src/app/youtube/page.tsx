@@ -72,28 +72,42 @@ export default async function YouTubePage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {data.channels.map((ch) => (
-                <tr key={ch.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3 flex items-center gap-2">
-                    {ch.party_id && (
-                      <span
-                        className="w-3 h-3 rounded-full inline-block"
-                        style={{ backgroundColor: PARTY_COLORS[ch.party_id] || "#999" }}
-                      />
-                    )}
-                    {ch.channel_name}
-                  </td>
-                  <td className="px-4 py-3 text-right">{ch.subscriber_count.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-right">{ch.video_count.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-right">{formatNumber(ch.total_views)}</td>
-                  <td className="px-4 py-3 text-right">{ch.recent_avg_views.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-right">
-                    <span className={ch.growth_rate >= 0 ? "text-green-600" : "text-red-600"}>
-                      {ch.growth_rate >= 0 ? "+" : ""}{(ch.growth_rate * 100).toFixed(1)}%
-                    </span>
-                  </td>
-                </tr>
-              ))}
+              {data.channels.map((ch) => {
+                const channelLink = ch.channel_url || `https://www.youtube.com/channel/${ch.channel_id}`;
+                return (
+                  <tr key={ch.id} className="hover:bg-gray-50">
+                    <td className="px-4 py-3">
+                      <a
+                        href={channelLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline"
+                      >
+                        {ch.party_id && (
+                          <span
+                            className="w-3 h-3 rounded-full inline-block flex-shrink-0"
+                            style={{ backgroundColor: PARTY_COLORS[ch.party_id] || "#999" }}
+                          />
+                        )}
+                        <svg className="w-4 h-4 flex-shrink-0 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
+                          <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="white"/>
+                        </svg>
+                        <span>{ch.channel_name}</span>
+                      </a>
+                    </td>
+                    <td className="px-4 py-3 text-right">{ch.subscriber_count.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-right">{ch.video_count.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-right">{formatNumber(ch.total_views)}</td>
+                    <td className="px-4 py-3 text-right">{ch.recent_avg_views.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-right">
+                      <span className={ch.growth_rate >= 0 ? "text-green-600" : "text-red-600"}>
+                        {ch.growth_rate >= 0 ? "+" : ""}{(ch.growth_rate * 100).toFixed(1)}%
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -167,40 +181,51 @@ export default async function YouTubePage() {
       <section>
         <h2 className="text-xl font-bold mb-4">注目動画 (視聴回数上位)</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {data.recent_videos.slice(0, 10).map((video) => (
-            <div
-              key={video.id}
-              className="bg-white border border-gray-200 rounded-lg p-4"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <h3 className="text-sm font-medium line-clamp-2">{video.title}</h3>
-                <span
-                  className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${
-                    video.sentiment_score > 0.2
-                      ? "bg-green-100 text-green-700"
-                      : video.sentiment_score < -0.2
-                        ? "bg-red-100 text-red-700"
-                        : "bg-gray-100 text-gray-700"
-                  }`}
-                >
-                  {video.sentiment_score > 0 ? "+" : ""}{video.sentiment_score.toFixed(2)}
-                </span>
-              </div>
-              <div className="mt-2 flex items-center gap-4 text-xs text-gray-500">
-                <span>{video.view_count.toLocaleString()} 視聴</span>
-                <span>{video.like_count.toLocaleString()} いいね</span>
-                <span>{video.comment_count.toLocaleString()} コメント</span>
-                {video.party_mention && (
+          {data.recent_videos.slice(0, 10).map((video) => {
+            const videoLink = video.video_url || `https://www.youtube.com/watch?v=${video.video_id}`;
+            const hasValidLink = !!video.video_url;
+            const Wrapper = hasValidLink ? "a" : "div";
+            const linkProps = hasValidLink
+              ? { href: videoLink, target: "_blank" as const, rel: "noopener noreferrer" }
+              : {};
+            return (
+              <Wrapper
+                key={video.id}
+                {...linkProps}
+                className={`bg-white border border-gray-200 rounded-lg p-4 transition-shadow block ${
+                  hasValidLink ? "hover:shadow-md hover:border-gray-300 cursor-pointer" : ""
+                }`}
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="text-sm font-medium line-clamp-2">{video.title}</h3>
                   <span
-                    className="px-1.5 py-0.5 rounded text-white"
-                    style={{ backgroundColor: PARTY_COLORS[video.party_mention] || "#999" }}
+                    className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${
+                      video.sentiment_score > 0.2
+                        ? "bg-green-100 text-green-700"
+                        : video.sentiment_score < -0.2
+                          ? "bg-red-100 text-red-700"
+                          : "bg-gray-100 text-gray-700"
+                    }`}
                   >
-                    {PARTY_NAMES[video.party_mention] || video.party_mention}
+                    {video.sentiment_score > 0 ? "+" : ""}{video.sentiment_score.toFixed(2)}
                   </span>
-                )}
-              </div>
-            </div>
-          ))}
+                </div>
+                <div className="mt-2 flex items-center gap-4 text-xs text-gray-500">
+                  <span>{video.view_count.toLocaleString()} 視聴</span>
+                  <span>{video.like_count.toLocaleString()} いいね</span>
+                  <span>{video.comment_count.toLocaleString()} コメント</span>
+                  {video.party_mention && (
+                    <span
+                      className="px-1.5 py-0.5 rounded text-white"
+                      style={{ backgroundColor: PARTY_COLORS[video.party_mention] || "#999" }}
+                    >
+                      {PARTY_NAMES[video.party_mention] || video.party_mention}
+                    </span>
+                  )}
+                </div>
+              </Wrapper>
+            );
+          })}
         </div>
       </section>
     </div>

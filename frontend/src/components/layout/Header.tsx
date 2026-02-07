@@ -20,6 +20,12 @@ export default function Header() {
           <Link href="/models" className="hover:text-green-300 transition">
             モデル比較
           </Link>
+          <Link href="/personas" className="hover:text-purple-300 transition">
+            ペルソナ分析
+          </Link>
+          <Link href="/map" className="hover:text-emerald-300 transition">
+            選挙区マップ
+          </Link>
           <Link href="/battleground" className="hover:text-blue-300 transition">
             接戦区
           </Link>

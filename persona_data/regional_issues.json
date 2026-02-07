@@ -1,0 +1,2485 @@
+{
+  "metadata": {
+    "description": "47都道府県別の地域課題・政策関心データ（選挙ペルソナAI投票シミュレーション用）",
+    "version": "1.0",
+    "party_codes": {
+      "ldp": "自由民主党",
+      "cdp": "立憲民主党",
+      "ishin": "日本維新の会",
+      "komei": "公明党",
+      "dpfp": "国民民主党",
+      "jcp": "日本共産党",
+      "reiwa": "れいわ新選組",
+      "shamin": "社民党",
+      "sansei": "参政党",
+      "chudo": "地方政党・中道系"
+    },
+    "issue_categories": [
+      "economy",
+      "social_security",
+      "national_security",
+      "education",
+      "environment",
+      "local_revitalization",
+      "constitutional_reform",
+      "disaster_prevention"
+    ]
+  },
+  "prefectures": [
+    {
+      "prefecture_code": 1,
+      "prefecture_name": "北海道",
+      "primary_issues": [
+        {
+          "issue": "農業・一次産業振興",
+          "priority": 0.25,
+          "description": "TPP影響下での農業競争力強化と酪農支援",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "人口減少・過疎化対策",
+          "priority": 0.20,
+          "description": "若者流出と地方の過疎化への対応",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "観光産業振興",
+          "priority": 0.15,
+          "description": "インバウンド観光の拡大とニセコ等リゾート開発",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "北方領土返還",
+          "priority": 0.10,
+          "description": "ロシアとの領土交渉と元島民支援",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "冬季交通インフラ維持",
+          "priority": 0.10,
+          "description": "除雪費用・JR北海道路線維持問題",
+          "favored_parties": ["ldp", "cdp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.20,
+        "national_security": 0.10,
+        "education": 0.08,
+        "environment": 0.07,
+        "local_revitalization": 0.20,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.07
+      },
+      "unique_local_factors": [
+        "アイヌ民族関連政策",
+        "北方領土問題",
+        "冬季の交通インフラ維持",
+        "JR北海道の路線廃止問題",
+        "酪農業の経営危機"
+      ]
+    },
+    {
+      "prefecture_code": 2,
+      "prefecture_name": "青森県",
+      "primary_issues": [
+        {
+          "issue": "人口減少・少子高齢化",
+          "priority": 0.25,
+          "description": "全国最速レベルの人口減少への対応",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "農業振興",
+          "priority": 0.20,
+          "description": "りんご・にんにく等の農産物ブランド強化と輸出拡大",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "核燃料サイクル施設",
+          "priority": 0.15,
+          "description": "六ヶ所村再処理工場の安全性と地域経済への影響",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "医療・福祉体制",
+          "priority": 0.10,
+          "description": "平均寿命全国最下位からの脱却と医師不足解消",
+          "favored_parties": ["cdp", "jcp", "komei"]
+        },
+        {
+          "issue": "交通インフラ整備",
+          "priority": 0.10,
+          "description": "新幹線延伸効果の地域波及と在来線維持",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.20,
+        "social_security": 0.25,
+        "national_security": 0.08,
+        "education": 0.08,
+        "environment": 0.07,
+        "local_revitalization": 0.22,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.07
+      },
+      "unique_local_factors": [
+        "六ヶ所村核燃料サイクル施設",
+        "三沢米軍基地",
+        "平均寿命全国最下位問題",
+        "りんご産業への気候変動影響"
+      ]
+    },
+    {
+      "prefecture_code": 3,
+      "prefecture_name": "岩手県",
+      "primary_issues": [
+        {
+          "issue": "東日本大震災復興",
+          "priority": 0.25,
+          "description": "沿岸部の復興事業完了と被災者支援の継続",
+          "favored_parties": ["ldp", "cdp", "komei"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.20,
+          "description": "若年層の県外流出防止と移住促進",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "農林水産業振興",
+          "priority": 0.15,
+          "description": "米・畜産業の競争力強化と水産業の復興",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "ILC誘致",
+          "priority": 0.10,
+          "description": "国際リニアコライダーの北上山地誘致推進",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "災害防止・防災",
+          "priority": 0.10,
+          "description": "津波・洪水対策とインフラ強靭化",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.18,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.07,
+        "local_revitalization": 0.20,
+        "constitutional_reform": 0.02,
+        "disaster_prevention": 0.20
+      },
+      "unique_local_factors": [
+        "東日本大震災からの復興継続",
+        "ILC（国際リニアコライダー）誘致",
+        "小沢一郎氏の地盤としての政治風土",
+        "三陸沿岸の水産業復興"
+      ]
+    },
+    {
+      "prefecture_code": 4,
+      "prefecture_name": "宮城県",
+      "primary_issues": [
+        {
+          "issue": "震災復興の完遂",
+          "priority": 0.22,
+          "description": "復興事業の仕上げと被災地コミュニティ再生",
+          "favored_parties": ["ldp", "cdp", "komei"]
+        },
+        {
+          "issue": "仙台一極集中の是正",
+          "priority": 0.18,
+          "description": "県内の地域格差解消と均衡ある発展",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "水産業・農業振興",
+          "priority": 0.15,
+          "description": "三陸水産業の再生と米どころとしての農業支援",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "防災・減災",
+          "priority": 0.15,
+          "description": "次なる大地震への備えと防災教育",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "子育て支援",
+          "priority": 0.10,
+          "description": "仙台市の待機児童問題と子育て環境整備",
+          "favored_parties": ["cdp", "komei", "reiwa"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.20,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.10,
+        "environment": 0.05,
+        "local_revitalization": 0.18,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.17
+      },
+      "unique_local_factors": [
+        "東日本大震災の最大被災地",
+        "女川原発の再稼働問題",
+        "東北地方の拠点都市・仙台の役割",
+        "創造的復興の検証"
+      ]
+    },
+    {
+      "prefecture_code": 5,
+      "prefecture_name": "秋田県",
+      "primary_issues": [
+        {
+          "issue": "人口減少・少子高齢化",
+          "priority": 0.30,
+          "description": "全国最速の人口減少率への危機的対応",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "農業振興",
+          "priority": 0.20,
+          "description": "あきたこまち等米産業の維持と農家所得向上",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "イージス・アショア跡地問題",
+          "priority": 0.10,
+          "description": "配備撤回後の跡地利用と安全保障への協力",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "洋上風力発電推進",
+          "priority": 0.10,
+          "description": "秋田沖洋上風力による再生可能エネルギー拠点化",
+          "favored_parties": ["cdp", "dpfp", "ishin"]
+        },
+        {
+          "issue": "医療体制確保",
+          "priority": 0.10,
+          "description": "医師不足と高齢者医療の確保",
+          "favored_parties": ["cdp", "komei", "jcp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.18,
+        "social_security": 0.27,
+        "national_security": 0.08,
+        "education": 0.07,
+        "environment": 0.10,
+        "local_revitalization": 0.22,
+        "constitutional_reform": 0.02,
+        "disaster_prevention": 0.06
+      },
+      "unique_local_factors": [
+        "人口減少率全国ワースト",
+        "イージス・アショア配備撤回の経緯",
+        "洋上風力発電の一大拠点化構想",
+        "秋田犬・なまはげ等の文化資源活用"
+      ]
+    },
+    {
+      "prefecture_code": 6,
+      "prefecture_name": "山形県",
+      "primary_issues": [
+        {
+          "issue": "農業振興・ブランド化",
+          "priority": 0.25,
+          "description": "さくらんぼ・米等の農産物ブランド強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "人口減少・若者定着",
+          "priority": 0.22,
+          "description": "若者の県外流出防止と雇用創出",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "豪雪対策",
+          "priority": 0.12,
+          "description": "除雪費用の確保と高齢者の雪下ろし支援",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "交通インフラ",
+          "priority": 0.12,
+          "description": "山形新幹線のフル規格化と高速道路整備",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "医療・介護体制",
+          "priority": 0.10,
+          "description": "高齢化に対応する医療・介護人材の確保",
+          "favored_parties": ["cdp", "komei", "jcp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.22,
+        "social_security": 0.23,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.07,
+        "local_revitalization": 0.22,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.10
+      },
+      "unique_local_factors": [
+        "日本有数の豪雪地帯",
+        "さくらんぼ生産量日本一",
+        "山形新幹線フル規格化の要望",
+        "出羽三山等の文化・観光資源"
+      ]
+    },
+    {
+      "prefecture_code": 7,
+      "prefecture_name": "福島県",
+      "primary_issues": [
+        {
+          "issue": "原発事故からの復興",
+          "priority": 0.30,
+          "description": "福島第一原発廃炉・除染・帰還困難区域の解除",
+          "favored_parties": ["ldp", "cdp", "komei"]
+        },
+        {
+          "issue": "風評被害対策",
+          "priority": 0.18,
+          "description": "農産物・水産物の風評被害払拭とALPS処理水問題",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "人口回復・地域再生",
+          "priority": 0.15,
+          "description": "避難者の帰還促進と移住者誘致",
+          "favored_parties": ["ldp", "cdp", "komei"]
+        },
+        {
+          "issue": "エネルギー政策",
+          "priority": 0.12,
+          "description": "福島新エネ社会構想と再生可能エネルギー推進",
+          "favored_parties": ["cdp", "dpfp", "reiwa"]
+        },
+        {
+          "issue": "被災者健康管理",
+          "priority": 0.10,
+          "description": "放射線による健康影響の長期モニタリング",
+          "favored_parties": ["cdp", "jcp", "shamin"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.18,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.07,
+        "environment": 0.15,
+        "local_revitalization": 0.18,
+        "constitutional_reform": 0.02,
+        "disaster_prevention": 0.15
+      },
+      "unique_local_factors": [
+        "福島第一原発事故と廃炉作業",
+        "ALPS処理水の海洋放出問題",
+        "帰還困難区域の段階的解除",
+        "福島イノベーション・コースト構想",
+        "原発事故被災者の長期支援"
+      ]
+    },
+    {
+      "prefecture_code": 8,
+      "prefecture_name": "茨城県",
+      "primary_issues": [
+        {
+          "issue": "科学技術・研究都市振興",
+          "priority": 0.20,
+          "description": "つくば研究学園都市の研究開発拠点としての強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "東海第二原発再稼働問題",
+          "priority": 0.18,
+          "description": "東海第二原発の再稼働の是非と周辺自治体の同意",
+          "favored_parties": ["cdp", "jcp", "reiwa"]
+        },
+        {
+          "issue": "農業振興",
+          "priority": 0.15,
+          "description": "メロン・れんこん等の農業生産力維持と後継者育成",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "交通インフラ",
+          "priority": 0.12,
+          "description": "つくばエクスプレス延伸と圏央道の活用",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "防災",
+          "priority": 0.10,
+          "description": "霞ヶ浦水害対策と地震防災",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.18,
+        "national_security": 0.08,
+        "education": 0.12,
+        "environment": 0.10,
+        "local_revitalization": 0.15,
+        "constitutional_reform": 0.04,
+        "disaster_prevention": 0.08
+      },
+      "unique_local_factors": [
+        "つくば研究学園都市",
+        "東海第二原発再稼働問題",
+        "J-PARC等の大型研究施設",
+        "都心通勤圏と農村部の二面性"
+      ]
+    },
+    {
+      "prefecture_code": 9,
+      "prefecture_name": "栃木県",
+      "primary_issues": [
+        {
+          "issue": "製造業・産業振興",
+          "priority": 0.22,
+          "description": "自動車・航空宇宙産業の集積強化とイノベーション",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "観光振興",
+          "priority": 0.18,
+          "description": "日光・那須等の観光資源活用とインバウンド促進",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "農業振興",
+          "priority": 0.15,
+          "description": "いちご（とちおとめ）等のブランド強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "災害対策",
+          "priority": 0.12,
+          "description": "台風・豪雨による河川氾濫への備え",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "子育て・教育",
+          "priority": 0.10,
+          "description": "子育て環境の充実と教育水準の向上",
+          "favored_parties": ["cdp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.12,
+        "environment": 0.07,
+        "local_revitalization": 0.18,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.10
+      },
+      "unique_local_factors": [
+        "日光世界遺産を核とした観光",
+        "北関東工業地域の一角",
+        "いちご生産量日本一",
+        "LRT（次世代型路面電車）開業"
+      ]
+    },
+    {
+      "prefecture_code": 10,
+      "prefecture_name": "群馬県",
+      "primary_issues": [
+        {
+          "issue": "製造業振興",
+          "priority": 0.22,
+          "description": "自動車関連産業（SUBARU等）の競争力強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.18,
+          "description": "若者の流出防止と外国人住民との共生",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "多文化共生",
+          "priority": 0.15,
+          "description": "大泉町等における外国人労働者との共生社会構築",
+          "favored_parties": ["cdp", "komei", "jcp"]
+        },
+        {
+          "issue": "災害対策",
+          "priority": 0.12,
+          "description": "浅間山噴火対策と豪雨災害への備え",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "農業振興",
+          "priority": 0.10,
+          "description": "こんにゃく・キャベツ等の農産物振興",
+          "favored_parties": ["ldp", "dpfp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.12,
+        "environment": 0.05,
+        "local_revitalization": 0.20,
+        "constitutional_reform": 0.05,
+        "disaster_prevention": 0.08
+      },
+      "unique_local_factors": [
+        "外国人集住地域（大泉町等）の多文化共生",
+        "SUBARU等の自動車関連産業集積",
+        "温泉観光資源（草津・伊香保）",
+        "保守王国としての政治風土"
+      ]
+    },
+    {
+      "prefecture_code": 11,
+      "prefecture_name": "埼玉県",
+      "primary_issues": [
+        {
+          "issue": "都市インフラ整備",
+          "priority": 0.22,
+          "description": "通勤混雑緩和と交通網の充実",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "子育て・教育",
+          "priority": 0.20,
+          "description": "待機児童解消と教育環境の充実",
+          "favored_parties": ["cdp", "komei", "dpfp"]
+        },
+        {
+          "issue": "医療・福祉",
+          "priority": 0.15,
+          "description": "人口当たり医師数の少なさへの対応",
+          "favored_parties": ["cdp", "komei", "jcp"]
+        },
+        {
+          "issue": "災害対策",
+          "priority": 0.12,
+          "description": "荒川・利根川の水害対策と首都直下地震への備え",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "経済活性化",
+          "priority": 0.10,
+          "description": "県内産業の振興とベッドタウン脱却",
+          "favored_parties": ["ldp", "ishin"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.22,
+        "social_security": 0.25,
+        "national_security": 0.05,
+        "education": 0.15,
+        "environment": 0.05,
+        "local_revitalization": 0.12,
+        "constitutional_reform": 0.04,
+        "disaster_prevention": 0.12
+      },
+      "unique_local_factors": [
+        "東京のベッドタウンとしての課題",
+        "人口あたり医師数全国最低レベル",
+        "急速な高齢化（2025年問題の最前線）",
+        "さいたま新都心の機能強化"
+      ]
+    },
+    {
+      "prefecture_code": 12,
+      "prefecture_name": "千葉県",
+      "primary_issues": [
+        {
+          "issue": "災害対策・インフラ強靭化",
+          "priority": 0.22,
+          "description": "台風・豪雨被害への備えと停電対策",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "成田空港・物流拠点",
+          "priority": 0.18,
+          "description": "成田空港の機能強化と物流産業の振興",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "子育て・教育",
+          "priority": 0.15,
+          "description": "子育て世帯への支援と教育環境整備",
+          "favored_parties": ["cdp", "komei"]
+        },
+        {
+          "issue": "農漁業振興",
+          "priority": 0.12,
+          "description": "落花生・水産業等の千葉ブランド強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "交通インフラ",
+          "priority": 0.10,
+          "description": "房総半島の交通アクセス改善と鉄道整備",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.23,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.13,
+        "environment": 0.05,
+        "local_revitalization": 0.13,
+        "constitutional_reform": 0.04,
+        "disaster_prevention": 0.15
+      },
+      "unique_local_factors": [
+        "成田国際空港の地元としての課題",
+        "台風・停電被害の経験",
+        "ディズニーリゾート等の観光産業",
+        "東京湾沿岸の工業地帯と環境問題"
+      ]
+    },
+    {
+      "prefecture_code": 13,
+      "prefecture_name": "東京都",
+      "primary_issues": [
+        {
+          "issue": "住宅・生活コスト",
+          "priority": 0.22,
+          "description": "住宅価格高騰・家賃負担と物価上昇への対応",
+          "favored_parties": ["cdp", "reiwa", "jcp"]
+        },
+        {
+          "issue": "子育て支援・少子化対策",
+          "priority": 0.20,
+          "description": "保育施設拡充・教育費軽減・出生率向上",
+          "favored_parties": ["cdp", "komei", "dpfp"]
+        },
+        {
+          "issue": "都市インフラ・防災",
+          "priority": 0.15,
+          "description": "首都直下地震への備えと老朽インフラ更新",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "経済・雇用政策",
+          "priority": 0.15,
+          "description": "スタートアップ支援・国際金融都市構想",
+          "favored_parties": ["ldp", "ishin", "dpfp"]
+        },
+        {
+          "issue": "多様性・人権政策",
+          "priority": 0.08,
+          "description": "LGBTQ+政策・外国人共生・ダイバーシティ推進",
+          "favored_parties": ["cdp", "reiwa", "jcp", "shamin"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.28,
+        "social_security": 0.25,
+        "national_security": 0.07,
+        "education": 0.15,
+        "environment": 0.05,
+        "local_revitalization": 0.05,
+        "constitutional_reform": 0.07,
+        "disaster_prevention": 0.08
+      },
+      "unique_local_factors": [
+        "住宅価格・家賃の高騰",
+        "首都直下地震への備え",
+        "一極集中と地方との格差",
+        "国際都市としての競争力",
+        "待機児童問題（改善傾向）"
+      ]
+    },
+    {
+      "prefecture_code": 14,
+      "prefecture_name": "神奈川県",
+      "primary_issues": [
+        {
+          "issue": "子育て・教育",
+          "priority": 0.20,
+          "description": "待機児童解消と教育費負担軽減",
+          "favored_parties": ["cdp", "komei", "dpfp"]
+        },
+        {
+          "issue": "都市インフラ・交通",
+          "priority": 0.18,
+          "description": "リニア中央新幹線駅設置効果と交通混雑緩和",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "医療・高齢者福祉",
+          "priority": 0.15,
+          "description": "急速な高齢化への医療・介護体制整備",
+          "favored_parties": ["cdp", "komei", "jcp"]
+        },
+        {
+          "issue": "経済・産業振興",
+          "priority": 0.15,
+          "description": "横浜・川崎の産業競争力強化とスタートアップ支援",
+          "favored_parties": ["ldp", "ishin", "dpfp"]
+        },
+        {
+          "issue": "防災",
+          "priority": 0.10,
+          "description": "首都直下地震・津波対策と沿岸部の安全確保",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.25,
+        "national_security": 0.07,
+        "education": 0.15,
+        "environment": 0.05,
+        "local_revitalization": 0.08,
+        "constitutional_reform": 0.05,
+        "disaster_prevention": 0.10
+      },
+      "unique_local_factors": [
+        "横須賀米軍基地の存在",
+        "リニア中央新幹線の相模原駅",
+        "横浜IR構想の撤回と今後",
+        "人口減少の始まりと団地の高齢化"
+      ]
+    },
+    {
+      "prefecture_code": 15,
+      "prefecture_name": "新潟県",
+      "primary_issues": [
+        {
+          "issue": "農業振興（米作）",
+          "priority": 0.25,
+          "description": "コシヒカリ等の米産業維持と農家所得向上",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "柏崎刈羽原発再稼働問題",
+          "priority": 0.20,
+          "description": "原発再稼働の是非と地域経済・安全性の両立",
+          "favored_parties": ["cdp", "jcp", "reiwa"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.17,
+          "description": "若者の首都圏流出防止と産業振興",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "豪雪対策",
+          "priority": 0.10,
+          "description": "除雪費用の確保と雪害対策",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "拉致問題",
+          "priority": 0.08,
+          "description": "北朝鮮拉致被害者の早期帰国実現",
+          "favored_parties": ["ldp", "dpfp", "sansei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.22,
+        "social_security": 0.20,
+        "national_security": 0.10,
+        "education": 0.08,
+        "environment": 0.12,
+        "local_revitalization": 0.18,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.07
+      },
+      "unique_local_factors": [
+        "柏崎刈羽原子力発電所の再稼働問題",
+        "米どころとしての農業政策",
+        "北朝鮮拉致問題（横田めぐみさん）",
+        "田中角栄以来の政治風土"
+      ]
+    },
+    {
+      "prefecture_code": 16,
+      "prefecture_name": "富山県",
+      "primary_issues": [
+        {
+          "issue": "製薬・製造業振興",
+          "priority": 0.22,
+          "description": "富山の薬売りの伝統を活かした製薬産業の強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.20,
+          "description": "コンパクトシティ政策と若者定着促進",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "北陸新幹線の活用",
+          "priority": 0.15,
+          "description": "新幹線効果の最大化と在来線維持",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "農林水産業",
+          "priority": 0.12,
+          "description": "富山湾の水産業と米作農業の振興",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "災害対策",
+          "priority": 0.08,
+          "description": "豪雪・洪水対策と地震への備え",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.27,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.10,
+        "environment": 0.05,
+        "local_revitalization": 0.20,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.08
+      },
+      "unique_local_factors": [
+        "富山型コンパクトシティ政策",
+        "製薬産業の伝統と集積",
+        "北陸新幹線延伸効果",
+        "持ち家率・共働き率の高さ"
+      ]
+    },
+    {
+      "prefecture_code": 17,
+      "prefecture_name": "石川県",
+      "primary_issues": [
+        {
+          "issue": "能登半島地震からの復興",
+          "priority": 0.28,
+          "description": "2024年能登半島地震の被災地復興と生活再建",
+          "favored_parties": ["ldp", "cdp", "komei"]
+        },
+        {
+          "issue": "観光産業振興",
+          "priority": 0.18,
+          "description": "金沢・能登の観光復興と北陸新幹線延伸効果の活用",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.15,
+          "description": "能登地域の過疎化対策と若者定着",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "伝統産業・文化振興",
+          "priority": 0.10,
+          "description": "輪島塗・加賀友禅等の伝統工芸の保全と振興",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "防災・インフラ強靭化",
+          "priority": 0.10,
+          "description": "地震・津波対策とインフラの耐震化",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.20,
+        "social_security": 0.18,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.05,
+        "local_revitalization": 0.19,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.22
+      },
+      "unique_local_factors": [
+        "2024年能登半島地震の被災と復興",
+        "金沢の歴史・文化資源",
+        "北陸新幹線延伸による経済効果",
+        "輪島塗等伝統工芸の危機"
+      ]
+    },
+    {
+      "prefecture_code": 18,
+      "prefecture_name": "福井県",
+      "primary_issues": [
+        {
+          "issue": "原子力発電所と地域経済",
+          "priority": 0.22,
+          "description": "原発集中立地県としてのエネルギー政策と地域振興",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "北陸新幹線延伸効果",
+          "priority": 0.18,
+          "description": "敦賀延伸の経済効果最大化と在来線問題",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.18,
+          "description": "幸福度日本一の強みを活かした定住促進",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "製造業振興",
+          "priority": 0.12,
+          "description": "眼鏡産業（鯖江）等の地場産業の強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "農林水産業",
+          "priority": 0.08,
+          "description": "越前がに等のブランド水産物と農業の振興",
+          "favored_parties": ["ldp", "dpfp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.12,
+        "environment": 0.10,
+        "local_revitalization": 0.18,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.07
+      },
+      "unique_local_factors": [
+        "原発銀座（若狭湾に原発集中）",
+        "幸福度ランキング日本一",
+        "鯖江市の眼鏡産業",
+        "北陸新幹線敦賀延伸"
+      ]
+    },
+    {
+      "prefecture_code": 19,
+      "prefecture_name": "山梨県",
+      "primary_issues": [
+        {
+          "issue": "リニア中央新幹線",
+          "priority": 0.22,
+          "description": "リニア開業による地域経済活性化への期待",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "人口減少・過疎化",
+          "priority": 0.20,
+          "description": "中山間地域の過疎化対策と移住促進",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "観光・ワイン産業",
+          "priority": 0.15,
+          "description": "富士山観光とワイン産業のブランド化",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "果樹農業振興",
+          "priority": 0.13,
+          "description": "ぶどう・もも等の果樹産業の競争力強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "災害対策",
+          "priority": 0.10,
+          "description": "富士山噴火対策と水害対策",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.08,
+        "local_revitalization": 0.20,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.11
+      },
+      "unique_local_factors": [
+        "リニア中央新幹線の開業効果",
+        "富士山の世界遺産と観光オーバーツーリズム",
+        "甲州ワイン産業の振興",
+        "果樹農業への気候変動影響"
+      ]
+    },
+    {
+      "prefecture_code": 20,
+      "prefecture_name": "長野県",
+      "primary_issues": [
+        {
+          "issue": "観光産業振興",
+          "priority": 0.20,
+          "description": "スキーリゾート・山岳観光の活性化",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "農業振興",
+          "priority": 0.18,
+          "description": "りんご・レタス等の高原野菜と果樹の振興",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "人口減少・中山間地域対策",
+          "priority": 0.18,
+          "description": "広大な県土の過疎地域対策と移住促進",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "製造業・ハイテク産業",
+          "priority": 0.12,
+          "description": "精密機械・IT産業の集積強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "災害対策",
+          "priority": 0.10,
+          "description": "地震・土砂災害・火山噴火への備え",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.23,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.10,
+        "environment": 0.10,
+        "local_revitalization": 0.18,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.11
+      },
+      "unique_local_factors": [
+        "広大な県土と中山間地域の多さ",
+        "精密機械・IT産業の集積",
+        "移住先人気ランキング上位",
+        "御嶽山噴火の教訓と火山防災"
+      ]
+    },
+    {
+      "prefecture_code": 21,
+      "prefecture_name": "岐阜県",
+      "primary_issues": [
+        {
+          "issue": "製造業振興",
+          "priority": 0.22,
+          "description": "航空宇宙・自動車関連産業の競争力強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "人口減少・地域格差",
+          "priority": 0.18,
+          "description": "飛騨地域等の過疎化対策と名古屋圏への人口流出防止",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "観光振興",
+          "priority": 0.15,
+          "description": "白川郷・高山等の観光資源活用とオーバーツーリズム対策",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "災害対策",
+          "priority": 0.12,
+          "description": "水害（長良川等）と南海トラフ地震への備え",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "リニア効果の活用",
+          "priority": 0.10,
+          "description": "リニア中央新幹線岐阜県駅の効果最大化",
+          "favored_parties": ["ldp", "dpfp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.07,
+        "local_revitalization": 0.20,
+        "constitutional_reform": 0.04,
+        "disaster_prevention": 0.11
+      },
+      "unique_local_factors": [
+        "白川郷世界遺産のオーバーツーリズム",
+        "リニア中央新幹線岐阜県駅",
+        "航空宇宙産業（各務原）の集積",
+        "県南部と飛騨地方の大きな地域格差"
+      ]
+    },
+    {
+      "prefecture_code": 22,
+      "prefecture_name": "静岡県",
+      "primary_issues": [
+        {
+          "issue": "リニア中央新幹線問題",
+          "priority": 0.22,
+          "description": "大井川の水資源問題とリニア工事の調整",
+          "favored_parties": ["cdp", "ldp"]
+        },
+        {
+          "issue": "製造業振興",
+          "priority": 0.18,
+          "description": "自動車・楽器等の製造業の競争力維持",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "防災",
+          "priority": 0.18,
+          "description": "南海トラフ地震・津波・富士山噴火への備え",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "農林水産業",
+          "priority": 0.12,
+          "description": "茶・みかん等の農業とカツオ・マグロ漁業の振興",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.10,
+          "description": "東京圏への人口流出抑制と企業誘致",
+          "favored_parties": ["ldp", "cdp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.18,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.10,
+        "local_revitalization": 0.15,
+        "constitutional_reform": 0.04,
+        "disaster_prevention": 0.15
+      },
+      "unique_local_factors": [
+        "リニア中央新幹線と大井川水問題",
+        "南海トラフ地震の最大被害想定地域",
+        "富士山噴火への備え",
+        "浜岡原発の停止問題"
+      ]
+    },
+    {
+      "prefecture_code": 23,
+      "prefecture_name": "愛知県",
+      "primary_issues": [
+        {
+          "issue": "自動車産業・製造業の構造転換",
+          "priority": 0.28,
+          "description": "EV・自動運転時代へのトヨタ関連産業の転換支援",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "外国人労働者との共生",
+          "priority": 0.15,
+          "description": "多数の外国人労働者との多文化共生社会の実現",
+          "favored_parties": ["cdp", "komei", "jcp"]
+        },
+        {
+          "issue": "リニア中央新幹線",
+          "priority": 0.13,
+          "description": "名古屋駅周辺開発とリニア開業効果の最大化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "南海トラフ地震対策",
+          "priority": 0.12,
+          "description": "巨大地震・津波への防災体制の強化",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "子育て・教育",
+          "priority": 0.10,
+          "description": "子育て環境の充実と教育水準の向上",
+          "favored_parties": ["cdp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.30,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.12,
+        "environment": 0.05,
+        "local_revitalization": 0.10,
+        "constitutional_reform": 0.05,
+        "disaster_prevention": 0.13
+      },
+      "unique_local_factors": [
+        "トヨタ自動車を核とした自動車産業の一大集積",
+        "EV転換による産業構造変化のリスク",
+        "外国人集住地域の多文化共生課題",
+        "リニア中央新幹線名古屋駅"
+      ]
+    },
+    {
+      "prefecture_code": 24,
+      "prefecture_name": "三重県",
+      "primary_issues": [
+        {
+          "issue": "製造業振興",
+          "priority": 0.20,
+          "description": "石油化学・半導体等の産業基盤の強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "観光振興",
+          "priority": 0.18,
+          "description": "伊勢神宮・熊野古道等の観光資源活用",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "南海トラフ地震対策",
+          "priority": 0.18,
+          "description": "リアス海岸部の津波対策と防災体制強化",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.13,
+          "description": "南部地域の過疎化対策と移住促進",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "農林水産業",
+          "priority": 0.10,
+          "description": "松阪牛・真珠等のブランド産業と漁業振興",
+          "favored_parties": ["ldp", "dpfp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.18,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.07,
+        "local_revitalization": 0.18,
+        "constitutional_reform": 0.04,
+        "disaster_prevention": 0.15
+      },
+      "unique_local_factors": [
+        "伊勢神宮の観光・文化的重要性",
+        "南海トラフ地震の被害想定大",
+        "石油化学コンビナート（四日市）",
+        "世界遺産・熊野古道"
+      ]
+    },
+    {
+      "prefecture_code": 25,
+      "prefecture_name": "滋賀県",
+      "primary_issues": [
+        {
+          "issue": "琵琶湖の環境保全",
+          "priority": 0.22,
+          "description": "日本最大の湖・琵琶湖の水質保全と生態系維持",
+          "favored_parties": ["cdp", "jcp", "shamin"]
+        },
+        {
+          "issue": "製造業振興",
+          "priority": 0.18,
+          "description": "東レ等の製造業拠点の競争力維持と新産業創出",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "子育て・教育",
+          "priority": 0.15,
+          "description": "子育て世帯の流入を活かした教育環境の充実",
+          "favored_parties": ["cdp", "komei"]
+        },
+        {
+          "issue": "交通インフラ",
+          "priority": 0.13,
+          "description": "北陸新幹線延伸ルートと在来線の利便性確保",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "人口増加への対応",
+          "priority": 0.10,
+          "description": "南部の人口増加地域のインフラ整備",
+          "favored_parties": ["ldp", "cdp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.22,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.15,
+        "environment": 0.18,
+        "local_revitalization": 0.10,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.07
+      },
+      "unique_local_factors": [
+        "琵琶湖の環境保全（近畿の水瓶）",
+        "数少ない人口増加県（近年減少に転換）",
+        "北陸新幹線延伸ルートの議論",
+        "製造業の県内総生産比率が高い"
+      ]
+    },
+    {
+      "prefecture_code": 26,
+      "prefecture_name": "京都府",
+      "primary_issues": [
+        {
+          "issue": "観光とオーバーツーリズム",
+          "priority": 0.22,
+          "description": "世界的観光地としてのオーバーツーリズム対策と住民生活の両立",
+          "favored_parties": ["ldp", "cdp", "jcp"]
+        },
+        {
+          "issue": "文化財保護・景観維持",
+          "priority": 0.15,
+          "description": "世界遺産を含む文化財の保護と景観条例の維持",
+          "favored_parties": ["ldp", "jcp", "cdp"]
+        },
+        {
+          "issue": "学術・研究振興",
+          "priority": 0.15,
+          "description": "京大等の研究拠点とスタートアップエコシステムの強化",
+          "favored_parties": ["ldp", "dpfp", "ishin"]
+        },
+        {
+          "issue": "南北格差の解消",
+          "priority": 0.13,
+          "description": "京都市と府北部の経済格差解消",
+          "favored_parties": ["ldp", "cdp", "jcp"]
+        },
+        {
+          "issue": "伝統産業振興",
+          "priority": 0.10,
+          "description": "西陣織・清水焼等の伝統産業の後継者育成",
+          "favored_parties": ["ldp", "jcp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.18,
+        "environment": 0.08,
+        "local_revitalization": 0.15,
+        "constitutional_reform": 0.04,
+        "disaster_prevention": 0.05
+      },
+      "unique_local_factors": [
+        "オーバーツーリズム問題",
+        "共産党が強い独特の政治風土",
+        "大学・研究機関の集積",
+        "伝統産業の担い手不足",
+        "米軍Xバンドレーダー基地（経ヶ岬）"
+      ]
+    },
+    {
+      "prefecture_code": 27,
+      "prefecture_name": "大阪府",
+      "primary_issues": [
+        {
+          "issue": "経済再生・成長戦略",
+          "priority": 0.25,
+          "description": "大阪経済の復権と中小企業・スタートアップ支援",
+          "favored_parties": ["ishin", "ldp", "dpfp"]
+        },
+        {
+          "issue": "万博・IR（カジノ）",
+          "priority": 0.20,
+          "description": "2025年大阪万博の成功とIR（統合型リゾート）の推進",
+          "favored_parties": ["ishin", "ldp"]
+        },
+        {
+          "issue": "都市インフラ・交通",
+          "priority": 0.13,
+          "description": "なにわ筋線等の交通インフラ整備と都市更新",
+          "favored_parties": ["ishin", "ldp", "komei"]
+        },
+        {
+          "issue": "子育て・教育無償化",
+          "priority": 0.12,
+          "description": "高校・大学無償化と子育て環境の充実",
+          "favored_parties": ["ishin", "cdp", "komei"]
+        },
+        {
+          "issue": "生活保護・貧困対策",
+          "priority": 0.10,
+          "description": "西成区等の生活困窮地域への支援と自立促進",
+          "favored_parties": ["cdp", "jcp", "reiwa"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.30,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.15,
+        "environment": 0.03,
+        "local_revitalization": 0.10,
+        "constitutional_reform": 0.08,
+        "disaster_prevention": 0.07
+      },
+      "unique_local_factors": [
+        "2025年大阪・関西万博",
+        "IR（統合型リゾート）推進",
+        "維新の会の地盤・改革路線",
+        "大阪都構想の残影",
+        "中小企業の街としての特性"
+      ]
+    },
+    {
+      "prefecture_code": 28,
+      "prefecture_name": "兵庫県",
+      "primary_issues": [
+        {
+          "issue": "経済・産業振興",
+          "priority": 0.22,
+          "description": "神戸港を活かした国際ビジネス拠点と製造業の強化",
+          "favored_parties": ["ldp", "ishin", "dpfp"]
+        },
+        {
+          "issue": "防災・震災の教訓",
+          "priority": 0.18,
+          "description": "阪神淡路大震災の教訓を活かした防災対策の継続",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "人口減少・地域格差",
+          "priority": 0.15,
+          "description": "神戸・阪神間と但馬・淡路の格差是正",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "子育て・教育",
+          "priority": 0.12,
+          "description": "子育て支援の充実と教育環境の整備",
+          "favored_parties": ["cdp", "komei", "ishin"]
+        },
+        {
+          "issue": "農林水産業",
+          "priority": 0.08,
+          "description": "但馬牛・日本酒等のブランド産業振興",
+          "favored_parties": ["ldp", "dpfp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.13,
+        "environment": 0.05,
+        "local_revitalization": 0.13,
+        "constitutional_reform": 0.05,
+        "disaster_prevention": 0.12
+      },
+      "unique_local_factors": [
+        "阪神淡路大震災の経験と教訓",
+        "神戸港の国際物流拠点としての役割",
+        "県知事選の政治的注目度",
+        "県南北の大きな地域格差"
+      ]
+    },
+    {
+      "prefecture_code": 29,
+      "prefecture_name": "奈良県",
+      "primary_issues": [
+        {
+          "issue": "観光・文化財活用",
+          "priority": 0.25,
+          "description": "世界遺産・歴史文化資源を活かした観光振興",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "文化財保護",
+          "priority": 0.18,
+          "description": "古都・奈良の文化財保護と景観維持",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.17,
+          "description": "大阪のベッドタウンからの脱却と雇用創出",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "交通インフラ",
+          "priority": 0.12,
+          "description": "県南部のアクセス改善とリニア駅誘致",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "高齢者福祉",
+          "priority": 0.08,
+          "description": "高齢化に対応する医療・介護体制の充実",
+          "favored_parties": ["cdp", "komei", "jcp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.22,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.10,
+        "environment": 0.10,
+        "local_revitalization": 0.22,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.06
+      },
+      "unique_local_factors": [
+        "世界遺産群の保全と活用",
+        "大阪のベッドタウン的性格",
+        "維新の会の影響力拡大",
+        "奈良公園の鹿と観光マネジメント"
+      ]
+    },
+    {
+      "prefecture_code": 30,
+      "prefecture_name": "和歌山県",
+      "primary_issues": [
+        {
+          "issue": "人口減少・過疎化",
+          "priority": 0.25,
+          "description": "深刻な人口減少と若者流出への対応",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "防災",
+          "priority": 0.20,
+          "description": "南海トラフ地震・津波対策の強化",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "観光・世界遺産活用",
+          "priority": 0.15,
+          "description": "熊野古道・高野山等の世界遺産を活かした観光振興",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "農林水産業",
+          "priority": 0.13,
+          "description": "みかん・梅等の農産物ブランド強化と漁業振興",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "交通インフラ",
+          "priority": 0.08,
+          "description": "紀伊半島のアクセス改善と高速道路整備",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.20,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.07,
+        "environment": 0.08,
+        "local_revitalization": 0.20,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.15
+      },
+      "unique_local_factors": [
+        "南海トラフ地震の津波被害想定大",
+        "熊野古道・高野山の世界遺産",
+        "二階俊博氏の政治的影響力",
+        "紀伊半島の交通アクセス問題"
+      ]
+    },
+    {
+      "prefecture_code": 31,
+      "prefecture_name": "鳥取県",
+      "primary_issues": [
+        {
+          "issue": "人口減少（全国最少）",
+          "priority": 0.28,
+          "description": "全国最少人口県としての存続戦略と移住促進",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "農林水産業振興",
+          "priority": 0.18,
+          "description": "二十世紀梨・松葉がに等のブランド産業振興",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "観光振興",
+          "priority": 0.15,
+          "description": "鳥取砂丘等の観光資源活用とまんが王国構想",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "医療体制確保",
+          "priority": 0.10,
+          "description": "過疎地域の医療・介護アクセスの確保",
+          "favored_parties": ["cdp", "komei", "jcp"]
+        },
+        {
+          "issue": "交通インフラ",
+          "priority": 0.08,
+          "description": "山陰新幹線構想と高速道路ミッシングリンクの解消",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.20,
+        "social_security": 0.25,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.07,
+        "local_revitalization": 0.27,
+        "constitutional_reform": 0.02,
+        "disaster_prevention": 0.06
+      },
+      "unique_local_factors": [
+        "全国最少人口県",
+        "まんが王国とっとり構想",
+        "石破茂氏の地盤",
+        "鳥取砂丘と自然環境の保全"
+      ]
+    },
+    {
+      "prefecture_code": 32,
+      "prefecture_name": "島根県",
+      "primary_issues": [
+        {
+          "issue": "人口減少・過疎化",
+          "priority": 0.28,
+          "description": "深刻な過疎化と高齢化への対応",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "島根原発問題",
+          "priority": 0.15,
+          "description": "県庁所在地に近接する原発の再稼働と安全性",
+          "favored_parties": ["cdp", "jcp", "reiwa"]
+        },
+        {
+          "issue": "観光振興",
+          "priority": 0.13,
+          "description": "出雲大社・石見銀山等の観光資源活用",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "竹島問題",
+          "priority": 0.10,
+          "description": "竹島の領土問題への政府の毅然とした対応",
+          "favored_parties": ["ldp", "sansei"]
+        },
+        {
+          "issue": "農林水産業",
+          "priority": 0.10,
+          "description": "しじみ等の水産業と中山間地農業の振興",
+          "favored_parties": ["ldp", "dpfp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.18,
+        "social_security": 0.25,
+        "national_security": 0.10,
+        "education": 0.07,
+        "environment": 0.07,
+        "local_revitalization": 0.25,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.05
+      },
+      "unique_local_factors": [
+        "竹島（独島）の領有権問題",
+        "島根原発の立地（県庁所在地近接）",
+        "出雲大社を核とした観光",
+        "保守王国としての政治風土"
+      ]
+    },
+    {
+      "prefecture_code": 33,
+      "prefecture_name": "岡山県",
+      "primary_issues": [
+        {
+          "issue": "製造業振興",
+          "priority": 0.22,
+          "description": "水島コンビナート等の製造業基盤の強化とDX推進",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "西日本豪雨からの復興",
+          "priority": 0.18,
+          "description": "2018年豪雨（真備町等）の復興と防災対策の強化",
+          "favored_parties": ["ldp", "cdp", "komei"]
+        },
+        {
+          "issue": "農業振興",
+          "priority": 0.15,
+          "description": "白桃・マスカット等の高級フルーツブランドの強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "教育・学園都市",
+          "priority": 0.12,
+          "description": "大学・教育機関の集積を活かした人材育成",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.10,
+          "description": "移住先として人気の岡山の魅力発信と定住促進",
+          "favored_parties": ["ldp", "cdp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.12,
+        "environment": 0.05,
+        "local_revitalization": 0.17,
+        "constitutional_reform": 0.04,
+        "disaster_prevention": 0.12
+      },
+      "unique_local_factors": [
+        "2018年西日本豪雨の被災経験",
+        "水島コンビナートの産業集積",
+        "晴れの国としての気候メリット",
+        "移住先人気ランキング上位"
+      ]
+    },
+    {
+      "prefecture_code": 34,
+      "prefecture_name": "広島県",
+      "primary_issues": [
+        {
+          "issue": "平和政策・核兵器廃絶",
+          "priority": 0.22,
+          "description": "被爆地としての核兵器廃絶と平和推進の国際発信",
+          "favored_parties": ["cdp", "jcp", "shamin"]
+        },
+        {
+          "issue": "製造業振興",
+          "priority": 0.20,
+          "description": "自動車（マツダ）・造船等の製造業の競争力強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "豪雨災害対策",
+          "priority": 0.15,
+          "description": "2018年豪雨等の教訓を活かした防災対策",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "人口減少・地域格差",
+          "priority": 0.13,
+          "description": "広島市への一極集中と中山間地域の過疎化対策",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "観光振興",
+          "priority": 0.10,
+          "description": "原爆ドーム・宮島等の世界遺産を活かした観光",
+          "favored_parties": ["ldp", "ishin"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.20,
+        "national_security": 0.12,
+        "education": 0.10,
+        "environment": 0.05,
+        "local_revitalization": 0.12,
+        "constitutional_reform": 0.05,
+        "disaster_prevention": 0.11
+      },
+      "unique_local_factors": [
+        "被爆地としての平和発信",
+        "G7広島サミットの開催実績",
+        "マツダ等の製造業拠点",
+        "瀬戸内しまなみ海道の観光資源"
+      ]
+    },
+    {
+      "prefecture_code": 35,
+      "prefecture_name": "山口県",
+      "primary_issues": [
+        {
+          "issue": "産業振興・経済活性化",
+          "priority": 0.22,
+          "description": "石油化学・セメント等の基幹産業の競争力維持",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "人口減少・過疎化",
+          "priority": 0.22,
+          "description": "急速な人口減少と若者流出への対応",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "米軍岩国基地問題",
+          "priority": 0.15,
+          "description": "艦載機移駐後の基地負担と騒音問題への対応",
+          "favored_parties": ["cdp", "jcp", "shamin"]
+        },
+        {
+          "issue": "上関原発問題",
+          "priority": 0.10,
+          "description": "上関原発建設計画と中間貯蔵施設の是非",
+          "favored_parties": ["cdp", "jcp", "reiwa"]
+        },
+        {
+          "issue": "観光振興",
+          "priority": 0.08,
+          "description": "秋芳洞・錦帯橋等の観光資源活用",
+          "favored_parties": ["ldp", "ishin"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.23,
+        "social_security": 0.22,
+        "national_security": 0.12,
+        "education": 0.07,
+        "environment": 0.07,
+        "local_revitalization": 0.20,
+        "constitutional_reform": 0.05,
+        "disaster_prevention": 0.04
+      },
+      "unique_local_factors": [
+        "多くの首相を輩出した政治風土",
+        "米軍岩国基地の機能強化",
+        "上関原発建設問題",
+        "瀬戸内海側の工業集積"
+      ]
+    },
+    {
+      "prefecture_code": 36,
+      "prefecture_name": "徳島県",
+      "primary_issues": [
+        {
+          "issue": "人口減少・過疎化",
+          "priority": 0.25,
+          "description": "深刻な人口減少と山間部の過疎化への対応",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "南海トラフ地震対策",
+          "priority": 0.20,
+          "description": "津波対策と地震防災体制の強化",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "DX・サテライトオフィス",
+          "priority": 0.15,
+          "description": "神山町モデルのサテライトオフィス誘致と地方DX",
+          "favored_parties": ["ldp", "dpfp", "ishin"]
+        },
+        {
+          "issue": "農林水産業",
+          "priority": 0.12,
+          "description": "すだち・鳴門金時等の特産品振興と漁業支援",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "医療体制",
+          "priority": 0.08,
+          "description": "過疎地域の医療確保と遠隔医療の推進",
+          "favored_parties": ["cdp", "komei", "jcp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.20,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.07,
+        "local_revitalization": 0.22,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.13
+      },
+      "unique_local_factors": [
+        "神山町のサテライトオフィス先進事例",
+        "南海トラフ地震の大被害想定",
+        "阿波踊り等の文化資源",
+        "四国新幹線構想"
+      ]
+    },
+    {
+      "prefecture_code": 37,
+      "prefecture_name": "香川県",
+      "primary_issues": [
+        {
+          "issue": "人口減少対策",
+          "priority": 0.22,
+          "description": "コンパクトな県土を活かした人口減少対策",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "水資源問題",
+          "priority": 0.15,
+          "description": "渇水リスクへの対応と水資源の確保",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "観光振興",
+          "priority": 0.15,
+          "description": "うどん県ブランド・直島アート等の観光強化",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "農業振興",
+          "priority": 0.12,
+          "description": "オリーブ・讃岐うどん用小麦等の農業振興",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "南海トラフ地震対策",
+          "priority": 0.12,
+          "description": "津波・高潮対策と防災インフラ整備",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.22,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.10,
+        "local_revitalization": 0.18,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.12
+      },
+      "unique_local_factors": [
+        "日本一面積が小さい県",
+        "渇水問題（早明浦ダム依存）",
+        "瀬戸内国際芸術祭のアート観光",
+        "うどん県としてのブランド力"
+      ]
+    },
+    {
+      "prefecture_code": 38,
+      "prefecture_name": "愛媛県",
+      "primary_issues": [
+        {
+          "issue": "人口減少・過疎化",
+          "priority": 0.22,
+          "description": "南予地域の過疎化と若者流出への対応",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "農業振興",
+          "priority": 0.18,
+          "description": "みかん等の柑橘産業の競争力強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "伊方原発問題",
+          "priority": 0.15,
+          "description": "伊方原発の安全性と避難計画の実効性",
+          "favored_parties": ["cdp", "jcp", "reiwa"]
+        },
+        {
+          "issue": "南海トラフ地震対策",
+          "priority": 0.13,
+          "description": "津波対策と防災体制の強化",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "観光振興",
+          "priority": 0.10,
+          "description": "道後温泉・しまなみ海道等の観光資源活用",
+          "favored_parties": ["ldp", "ishin"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.22,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.08,
+        "local_revitalization": 0.20,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.12
+      },
+      "unique_local_factors": [
+        "伊方原子力発電所",
+        "柑橘類生産量全国トップクラス",
+        "しまなみ海道のサイクリング観光",
+        "2018年西日本豪雨の被害経験"
+      ]
+    },
+    {
+      "prefecture_code": 39,
+      "prefecture_name": "高知県",
+      "primary_issues": [
+        {
+          "issue": "南海トラフ地震・津波対策",
+          "priority": 0.28,
+          "description": "最大34mの津波想定への備えと防災体制強化",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "人口減少・過疎化",
+          "priority": 0.25,
+          "description": "全国有数の人口減少率への危機的対応",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "農林水産業振興",
+          "priority": 0.13,
+          "description": "カツオ漁業と園芸農業（ナス・ショウガ）の振興",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "医療体制確保",
+          "priority": 0.10,
+          "description": "過疎地域の医療・救急体制の維持",
+          "favored_parties": ["cdp", "komei", "jcp"]
+        },
+        {
+          "issue": "交通インフラ",
+          "priority": 0.08,
+          "description": "高速道路ミッシングリンク解消と四国新幹線",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.17,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.07,
+        "environment": 0.05,
+        "local_revitalization": 0.22,
+        "constitutional_reform": 0.02,
+        "disaster_prevention": 0.20
+      },
+      "unique_local_factors": [
+        "南海トラフ地震の最大被害想定地域",
+        "全国有数の人口減少率",
+        "カツオの一本釣り漁業文化",
+        "四国新幹線構想",
+        "中山間地域の集落維持問題"
+      ]
+    },
+    {
+      "prefecture_code": 40,
+      "prefecture_name": "福岡県",
+      "primary_issues": [
+        {
+          "issue": "経済成長・スタートアップ",
+          "priority": 0.25,
+          "description": "福岡市のスタートアップ都市構想と経済圏の拡大",
+          "favored_parties": ["ldp", "ishin", "dpfp"]
+        },
+        {
+          "issue": "都市インフラ",
+          "priority": 0.15,
+          "description": "天神ビッグバン・博多コネクティッド等の都市再開発",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "子育て・教育",
+          "priority": 0.15,
+          "description": "人口増加地域の子育て環境整備と教育充実",
+          "favored_parties": ["cdp", "komei"]
+        },
+        {
+          "issue": "北九州市の経済再生",
+          "priority": 0.12,
+          "description": "旧産炭地域の産業転換と北九州市の活性化",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "安全保障",
+          "priority": 0.08,
+          "description": "対中・対北朝鮮の安全保障と自衛隊基地の役割",
+          "favored_parties": ["ldp", "sansei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.28,
+        "social_security": 0.22,
+        "national_security": 0.08,
+        "education": 0.13,
+        "environment": 0.05,
+        "local_revitalization": 0.12,
+        "constitutional_reform": 0.05,
+        "disaster_prevention": 0.07
+      },
+      "unique_local_factors": [
+        "福岡市のスタートアップ特区",
+        "福岡市と北九州市の二極構造",
+        "アジアへのゲートウェイ機能",
+        "旧産炭地域の課題"
+      ]
+    },
+    {
+      "prefecture_code": 41,
+      "prefecture_name": "佐賀県",
+      "primary_issues": [
+        {
+          "issue": "佐賀空港オスプレイ配備問題",
+          "priority": 0.20,
+          "description": "陸自オスプレイの佐賀空港配備と地域への影響",
+          "favored_parties": ["cdp", "jcp", "shamin"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.20,
+          "description": "若者流出の防止と地場産業による雇用創出",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "農業振興",
+          "priority": 0.15,
+          "description": "佐賀牛・有田焼等のブランド産業と農業の振興",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "有明海再生",
+          "priority": 0.13,
+          "description": "諫早湾干拓問題と有明海の環境再生",
+          "favored_parties": ["cdp", "jcp"]
+        },
+        {
+          "issue": "災害対策",
+          "priority": 0.10,
+          "description": "豪雨・洪水対策と防災インフラ強化",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.20,
+        "social_security": 0.22,
+        "national_security": 0.10,
+        "education": 0.08,
+        "environment": 0.12,
+        "local_revitalization": 0.18,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.07
+      },
+      "unique_local_factors": [
+        "佐賀空港へのオスプレイ配備問題",
+        "諫早湾干拓と有明海環境問題",
+        "有田焼等の伝統産業",
+        "九州新幹線西九州ルートの課題"
+      ]
+    },
+    {
+      "prefecture_code": 42,
+      "prefecture_name": "長崎県",
+      "primary_issues": [
+        {
+          "issue": "平和政策・核兵器廃絶",
+          "priority": 0.20,
+          "description": "被爆地としての核兵器廃絶と平和発信",
+          "favored_parties": ["cdp", "jcp", "shamin"]
+        },
+        {
+          "issue": "人口減少・離島振興",
+          "priority": 0.22,
+          "description": "深刻な人口減少と離島の生活基盤維持",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "西九州新幹線の全線開通",
+          "priority": 0.15,
+          "description": "佐賀県区間の未着工問題とフル規格化の実現",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "造船・製造業",
+          "priority": 0.12,
+          "description": "三菱重工等の造船業の競争力維持と産業転換",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "安全保障",
+          "priority": 0.10,
+          "description": "佐世保米軍基地と自衛隊の島嶼防衛体制",
+          "favored_parties": ["ldp", "sansei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.20,
+        "social_security": 0.22,
+        "national_security": 0.12,
+        "education": 0.08,
+        "environment": 0.05,
+        "local_revitalization": 0.22,
+        "constitutional_reform": 0.05,
+        "disaster_prevention": 0.06
+      },
+      "unique_local_factors": [
+        "被爆地としての平和発信",
+        "佐世保米軍基地",
+        "離島（五島列島・壱岐・対馬）の振興",
+        "西九州新幹線の全線開通問題",
+        "世界遺産（潜伏キリシタン関連遺産）"
+      ]
+    },
+    {
+      "prefecture_code": 43,
+      "prefecture_name": "熊本県",
+      "primary_issues": [
+        {
+          "issue": "半導体産業（TSMC）誘致効果",
+          "priority": 0.25,
+          "description": "TSMC進出による経済効果の最大化と地域課題対応",
+          "favored_parties": ["ldp", "dpfp", "ishin"]
+        },
+        {
+          "issue": "熊本地震からの復興",
+          "priority": 0.15,
+          "description": "2016年熊本地震の復興完了と防災体制強化",
+          "favored_parties": ["ldp", "cdp", "komei"]
+        },
+        {
+          "issue": "交通インフラ",
+          "priority": 0.15,
+          "description": "TSMC関連の交通渋滞対策とインフラ整備",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "農業振興",
+          "priority": 0.12,
+          "description": "馬刺し・スイカ等の農業とくまもんブランドの活用",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "地下水保全",
+          "priority": 0.10,
+          "description": "日本最大級の地下水都市としての水資源保全",
+          "favored_parties": ["cdp", "jcp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.28,
+        "social_security": 0.18,
+        "national_security": 0.05,
+        "education": 0.10,
+        "environment": 0.10,
+        "local_revitalization": 0.13,
+        "constitutional_reform": 0.04,
+        "disaster_prevention": 0.12
+      },
+      "unique_local_factors": [
+        "TSMC進出による半導体産業集積",
+        "TSMC関連の交通渋滞・地価高騰",
+        "熊本地震の復興",
+        "阿蘇山の火山防災と観光",
+        "地下水100%の水道"
+      ]
+    },
+    {
+      "prefecture_code": 44,
+      "prefecture_name": "大分県",
+      "primary_issues": [
+        {
+          "issue": "観光振興（温泉）",
+          "priority": 0.22,
+          "description": "別府・湯布院等の温泉観光資源の活用強化",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.20,
+          "description": "若者流出防止と移住促進施策の強化",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "製造業振興",
+          "priority": 0.15,
+          "description": "半導体・自動車関連産業の競争力強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "災害対策",
+          "priority": 0.12,
+          "description": "南海トラフ地震・火山・豪雨災害への備え",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "地熱発電推進",
+          "priority": 0.10,
+          "description": "温泉資源を活かした地熱発電の拡大",
+          "favored_parties": ["cdp", "dpfp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.25,
+        "social_security": 0.20,
+        "national_security": 0.05,
+        "education": 0.08,
+        "environment": 0.10,
+        "local_revitalization": 0.18,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.11
+      },
+      "unique_local_factors": [
+        "温泉湧出量日本一",
+        "地熱発電のポテンシャル",
+        "TSMC関連の半導体サプライチェーン",
+        "豊後水道の漁業（関あじ・関さば）"
+      ]
+    },
+    {
+      "prefecture_code": 45,
+      "prefecture_name": "宮崎県",
+      "primary_issues": [
+        {
+          "issue": "人口減少・過疎化",
+          "priority": 0.25,
+          "description": "深刻な人口減少と中山間地域の過疎化対策",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "農畜産業振興",
+          "priority": 0.20,
+          "description": "宮崎牛・マンゴー・地鶏等のブランド農業強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "南海トラフ地震・台風対策",
+          "priority": 0.17,
+          "description": "地震・津波・台風の複合災害への備え",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "口蹄疫・鳥インフルエンザ対策",
+          "priority": 0.08,
+          "description": "畜産業の感染症対策と危機管理体制",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "交通インフラ",
+          "priority": 0.08,
+          "description": "東九州新幹線構想と高速道路整備",
+          "favored_parties": ["ldp", "komei"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.22,
+        "social_security": 0.22,
+        "national_security": 0.05,
+        "education": 0.07,
+        "environment": 0.07,
+        "local_revitalization": 0.20,
+        "constitutional_reform": 0.03,
+        "disaster_prevention": 0.14
+      },
+      "unique_local_factors": [
+        "宮崎牛等のブランド畜産業",
+        "口蹄疫被害の経験と教訓",
+        "台風常襲地帯としての防災意識",
+        "プロ野球キャンプ地としての観光"
+      ]
+    },
+    {
+      "prefecture_code": 46,
+      "prefecture_name": "鹿児島県",
+      "primary_issues": [
+        {
+          "issue": "離島振興",
+          "priority": 0.20,
+          "description": "奄美群島・屋久島等の離島の生活基盤維持と振興",
+          "favored_parties": ["ldp", "cdp"]
+        },
+        {
+          "issue": "農畜産業振興",
+          "priority": 0.20,
+          "description": "黒豚・黒牛・さつまいも等の農畜産業の強化",
+          "favored_parties": ["ldp", "dpfp"]
+        },
+        {
+          "issue": "安全保障・島嶼防衛",
+          "priority": 0.15,
+          "description": "馬毛島基地建設と南西諸島の防衛体制",
+          "favored_parties": ["ldp", "sansei"]
+        },
+        {
+          "issue": "災害対策（火山・台風）",
+          "priority": 0.13,
+          "description": "桜島噴火対策と台風被害への備え",
+          "favored_parties": ["ldp", "komei"]
+        },
+        {
+          "issue": "人口減少対策",
+          "priority": 0.12,
+          "description": "若者の県外流出防止と雇用創出",
+          "favored_parties": ["ldp", "cdp"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.22,
+        "social_security": 0.20,
+        "national_security": 0.13,
+        "education": 0.07,
+        "environment": 0.07,
+        "local_revitalization": 0.15,
+        "constitutional_reform": 0.04,
+        "disaster_prevention": 0.12
+      },
+      "unique_local_factors": [
+        "馬毛島への自衛隊基地建設",
+        "桜島の火山活動と防災",
+        "奄美大島・屋久島の世界遺産",
+        "種子島宇宙センターのロケット産業",
+        "離島の多さ（有人離島28島）"
+      ]
+    },
+    {
+      "prefecture_code": 47,
+      "prefecture_name": "沖縄県",
+      "primary_issues": [
+        {
+          "issue": "米軍基地問題",
+          "priority": 0.30,
+          "description": "普天間基地移設・辺野古新基地建設の是非と基地負担軽減",
+          "favored_parties": ["cdp", "jcp", "shamin", "reiwa"]
+        },
+        {
+          "issue": "経済振興・所得向上",
+          "priority": 0.18,
+          "description": "全国最低水準の県民所得向上と経済自立",
+          "favored_parties": ["ldp", "ishin", "dpfp"]
+        },
+        {
+          "issue": "観光産業強化",
+          "priority": 0.13,
+          "description": "観光の質向上とオーバーツーリズム対策",
+          "favored_parties": ["ldp", "ishin"]
+        },
+        {
+          "issue": "子どもの貧困対策",
+          "priority": 0.12,
+          "description": "全国最悪レベルの子どもの貧困率への対応",
+          "favored_parties": ["cdp", "jcp", "reiwa", "shamin"]
+        },
+        {
+          "issue": "安全保障・平和",
+          "priority": 0.10,
+          "description": "台湾有事リスクと県民の安全・平和への関心",
+          "favored_parties": ["cdp", "jcp", "shamin"]
+        }
+      ],
+      "issue_priority_ranking": {
+        "economy": 0.22,
+        "social_security": 0.18,
+        "national_security": 0.25,
+        "education": 0.10,
+        "environment": 0.05,
+        "local_revitalization": 0.10,
+        "constitutional_reform": 0.07,
+        "disaster_prevention": 0.03
+      },
+      "unique_local_factors": [
+        "在日米軍基地の約70%が集中",
+        "普天間基地移設・辺野古新基地建設問題",
+        "沖縄戦の歴史と平和への強い意識",
+        "台湾有事リスクと住民避難計画",
+        "子どもの貧困率全国ワースト",
+        "全国最低水準の県民所得"
+      ]
+    }
+  ]
+}
