@@ -1,0 +1,15 @@
+[
+  {"id": "ldp", "name_ja": "自由民主党", "name_short": "自民", "name_en": "LDP", "color": "#E2342B", "leader": "石破茂", "coalition_group": "ruling", "sort_order": 1},
+  {"id": "chudo", "name_ja": "中道改革連合", "name_short": "中道", "name_en": "Chudo", "color": "#1E50A2", "leader": "野田佳彦", "coalition_group": "opposition", "sort_order": 2},
+  {"id": "ishin", "name_ja": "日本維新の会", "name_short": "維新", "name_en": "Ishin", "color": "#00A95F", "leader": "馬場伸幸", "coalition_group": "ruling", "sort_order": 3},
+  {"id": "dpfp", "name_ja": "国民民主党", "name_short": "国民", "name_en": "DPFP", "color": "#FFD700", "leader": "玉木雄一郎", "coalition_group": "opposition", "sort_order": 4},
+  {"id": "jcp", "name_ja": "日本共産党", "name_short": "共産", "name_en": "JCP", "color": "#BE0032", "leader": "田村智子", "coalition_group": "opposition", "sort_order": 5},
+  {"id": "reiwa", "name_ja": "れいわ新選組", "name_short": "れいわ", "name_en": "Reiwa", "color": "#ED72A0", "leader": "山本太郎", "coalition_group": "opposition", "sort_order": 6},
+  {"id": "sansei", "name_ja": "参政党", "name_short": "参政", "name_en": "Sansei", "color": "#8BC34A", "leader": "神谷宗幣", "coalition_group": "opposition", "sort_order": 7},
+  {"id": "genzei", "name_ja": "減税日本", "name_short": "減ゆ", "name_en": "Genzei", "color": "#FF9800", "leader": "河村たかし", "coalition_group": "opposition", "sort_order": 8},
+  {"id": "hoshuto", "name_ja": "日本保守党", "name_short": "保守", "name_en": "Hoshuto", "color": "#9C27B0", "leader": "百田尚樹", "coalition_group": "opposition", "sort_order": 9},
+  {"id": "shamin", "name_ja": "社会民主党", "name_short": "社民", "name_en": "SDP", "color": "#00BCD4", "leader": "福島みずほ", "coalition_group": "opposition", "sort_order": 10},
+  {"id": "mirai", "name_ja": "チームみらい", "name_short": "みらい", "name_en": "Mirai", "color": "#03A9F4", "leader": "東国原英夫", "coalition_group": "opposition", "sort_order": 11},
+  {"id": "shoha", "name_ja": "諸派", "name_short": "諸派", "name_en": "Minor", "color": "#795548", "leader": "-", "coalition_group": null, "sort_order": 12},
+  {"id": "independent", "name_ja": "無所属", "name_short": "無所属", "name_en": "Independent", "color": "#9E9E9E", "leader": "-", "coalition_group": null, "sort_order": 99}
+]
