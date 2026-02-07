@@ -1,0 +1,420 @@
+prefecture_code,district_number,candidate_name,age,party,status,previous_wins,dual_candidacy
+13,1,山田 美樹,51,ldp,former,4,true
+13,1,海江田万里,76,chudo,incumbent,9,true
+13,1,吉川 里奈,38,sansei,incumbent,1,true
+13,1,春山明日香,51,ishin,new,0,true
+13,1,黒田 朝陽,29,jcp,new,0,false
+13,2,天野こころ,36,shoha,new,0,false
+13,2,海江田悠輔,46,sansei,new,0,false
+13,2,鳩山紀一郎,49,dpfp,incumbent,1,true
+13,2,細野 真理,44,jcp,new,0,false
+13,2,土橋 章宏,56,mirai,new,0,true
+13,2,辻  清人,46,ldp,incumbent,5,true
+13,2,今村  充,50,ishin,new,0,true
+13,3,石崎  徹,42,ishin,former,3,true
+13,3,石田 慎吾,46,dpfp,new,0,true
+13,3,阿部祐美子,61,chudo,incumbent,1,true
+13,3,植木 洋貴,43,sansei,new,0,true
+13,3,石原 宏高,61,ldp,incumbent,6,true
+13,4,井戸 正枝,60,dpfp,former,1,true
+13,4,嶋  悦子,45,sansei,new,0,false
+13,4,平  将明,58,ldp,incumbent,7,true
+13,4,谷川 智行,54,jcp,new,0,true
+13,5,稲葉 太郎,41,ishin,new,0,true
+13,5,桑水流弓紀子,38,dpfp,new,0,true
+13,5,手塚 仁雄,59,chudo,incumbent,6,true
+13,5,若宮 健嗣,64,ldp,former,5,true
+13,5,松岡登志子,56,sansei,new,0,false
+13,6,落合 貴之,46,chudo,incumbent,4,true
+13,6,丸山 勝己,58,dpfp,new,0,true
+13,6,島村 直輝,46,sansei,new,0,false
+13,6,畦元 将吾,67,ldp,former,2,true
+13,6,福村 康広,69,shoha,new,0,false
+13,7,峰島 侑也,35,mirai,new,0,true
+13,7,丸川 珠代,55,ldp,new,0,true
+13,7,渡辺 泰之,53,ishin,new,0,true
+13,7,松尾 明弘,51,chudo,incumbent,2,true
+13,7,石川友梨香,29,sansei,new,0,false
+13,7,入江 伸子,63,dpfp,new,0,true
+13,8,森田 一成,46,dpfp,new,0,true
+13,8,門  寛子,45,ldp,new,0,true
+13,8,永井  漠,38,sansei,new,0,false
+13,8,吉田 晴美,54,chudo,incumbent,2,true
+13,8,海保杜久麻,31,reiwa,new,0,false
+13,8,大谷 司郎,62,hoshuto,new,0,true
+13,8,藤原 幸弘,92,independent,new,0,false
+13,9,鈴木 文哉,33,sansei,new,0,false
+13,9,薬師寺道代,61,dpfp,new,0,true
+13,9,菅原 一秀,64,ldp,former,6,true
+13,9,山岸 一生,44,chudo,incumbent,2,true
+13,10,鈴木 隼人,48,ldp,incumbent,4,true
+13,10,梶原みずほ,53,dpfp,new,0,true
+13,10,小山  徹,50,shoha,new,0,false
+13,10,鈴木 庸介,50,chudo,incumbent,2,true
+13,10,安田  伸,55,sansei,new,0,false
+13,11,大豆生田実,60,ishin,new,0,true
+13,11,松方 恵美,52,sansei,new,0,false
+13,11,阿久津幸彦,69,chudo,incumbent,5,true
+13,11,桑島 康文,64,shoha,new,0,false
+13,11,高沢 一基,51,dpfp,new,0,true
+13,11,下村 博文,71,ldp,former,9,true
+13,11,横手 海人,29,jcp,new,0,false
+13,12,阿部  司,43,ishin,incumbent,2,true
+13,12,久住 勇樹,42,dpfp,new,0,true
+13,12,黒石 裕子,34,sansei,new,0,false
+13,12,田原 聖子,56,jcp,new,0,false
+13,12,高木  啓,60,ldp,incumbent,3,true
+13,12,中原 翔太,33,chudo,new,0,true
+13,13,加地 敏子,50,sansei,new,0,false
+13,13,土田  慎,35,ldp,incumbent,2,true
+13,13,沢田 真吾,40,jcp,new,0,false
+13,13,森  洋介,31,dpfp,incumbent,1,true
+13,14,長南 貴則,40,dpfp,new,0,true
+13,14,丹   悠,45,sansei,new,0,false
+13,14,原   努,44,jcp,new,0,false
+13,14,松島みどり,69,ldp,incumbent,8,true
+13,14,櫛渕 万里,58,reiwa,incumbent,3,true
+13,15,酒井 菜摘,39,chudo,incumbent,2,true
+13,15,鈴木 佳奈,46,sansei,new,0,false
+13,15,三次由梨香,40,ishin,new,0,true
+13,15,深見 紗采,32,dpfp,new,0,true
+13,15,大空 幸星,27,ldp,incumbent,1,true
+13,15,吉野 敏明,58,genzei,new,0,true
+13,16,竹内 知子,45,dpfp,new,0,true
+13,16,村上  剛,44,sansei,new,0,false
+13,16,柴田 勝之,57,chudo,incumbent,1,true
+13,16,大西 洋平,48,ldp,incumbent,1,true
+13,17,反田 麻理,45,chudo,new,0,true
+13,17,平沢 勝栄,80,ldp,incumbent,10,false
+13,17,長谷川貴子,52,dpfp,new,0,true
+13,17,円 より子,78,independent,incumbent,1,false
+13,17,杉浦慎一郎,29,sansei,new,0,false
+13,17,鈴木 真志,54,shoha,new,0,false
+13,17,猪口 幸子,69,ishin,incumbent,1,true
+13,18,徳永由紀子,48,sansei,new,0,true
+13,18,松下 玲子,55,chudo,incumbent,1,true
+13,18,福田かおる,40,ldp,incumbent,1,true
+13,18,吉田  綾,40,shoha,new,0,false
+13,18,鈴木 佑馬,39,dpfp,new,0,true
+13,19,諏訪 玲子,42,dpfp,new,0,true
+13,19,末松 義規,69,chudo,incumbent,8,true
+13,19,松本 洋平,52,ldp,incumbent,6,true
+13,19,一ノ瀬陽子,46,sansei,new,0,false
+13,19,井手重美津子,62,jcp,new,0,false
+13,20,木原 誠二,55,ldp,incumbent,6,true
+13,20,大西健太郎,47,dpfp,new,0,true
+13,20,宮本  徹,54,jcp,former,3,true
+13,20,掛山 茂希,38,sansei,new,0,false
+13,21,黒田 太郎,59,dpfp,new,0,true
+13,21,鈴木  烈,52,chudo,new,0,true
+13,21,星野 奈美,51,sansei,new,0,false
+13,21,小田原 潔,61,ldp,former,4,true
+13,21,矢田 一久,35,genzei,new,0,true
+13,22,山花 郁夫,59,chudo,incumbent,5,true
+13,22,伊藤 達也,64,ldp,incumbent,10,true
+13,22,鈴木 美香,61,sansei,new,0,true
+13,23,川松真一朗,45,ldp,new,0,true
+13,23,伊藤 俊輔,46,chudo,incumbent,3,true
+13,23,池川 友一,40,jcp,new,0,false
+13,23,舟見 裕貴,40,sansei,new,0,false
+13,24,細屋  椋,30,dpfp,new,0,true
+13,24,与倉さゆり,41,sansei,new,0,false
+13,24,深田 もえ,47,independent,new,0,false
+13,24,萩生田光一,62,ldp,incumbent,7,true
+13,24,細貝  悠,32,chudo,new,0,true
+13,25,依田 花蓮,54,chudo,new,0,true
+13,25,木村 奈美,51,sansei,new,0,false
+13,25,宗像 久敬,47,dpfp,new,0,true
+13,25,井上 信治,56,ldp,incumbent,8,true
+13,25,宮崎 太朗,45,ishin,new,0,true
+13,26,松井佳苗子,47,jcp,new,0,false
+13,26,坂元 悠紀,45,dpfp,new,0,true
+13,26,松原  仁,69,independent,incumbent,9,false
+13,26,宇佐美 登,58,mirai,former,2,true
+13,26,今岡  植,37,ldp,new,0,true
+13,26,菅沼 桂子,53,sansei,new,0,false
+13,27,長妻  昭,65,chudo,incumbent,9,true
+13,27,小笠原愛子,37,sansei,new,0,false
+13,27,黒崎 祐一,49,ldp,new,0,true
+13,27,須山 卓知,45,dpfp,new,0,true
+13,28,村松 一希,44,sansei,new,0,true
+13,28,橋口 奈保,49,ishin,new,0,true
+13,28,安藤 高夫,66,ldp,incumbent,2,true
+13,28,高野 直美,71,jcp,new,0,false
+13,28,高松 智之,51,chudo,incumbent,1,true
+13,28,三沢 宏明,38,dpfp,new,0,true
+13,29,堀川 哲郎,25,sansei,new,0,false
+13,29,木村 剛司,54,chudo,former,1,true
+13,29,鈴木 賢一,64,jcp,new,0,false
+13,29,長沢 興祐,44,ldp,new,0,true
+13,29,樽井 良和,58,dpfp,former,1,true
+13,29,小坂 英二,53,hoshuto,new,0,true
+13,30,寿  玲子,42,sansei,new,0,false
+13,30,五十嵐衣里,42,chudo,incumbent,1,true
+13,30,川上 竜世,28,dpfp,new,0,true
+13,30,長島 昭久,63,ldp,incumbent,8,true
+14,1,篠原  豪,50,chudo,incumbent,4,true
+14,1,丸尾南都子,43,ldp,new,0,true
+14,1,浅川 義治,57,ishin,former,1,true
+14,2,柳家東三楼,49,chudo,new,0,true
+14,2,新田 章文,44,ldp,new,0,true
+14,2,平本幸次郎,63,sansei,new,0,false
+14,2,並木まり子,74,jcp,new,0,false
+14,2,片山 智絵,34,dpfp,new,0,true
+14,3,横山 征吾,54,jcp,new,0,false
+14,3,中村 武人,51,chudo,new,0,true
+14,3,二宮  研,50,dpfp,new,0,true
+14,3,荻野 ミエ,42,sansei,new,0,false
+14,3,中西 健治,62,ldp,incumbent,2,true
+14,4,早稲田夕季,67,chudo,incumbent,3,true
+14,4,田宮零一郎,35,sansei,new,0,false
+14,4,永田磨梨奈,42,ldp,new,0,true
+14,5,久坂くにえ,53,ishin,new,0,true
+14,5,山崎  誠,63,chudo,incumbent,4,true
+14,5,高宮美智子,73,jcp,new,0,false
+14,5,坂井  学,60,ldp,incumbent,6,true
+14,6,古川 直季,57,ldp,incumbent,2,true
+14,6,青柳陽一郎,56,chudo,incumbent,5,true
+14,7,鈴木 馨祐,49,ldp,incumbent,6,true
+14,7,中谷 一馬,42,chudo,incumbent,3,true
+14,8,江田 憲司,69,chudo,incumbent,8,true
+14,8,三谷 英弘,49,ldp,incumbent,4,true
+14,9,笠  浩史,61,chudo,incumbent,8,true
+14,9,赤石 博子,65,jcp,new,0,false
+14,9,上原 正裕,47,ldp,new,0,true
+14,10,田中 和徳,77,ldp,incumbent,10,false
+14,10,中野 智裕,67,jcp,new,0,false
+14,10,山口 翔平,35,dpfp,new,0,true
+14,10,橋本 公夫,33,sansei,new,0,false
+14,10,金村 龍那,46,ishin,incumbent,2,true
+14,11,小泉進次郎,44,ldp,incumbent,6,false
+14,11,前林 恒平,40,sansei,new,0,false
+14,11,為壮  稔,72,jcp,new,0,false
+14,12,阿部 知子,77,chudo,incumbent,9,true
+14,12,沼上 常生,67,jcp,new,0,false
+14,12,星野 剛士,62,ldp,incumbent,5,true
+14,12,菊竹  進,53,independent,new,0,false
+14,13,太  栄志,48,chudo,incumbent,2,true
+14,13,丸田康一郎,40,ldp,new,0,true
+14,13,石井  匡,58,sansei,new,0,false
+14,14,先沖 仁志,49,sansei,new,0,false
+14,14,赤間 二郎,57,ldp,incumbent,6,true
+14,14,中村  圭,45,jcp,new,0,false
+14,14,長友 克洋,55,chudo,incumbent,1,true
+14,15,河野 太郎,63,ldp,incumbent,10,true
+14,15,小山 善光,53,sansei,new,0,false
+14,15,三好  諒,40,reiwa,new,0,true
+14,15,佐々木克己,70,shamin,new,0,true
+14,16,後藤 祐一,56,chudo,incumbent,6,true
+14,16,佐藤 主迪,31,ldp,new,0,true
+14,17,中村 太一,37,dpfp,new,0,true
+14,17,牧島かれん,49,ldp,incumbent,5,true
+14,17,佐々木奈保美,56,chudo,incumbent,1,true
+14,18,山際大志郎,57,ldp,incumbent,7,true
+14,18,西岡 義高,48,dpfp,incumbent,1,true
+14,18,宗野  創,33,chudo,incumbent,1,true
+14,18,八巻 陽子,52,jcp,new,0,false
+14,18,藤田 修一,59,sansei,new,0,false
+14,18,横田 光弘,68,ishin,new,0,true
+14,19,深作ヘスス,41,dpfp,incumbent,1,true
+14,19,室井 一真,40,sansei,new,0,true
+14,19,草間  剛,44,ldp,incumbent,1,true
+14,19,添田  勝,48,ishin,new,0,true
+14,20,金子 洋一,63,ishin,new,0,true
+14,20,金沢 結衣,35,ldp,new,0,true
+14,20,大塚小百合,46,chudo,incumbent,1,true
+15,1,西村智奈美,59,chudo,incumbent,7,true
+15,1,内山  航,44,ldp,new,0,true
+15,1,小池 幸夫,53,sansei,new,0,false
+15,1,伊藤 和成,47,ishin,new,0,true
+15,1,中村 岳夫,50,jcp,new,0,false
+15,2,平井恵里子,47,sansei,new,0,false
+15,2,金井 典子,50,ishin,new,0,true
+15,2,国定 勇人,53,ldp,incumbent,2,true
+15,2,菊田真紀子,56,chudo,incumbent,8,true
+15,3,佐久間慶子,41,sansei,new,0,false
+15,3,黒岩 宇洋,59,chudo,incumbent,4,true
+15,3,斎藤 洋明,49,ldp,incumbent,5,true
+15,4,鷲尾英一郎,49,ldp,former,6,true
+15,4,米山 隆一,58,chudo,incumbent,2,true
+15,4,野村 泰暉,27,dpfp,new,0,true
+15,4,大矢 寿乃,46,sansei,new,0,false
+15,5,梅谷  守,52,chudo,incumbent,2,true
+15,5,高野 直行,48,sansei,new,0,false
+15,5,高鳥 修一,65,ldp,former,5,true
+16,1,青山 了介,50,jcp,new,0,false
+16,1,中田  宏,61,ldp,former,4,true
+16,1,山 登志浩,46,chudo,incumbent,1,true
+16,1,斉藤  匠,34,sansei,new,0,true
+16,2,越川 康晴,61,chudo,new,0,true
+16,2,上田 英俊,61,ldp,incumbent,2,true
+16,3,山本 圭太,41,dpfp,new,0,true
+16,3,坂本 洋史,55,jcp,new,0,false
+16,3,橘 慶一郎,65,ldp,incumbent,6,true
+16,3,直原美和子,41,sansei,new,0,false
+17,1,小森 卓郎,55,ldp,incumbent,2,true
+17,1,小竹  凱,27,dpfp,incumbent,1,true
+17,1,小林  誠,49,ishin,new,0,true
+17,1,川 裕一郎,54,sansei,new,0,true
+17,1,村田  茂,63,jcp,new,0,false
+17,2,佐々木 紀,51,ldp,incumbent,5,true
+17,2,坂本  浩,62,jcp,new,0,false
+17,3,西田 昭二,56,ldp,incumbent,3,true
+17,3,南  章治,70,jcp,new,0,false
+17,3,近藤 和也,52,chudo,incumbent,4,true
+18,1,山中 俊祐,42,dpfp,new,0,true
+18,1,藤本 一希,29,sansei,new,0,true
+18,1,稲田 朋美,66,ldp,incumbent,7,true
+18,1,波多野 翼,41,chudo,incumbent,1,true
+18,2,斉木 武志,51,independent,incumbent,3,false
+18,2,辻  英之,55,chudo,incumbent,1,true
+19,1,中島 克仁,58,chudo,incumbent,5,true
+19,1,鈴木 大介,51,sansei,new,0,false
+19,1,田中 星那,35,jcp,new,0,false
+19,1,中谷 真一,49,ldp,incumbent,5,true
+19,2,早田 記史,42,jcp,new,0,false
+19,2,堀内 詔子,60,ldp,incumbent,5,true
+20,1,若狭 清史,45,ishin,new,0,true
+20,1,篠原  孝,77,chudo,incumbent,8,true
+20,1,若林 健太,62,ldp,former,1,true
+20,2,手塚 大輔,43,ishin,new,0,true
+20,2,下条 みつ,70,chudo,incumbent,6,true
+20,2,竹下 博善,43,sansei,new,0,false
+20,2,藤田ひかる,35,ldp,new,0,true
+20,3,山口 孝司,61,reiwa,new,0,false
+20,3,井出 庸生,48,ldp,incumbent,5,true
+20,3,仁科 裕貴,28,sansei,new,0,false
+20,3,神津  健,49,chudo,incumbent,2,true
+20,4,武田 良介,46,jcp,new,0,false
+20,4,後藤 茂之,70,ldp,incumbent,8,true
+20,4,花岡 明久,46,dpfp,new,0,true
+20,5,宮下 一郎,67,ldp,incumbent,7,true
+20,5,福田 淳太,32,chudo,incumbent,1,true
+21,1,服部  学,54,chudo,new,0,true
+21,1,野田 聖子,65,ldp,incumbent,11,true
+21,1,波多野純子,43,jcp,new,0,false
+21,1,成井まゆ子,42,sansei,new,0,false
+21,2,棚橋 泰文,62,ldp,incumbent,10,true
+21,2,伊藤あゆみ,55,independent,new,0,false
+21,2,塚原 雅也,34,sansei,new,0,false
+21,2,唐沢 理恵,63,independent,new,0,false
+21,2,野村 美穂,56,dpfp,new,0,true
+21,3,武藤 容治,70,ldp,incumbent,6,true
+21,3,仙田 晃宏,43,dpfp,incumbent,1,true
+21,3,阪口 直人,62,reiwa,incumbent,3,true
+21,3,伊藤 恵介,47,sansei,new,0,true
+21,4,今井 雅人,63,chudo,incumbent,5,true
+21,4,曽我 雄介,37,sansei,new,0,false
+21,4,加藤 大博,46,ldp,new,0,true
+21,5,真野  哲,64,chudo,incumbent,1,true
+21,5,吉田 企貴,38,dpfp,new,0,true
+21,5,古屋 圭司,73,ldp,incumbent,12,false
+21,5,山田 良司,65,ishin,former,1,true
+22,1,鈴木 節子,71,jcp,new,0,false
+22,1,柴田 将平,36,dpfp,new,0,true
+22,1,上川 陽子,72,ldp,incumbent,8,true
+22,2,鈴木 岳幸,52,chudo,incumbent,1,true
+22,2,井林 辰憲,49,ldp,incumbent,5,true
+22,3,山本 裕三,43,ldp,new,0,true
+22,3,中橋 辰也,38,sansei,new,0,false
+22,3,竹村 真弓,68,jcp,new,0,false
+22,3,小山 展弘,50,chudo,incumbent,4,true
+22,4,深沢 陽一,49,ldp,incumbent,3,true
+22,4,鈴木  智,56,reiwa,new,0,true
+22,4,高田 晃宏,51,sansei,new,0,true
+22,4,田中  健,48,dpfp,incumbent,2,true
+22,5,中村 正善,67,chudo,new,0,true
+22,5,細野 豪志,54,ldp,incumbent,9,true
+22,5,下山 一美,72,jcp,new,0,false
+22,6,輦止 保教,52,sansei,new,0,false
+22,6,勝俣 孝明,49,ldp,incumbent,5,true
+22,6,渡辺  周,64,chudo,incumbent,10,true
+22,7,北野谷富子,41,dpfp,new,0,true
+22,7,袴田サヤカ,49,sansei,new,0,false
+22,7,城内  実,60,ldp,incumbent,7,true
+22,8,稲葉 大輔,51,ldp,new,0,true
+22,8,村田 優哉,27,jcp,new,0,false
+22,8,神田 綾乃,52,sansei,new,0,false
+22,8,源馬謙太郎,53,chudo,incumbent,3,true
+23,1,熊田 裕通,61,ldp,former,4,true
+23,1,吉田 統彦,51,chudo,former,3,true
+23,1,河村たかし,77,genzei,incumbent,6,true
+23,1,近田  茜,33,sansei,new,0,false
+23,2,酒井健太朗,40,jcp,new,0,false
+23,2,辻  秀樹,50,ldp,new,0,true
+23,2,梅村 忠司,69,genzei,new,0,true
+23,2,古川 元久,60,dpfp,incumbent,10,true
+23,3,柴田 民雄,60,jcp,new,0,false
+23,3,水野 良彦,52,ldp,new,0,true
+23,3,皆川 雅一,44,ishin,new,0,true
+23,3,平岩 征樹,46,genzei,incumbent,1,true
+23,3,近藤 昭一,67,chudo,incumbent,10,true
+23,4,志村 康博,53,genzei,new,0,true
+23,4,高橋 祐介,47,jcp,new,0,false
+23,4,中田 千代,58,ishin,new,0,true
+23,4,牧  義夫,68,chudo,incumbent,8,true
+23,4,工藤 彰三,61,ldp,incumbent,5,true
+23,4,魚住 佳奈,43,sansei,new,0,false
+23,5,神田 憲次,62,independent,former,4,false
+23,5,田中 克和,41,genzei,new,0,true
+23,5,渡辺 藍理,43,sansei,new,0,true
+23,5,岡本 康宏,43,ldp,new,0,true
+23,5,西川 厚志,56,chudo,incumbent,1,true
+23,5,江上 博之,71,jcp,new,0,false
+23,6,大西 雅人,30,shamin,new,0,true
+23,6,橋本  勉,72,genzei,former,1,true
+23,6,国崎 信江,56,chudo,new,0,true
+23,6,春日  舞,38,sansei,new,0,false
+23,6,丹羽 秀樹,53,ldp,incumbent,7,true
+23,7,鈴木 弘一,51,jcp,new,0,false
+23,7,鈴木 淳司,67,ldp,former,6,true
+23,7,日野紗里亜,38,dpfp,incumbent,1,true
+23,8,伴野  豊,65,chudo,incumbent,7,true
+23,8,伊藤 忠彦,61,ldp,incumbent,6,true
+23,8,中川 健一,56,hoshuto,new,0,true
+23,9,浦上 奈々,25,ishin,new,0,true
+23,9,伊藤 恵子,72,jcp,new,0,false
+23,9,長坂 康正,68,ldp,incumbent,5,true
+23,9,岡本 充功,54,chudo,incumbent,6,true
+23,9,加藤 泰稚,27,sansei,new,0,false
+23,10,若山 慎司,52,ldp,incumbent,1,true
+23,10,杉本 和巳,65,ishin,incumbent,5,true
+23,10,三嶋 竜平,47,dpfp,new,0,true
+23,10,山内 遼平,29,sansei,new,0,true
+23,10,藤原 規真,47,chudo,incumbent,1,true
+23,11,丹野みどり,52,dpfp,incumbent,1,true
+23,11,藤沢 忠盛,54,ldp,new,0,true
+23,12,重徳 和彦,55,chudo,incumbent,5,true
+23,12,青山 周平,48,ldp,former,4,true
+23,12,中川 博登,47,sansei,new,0,true
+23,13,大西 健介,54,chudo,incumbent,6,true
+23,13,牛田 清博,67,jcp,new,0,false
+23,13,石井  拓,60,ldp,former,1,true
+23,14,浅尾 大輔,55,jcp,new,0,false
+23,14,大嶽 理恵,48,chudo,incumbent,1,true
+23,14,今枝宗一郎,41,ldp,incumbent,5,true
+23,15,関 健一郎,47,ishin,former,1,true
+23,15,小山 千帆,50,chudo,incumbent,1,true
+23,15,根本 幸典,60,ldp,incumbent,5,true
+23,15,鈴木 勝裕,39,sansei,new,0,false
+23,15,辻   恵,77,reiwa,former,2,true
+23,15,竹上 裕子,65,genzei,incumbent,1,true
+23,16,渡辺 信江,42,sansei,new,0,false
+23,16,前田 雄吉,66,genzei,former,3,true
+23,16,山下史守朗,50,ldp,new,0,true
+23,16,松田  功,58,chudo,incumbent,2,true
+23,16,福田  徹,43,dpfp,incumbent,1,true
+24,1,田村 憲久,61,ldp,incumbent,10,true
+24,1,出口 洋介,36,jcp,new,0,false
+24,1,福森和歌子,56,chudo,incumbent,1,true
+24,2,水谷 幸泰,52,sansei,new,0,true
+24,2,下野 幸助,49,chudo,incumbent,1,true
+24,2,川崎 秀人,44,ldp,incumbent,2,true
+24,3,岡田 克也,72,chudo,incumbent,12,false
+24,3,新谷  恵,44,sansei,new,0,true
+24,3,衣笠 民子,63,jcp,new,0,false
+24,3,伊藤 昌志,56,hoshuto,new,0,true
+24,3,石原 正敬,54,ldp,former,1,true
+24,4,鈴木 英敬,51,ldp,incumbent,2,true
+24,4,藤田 大助,49,dpfp,former,1,true
+24,4,中川 民英,58,jcp,new,0,false

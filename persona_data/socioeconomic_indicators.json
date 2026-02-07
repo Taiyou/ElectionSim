@@ -1,0 +1,856 @@
+{
+  "metadata": {
+    "description": "日本47都道府県の社会経済指標データ（選挙ペルソナAI投票シミュレーション用）",
+    "data_basis": "総務省統計局・厚生労働省・内閣府等の公開統計に基づく推計値",
+    "cost_of_living_index_base": "全国平均=100",
+    "last_updated": "2024"
+  },
+  "prefectures": [
+    {
+      "prefecture_code": 1,
+      "prefecture_name": "北海道",
+      "industry_structure": {
+        "primary": 0.06,
+        "secondary": 0.18,
+        "tertiary": 0.76
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4200000,
+      "unemployment_rate": 0.032,
+      "university_graduation_rate": 0.35,
+      "major_industries": ["農業", "観光業", "食品加工"],
+      "economic_challenges": ["人口減少", "過疎化", "農業後継者不足"],
+      "key_policy_concerns": ["地方創生", "医療・介護", "農業振興"],
+      "cost_of_living_index": 95.0,
+      "aging_dependency_ratio": 0.35
+    },
+    {
+      "prefecture_code": 2,
+      "prefecture_name": "青森県",
+      "industry_structure": {
+        "primary": 0.10,
+        "secondary": 0.22,
+        "tertiary": 0.68
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3600000,
+      "unemployment_rate": 0.035,
+      "university_graduation_rate": 0.28,
+      "major_industries": ["りんご農業", "水産業", "林業"],
+      "economic_challenges": ["人口減少", "若者流出", "短命県問題"],
+      "key_policy_concerns": ["医療・健康", "農業振興", "雇用創出"],
+      "cost_of_living_index": 93.0,
+      "aging_dependency_ratio": 0.38
+    },
+    {
+      "prefecture_code": 3,
+      "prefecture_name": "岩手県",
+      "industry_structure": {
+        "primary": 0.09,
+        "secondary": 0.24,
+        "tertiary": 0.67
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3650000,
+      "unemployment_rate": 0.028,
+      "university_graduation_rate": 0.29,
+      "major_industries": ["農業", "水産業", "製造業"],
+      "economic_challenges": ["震災復興", "人口減少", "過疎化"],
+      "key_policy_concerns": ["復興・防災", "地方創生", "医療・介護"],
+      "cost_of_living_index": 93.5,
+      "aging_dependency_ratio": 0.37
+    },
+    {
+      "prefecture_code": 4,
+      "prefecture_name": "宮城県",
+      "industry_structure": {
+        "primary": 0.03,
+        "secondary": 0.20,
+        "tertiary": 0.77
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4350000,
+      "unemployment_rate": 0.029,
+      "university_graduation_rate": 0.40,
+      "major_industries": ["商業", "水産加工", "電子部品製造"],
+      "economic_challenges": ["震災復興", "仙台一極集中", "沿岸部過疎化"],
+      "key_policy_concerns": ["復興・防災", "経済活性化", "子育て支援"],
+      "cost_of_living_index": 97.0,
+      "aging_dependency_ratio": 0.32
+    },
+    {
+      "prefecture_code": 5,
+      "prefecture_name": "秋田県",
+      "industry_structure": {
+        "primary": 0.08,
+        "secondary": 0.24,
+        "tertiary": 0.68
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3500000,
+      "unemployment_rate": 0.033,
+      "university_graduation_rate": 0.27,
+      "major_industries": ["稲作農業", "林業", "電子部品製造"],
+      "economic_challenges": ["人口減少（全国最速）", "高齢化（全国最高）", "若者流出"],
+      "key_policy_concerns": ["人口減少対策", "医療・介護", "農業振興"],
+      "cost_of_living_index": 92.0,
+      "aging_dependency_ratio": 0.42
+    },
+    {
+      "prefecture_code": 6,
+      "prefecture_name": "山形県",
+      "industry_structure": {
+        "primary": 0.08,
+        "secondary": 0.27,
+        "tertiary": 0.65
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3700000,
+      "unemployment_rate": 0.026,
+      "university_graduation_rate": 0.28,
+      "major_industries": ["果樹農業", "電子部品製造", "食品加工"],
+      "economic_challenges": ["人口減少", "若者流出", "豪雪対策"],
+      "key_policy_concerns": ["地方創生", "農業振興", "インフラ整備"],
+      "cost_of_living_index": 93.0,
+      "aging_dependency_ratio": 0.38
+    },
+    {
+      "prefecture_code": 7,
+      "prefecture_name": "福島県",
+      "industry_structure": {
+        "primary": 0.05,
+        "secondary": 0.28,
+        "tertiary": 0.67
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4000000,
+      "unemployment_rate": 0.030,
+      "university_graduation_rate": 0.30,
+      "major_industries": ["製造業", "農業", "観光業"],
+      "economic_challenges": ["原発事故復興", "風評被害", "人口減少"],
+      "key_policy_concerns": ["復興・廃炉", "エネルギー政策", "農業再生"],
+      "cost_of_living_index": 94.0,
+      "aging_dependency_ratio": 0.35
+    },
+    {
+      "prefecture_code": 8,
+      "prefecture_name": "茨城県",
+      "industry_structure": {
+        "primary": 0.05,
+        "secondary": 0.30,
+        "tertiary": 0.65
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4500000,
+      "unemployment_rate": 0.027,
+      "university_graduation_rate": 0.36,
+      "major_industries": ["製造業", "農業", "研究機関"],
+      "economic_challenges": ["東京への通勤依存", "県南北格差", "交通インフラ"],
+      "key_policy_concerns": ["科学技術振興", "交通整備", "農業振興"],
+      "cost_of_living_index": 96.0,
+      "aging_dependency_ratio": 0.32
+    },
+    {
+      "prefecture_code": 9,
+      "prefecture_name": "栃木県",
+      "industry_structure": {
+        "primary": 0.04,
+        "secondary": 0.32,
+        "tertiary": 0.64
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4450000,
+      "unemployment_rate": 0.025,
+      "university_graduation_rate": 0.34,
+      "major_industries": ["自動車部品製造", "農業", "観光業"],
+      "economic_challenges": ["製造業の海外移転", "人口減少", "北部過疎化"],
+      "key_policy_concerns": ["産業振興", "観光振興", "子育て支援"],
+      "cost_of_living_index": 96.0,
+      "aging_dependency_ratio": 0.31
+    },
+    {
+      "prefecture_code": 10,
+      "prefecture_name": "群馬県",
+      "industry_structure": {
+        "primary": 0.04,
+        "secondary": 0.32,
+        "tertiary": 0.64
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4400000,
+      "unemployment_rate": 0.025,
+      "university_graduation_rate": 0.33,
+      "major_industries": ["自動車産業", "電機製造", "農業"],
+      "economic_challenges": ["人口減少", "製造業構造転換", "中山間地過疎化"],
+      "key_policy_concerns": ["産業振興", "交通インフラ", "防災"],
+      "cost_of_living_index": 95.5,
+      "aging_dependency_ratio": 0.32
+    },
+    {
+      "prefecture_code": 11,
+      "prefecture_name": "埼玉県",
+      "industry_structure": {
+        "primary": 0.01,
+        "secondary": 0.22,
+        "tertiary": 0.77
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4800000,
+      "unemployment_rate": 0.026,
+      "university_graduation_rate": 0.43,
+      "major_industries": ["商業・サービス業", "製造業", "物流"],
+      "economic_challenges": ["東京依存", "通勤時間の長さ", "急速な高齢化"],
+      "key_policy_concerns": ["交通インフラ", "子育て支援", "医療・介護"],
+      "cost_of_living_index": 100.0,
+      "aging_dependency_ratio": 0.30
+    },
+    {
+      "prefecture_code": 12,
+      "prefecture_name": "千葉県",
+      "industry_structure": {
+        "primary": 0.02,
+        "secondary": 0.19,
+        "tertiary": 0.79
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4850000,
+      "unemployment_rate": 0.026,
+      "university_graduation_rate": 0.42,
+      "major_industries": ["商業・サービス業", "石油化学", "農業"],
+      "economic_challenges": ["東京依存", "房総地域過疎化", "防災対策"],
+      "key_policy_concerns": ["交通インフラ", "防災", "観光振興"],
+      "cost_of_living_index": 99.5,
+      "aging_dependency_ratio": 0.30
+    },
+    {
+      "prefecture_code": 13,
+      "prefecture_name": "東京都",
+      "industry_structure": {
+        "primary": 0.00,
+        "secondary": 0.10,
+        "tertiary": 0.90
+      },
+      "average_income_level": "高",
+      "average_annual_income_yen": 6000000,
+      "unemployment_rate": 0.028,
+      "university_graduation_rate": 0.58,
+      "major_industries": ["金融・保険", "情報通信", "サービス業"],
+      "economic_challenges": ["一極集中", "待機児童", "住宅価格高騰"],
+      "key_policy_concerns": ["子育て支援", "住宅政策", "経済成長"],
+      "cost_of_living_index": 107.0,
+      "aging_dependency_ratio": 0.26
+    },
+    {
+      "prefecture_code": 14,
+      "prefecture_name": "神奈川県",
+      "industry_structure": {
+        "primary": 0.00,
+        "secondary": 0.18,
+        "tertiary": 0.82
+      },
+      "average_income_level": "高",
+      "average_annual_income_yen": 5400000,
+      "unemployment_rate": 0.027,
+      "university_graduation_rate": 0.50,
+      "major_industries": ["製造業", "情報通信", "商業"],
+      "economic_challenges": ["人口集中", "高齢化の加速", "基地問題"],
+      "key_policy_concerns": ["子育て支援", "産業振興", "防災"],
+      "cost_of_living_index": 104.0,
+      "aging_dependency_ratio": 0.28
+    },
+    {
+      "prefecture_code": 15,
+      "prefecture_name": "新潟県",
+      "industry_structure": {
+        "primary": 0.05,
+        "secondary": 0.27,
+        "tertiary": 0.68
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4050000,
+      "unemployment_rate": 0.027,
+      "university_graduation_rate": 0.32,
+      "major_industries": ["稲作農業", "金属加工", "食品製造"],
+      "economic_challenges": ["人口減少", "豪雪対策", "若者流出"],
+      "key_policy_concerns": ["農業振興", "インフラ整備", "エネルギー政策"],
+      "cost_of_living_index": 95.0,
+      "aging_dependency_ratio": 0.36
+    },
+    {
+      "prefecture_code": 16,
+      "prefecture_name": "富山県",
+      "industry_structure": {
+        "primary": 0.02,
+        "secondary": 0.35,
+        "tertiary": 0.63
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4500000,
+      "unemployment_rate": 0.019,
+      "university_graduation_rate": 0.36,
+      "major_industries": ["医薬品製造", "アルミ加工", "機械製造"],
+      "economic_challenges": ["人口減少", "製造業の高度化", "豪雪対策"],
+      "key_policy_concerns": ["産業振興", "子育て支援", "インフラ維持"],
+      "cost_of_living_index": 96.0,
+      "aging_dependency_ratio": 0.35
+    },
+    {
+      "prefecture_code": 17,
+      "prefecture_name": "石川県",
+      "industry_structure": {
+        "primary": 0.02,
+        "secondary": 0.27,
+        "tertiary": 0.71
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4350000,
+      "unemployment_rate": 0.021,
+      "university_graduation_rate": 0.40,
+      "major_industries": ["機械製造", "繊維", "観光業"],
+      "economic_challenges": ["能登地域過疎化", "伝統工芸の後継者不足", "震災復興"],
+      "key_policy_concerns": ["復興・防災", "観光振興", "伝統産業支援"],
+      "cost_of_living_index": 96.5,
+      "aging_dependency_ratio": 0.33
+    },
+    {
+      "prefecture_code": 18,
+      "prefecture_name": "福井県",
+      "industry_structure": {
+        "primary": 0.03,
+        "secondary": 0.33,
+        "tertiary": 0.64
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4400000,
+      "unemployment_rate": 0.018,
+      "university_graduation_rate": 0.35,
+      "major_industries": ["眼鏡製造", "繊維", "原子力関連"],
+      "economic_challenges": ["人口減少", "原発依存経済", "若者流出"],
+      "key_policy_concerns": ["エネルギー政策", "産業振興", "子育て支援"],
+      "cost_of_living_index": 95.5,
+      "aging_dependency_ratio": 0.34
+    },
+    {
+      "prefecture_code": 19,
+      "prefecture_name": "山梨県",
+      "industry_structure": {
+        "primary": 0.05,
+        "secondary": 0.28,
+        "tertiary": 0.67
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4200000,
+      "unemployment_rate": 0.024,
+      "university_graduation_rate": 0.35,
+      "major_industries": ["果樹農業", "宝飾加工", "観光業"],
+      "economic_challenges": ["人口減少", "交通アクセス", "産業多角化"],
+      "key_policy_concerns": ["観光振興", "農業振興", "交通インフラ"],
+      "cost_of_living_index": 96.0,
+      "aging_dependency_ratio": 0.33
+    },
+    {
+      "prefecture_code": 20,
+      "prefecture_name": "長野県",
+      "industry_structure": {
+        "primary": 0.06,
+        "secondary": 0.28,
+        "tertiary": 0.66
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4250000,
+      "unemployment_rate": 0.023,
+      "university_graduation_rate": 0.34,
+      "major_industries": ["精密機械製造", "観光業", "農業"],
+      "economic_challenges": ["人口減少", "中山間地過疎化", "製造業構造転換"],
+      "key_policy_concerns": ["産業振興", "観光振興", "医療・介護"],
+      "cost_of_living_index": 96.0,
+      "aging_dependency_ratio": 0.35
+    },
+    {
+      "prefecture_code": 21,
+      "prefecture_name": "岐阜県",
+      "industry_structure": {
+        "primary": 0.02,
+        "secondary": 0.30,
+        "tertiary": 0.68
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4350000,
+      "unemployment_rate": 0.023,
+      "university_graduation_rate": 0.34,
+      "major_industries": ["自動車部品製造", "刃物・陶磁器", "航空宇宙"],
+      "economic_challenges": ["人口減少", "製造業の高度化", "南北格差"],
+      "key_policy_concerns": ["産業振興", "防災", "観光振興"],
+      "cost_of_living_index": 96.0,
+      "aging_dependency_ratio": 0.33
+    },
+    {
+      "prefecture_code": 22,
+      "prefecture_name": "静岡県",
+      "industry_structure": {
+        "primary": 0.03,
+        "secondary": 0.32,
+        "tertiary": 0.65
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4600000,
+      "unemployment_rate": 0.023,
+      "university_graduation_rate": 0.37,
+      "major_industries": ["自動車・バイク製造", "製紙", "茶・農業"],
+      "economic_challenges": ["製造業の海外移転", "人口減少", "南海トラフ対策"],
+      "key_policy_concerns": ["防災", "産業振興", "観光振興"],
+      "cost_of_living_index": 98.0,
+      "aging_dependency_ratio": 0.32
+    },
+    {
+      "prefecture_code": 23,
+      "prefecture_name": "愛知県",
+      "industry_structure": {
+        "primary": 0.01,
+        "secondary": 0.36,
+        "tertiary": 0.63
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 5100000,
+      "unemployment_rate": 0.022,
+      "university_graduation_rate": 0.42,
+      "major_industries": ["自動車製造", "航空宇宙", "機械製造"],
+      "economic_challenges": ["自動車産業依存", "外国人労働者統合", "EV転換対応"],
+      "key_policy_concerns": ["産業構造転換", "多文化共生", "交通インフラ"],
+      "cost_of_living_index": 100.0,
+      "aging_dependency_ratio": 0.27
+    },
+    {
+      "prefecture_code": 24,
+      "prefecture_name": "三重県",
+      "industry_structure": {
+        "primary": 0.03,
+        "secondary": 0.33,
+        "tertiary": 0.64
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4500000,
+      "unemployment_rate": 0.023,
+      "university_graduation_rate": 0.34,
+      "major_industries": ["石油化学", "電子部品製造", "水産業"],
+      "economic_challenges": ["人口減少", "南海トラフ対策", "北勢・南勢格差"],
+      "key_policy_concerns": ["防災", "産業振興", "観光振興"],
+      "cost_of_living_index": 96.5,
+      "aging_dependency_ratio": 0.32
+    },
+    {
+      "prefecture_code": 25,
+      "prefecture_name": "滋賀県",
+      "industry_structure": {
+        "primary": 0.02,
+        "secondary": 0.35,
+        "tertiary": 0.63
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4700000,
+      "unemployment_rate": 0.024,
+      "university_graduation_rate": 0.40,
+      "major_industries": ["製造業", "医薬品", "環境産業"],
+      "economic_challenges": ["琵琶湖環境保全", "京阪への人口流出", "南北格差"],
+      "key_policy_concerns": ["環境保全", "産業振興", "子育て支援"],
+      "cost_of_living_index": 97.5,
+      "aging_dependency_ratio": 0.28
+    },
+    {
+      "prefecture_code": 26,
+      "prefecture_name": "京都府",
+      "industry_structure": {
+        "primary": 0.01,
+        "secondary": 0.21,
+        "tertiary": 0.78
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4600000,
+      "unemployment_rate": 0.028,
+      "university_graduation_rate": 0.48,
+      "major_industries": ["観光業", "伝統工芸", "電子部品製造"],
+      "economic_challenges": ["オーバーツーリズム", "伝統産業衰退", "北部過疎化"],
+      "key_policy_concerns": ["観光政策", "文化財保護", "大学連携"],
+      "cost_of_living_index": 101.0,
+      "aging_dependency_ratio": 0.33
+    },
+    {
+      "prefecture_code": 27,
+      "prefecture_name": "大阪府",
+      "industry_structure": {
+        "primary": 0.00,
+        "secondary": 0.18,
+        "tertiary": 0.82
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4900000,
+      "unemployment_rate": 0.032,
+      "university_graduation_rate": 0.44,
+      "major_industries": ["商業", "中小企業製造業", "医薬品"],
+      "economic_challenges": ["中小企業支援", "貧困格差", "インバウンド対応"],
+      "key_policy_concerns": ["経済活性化", "子どもの貧困", "万博・IR"],
+      "cost_of_living_index": 102.0,
+      "aging_dependency_ratio": 0.30
+    },
+    {
+      "prefecture_code": 28,
+      "prefecture_name": "兵庫県",
+      "industry_structure": {
+        "primary": 0.01,
+        "secondary": 0.25,
+        "tertiary": 0.74
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4700000,
+      "unemployment_rate": 0.028,
+      "university_graduation_rate": 0.42,
+      "major_industries": ["鉄鋼", "造船", "商業"],
+      "economic_challenges": ["阪神・淡路の教訓継承", "人口減少", "神戸経済低迷"],
+      "key_policy_concerns": ["防災", "産業振興", "地域間格差"],
+      "cost_of_living_index": 100.0,
+      "aging_dependency_ratio": 0.31
+    },
+    {
+      "prefecture_code": 29,
+      "prefecture_name": "奈良県",
+      "industry_structure": {
+        "primary": 0.02,
+        "secondary": 0.20,
+        "tertiary": 0.78
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4250000,
+      "unemployment_rate": 0.029,
+      "university_graduation_rate": 0.40,
+      "major_industries": ["観光業", "繊維・靴下製造", "商業"],
+      "economic_challenges": ["大阪への通勤依存", "南部過疎化", "産業空洞化"],
+      "key_policy_concerns": ["観光振興", "文化財保護", "交通インフラ"],
+      "cost_of_living_index": 97.0,
+      "aging_dependency_ratio": 0.34
+    },
+    {
+      "prefecture_code": 30,
+      "prefecture_name": "和歌山県",
+      "industry_structure": {
+        "primary": 0.06,
+        "secondary": 0.24,
+        "tertiary": 0.70
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3900000,
+      "unemployment_rate": 0.028,
+      "university_graduation_rate": 0.30,
+      "major_industries": ["果樹農業", "石油化学", "観光業"],
+      "economic_challenges": ["人口減少", "過疎化", "南海トラフ対策"],
+      "key_policy_concerns": ["防災", "農業振興", "観光振興"],
+      "cost_of_living_index": 94.0,
+      "aging_dependency_ratio": 0.37
+    },
+    {
+      "prefecture_code": 31,
+      "prefecture_name": "鳥取県",
+      "industry_structure": {
+        "primary": 0.06,
+        "secondary": 0.22,
+        "tertiary": 0.72
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3750000,
+      "unemployment_rate": 0.024,
+      "university_graduation_rate": 0.30,
+      "major_industries": ["農業", "水産業", "電子部品製造"],
+      "economic_challenges": ["人口最少県", "若者流出", "産業基盤弱体"],
+      "key_policy_concerns": ["人口減少対策", "地方創生", "農業振興"],
+      "cost_of_living_index": 93.0,
+      "aging_dependency_ratio": 0.37
+    },
+    {
+      "prefecture_code": 32,
+      "prefecture_name": "島根県",
+      "industry_structure": {
+        "primary": 0.05,
+        "secondary": 0.22,
+        "tertiary": 0.73
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3700000,
+      "unemployment_rate": 0.023,
+      "university_graduation_rate": 0.28,
+      "major_industries": ["製造業", "農業", "観光業"],
+      "economic_challenges": ["人口減少", "過疎化", "交通アクセス"],
+      "key_policy_concerns": ["地方創生", "医療・介護", "観光振興"],
+      "cost_of_living_index": 93.0,
+      "aging_dependency_ratio": 0.39
+    },
+    {
+      "prefecture_code": 33,
+      "prefecture_name": "岡山県",
+      "industry_structure": {
+        "primary": 0.02,
+        "secondary": 0.27,
+        "tertiary": 0.71
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4300000,
+      "unemployment_rate": 0.025,
+      "university_graduation_rate": 0.37,
+      "major_industries": ["石油化学", "自動車部品", "農業"],
+      "economic_challenges": ["豪雨災害復興", "人口減少", "北部過疎化"],
+      "key_policy_concerns": ["防災", "産業振興", "子育て支援"],
+      "cost_of_living_index": 96.5,
+      "aging_dependency_ratio": 0.33
+    },
+    {
+      "prefecture_code": 34,
+      "prefecture_name": "広島県",
+      "industry_structure": {
+        "primary": 0.01,
+        "secondary": 0.26,
+        "tertiary": 0.73
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4500000,
+      "unemployment_rate": 0.026,
+      "university_graduation_rate": 0.39,
+      "major_industries": ["自動車製造", "造船", "鉄鋼"],
+      "economic_challenges": ["製造業構造転換", "土砂災害リスク", "人口減少"],
+      "key_policy_concerns": ["産業振興", "防災", "平和政策"],
+      "cost_of_living_index": 97.5,
+      "aging_dependency_ratio": 0.32
+    },
+    {
+      "prefecture_code": 35,
+      "prefecture_name": "山口県",
+      "industry_structure": {
+        "primary": 0.03,
+        "secondary": 0.28,
+        "tertiary": 0.69
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4200000,
+      "unemployment_rate": 0.026,
+      "university_graduation_rate": 0.33,
+      "major_industries": ["石油化学", "セメント", "水産業"],
+      "economic_challenges": ["人口減少", "重化学工業依存", "若者流出"],
+      "key_policy_concerns": ["産業振興", "地方創生", "医療・介護"],
+      "cost_of_living_index": 95.0,
+      "aging_dependency_ratio": 0.38
+    },
+    {
+      "prefecture_code": 36,
+      "prefecture_name": "徳島県",
+      "industry_structure": {
+        "primary": 0.05,
+        "secondary": 0.24,
+        "tertiary": 0.71
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3900000,
+      "unemployment_rate": 0.026,
+      "university_graduation_rate": 0.32,
+      "major_industries": ["医薬品製造", "LED製造", "農業"],
+      "economic_challenges": ["人口減少", "南海トラフ対策", "過疎化"],
+      "key_policy_concerns": ["防災", "地方創生", "IT・デジタル化"],
+      "cost_of_living_index": 93.5,
+      "aging_dependency_ratio": 0.37
+    },
+    {
+      "prefecture_code": 37,
+      "prefecture_name": "香川県",
+      "industry_structure": {
+        "primary": 0.02,
+        "secondary": 0.24,
+        "tertiary": 0.74
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4150000,
+      "unemployment_rate": 0.025,
+      "university_graduation_rate": 0.34,
+      "major_industries": ["食品加工", "造船", "観光業"],
+      "economic_challenges": ["水不足", "人口減少", "島嶼部過疎化"],
+      "key_policy_concerns": ["水資源管理", "観光振興", "産業振興"],
+      "cost_of_living_index": 95.0,
+      "aging_dependency_ratio": 0.35
+    },
+    {
+      "prefecture_code": 38,
+      "prefecture_name": "愛媛県",
+      "industry_structure": {
+        "primary": 0.04,
+        "secondary": 0.24,
+        "tertiary": 0.72
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3950000,
+      "unemployment_rate": 0.026,
+      "university_graduation_rate": 0.32,
+      "major_industries": ["柑橘農業", "造船", "製紙"],
+      "economic_challenges": ["人口減少", "過疎化", "産業構造転換"],
+      "key_policy_concerns": ["農業振興", "産業振興", "防災"],
+      "cost_of_living_index": 94.0,
+      "aging_dependency_ratio": 0.36
+    },
+    {
+      "prefecture_code": 39,
+      "prefecture_name": "高知県",
+      "industry_structure": {
+        "primary": 0.07,
+        "secondary": 0.17,
+        "tertiary": 0.76
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3550000,
+      "unemployment_rate": 0.028,
+      "university_graduation_rate": 0.28,
+      "major_industries": ["施設園芸農業", "水産業", "林業"],
+      "economic_challenges": ["高齢化（全国上位）", "人口減少", "南海トラフ対策"],
+      "key_policy_concerns": ["防災", "医療・介護", "地方創生"],
+      "cost_of_living_index": 92.5,
+      "aging_dependency_ratio": 0.40
+    },
+    {
+      "prefecture_code": 40,
+      "prefecture_name": "福岡県",
+      "industry_structure": {
+        "primary": 0.01,
+        "secondary": 0.18,
+        "tertiary": 0.81
+      },
+      "average_income_level": "中",
+      "average_annual_income_yen": 4550000,
+      "unemployment_rate": 0.030,
+      "university_graduation_rate": 0.41,
+      "major_industries": ["自動車製造", "IT・スタートアップ", "商業"],
+      "economic_challenges": ["福岡市一極集中", "筑豊・大牟田の衰退", "格差拡大"],
+      "key_policy_concerns": ["経済活性化", "スタートアップ支援", "子育て支援"],
+      "cost_of_living_index": 98.0,
+      "aging_dependency_ratio": 0.30
+    },
+    {
+      "prefecture_code": 41,
+      "prefecture_name": "佐賀県",
+      "industry_structure": {
+        "primary": 0.05,
+        "secondary": 0.26,
+        "tertiary": 0.69
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3800000,
+      "unemployment_rate": 0.025,
+      "university_graduation_rate": 0.30,
+      "major_industries": ["農業", "陶磁器製造", "食品加工"],
+      "economic_challenges": ["人口減少", "若者流出", "有明海環境問題"],
+      "key_policy_concerns": ["農業振興", "環境保全", "子育て支援"],
+      "cost_of_living_index": 93.0,
+      "aging_dependency_ratio": 0.33
+    },
+    {
+      "prefecture_code": 42,
+      "prefecture_name": "長崎県",
+      "industry_structure": {
+        "primary": 0.04,
+        "secondary": 0.20,
+        "tertiary": 0.76
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3800000,
+      "unemployment_rate": 0.028,
+      "university_graduation_rate": 0.31,
+      "major_industries": ["造船", "水産業", "観光業"],
+      "economic_challenges": ["人口減少（全国上位）", "離島振興", "産業構造転換"],
+      "key_policy_concerns": ["地方創生", "離島振興", "平和政策"],
+      "cost_of_living_index": 93.5,
+      "aging_dependency_ratio": 0.37
+    },
+    {
+      "prefecture_code": 43,
+      "prefecture_name": "熊本県",
+      "industry_structure": {
+        "primary": 0.05,
+        "secondary": 0.23,
+        "tertiary": 0.72
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3900000,
+      "unemployment_rate": 0.026,
+      "university_graduation_rate": 0.33,
+      "major_industries": ["半導体製造", "農業", "観光業"],
+      "economic_challenges": ["熊本地震復興", "TSMC進出への対応", "インフラ整備"],
+      "key_policy_concerns": ["復興・防災", "半導体産業振興", "農業振興"],
+      "cost_of_living_index": 94.0,
+      "aging_dependency_ratio": 0.34
+    },
+    {
+      "prefecture_code": 44,
+      "prefecture_name": "大分県",
+      "industry_structure": {
+        "primary": 0.03,
+        "secondary": 0.25,
+        "tertiary": 0.72
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3900000,
+      "unemployment_rate": 0.026,
+      "university_graduation_rate": 0.32,
+      "major_industries": ["石油化学", "自動車部品", "温泉観光"],
+      "economic_challenges": ["人口減少", "過疎化", "産業基盤維持"],
+      "key_policy_concerns": ["観光振興", "産業振興", "医療・介護"],
+      "cost_of_living_index": 93.5,
+      "aging_dependency_ratio": 0.36
+    },
+    {
+      "prefecture_code": 45,
+      "prefecture_name": "宮崎県",
+      "industry_structure": {
+        "primary": 0.07,
+        "secondary": 0.20,
+        "tertiary": 0.73
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3600000,
+      "unemployment_rate": 0.028,
+      "university_graduation_rate": 0.29,
+      "major_industries": ["畜産業", "農業", "観光業"],
+      "economic_challenges": ["人口減少", "低賃金", "自然災害リスク"],
+      "key_policy_concerns": ["農業振興", "防災", "雇用創出"],
+      "cost_of_living_index": 92.0,
+      "aging_dependency_ratio": 0.36
+    },
+    {
+      "prefecture_code": 46,
+      "prefecture_name": "鹿児島県",
+      "industry_structure": {
+        "primary": 0.06,
+        "secondary": 0.18,
+        "tertiary": 0.76
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3650000,
+      "unemployment_rate": 0.029,
+      "university_graduation_rate": 0.30,
+      "major_industries": ["畜産業", "農業", "観光業"],
+      "economic_challenges": ["人口減少", "離島振興", "火山・台風リスク"],
+      "key_policy_concerns": ["農業振興", "防災", "離島振興"],
+      "cost_of_living_index": 92.5,
+      "aging_dependency_ratio": 0.36
+    },
+    {
+      "prefecture_code": 47,
+      "prefecture_name": "沖縄県",
+      "industry_structure": {
+        "primary": 0.02,
+        "secondary": 0.12,
+        "tertiary": 0.86
+      },
+      "average_income_level": "低",
+      "average_annual_income_yen": 3350000,
+      "unemployment_rate": 0.038,
+      "university_graduation_rate": 0.30,
+      "major_industries": ["観光業", "米軍基地関連", "IT産業"],
+      "economic_challenges": ["基地問題", "低賃金", "子どもの貧困"],
+      "key_policy_concerns": ["基地問題", "経済自立", "子どもの貧困対策"],
+      "cost_of_living_index": 94.5,
+      "aging_dependency_ratio": 0.24
+    }
+  ]
+}

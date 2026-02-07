@@ -7,9 +7,18 @@ export default function Header() {
         <Link href="/" className="text-xl font-bold">
           衆議院選挙 AI予測
         </Link>
-        <nav className="flex gap-6 text-sm">
+        <nav className="flex gap-4 text-sm flex-wrap">
           <Link href="/" className="hover:text-blue-300 transition">
             ダッシュボード
+          </Link>
+          <Link href="/youtube" className="hover:text-red-300 transition">
+            YouTube分析
+          </Link>
+          <Link href="/news" className="hover:text-indigo-300 transition">
+            ニュース分析
+          </Link>
+          <Link href="/models" className="hover:text-green-300 transition">
+            モデル比較
           </Link>
           <Link href="/battleground" className="hover:text-blue-300 transition">
             接戦区

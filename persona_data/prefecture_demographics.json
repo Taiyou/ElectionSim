@@ -1,0 +1,1278 @@
+{
+  "metadata": {
+    "source": "Based on 2020 Japanese National Census and recent estimates",
+    "last_updated": "2024-01-01",
+    "notes": "Population figures from 2020 Census. Age distribution reflects voting-eligible population (18+). Eligible voters estimated from 18+ population. Urbanization rate represents percentage of population in densely inhabited districts (DID)."
+  },
+  "prefectures": [
+    {
+      "prefecture_code": 1,
+      "prefecture_name": "北海道",
+      "total_population": 5224614,
+      "eligible_voters": 4530000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.11,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.34
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.38,
+        "couple_only": 0.22,
+        "nuclear_family": 0.27,
+        "three_generation": 0.05,
+        "other": 0.08
+      },
+      "urbanization": "大都市",
+      "urbanization_rate": 0.78
+    },
+    {
+      "prefecture_code": 2,
+      "prefecture_name": "青森県",
+      "total_population": 1237984,
+      "eligible_voters": 1090000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.10,
+        "40_49": 0.13,
+        "50_59": 0.14,
+        "60_69": 0.17,
+        "70_plus": 0.36
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.30,
+        "couple_only": 0.20,
+        "nuclear_family": 0.28,
+        "three_generation": 0.12,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.52
+    },
+    {
+      "prefecture_code": 3,
+      "prefecture_name": "岩手県",
+      "total_population": 1210534,
+      "eligible_voters": 1065000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.10,
+        "40_49": 0.13,
+        "50_59": 0.14,
+        "60_69": 0.17,
+        "70_plus": 0.36
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.28,
+        "couple_only": 0.20,
+        "nuclear_family": 0.27,
+        "three_generation": 0.14,
+        "other": 0.11
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.45
+    },
+    {
+      "prefecture_code": 4,
+      "prefecture_name": "宮城県",
+      "total_population": 2301996,
+      "eligible_voters": 1960000,
+      "age_distribution": {
+        "18_29": 0.13,
+        "30_39": 0.12,
+        "40_49": 0.15,
+        "50_59": 0.14,
+        "60_69": 0.15,
+        "70_plus": 0.31
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.35,
+        "couple_only": 0.21,
+        "nuclear_family": 0.29,
+        "three_generation": 0.07,
+        "other": 0.08
+      },
+      "urbanization": "中核市",
+      "urbanization_rate": 0.72
+    },
+    {
+      "prefecture_code": 5,
+      "prefecture_name": "秋田県",
+      "total_population": 959502,
+      "eligible_voters": 860000,
+      "age_distribution": {
+        "18_29": 0.08,
+        "30_39": 0.09,
+        "40_49": 0.12,
+        "50_59": 0.13,
+        "60_69": 0.17,
+        "70_plus": 0.41
+      },
+      "gender_ratio": {
+        "male": 0.47,
+        "female": 0.53
+      },
+      "household_composition": {
+        "single": 0.28,
+        "couple_only": 0.22,
+        "nuclear_family": 0.25,
+        "three_generation": 0.14,
+        "other": 0.11
+      },
+      "urbanization": "農村部",
+      "urbanization_rate": 0.42
+    },
+    {
+      "prefecture_code": 6,
+      "prefecture_name": "山形県",
+      "total_population": 1068027,
+      "eligible_voters": 940000,
+      "age_distribution": {
+        "18_29": 0.09,
+        "30_39": 0.10,
+        "40_49": 0.13,
+        "50_59": 0.13,
+        "60_69": 0.17,
+        "70_plus": 0.38
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.26,
+        "couple_only": 0.20,
+        "nuclear_family": 0.27,
+        "three_generation": 0.16,
+        "other": 0.11
+      },
+      "urbanization": "農村部",
+      "urbanization_rate": 0.43
+    },
+    {
+      "prefecture_code": 7,
+      "prefecture_name": "福島県",
+      "total_population": 1833152,
+      "eligible_voters": 1600000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.10,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.17,
+        "70_plus": 0.35
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.29,
+        "couple_only": 0.21,
+        "nuclear_family": 0.28,
+        "three_generation": 0.12,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.51
+    },
+    {
+      "prefecture_code": 8,
+      "prefecture_name": "茨城県",
+      "total_population": 2867009,
+      "eligible_voters": 2440000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.11,
+        "40_49": 0.15,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.33
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.30,
+        "couple_only": 0.21,
+        "nuclear_family": 0.31,
+        "three_generation": 0.10,
+        "other": 0.08
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.58
+    },
+    {
+      "prefecture_code": 9,
+      "prefecture_name": "栃木県",
+      "total_population": 1933146,
+      "eligible_voters": 1640000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.11,
+        "40_49": 0.15,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.33
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.29,
+        "couple_only": 0.21,
+        "nuclear_family": 0.30,
+        "three_generation": 0.11,
+        "other": 0.09
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.57
+    },
+    {
+      "prefecture_code": 10,
+      "prefecture_name": "群馬県",
+      "total_population": 1939110,
+      "eligible_voters": 1650000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.11,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.34
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.30,
+        "couple_only": 0.21,
+        "nuclear_family": 0.30,
+        "three_generation": 0.10,
+        "other": 0.09
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.56
+    },
+    {
+      "prefecture_code": 11,
+      "prefecture_name": "埼玉県",
+      "total_population": 7344765,
+      "eligible_voters": 6200000,
+      "age_distribution": {
+        "18_29": 0.12,
+        "30_39": 0.13,
+        "40_49": 0.16,
+        "50_59": 0.14,
+        "60_69": 0.15,
+        "70_plus": 0.30
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.33,
+        "couple_only": 0.22,
+        "nuclear_family": 0.32,
+        "three_generation": 0.05,
+        "other": 0.08
+      },
+      "urbanization": "大都市",
+      "urbanization_rate": 0.89
+    },
+    {
+      "prefecture_code": 12,
+      "prefecture_name": "千葉県",
+      "total_population": 6284480,
+      "eligible_voters": 5300000,
+      "age_distribution": {
+        "18_29": 0.12,
+        "30_39": 0.12,
+        "40_49": 0.16,
+        "50_59": 0.14,
+        "60_69": 0.15,
+        "70_plus": 0.31
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.34,
+        "couple_only": 0.22,
+        "nuclear_family": 0.31,
+        "three_generation": 0.05,
+        "other": 0.08
+      },
+      "urbanization": "大都市",
+      "urbanization_rate": 0.87
+    },
+    {
+      "prefecture_code": 13,
+      "prefecture_name": "東京都",
+      "total_population": 14047594,
+      "eligible_voters": 11550000,
+      "age_distribution": {
+        "18_29": 0.15,
+        "30_39": 0.15,
+        "40_49": 0.16,
+        "50_59": 0.14,
+        "60_69": 0.13,
+        "70_plus": 0.27
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.47,
+        "couple_only": 0.20,
+        "nuclear_family": 0.24,
+        "three_generation": 0.02,
+        "other": 0.07
+      },
+      "urbanization": "大都市",
+      "urbanization_rate": 0.98
+    },
+    {
+      "prefecture_code": 14,
+      "prefecture_name": "神奈川県",
+      "total_population": 9237337,
+      "eligible_voters": 7700000,
+      "age_distribution": {
+        "18_29": 0.13,
+        "30_39": 0.14,
+        "40_49": 0.16,
+        "50_59": 0.14,
+        "60_69": 0.14,
+        "70_plus": 0.29
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.37,
+        "couple_only": 0.22,
+        "nuclear_family": 0.30,
+        "three_generation": 0.03,
+        "other": 0.08
+      },
+      "urbanization": "大都市",
+      "urbanization_rate": 0.95
+    },
+    {
+      "prefecture_code": 15,
+      "prefecture_name": "新潟県",
+      "total_population": 2201272,
+      "eligible_voters": 1930000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.10,
+        "40_49": 0.13,
+        "50_59": 0.14,
+        "60_69": 0.17,
+        "70_plus": 0.36
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.29,
+        "couple_only": 0.21,
+        "nuclear_family": 0.28,
+        "three_generation": 0.12,
+        "other": 0.10
+      },
+      "urbanization": "中核市",
+      "urbanization_rate": 0.52
+    },
+    {
+      "prefecture_code": 16,
+      "prefecture_name": "富山県",
+      "total_population": 1034814,
+      "eligible_voters": 900000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.10,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.36
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.27,
+        "couple_only": 0.21,
+        "nuclear_family": 0.28,
+        "three_generation": 0.14,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.53
+    },
+    {
+      "prefecture_code": 17,
+      "prefecture_name": "石川県",
+      "total_population": 1132526,
+      "eligible_voters": 970000,
+      "age_distribution": {
+        "18_29": 0.12,
+        "30_39": 0.11,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.33
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.32,
+        "couple_only": 0.21,
+        "nuclear_family": 0.28,
+        "three_generation": 0.10,
+        "other": 0.09
+      },
+      "urbanization": "中核市",
+      "urbanization_rate": 0.62
+    },
+    {
+      "prefecture_code": 18,
+      "prefecture_name": "福井県",
+      "total_population": 766863,
+      "eligible_voters": 660000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.11,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.35
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.26,
+        "couple_only": 0.20,
+        "nuclear_family": 0.28,
+        "three_generation": 0.15,
+        "other": 0.11
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.48
+    },
+    {
+      "prefecture_code": 19,
+      "prefecture_name": "山梨県",
+      "total_population": 809974,
+      "eligible_voters": 700000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.11,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.35
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.30,
+        "couple_only": 0.21,
+        "nuclear_family": 0.29,
+        "three_generation": 0.10,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.52
+    },
+    {
+      "prefecture_code": 20,
+      "prefecture_name": "長野県",
+      "total_population": 2048011,
+      "eligible_voters": 1790000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.10,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.36
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.28,
+        "couple_only": 0.22,
+        "nuclear_family": 0.28,
+        "three_generation": 0.12,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.50
+    },
+    {
+      "prefecture_code": 21,
+      "prefecture_name": "岐阜県",
+      "total_population": 1978742,
+      "eligible_voters": 1690000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.11,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.34
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.27,
+        "couple_only": 0.21,
+        "nuclear_family": 0.30,
+        "three_generation": 0.12,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.55
+    },
+    {
+      "prefecture_code": 22,
+      "prefecture_name": "静岡県",
+      "total_population": 3633202,
+      "eligible_voters": 3100000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.11,
+        "40_49": 0.15,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.33
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.30,
+        "couple_only": 0.22,
+        "nuclear_family": 0.30,
+        "three_generation": 0.09,
+        "other": 0.09
+      },
+      "urbanization": "中核市",
+      "urbanization_rate": 0.66
+    },
+    {
+      "prefecture_code": 23,
+      "prefecture_name": "愛知県",
+      "total_population": 7542415,
+      "eligible_voters": 6200000,
+      "age_distribution": {
+        "18_29": 0.13,
+        "30_39": 0.13,
+        "40_49": 0.16,
+        "50_59": 0.14,
+        "60_69": 0.14,
+        "70_plus": 0.30
+      },
+      "gender_ratio": {
+        "male": 0.50,
+        "female": 0.50
+      },
+      "household_composition": {
+        "single": 0.34,
+        "couple_only": 0.21,
+        "nuclear_family": 0.31,
+        "three_generation": 0.06,
+        "other": 0.08
+      },
+      "urbanization": "大都市",
+      "urbanization_rate": 0.88
+    },
+    {
+      "prefecture_code": 24,
+      "prefecture_name": "三重県",
+      "total_population": 1770254,
+      "eligible_voters": 1520000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.11,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.34
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.29,
+        "couple_only": 0.22,
+        "nuclear_family": 0.30,
+        "three_generation": 0.10,
+        "other": 0.09
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.58
+    },
+    {
+      "prefecture_code": 25,
+      "prefecture_name": "滋賀県",
+      "total_population": 1413610,
+      "eligible_voters": 1170000,
+      "age_distribution": {
+        "18_29": 0.12,
+        "30_39": 0.12,
+        "40_49": 0.16,
+        "50_59": 0.14,
+        "60_69": 0.15,
+        "70_plus": 0.31
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.29,
+        "couple_only": 0.21,
+        "nuclear_family": 0.33,
+        "three_generation": 0.09,
+        "other": 0.08
+      },
+      "urbanization": "中核市",
+      "urbanization_rate": 0.63
+    },
+    {
+      "prefecture_code": 26,
+      "prefecture_name": "京都府",
+      "total_population": 2578087,
+      "eligible_voters": 2170000,
+      "age_distribution": {
+        "18_29": 0.14,
+        "30_39": 0.12,
+        "40_49": 0.15,
+        "50_59": 0.14,
+        "60_69": 0.14,
+        "70_plus": 0.31
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.40,
+        "couple_only": 0.20,
+        "nuclear_family": 0.27,
+        "three_generation": 0.05,
+        "other": 0.08
+      },
+      "urbanization": "大都市",
+      "urbanization_rate": 0.82
+    },
+    {
+      "prefecture_code": 27,
+      "prefecture_name": "大阪府",
+      "total_population": 8837685,
+      "eligible_voters": 7350000,
+      "age_distribution": {
+        "18_29": 0.13,
+        "30_39": 0.13,
+        "40_49": 0.16,
+        "50_59": 0.14,
+        "60_69": 0.14,
+        "70_plus": 0.30
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.42,
+        "couple_only": 0.20,
+        "nuclear_family": 0.27,
+        "three_generation": 0.03,
+        "other": 0.08
+      },
+      "urbanization": "大都市",
+      "urbanization_rate": 0.96
+    },
+    {
+      "prefecture_code": 28,
+      "prefecture_name": "兵庫県",
+      "total_population": 5465002,
+      "eligible_voters": 4600000,
+      "age_distribution": {
+        "18_29": 0.12,
+        "30_39": 0.12,
+        "40_49": 0.15,
+        "50_59": 0.14,
+        "60_69": 0.15,
+        "70_plus": 0.32
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.35,
+        "couple_only": 0.22,
+        "nuclear_family": 0.29,
+        "three_generation": 0.06,
+        "other": 0.08
+      },
+      "urbanization": "大都市",
+      "urbanization_rate": 0.83
+    },
+    {
+      "prefecture_code": 29,
+      "prefecture_name": "奈良県",
+      "total_population": 1324473,
+      "eligible_voters": 1140000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.11,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.34
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.30,
+        "couple_only": 0.23,
+        "nuclear_family": 0.31,
+        "three_generation": 0.08,
+        "other": 0.08
+      },
+      "urbanization": "中核市",
+      "urbanization_rate": 0.68
+    },
+    {
+      "prefecture_code": 30,
+      "prefecture_name": "和歌山県",
+      "total_population": 922584,
+      "eligible_voters": 810000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.10,
+        "40_49": 0.13,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.37
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.30,
+        "couple_only": 0.22,
+        "nuclear_family": 0.28,
+        "three_generation": 0.10,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.50
+    },
+    {
+      "prefecture_code": 31,
+      "prefecture_name": "鳥取県",
+      "total_population": 553407,
+      "eligible_voters": 480000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.10,
+        "40_49": 0.13,
+        "50_59": 0.14,
+        "60_69": 0.17,
+        "70_plus": 0.36
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.28,
+        "couple_only": 0.21,
+        "nuclear_family": 0.27,
+        "three_generation": 0.13,
+        "other": 0.11
+      },
+      "urbanization": "農村部",
+      "urbanization_rate": 0.40
+    },
+    {
+      "prefecture_code": 32,
+      "prefecture_name": "島根県",
+      "total_population": 671126,
+      "eligible_voters": 590000,
+      "age_distribution": {
+        "18_29": 0.09,
+        "30_39": 0.10,
+        "40_49": 0.12,
+        "50_59": 0.13,
+        "60_69": 0.17,
+        "70_plus": 0.39
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.28,
+        "couple_only": 0.21,
+        "nuclear_family": 0.26,
+        "three_generation": 0.14,
+        "other": 0.11
+      },
+      "urbanization": "農村部",
+      "urbanization_rate": 0.37
+    },
+    {
+      "prefecture_code": 33,
+      "prefecture_name": "岡山県",
+      "total_population": 1888432,
+      "eligible_voters": 1610000,
+      "age_distribution": {
+        "18_29": 0.12,
+        "30_39": 0.11,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.33
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.32,
+        "couple_only": 0.21,
+        "nuclear_family": 0.29,
+        "three_generation": 0.09,
+        "other": 0.09
+      },
+      "urbanization": "中核市",
+      "urbanization_rate": 0.62
+    },
+    {
+      "prefecture_code": 34,
+      "prefecture_name": "広島県",
+      "total_population": 2799702,
+      "eligible_voters": 2380000,
+      "age_distribution": {
+        "18_29": 0.12,
+        "30_39": 0.12,
+        "40_49": 0.15,
+        "50_59": 0.14,
+        "60_69": 0.15,
+        "70_plus": 0.32
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.34,
+        "couple_only": 0.21,
+        "nuclear_family": 0.29,
+        "three_generation": 0.07,
+        "other": 0.09
+      },
+      "urbanization": "大都市",
+      "urbanization_rate": 0.72
+    },
+    {
+      "prefecture_code": 35,
+      "prefecture_name": "山口県",
+      "total_population": 1342059,
+      "eligible_voters": 1180000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.10,
+        "40_49": 0.13,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.37
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.31,
+        "couple_only": 0.22,
+        "nuclear_family": 0.27,
+        "three_generation": 0.10,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.52
+    },
+    {
+      "prefecture_code": 36,
+      "prefecture_name": "徳島県",
+      "total_population": 719559,
+      "eligible_voters": 630000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.10,
+        "40_49": 0.13,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.37
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.30,
+        "couple_only": 0.22,
+        "nuclear_family": 0.27,
+        "three_generation": 0.11,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.44
+    },
+    {
+      "prefecture_code": 37,
+      "prefecture_name": "香川県",
+      "total_population": 950244,
+      "eligible_voters": 820000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.10,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.35
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.31,
+        "couple_only": 0.22,
+        "nuclear_family": 0.28,
+        "three_generation": 0.10,
+        "other": 0.09
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.53
+    },
+    {
+      "prefecture_code": 38,
+      "prefecture_name": "愛媛県",
+      "total_population": 1334841,
+      "eligible_voters": 1170000,
+      "age_distribution": {
+        "18_29": 0.10,
+        "30_39": 0.10,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.36
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.32,
+        "couple_only": 0.22,
+        "nuclear_family": 0.27,
+        "three_generation": 0.09,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.52
+    },
+    {
+      "prefecture_code": 39,
+      "prefecture_name": "高知県",
+      "total_population": 691527,
+      "eligible_voters": 610000,
+      "age_distribution": {
+        "18_29": 0.09,
+        "30_39": 0.10,
+        "40_49": 0.13,
+        "50_59": 0.13,
+        "60_69": 0.17,
+        "70_plus": 0.38
+      },
+      "gender_ratio": {
+        "male": 0.47,
+        "female": 0.53
+      },
+      "household_composition": {
+        "single": 0.32,
+        "couple_only": 0.22,
+        "nuclear_family": 0.26,
+        "three_generation": 0.09,
+        "other": 0.11
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.43
+    },
+    {
+      "prefecture_code": 40,
+      "prefecture_name": "福岡県",
+      "total_population": 5135214,
+      "eligible_voters": 4280000,
+      "age_distribution": {
+        "18_29": 0.13,
+        "30_39": 0.13,
+        "40_49": 0.15,
+        "50_59": 0.14,
+        "60_69": 0.14,
+        "70_plus": 0.31
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.37,
+        "couple_only": 0.20,
+        "nuclear_family": 0.29,
+        "three_generation": 0.05,
+        "other": 0.09
+      },
+      "urbanization": "大都市",
+      "urbanization_rate": 0.80
+    },
+    {
+      "prefecture_code": 41,
+      "prefecture_name": "佐賀県",
+      "total_population": 811442,
+      "eligible_voters": 690000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.11,
+        "40_49": 0.14,
+        "50_59": 0.13,
+        "60_69": 0.16,
+        "70_plus": 0.35
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.26,
+        "couple_only": 0.20,
+        "nuclear_family": 0.29,
+        "three_generation": 0.14,
+        "other": 0.11
+      },
+      "urbanization": "農村部",
+      "urbanization_rate": 0.43
+    },
+    {
+      "prefecture_code": 42,
+      "prefecture_name": "長崎県",
+      "total_population": 1312317,
+      "eligible_voters": 1140000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.10,
+        "40_49": 0.13,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.36
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.31,
+        "couple_only": 0.21,
+        "nuclear_family": 0.28,
+        "three_generation": 0.10,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.49
+    },
+    {
+      "prefecture_code": 43,
+      "prefecture_name": "熊本県",
+      "total_population": 1738301,
+      "eligible_voters": 1480000,
+      "age_distribution": {
+        "18_29": 0.12,
+        "30_39": 0.11,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.33
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.31,
+        "couple_only": 0.20,
+        "nuclear_family": 0.29,
+        "three_generation": 0.10,
+        "other": 0.10
+      },
+      "urbanization": "中核市",
+      "urbanization_rate": 0.55
+    },
+    {
+      "prefecture_code": 44,
+      "prefecture_name": "大分県",
+      "total_population": 1123852,
+      "eligible_voters": 980000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.10,
+        "40_49": 0.14,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.35
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.32,
+        "couple_only": 0.22,
+        "nuclear_family": 0.27,
+        "three_generation": 0.09,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.50
+    },
+    {
+      "prefecture_code": 45,
+      "prefecture_name": "宮崎県",
+      "total_population": 1069576,
+      "eligible_voters": 920000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.11,
+        "40_49": 0.13,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.35
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.31,
+        "couple_only": 0.21,
+        "nuclear_family": 0.28,
+        "three_generation": 0.10,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.46
+    },
+    {
+      "prefecture_code": 46,
+      "prefecture_name": "鹿児島県",
+      "total_population": 1588256,
+      "eligible_voters": 1380000,
+      "age_distribution": {
+        "18_29": 0.11,
+        "30_39": 0.11,
+        "40_49": 0.13,
+        "50_59": 0.14,
+        "60_69": 0.16,
+        "70_plus": 0.35
+      },
+      "gender_ratio": {
+        "male": 0.48,
+        "female": 0.52
+      },
+      "household_composition": {
+        "single": 0.32,
+        "couple_only": 0.20,
+        "nuclear_family": 0.28,
+        "three_generation": 0.10,
+        "other": 0.10
+      },
+      "urbanization": "地方都市",
+      "urbanization_rate": 0.48
+    },
+    {
+      "prefecture_code": 47,
+      "prefecture_name": "沖縄県",
+      "total_population": 1467480,
+      "eligible_voters": 1150000,
+      "age_distribution": {
+        "18_29": 0.15,
+        "30_39": 0.14,
+        "40_49": 0.16,
+        "50_59": 0.14,
+        "60_69": 0.14,
+        "70_plus": 0.27
+      },
+      "gender_ratio": {
+        "male": 0.49,
+        "female": 0.51
+      },
+      "household_composition": {
+        "single": 0.33,
+        "couple_only": 0.18,
+        "nuclear_family": 0.33,
+        "three_generation": 0.07,
+        "other": 0.09
+      },
+      "urbanization": "中核市",
+      "urbanization_rate": 0.70
+    }
+  ]
+}

@@ -1,0 +1,848 @@
+[
+  {
+    "prefecture_code": 1,
+    "prefecture_name": "北海道",
+    "archetype_distribution": {
+      "urban_young_worker": 0.10,
+      "suburban_family": 0.10,
+      "middle_aged_salaryman": 0.12,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.08,
+      "elderly_pensioner": 0.21,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.06,
+      "university_student": 0.03,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 2,
+    "prefecture_name": "青森県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.05,
+      "suburban_family": 0.07,
+      "middle_aged_salaryman": 0.10,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.13,
+      "elderly_pensioner": 0.28,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.06,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 3,
+    "prefecture_name": "岩手県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.05,
+      "suburban_family": 0.07,
+      "middle_aged_salaryman": 0.10,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.13,
+      "elderly_pensioner": 0.28,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 4,
+    "prefecture_name": "宮城県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.11,
+      "suburban_family": 0.12,
+      "middle_aged_salaryman": 0.13,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.06,
+      "elderly_pensioner": 0.20,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.06,
+      "university_student": 0.04,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.04,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 5,
+    "prefecture_name": "秋田県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.04,
+      "suburban_family": 0.05,
+      "middle_aged_salaryman": 0.09,
+      "middle_aged_working_woman": 0.07,
+      "rural_farmer": 0.14,
+      "elderly_pensioner": 0.32,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.06,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 6,
+    "prefecture_name": "山形県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.05,
+      "suburban_family": 0.07,
+      "middle_aged_salaryman": 0.10,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.13,
+      "elderly_pensioner": 0.28,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 7,
+    "prefecture_name": "福島県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.08,
+      "middle_aged_salaryman": 0.11,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.11,
+      "elderly_pensioner": 0.26,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.06,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 8,
+    "prefecture_name": "茨城県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.08,
+      "suburban_family": 0.13,
+      "middle_aged_salaryman": 0.13,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.08,
+      "elderly_pensioner": 0.20,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.03,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 9,
+    "prefecture_name": "栃木県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.07,
+      "suburban_family": 0.12,
+      "middle_aged_salaryman": 0.14,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.08,
+      "elderly_pensioner": 0.21,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 10,
+    "prefecture_name": "群馬県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.07,
+      "suburban_family": 0.12,
+      "middle_aged_salaryman": 0.14,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.08,
+      "elderly_pensioner": 0.21,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 11,
+    "prefecture_name": "埼玉県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.12,
+      "suburban_family": 0.17,
+      "middle_aged_salaryman": 0.14,
+      "middle_aged_working_woman": 0.09,
+      "rural_farmer": 0.02,
+      "elderly_pensioner": 0.16,
+      "self_employed": 0.06,
+      "public_sector_worker": 0.05,
+      "university_student": 0.03,
+      "homemaker": 0.08,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 12,
+    "prefecture_name": "千葉県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.12,
+      "suburban_family": 0.16,
+      "middle_aged_salaryman": 0.14,
+      "middle_aged_working_woman": 0.09,
+      "rural_farmer": 0.03,
+      "elderly_pensioner": 0.17,
+      "self_employed": 0.06,
+      "public_sector_worker": 0.05,
+      "university_student": 0.03,
+      "homemaker": 0.08,
+      "non_regular_worker": 0.04,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 13,
+    "prefecture_name": "東京都",
+    "archetype_distribution": {
+      "urban_young_worker": 0.15,
+      "suburban_family": 0.10,
+      "middle_aged_salaryman": 0.14,
+      "middle_aged_working_woman": 0.10,
+      "rural_farmer": 0.01,
+      "elderly_pensioner": 0.14,
+      "self_employed": 0.09,
+      "public_sector_worker": 0.05,
+      "university_student": 0.06,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.06,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 14,
+    "prefecture_name": "神奈川県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.13,
+      "suburban_family": 0.15,
+      "middle_aged_salaryman": 0.14,
+      "middle_aged_working_woman": 0.09,
+      "rural_farmer": 0.02,
+      "elderly_pensioner": 0.16,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.04,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 15,
+    "prefecture_name": "新潟県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.08,
+      "middle_aged_salaryman": 0.11,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.12,
+      "elderly_pensioner": 0.26,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 16,
+    "prefecture_name": "富山県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.09,
+      "middle_aged_salaryman": 0.14,
+      "middle_aged_working_woman": 0.09,
+      "rural_farmer": 0.08,
+      "elderly_pensioner": 0.24,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.04,
+      "labor_union_member": 0.05
+    }
+  },
+  {
+    "prefecture_code": 17,
+    "prefecture_name": "石川県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.08,
+      "suburban_family": 0.09,
+      "middle_aged_salaryman": 0.13,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.07,
+      "elderly_pensioner": 0.23,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.04,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 18,
+    "prefecture_name": "福井県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.09,
+      "middle_aged_salaryman": 0.13,
+      "middle_aged_working_woman": 0.09,
+      "rural_farmer": 0.09,
+      "elderly_pensioner": 0.24,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.04,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 19,
+    "prefecture_name": "山梨県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.09,
+      "middle_aged_salaryman": 0.12,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.11,
+      "elderly_pensioner": 0.25,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 20,
+    "prefecture_name": "長野県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.08,
+      "middle_aged_salaryman": 0.12,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.11,
+      "elderly_pensioner": 0.26,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 21,
+    "prefecture_name": "岐阜県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.07,
+      "suburban_family": 0.11,
+      "middle_aged_salaryman": 0.14,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.07,
+      "elderly_pensioner": 0.22,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 22,
+    "prefecture_name": "静岡県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.08,
+      "suburban_family": 0.11,
+      "middle_aged_salaryman": 0.15,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.07,
+      "elderly_pensioner": 0.20,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.04,
+      "labor_union_member": 0.06
+    }
+  },
+  {
+    "prefecture_code": 23,
+    "prefecture_name": "愛知県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.12,
+      "suburban_family": 0.13,
+      "middle_aged_salaryman": 0.16,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.03,
+      "elderly_pensioner": 0.15,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.04,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.03,
+      "labor_union_member": 0.06
+    }
+  },
+  {
+    "prefecture_code": 24,
+    "prefecture_name": "三重県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.07,
+      "suburban_family": 0.10,
+      "middle_aged_salaryman": 0.14,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.08,
+      "elderly_pensioner": 0.23,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.04,
+      "labor_union_member": 0.05
+    }
+  },
+  {
+    "prefecture_code": 25,
+    "prefecture_name": "滋賀県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.09,
+      "suburban_family": 0.14,
+      "middle_aged_salaryman": 0.14,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.05,
+      "elderly_pensioner": 0.18,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.03,
+      "homemaker": 0.08,
+      "non_regular_worker": 0.04,
+      "labor_union_member": 0.05
+    }
+  },
+  {
+    "prefecture_code": 26,
+    "prefecture_name": "京都府",
+    "archetype_distribution": {
+      "urban_young_worker": 0.11,
+      "suburban_family": 0.09,
+      "middle_aged_salaryman": 0.12,
+      "middle_aged_working_woman": 0.09,
+      "rural_farmer": 0.03,
+      "elderly_pensioner": 0.19,
+      "self_employed": 0.09,
+      "public_sector_worker": 0.06,
+      "university_student": 0.06,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.06,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 27,
+    "prefecture_name": "大阪府",
+    "archetype_distribution": {
+      "urban_young_worker": 0.13,
+      "suburban_family": 0.10,
+      "middle_aged_salaryman": 0.13,
+      "middle_aged_working_woman": 0.09,
+      "rural_farmer": 0.01,
+      "elderly_pensioner": 0.17,
+      "self_employed": 0.10,
+      "public_sector_worker": 0.05,
+      "university_student": 0.04,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.08,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 28,
+    "prefecture_name": "兵庫県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.10,
+      "suburban_family": 0.13,
+      "middle_aged_salaryman": 0.13,
+      "middle_aged_working_woman": 0.09,
+      "rural_farmer": 0.04,
+      "elderly_pensioner": 0.19,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.04,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 29,
+    "prefecture_name": "奈良県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.08,
+      "suburban_family": 0.14,
+      "middle_aged_salaryman": 0.13,
+      "middle_aged_working_woman": 0.09,
+      "rural_farmer": 0.04,
+      "elderly_pensioner": 0.22,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.03,
+      "homemaker": 0.08,
+      "non_regular_worker": 0.04,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 30,
+    "prefecture_name": "和歌山県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.05,
+      "suburban_family": 0.07,
+      "middle_aged_salaryman": 0.11,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.12,
+      "elderly_pensioner": 0.28,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 31,
+    "prefecture_name": "鳥取県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.05,
+      "suburban_family": 0.07,
+      "middle_aged_salaryman": 0.10,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.13,
+      "elderly_pensioner": 0.28,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.06,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 32,
+    "prefecture_name": "島根県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.04,
+      "suburban_family": 0.06,
+      "middle_aged_salaryman": 0.09,
+      "middle_aged_working_woman": 0.07,
+      "rural_farmer": 0.15,
+      "elderly_pensioner": 0.30,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.06,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 33,
+    "prefecture_name": "岡山県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.08,
+      "suburban_family": 0.10,
+      "middle_aged_salaryman": 0.13,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.07,
+      "elderly_pensioner": 0.22,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.04,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 34,
+    "prefecture_name": "広島県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.09,
+      "suburban_family": 0.11,
+      "middle_aged_salaryman": 0.14,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.05,
+      "elderly_pensioner": 0.21,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.03,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.05
+    }
+  },
+  {
+    "prefecture_code": 35,
+    "prefecture_name": "山口県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.08,
+      "middle_aged_salaryman": 0.12,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.09,
+      "elderly_pensioner": 0.27,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.05
+    }
+  },
+  {
+    "prefecture_code": 36,
+    "prefecture_name": "徳島県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.07,
+      "middle_aged_salaryman": 0.11,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.11,
+      "elderly_pensioner": 0.27,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 37,
+    "prefecture_name": "香川県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.07,
+      "suburban_family": 0.09,
+      "middle_aged_salaryman": 0.12,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.09,
+      "elderly_pensioner": 0.25,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 38,
+    "prefecture_name": "愛媛県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.08,
+      "middle_aged_salaryman": 0.11,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.10,
+      "elderly_pensioner": 0.27,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.03,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 39,
+    "prefecture_name": "高知県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.05,
+      "suburban_family": 0.06,
+      "middle_aged_salaryman": 0.09,
+      "middle_aged_working_woman": 0.07,
+      "rural_farmer": 0.14,
+      "elderly_pensioner": 0.30,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.06,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 40,
+    "prefecture_name": "福岡県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.11,
+      "suburban_family": 0.11,
+      "middle_aged_salaryman": 0.13,
+      "middle_aged_working_woman": 0.09,
+      "rural_farmer": 0.04,
+      "elderly_pensioner": 0.19,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.05,
+      "university_student": 0.05,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.06,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 41,
+    "prefecture_name": "佐賀県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.05,
+      "suburban_family": 0.08,
+      "middle_aged_salaryman": 0.11,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.12,
+      "elderly_pensioner": 0.26,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.07,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 42,
+    "prefecture_name": "長崎県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.07,
+      "middle_aged_salaryman": 0.11,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.10,
+      "elderly_pensioner": 0.27,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.06,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.06,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 43,
+    "prefecture_name": "熊本県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.07,
+      "suburban_family": 0.09,
+      "middle_aged_salaryman": 0.11,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.10,
+      "elderly_pensioner": 0.25,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.06,
+      "university_student": 0.03,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.05,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 44,
+    "prefecture_name": "大分県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.08,
+      "middle_aged_salaryman": 0.11,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.10,
+      "elderly_pensioner": 0.27,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.06,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 45,
+    "prefecture_name": "宮崎県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.05,
+      "suburban_family": 0.07,
+      "middle_aged_salaryman": 0.10,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.13,
+      "elderly_pensioner": 0.27,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.06,
+      "labor_union_member": 0.04
+    }
+  },
+  {
+    "prefecture_code": 46,
+    "prefecture_name": "鹿児島県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.06,
+      "suburban_family": 0.07,
+      "middle_aged_salaryman": 0.10,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.13,
+      "elderly_pensioner": 0.27,
+      "self_employed": 0.07,
+      "public_sector_worker": 0.05,
+      "university_student": 0.02,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.06,
+      "labor_union_member": 0.03
+    }
+  },
+  {
+    "prefecture_code": 47,
+    "prefecture_name": "沖縄県",
+    "archetype_distribution": {
+      "urban_young_worker": 0.09,
+      "suburban_family": 0.09,
+      "middle_aged_salaryman": 0.10,
+      "middle_aged_working_woman": 0.08,
+      "rural_farmer": 0.06,
+      "elderly_pensioner": 0.18,
+      "self_employed": 0.08,
+      "public_sector_worker": 0.07,
+      "university_student": 0.04,
+      "homemaker": 0.06,
+      "non_regular_worker": 0.10,
+      "labor_union_member": 0.05
+    }
+  }
+]

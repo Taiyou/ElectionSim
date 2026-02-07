@@ -1,6 +1,9 @@
+import Link from "next/link";
 import {
   fetchPredictionSummary,
   fetchBattleground,
+  fetchYouTubeSummary,
+  fetchNewsSummary,
 } from "@/lib/api-client";
 import SeatDistribution from "@/components/charts/SeatDistribution";
 import DistrictCard from "@/components/prediction/DistrictCard";
@@ -10,6 +13,8 @@ export const revalidate = 1200;
 export default async function DashboardPage() {
   let summary;
   let battleground;
+  let ytSummary;
+  let newsSummary;
 
   try {
     [summary, battleground] = await Promise.all([
@@ -30,6 +35,16 @@ export default async function DashboardPage() {
         </div>
       </div>
     );
+  }
+
+  // Fetch YouTube and news summaries (non-blocking, optional)
+  try {
+    [ytSummary, newsSummary] = await Promise.all([
+      fetchYouTubeSummary(),
+      fetchNewsSummary(),
+    ]);
+  } catch {
+    // These are optional data sources - dashboard still works without them
   }
 
   const totalSeats = summary.party_seats.reduce((acc, p) => acc + p.total_seats, 0);
@@ -149,6 +164,52 @@ export default async function DashboardPage() {
           </div>
         </div>
       </section>
+
+      {/* Data Sources Summary */}
+      {(ytSummary || newsSummary) && (
+        <section className="mb-10">
+          <h2 className="text-xl font-bold mb-4">データソース概要</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {ytSummary && (
+              <Link href="/youtube" className="block">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-5 hover:shadow-md transition">
+                  <h3 className="font-bold text-red-700 mb-2">YouTube分析</h3>
+                  <div className="space-y-1 text-sm text-gray-600">
+                    <p>分析動画数: <span className="font-bold">{ytSummary.total_videos.toLocaleString()}</span></p>
+                    <p>チャンネル数: <span className="font-bold">{ytSummary.total_channels}</span></p>
+                    <p>平均センチメント: <span className={`font-bold ${ytSummary.avg_sentiment >= 0 ? "text-green-600" : "text-red-600"}`}>{ytSummary.avg_sentiment.toFixed(3)}</span></p>
+                  </div>
+                  <p className="text-xs text-red-500 mt-3">詳細を見る →</p>
+                </div>
+              </Link>
+            )}
+            {newsSummary && (
+              <Link href="/news" className="block">
+                <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-5 hover:shadow-md transition">
+                  <h3 className="font-bold text-indigo-700 mb-2">ニュース記事分析</h3>
+                  <div className="space-y-1 text-sm text-gray-600">
+                    <p>記事総数: <span className="font-bold">{newsSummary.total_articles.toLocaleString()}</span></p>
+                    <p>メディア数: <span className="font-bold">{newsSummary.total_sources}</span></p>
+                    <p>平均論調: <span className={`font-bold ${newsSummary.avg_tone >= 0 ? "text-green-600" : "text-red-600"}`}>{newsSummary.avg_tone.toFixed(3)}</span></p>
+                  </div>
+                  <p className="text-xs text-indigo-500 mt-3">詳細を見る →</p>
+                </div>
+              </Link>
+            )}
+            <Link href="/models" className="block">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-5 hover:shadow-md transition">
+                <h3 className="font-bold text-green-700 mb-2">予測モデル比較</h3>
+                <div className="space-y-1 text-sm text-gray-600">
+                  <p>モデル数: <span className="font-bold">7</span></p>
+                  <p>YouTube / ニュース / 世論調査</p>
+                  <p>アンサンブル + 選挙区分析</p>
+                </div>
+                <p className="text-xs text-green-500 mt-3">詳細を見る →</p>
+              </div>
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* Battleground Districts */}
       <section>

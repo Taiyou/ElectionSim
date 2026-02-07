@@ -1,0 +1,1524 @@
+{
+  "metadata": {
+    "description": "47都道府県の政治傾向データ（衆議院選挙AIペルソナ投票シミュレーション用）",
+    "version": "1.0",
+    "reference_elections": ["2021_general", "2017_general"],
+    "parties": {
+      "ldp": "自由民主党",
+      "cdp": "立憲民主党",
+      "ishin": "日本維新の会",
+      "dpfp": "国民民主党",
+      "jcp": "日本共産党",
+      "reiwa": "れいわ新選組",
+      "sansei": "参政党",
+      "other": "その他（社民党・NHK党・諸派・無所属等）"
+    },
+    "notes": "party_support_tendencyは比例代表の支持傾向を基に推計。ideological_spectrumとpolitical_engagementはそれぞれ合計1.0。"
+  },
+  "prefectures": [
+    {
+      "prefecture_code": 1,
+      "prefecture_name": "北海道",
+      "district_count": 12,
+      "voter_turnout_trend": {
+        "2021_general": 0.568,
+        "2017_general": 0.534,
+        "average": 0.551
+      },
+      "party_support_tendency": {
+        "ldp": 0.30,
+        "cdp": 0.22,
+        "ishin": 0.08,
+        "dpfp": 0.10,
+        "jcp": 0.08,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.14
+      },
+      "ideological_spectrum": {
+        "conservative": 0.35,
+        "moderate": 0.40,
+        "progressive": 0.25
+      },
+      "political_engagement": {
+        "high_interest": 0.25,
+        "moderate_interest": 0.45,
+        "low_interest": 0.30
+      },
+      "swing_voter_ratio": 0.35,
+      "notes": "労働組合の影響力が強い。野党が比較的強い地域。農村部はLDP寄り、都市部は立憲が強い。"
+    },
+    {
+      "prefecture_code": 2,
+      "prefecture_name": "青森県",
+      "district_count": 3,
+      "voter_turnout_trend": {
+        "2021_general": 0.498,
+        "2017_general": 0.467,
+        "average": 0.483
+      },
+      "party_support_tendency": {
+        "ldp": 0.42,
+        "cdp": 0.14,
+        "ishin": 0.06,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.19
+      },
+      "ideological_spectrum": {
+        "conservative": 0.50,
+        "moderate": 0.35,
+        "progressive": 0.15
+      },
+      "political_engagement": {
+        "high_interest": 0.18,
+        "moderate_interest": 0.40,
+        "low_interest": 0.42
+      },
+      "swing_voter_ratio": 0.25,
+      "notes": "東北の保守地盤。LDPが圧倒的に強い。投票率は全国的に低め。過疎化・高齢化の影響大。"
+    },
+    {
+      "prefecture_code": 3,
+      "prefecture_name": "岩手県",
+      "district_count": 3,
+      "voter_turnout_trend": {
+        "2021_general": 0.532,
+        "2017_general": 0.510,
+        "average": 0.521
+      },
+      "party_support_tendency": {
+        "ldp": 0.34,
+        "cdp": 0.20,
+        "ishin": 0.06,
+        "dpfp": 0.08,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.19
+      },
+      "ideological_spectrum": {
+        "conservative": 0.40,
+        "moderate": 0.38,
+        "progressive": 0.22
+      },
+      "political_engagement": {
+        "high_interest": 0.22,
+        "moderate_interest": 0.43,
+        "low_interest": 0.35
+      },
+      "swing_voter_ratio": 0.30,
+      "notes": "小沢一郎の地盤として知られた地域。東北では比較的野党が強い。震災復興も政治課題。"
+    },
+    {
+      "prefecture_code": 4,
+      "prefecture_name": "宮城県",
+      "district_count": 5,
+      "voter_turnout_trend": {
+        "2021_general": 0.528,
+        "2017_general": 0.510,
+        "average": 0.519
+      },
+      "party_support_tendency": {
+        "ldp": 0.35,
+        "cdp": 0.18,
+        "ishin": 0.08,
+        "dpfp": 0.08,
+        "jcp": 0.07,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.16
+      },
+      "ideological_spectrum": {
+        "conservative": 0.42,
+        "moderate": 0.38,
+        "progressive": 0.20
+      },
+      "political_engagement": {
+        "high_interest": 0.23,
+        "moderate_interest": 0.44,
+        "low_interest": 0.33
+      },
+      "swing_voter_ratio": 0.32,
+      "notes": "仙台市は東北最大の都市で比較的競争的。郊外・農村部はLDP優勢。震災復興が依然重要課題。"
+    },
+    {
+      "prefecture_code": 5,
+      "prefecture_name": "秋田県",
+      "district_count": 3,
+      "voter_turnout_trend": {
+        "2021_general": 0.546,
+        "2017_general": 0.518,
+        "average": 0.532
+      },
+      "party_support_tendency": {
+        "ldp": 0.44,
+        "cdp": 0.14,
+        "ishin": 0.05,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.52,
+        "moderate": 0.33,
+        "progressive": 0.15
+      },
+      "political_engagement": {
+        "high_interest": 0.20,
+        "moderate_interest": 0.42,
+        "low_interest": 0.38
+      },
+      "swing_voter_ratio": 0.22,
+      "notes": "LDPの強固な地盤。菅義偉前首相の出身地。過疎化・少子高齢化が深刻。農業政策への関心が高い。"
+    },
+    {
+      "prefecture_code": 6,
+      "prefecture_name": "山形県",
+      "district_count": 3,
+      "voter_turnout_trend": {
+        "2021_general": 0.580,
+        "2017_general": 0.558,
+        "average": 0.569
+      },
+      "party_support_tendency": {
+        "ldp": 0.40,
+        "cdp": 0.16,
+        "ishin": 0.06,
+        "dpfp": 0.07,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.48,
+        "moderate": 0.35,
+        "progressive": 0.17
+      },
+      "political_engagement": {
+        "high_interest": 0.24,
+        "moderate_interest": 0.44,
+        "low_interest": 0.32
+      },
+      "swing_voter_ratio": 0.26,
+      "notes": "保守王国だが投票率は比較的高い。農業が主要産業で農政への関心が強い。"
+    },
+    {
+      "prefecture_code": 7,
+      "prefecture_name": "福島県",
+      "district_count": 5,
+      "voter_turnout_trend": {
+        "2021_general": 0.536,
+        "2017_general": 0.508,
+        "average": 0.522
+      },
+      "party_support_tendency": {
+        "ldp": 0.36,
+        "cdp": 0.18,
+        "ishin": 0.06,
+        "dpfp": 0.08,
+        "jcp": 0.06,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.43,
+        "moderate": 0.37,
+        "progressive": 0.20
+      },
+      "political_engagement": {
+        "high_interest": 0.24,
+        "moderate_interest": 0.43,
+        "low_interest": 0.33
+      },
+      "swing_voter_ratio": 0.30,
+      "notes": "原発事故の影響でエネルギー政策への関心が極めて高い。復興と脱原発が重要な政治テーマ。"
+    },
+    {
+      "prefecture_code": 8,
+      "prefecture_name": "茨城県",
+      "district_count": 7,
+      "voter_turnout_trend": {
+        "2021_general": 0.518,
+        "2017_general": 0.496,
+        "average": 0.507
+      },
+      "party_support_tendency": {
+        "ldp": 0.38,
+        "cdp": 0.15,
+        "ishin": 0.09,
+        "dpfp": 0.07,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.45,
+        "moderate": 0.37,
+        "progressive": 0.18
+      },
+      "political_engagement": {
+        "high_interest": 0.20,
+        "moderate_interest": 0.43,
+        "low_interest": 0.37
+      },
+      "swing_voter_ratio": 0.28,
+      "notes": "保守的な地域だがつくば市周辺は研究者層で多様。東京のベッドタウン化が進む南部は浮動票が多い。"
+    },
+    {
+      "prefecture_code": 9,
+      "prefecture_name": "栃木県",
+      "district_count": 5,
+      "voter_turnout_trend": {
+        "2021_general": 0.512,
+        "2017_general": 0.490,
+        "average": 0.501
+      },
+      "party_support_tendency": {
+        "ldp": 0.40,
+        "cdp": 0.14,
+        "ishin": 0.08,
+        "dpfp": 0.07,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.47,
+        "moderate": 0.36,
+        "progressive": 0.17
+      },
+      "political_engagement": {
+        "high_interest": 0.19,
+        "moderate_interest": 0.42,
+        "low_interest": 0.39
+      },
+      "swing_voter_ratio": 0.26,
+      "notes": "北関東の保守地盤。宇都宮市以外は農村部が多く、LDPが安定的に強い。"
+    },
+    {
+      "prefecture_code": 10,
+      "prefecture_name": "群馬県",
+      "district_count": 5,
+      "voter_turnout_trend": {
+        "2021_general": 0.520,
+        "2017_general": 0.498,
+        "average": 0.509
+      },
+      "party_support_tendency": {
+        "ldp": 0.42,
+        "cdp": 0.13,
+        "ishin": 0.07,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.19
+      },
+      "ideological_spectrum": {
+        "conservative": 0.50,
+        "moderate": 0.34,
+        "progressive": 0.16
+      },
+      "political_engagement": {
+        "high_interest": 0.20,
+        "moderate_interest": 0.42,
+        "low_interest": 0.38
+      },
+      "swing_voter_ratio": 0.24,
+      "notes": "福田・中曽根・小渕など歴代首相を輩出した保守王国。LDPの地盤が極めて強固。"
+    },
+    {
+      "prefecture_code": 11,
+      "prefecture_name": "埼玉県",
+      "district_count": 15,
+      "voter_turnout_trend": {
+        "2021_general": 0.540,
+        "2017_general": 0.518,
+        "average": 0.529
+      },
+      "party_support_tendency": {
+        "ldp": 0.32,
+        "cdp": 0.18,
+        "ishin": 0.10,
+        "dpfp": 0.08,
+        "jcp": 0.07,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.17
+      },
+      "ideological_spectrum": {
+        "conservative": 0.38,
+        "moderate": 0.40,
+        "progressive": 0.22
+      },
+      "political_engagement": {
+        "high_interest": 0.23,
+        "moderate_interest": 0.45,
+        "low_interest": 0.32
+      },
+      "swing_voter_ratio": 0.36,
+      "notes": "東京のベッドタウン。都市部は浮動票が多く競争的。北部は農村で保守的。人口増加地域。"
+    },
+    {
+      "prefecture_code": 12,
+      "prefecture_name": "千葉県",
+      "district_count": 13,
+      "voter_turnout_trend": {
+        "2021_general": 0.538,
+        "2017_general": 0.516,
+        "average": 0.527
+      },
+      "party_support_tendency": {
+        "ldp": 0.33,
+        "cdp": 0.17,
+        "ishin": 0.10,
+        "dpfp": 0.08,
+        "jcp": 0.07,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.17
+      },
+      "ideological_spectrum": {
+        "conservative": 0.39,
+        "moderate": 0.39,
+        "progressive": 0.22
+      },
+      "political_engagement": {
+        "high_interest": 0.22,
+        "moderate_interest": 0.45,
+        "low_interest": 0.33
+      },
+      "swing_voter_ratio": 0.35,
+      "notes": "東京近郊の都市部と房総半島の農村部で政治傾向が大きく異なる。全体的に埼玉と類似。"
+    },
+    {
+      "prefecture_code": 13,
+      "prefecture_name": "東京都",
+      "district_count": 25,
+      "voter_turnout_trend": {
+        "2021_general": 0.570,
+        "2017_general": 0.548,
+        "average": 0.559
+      },
+      "party_support_tendency": {
+        "ldp": 0.28,
+        "cdp": 0.18,
+        "ishin": 0.12,
+        "dpfp": 0.08,
+        "jcp": 0.08,
+        "reiwa": 0.06,
+        "sansei": 0.03,
+        "other": 0.17
+      },
+      "ideological_spectrum": {
+        "conservative": 0.32,
+        "moderate": 0.40,
+        "progressive": 0.28
+      },
+      "political_engagement": {
+        "high_interest": 0.30,
+        "moderate_interest": 0.42,
+        "low_interest": 0.28
+      },
+      "swing_voter_ratio": 0.40,
+      "notes": "最も競争的で多様な政治環境。浮動票が非常に多い。区部は革新的、西部は保守的傾向。各党が接戦を展開。"
+    },
+    {
+      "prefecture_code": 14,
+      "prefecture_name": "神奈川県",
+      "district_count": 18,
+      "voter_turnout_trend": {
+        "2021_general": 0.552,
+        "2017_general": 0.530,
+        "average": 0.541
+      },
+      "party_support_tendency": {
+        "ldp": 0.30,
+        "cdp": 0.18,
+        "ishin": 0.11,
+        "dpfp": 0.08,
+        "jcp": 0.07,
+        "reiwa": 0.06,
+        "sansei": 0.03,
+        "other": 0.17
+      },
+      "ideological_spectrum": {
+        "conservative": 0.34,
+        "moderate": 0.40,
+        "progressive": 0.26
+      },
+      "political_engagement": {
+        "high_interest": 0.27,
+        "moderate_interest": 0.44,
+        "low_interest": 0.29
+      },
+      "swing_voter_ratio": 0.38,
+      "notes": "横浜・川崎は都市型で浮動票が多い。東京と似た競争的な構図。菅前首相の地盤でもある。"
+    },
+    {
+      "prefecture_code": 15,
+      "prefecture_name": "新潟県",
+      "district_count": 6,
+      "voter_turnout_trend": {
+        "2021_general": 0.568,
+        "2017_general": 0.542,
+        "average": 0.555
+      },
+      "party_support_tendency": {
+        "ldp": 0.36,
+        "cdp": 0.18,
+        "ishin": 0.06,
+        "dpfp": 0.08,
+        "jcp": 0.06,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.42,
+        "moderate": 0.38,
+        "progressive": 0.20
+      },
+      "political_engagement": {
+        "high_interest": 0.25,
+        "moderate_interest": 0.44,
+        "low_interest": 0.31
+      },
+      "swing_voter_ratio": 0.30,
+      "notes": "田中角栄以来の自民党地盤だが、野党統一候補が勝つことも。原発問題（柏崎刈羽）が重要テーマ。"
+    },
+    {
+      "prefecture_code": 16,
+      "prefecture_name": "富山県",
+      "district_count": 3,
+      "voter_turnout_trend": {
+        "2021_general": 0.546,
+        "2017_general": 0.520,
+        "average": 0.533
+      },
+      "party_support_tendency": {
+        "ldp": 0.45,
+        "cdp": 0.12,
+        "ishin": 0.07,
+        "dpfp": 0.06,
+        "jcp": 0.05,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.53,
+        "moderate": 0.33,
+        "progressive": 0.14
+      },
+      "political_engagement": {
+        "high_interest": 0.21,
+        "moderate_interest": 0.43,
+        "low_interest": 0.36
+      },
+      "swing_voter_ratio": 0.20,
+      "notes": "北陸の保守王国。LDPが圧倒的に強い。持ち家率・勤勉さの気質が保守的傾向と相関。"
+    },
+    {
+      "prefecture_code": 17,
+      "prefecture_name": "石川県",
+      "district_count": 3,
+      "voter_turnout_trend": {
+        "2021_general": 0.528,
+        "2017_general": 0.506,
+        "average": 0.517
+      },
+      "party_support_tendency": {
+        "ldp": 0.44,
+        "cdp": 0.12,
+        "ishin": 0.07,
+        "dpfp": 0.06,
+        "jcp": 0.05,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.19
+      },
+      "ideological_spectrum": {
+        "conservative": 0.52,
+        "moderate": 0.34,
+        "progressive": 0.14
+      },
+      "political_engagement": {
+        "high_interest": 0.20,
+        "moderate_interest": 0.43,
+        "low_interest": 0.37
+      },
+      "swing_voter_ratio": 0.21,
+      "notes": "北陸の保守地盤。森喜朗元首相の出身地。金沢市でもLDPが強い。"
+    },
+    {
+      "prefecture_code": 18,
+      "prefecture_name": "福井県",
+      "district_count": 2,
+      "voter_turnout_trend": {
+        "2021_general": 0.558,
+        "2017_general": 0.532,
+        "average": 0.545
+      },
+      "party_support_tendency": {
+        "ldp": 0.46,
+        "cdp": 0.11,
+        "ishin": 0.07,
+        "dpfp": 0.06,
+        "jcp": 0.05,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.55,
+        "moderate": 0.32,
+        "progressive": 0.13
+      },
+      "political_engagement": {
+        "high_interest": 0.22,
+        "moderate_interest": 0.44,
+        "low_interest": 0.34
+      },
+      "swing_voter_ratio": 0.18,
+      "notes": "全国有数の保守王国。LDP支持率が最も高い県の一つ。原発立地県でエネルギー政策が重要。"
+    },
+    {
+      "prefecture_code": 19,
+      "prefecture_name": "山梨県",
+      "district_count": 2,
+      "voter_turnout_trend": {
+        "2021_general": 0.530,
+        "2017_general": 0.510,
+        "average": 0.520
+      },
+      "party_support_tendency": {
+        "ldp": 0.38,
+        "cdp": 0.16,
+        "ishin": 0.08,
+        "dpfp": 0.07,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.44,
+        "moderate": 0.37,
+        "progressive": 0.19
+      },
+      "political_engagement": {
+        "high_interest": 0.21,
+        "moderate_interest": 0.43,
+        "low_interest": 0.36
+      },
+      "swing_voter_ratio": 0.28,
+      "notes": "保守的だが野党も一定の力を持つ。教職員組合の影響力があった地域。"
+    },
+    {
+      "prefecture_code": 20,
+      "prefecture_name": "長野県",
+      "district_count": 5,
+      "voter_turnout_trend": {
+        "2021_general": 0.578,
+        "2017_general": 0.552,
+        "average": 0.565
+      },
+      "party_support_tendency": {
+        "ldp": 0.34,
+        "cdp": 0.18,
+        "ishin": 0.07,
+        "dpfp": 0.08,
+        "jcp": 0.07,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.40,
+        "moderate": 0.38,
+        "progressive": 0.22
+      },
+      "political_engagement": {
+        "high_interest": 0.26,
+        "moderate_interest": 0.44,
+        "low_interest": 0.30
+      },
+      "swing_voter_ratio": 0.32,
+      "notes": "投票率が高く政治意識が高い。革新系知事の伝統もあり、保守と革新が拮抗する地域。"
+    },
+    {
+      "prefecture_code": 21,
+      "prefecture_name": "岐阜県",
+      "district_count": 5,
+      "voter_turnout_trend": {
+        "2021_general": 0.532,
+        "2017_general": 0.510,
+        "average": 0.521
+      },
+      "party_support_tendency": {
+        "ldp": 0.42,
+        "cdp": 0.12,
+        "ishin": 0.09,
+        "dpfp": 0.07,
+        "jcp": 0.05,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.50,
+        "moderate": 0.34,
+        "progressive": 0.16
+      },
+      "political_engagement": {
+        "high_interest": 0.20,
+        "moderate_interest": 0.43,
+        "low_interest": 0.37
+      },
+      "swing_voter_ratio": 0.24,
+      "notes": "保守王国。製造業が盛んで経済政策重視。名古屋圏の影響も受ける。"
+    },
+    {
+      "prefecture_code": 22,
+      "prefecture_name": "静岡県",
+      "district_count": 8,
+      "voter_turnout_trend": {
+        "2021_general": 0.542,
+        "2017_general": 0.518,
+        "average": 0.530
+      },
+      "party_support_tendency": {
+        "ldp": 0.35,
+        "cdp": 0.16,
+        "ishin": 0.09,
+        "dpfp": 0.08,
+        "jcp": 0.06,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.42,
+        "moderate": 0.38,
+        "progressive": 0.20
+      },
+      "political_engagement": {
+        "high_interest": 0.23,
+        "moderate_interest": 0.44,
+        "low_interest": 0.33
+      },
+      "swing_voter_ratio": 0.32,
+      "notes": "東西で政治傾向が異なる。西部は保守的、東部は浮動票が多い。リニア問題が政治課題。"
+    },
+    {
+      "prefecture_code": 23,
+      "prefecture_name": "愛知県",
+      "district_count": 15,
+      "voter_turnout_trend": {
+        "2021_general": 0.544,
+        "2017_general": 0.522,
+        "average": 0.533
+      },
+      "party_support_tendency": {
+        "ldp": 0.30,
+        "cdp": 0.16,
+        "ishin": 0.09,
+        "dpfp": 0.14,
+        "jcp": 0.06,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.17
+      },
+      "ideological_spectrum": {
+        "conservative": 0.38,
+        "moderate": 0.40,
+        "progressive": 0.22
+      },
+      "political_engagement": {
+        "high_interest": 0.24,
+        "moderate_interest": 0.45,
+        "low_interest": 0.31
+      },
+      "swing_voter_ratio": 0.34,
+      "notes": "トヨタ労組の影響で国民民主党が強い。製造業が盛んで経済・雇用政策への関心が高い。名古屋市は競争的。"
+    },
+    {
+      "prefecture_code": 24,
+      "prefecture_name": "三重県",
+      "district_count": 5,
+      "voter_turnout_trend": {
+        "2021_general": 0.538,
+        "2017_general": 0.514,
+        "average": 0.526
+      },
+      "party_support_tendency": {
+        "ldp": 0.34,
+        "cdp": 0.16,
+        "ishin": 0.09,
+        "dpfp": 0.10,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.42,
+        "moderate": 0.38,
+        "progressive": 0.20
+      },
+      "political_engagement": {
+        "high_interest": 0.22,
+        "moderate_interest": 0.44,
+        "low_interest": 0.34
+      },
+      "swing_voter_ratio": 0.30,
+      "notes": "愛知と同様に製造業労組の影響あり。岡田克也の地盤。南部は保守的。"
+    },
+    {
+      "prefecture_code": 25,
+      "prefecture_name": "滋賀県",
+      "district_count": 4,
+      "voter_turnout_trend": {
+        "2021_general": 0.536,
+        "2017_general": 0.512,
+        "average": 0.524
+      },
+      "party_support_tendency": {
+        "ldp": 0.34,
+        "cdp": 0.16,
+        "ishin": 0.12,
+        "dpfp": 0.07,
+        "jcp": 0.06,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.17
+      },
+      "ideological_spectrum": {
+        "conservative": 0.40,
+        "moderate": 0.38,
+        "progressive": 0.22
+      },
+      "political_engagement": {
+        "high_interest": 0.23,
+        "moderate_interest": 0.44,
+        "low_interest": 0.33
+      },
+      "swing_voter_ratio": 0.33,
+      "notes": "京阪神のベッドタウン。大阪の維新の影響も及ぶ。環境政策（琵琶湖）への関心が高い。"
+    },
+    {
+      "prefecture_code": 26,
+      "prefecture_name": "京都府",
+      "district_count": 6,
+      "voter_turnout_trend": {
+        "2021_general": 0.548,
+        "2017_general": 0.524,
+        "average": 0.536
+      },
+      "party_support_tendency": {
+        "ldp": 0.28,
+        "cdp": 0.16,
+        "ishin": 0.12,
+        "dpfp": 0.06,
+        "jcp": 0.12,
+        "reiwa": 0.06,
+        "sansei": 0.03,
+        "other": 0.17
+      },
+      "ideological_spectrum": {
+        "conservative": 0.32,
+        "moderate": 0.38,
+        "progressive": 0.30
+      },
+      "political_engagement": {
+        "high_interest": 0.28,
+        "moderate_interest": 0.44,
+        "low_interest": 0.28
+      },
+      "swing_voter_ratio": 0.35,
+      "notes": "共産党が伝統的に強い「革新の牙城」。大学が多く学生・知識層の影響。北部は保守的。"
+    },
+    {
+      "prefecture_code": 27,
+      "prefecture_name": "大阪府",
+      "district_count": 19,
+      "voter_turnout_trend": {
+        "2021_general": 0.556,
+        "2017_general": 0.532,
+        "average": 0.544
+      },
+      "party_support_tendency": {
+        "ldp": 0.20,
+        "cdp": 0.12,
+        "ishin": 0.32,
+        "dpfp": 0.05,
+        "jcp": 0.07,
+        "reiwa": 0.06,
+        "sansei": 0.03,
+        "other": 0.15
+      },
+      "ideological_spectrum": {
+        "conservative": 0.30,
+        "moderate": 0.42,
+        "progressive": 0.28
+      },
+      "political_engagement": {
+        "high_interest": 0.28,
+        "moderate_interest": 0.44,
+        "low_interest": 0.28
+      },
+      "swing_voter_ratio": 0.38,
+      "notes": "維新の会が圧倒的に強い独特の政治環境。大阪都構想など地方自治が重要テーマ。反既成政党感情が強い。"
+    },
+    {
+      "prefecture_code": 28,
+      "prefecture_name": "兵庫県",
+      "district_count": 12,
+      "voter_turnout_trend": {
+        "2021_general": 0.542,
+        "2017_general": 0.518,
+        "average": 0.530
+      },
+      "party_support_tendency": {
+        "ldp": 0.28,
+        "cdp": 0.15,
+        "ishin": 0.22,
+        "dpfp": 0.06,
+        "jcp": 0.07,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.14
+      },
+      "ideological_spectrum": {
+        "conservative": 0.34,
+        "moderate": 0.40,
+        "progressive": 0.26
+      },
+      "political_engagement": {
+        "high_interest": 0.25,
+        "moderate_interest": 0.44,
+        "low_interest": 0.31
+      },
+      "swing_voter_ratio": 0.36,
+      "notes": "大阪の影響で維新が強い。神戸市は多党競合。北部・西部の農村部はLDPが優勢。"
+    },
+    {
+      "prefecture_code": 29,
+      "prefecture_name": "奈良県",
+      "district_count": 3,
+      "voter_turnout_trend": {
+        "2021_general": 0.532,
+        "2017_general": 0.508,
+        "average": 0.520
+      },
+      "party_support_tendency": {
+        "ldp": 0.30,
+        "cdp": 0.14,
+        "ishin": 0.20,
+        "dpfp": 0.06,
+        "jcp": 0.07,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.15
+      },
+      "ideological_spectrum": {
+        "conservative": 0.38,
+        "moderate": 0.38,
+        "progressive": 0.24
+      },
+      "political_engagement": {
+        "high_interest": 0.22,
+        "moderate_interest": 0.44,
+        "low_interest": 0.34
+      },
+      "swing_voter_ratio": 0.34,
+      "notes": "大阪のベッドタウンで維新の影響が強い。南部は保守的な農村地帯。"
+    },
+    {
+      "prefecture_code": 30,
+      "prefecture_name": "和歌山県",
+      "district_count": 3,
+      "voter_turnout_trend": {
+        "2021_general": 0.522,
+        "2017_general": 0.498,
+        "average": 0.510
+      },
+      "party_support_tendency": {
+        "ldp": 0.38,
+        "cdp": 0.12,
+        "ishin": 0.14,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.17
+      },
+      "ideological_spectrum": {
+        "conservative": 0.46,
+        "moderate": 0.36,
+        "progressive": 0.18
+      },
+      "political_engagement": {
+        "high_interest": 0.20,
+        "moderate_interest": 0.42,
+        "low_interest": 0.38
+      },
+      "swing_voter_ratio": 0.26,
+      "notes": "二階俊博元幹事長の地盤として知られる保守地域。大阪に近い北部は維新の影響も。"
+    },
+    {
+      "prefecture_code": 31,
+      "prefecture_name": "鳥取県",
+      "district_count": 2,
+      "voter_turnout_trend": {
+        "2021_general": 0.558,
+        "2017_general": 0.534,
+        "average": 0.546
+      },
+      "party_support_tendency": {
+        "ldp": 0.42,
+        "cdp": 0.13,
+        "ishin": 0.08,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.50,
+        "moderate": 0.34,
+        "progressive": 0.16
+      },
+      "political_engagement": {
+        "high_interest": 0.22,
+        "moderate_interest": 0.44,
+        "low_interest": 0.34
+      },
+      "swing_voter_ratio": 0.24,
+      "notes": "人口最少県。石破茂の地盤。保守的だが投票率は比較的高い。過疎化対策が重要課題。"
+    },
+    {
+      "prefecture_code": 32,
+      "prefecture_name": "島根県",
+      "district_count": 2,
+      "voter_turnout_trend": {
+        "2021_general": 0.568,
+        "2017_general": 0.544,
+        "average": 0.556
+      },
+      "party_support_tendency": {
+        "ldp": 0.46,
+        "cdp": 0.12,
+        "ishin": 0.06,
+        "dpfp": 0.06,
+        "jcp": 0.05,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.55,
+        "moderate": 0.32,
+        "progressive": 0.13
+      },
+      "political_engagement": {
+        "high_interest": 0.24,
+        "moderate_interest": 0.44,
+        "low_interest": 0.32
+      },
+      "swing_voter_ratio": 0.18,
+      "notes": "竹下登元首相の地盤。全国有数のLDP地盤。投票率は高いが保守票が固い。原発（島根原発）が課題。"
+    },
+    {
+      "prefecture_code": 33,
+      "prefecture_name": "岡山県",
+      "district_count": 5,
+      "voter_turnout_trend": {
+        "2021_general": 0.524,
+        "2017_general": 0.502,
+        "average": 0.513
+      },
+      "party_support_tendency": {
+        "ldp": 0.38,
+        "cdp": 0.14,
+        "ishin": 0.10,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.46,
+        "moderate": 0.36,
+        "progressive": 0.18
+      },
+      "political_engagement": {
+        "high_interest": 0.21,
+        "moderate_interest": 0.43,
+        "low_interest": 0.36
+      },
+      "swing_voter_ratio": 0.28,
+      "notes": "保守的な地域。岡山市は比較的競争的。製造業が盛んで経済政策への関心が高い。"
+    },
+    {
+      "prefecture_code": 34,
+      "prefecture_name": "広島県",
+      "district_count": 7,
+      "voter_turnout_trend": {
+        "2021_general": 0.528,
+        "2017_general": 0.504,
+        "average": 0.516
+      },
+      "party_support_tendency": {
+        "ldp": 0.36,
+        "cdp": 0.15,
+        "ishin": 0.10,
+        "dpfp": 0.07,
+        "jcp": 0.07,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.17
+      },
+      "ideological_spectrum": {
+        "conservative": 0.42,
+        "moderate": 0.38,
+        "progressive": 0.20
+      },
+      "political_engagement": {
+        "high_interest": 0.24,
+        "moderate_interest": 0.44,
+        "low_interest": 0.32
+      },
+      "swing_voter_ratio": 0.30,
+      "notes": "保守的だが広島市は平和運動の影響で核・安保政策への意識が高い。岸田文雄前首相の地盤。"
+    },
+    {
+      "prefecture_code": 35,
+      "prefecture_name": "山口県",
+      "district_count": 4,
+      "voter_turnout_trend": {
+        "2021_general": 0.518,
+        "2017_general": 0.494,
+        "average": 0.506
+      },
+      "party_support_tendency": {
+        "ldp": 0.48,
+        "cdp": 0.11,
+        "ishin": 0.07,
+        "dpfp": 0.05,
+        "jcp": 0.05,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.17
+      },
+      "ideological_spectrum": {
+        "conservative": 0.58,
+        "moderate": 0.30,
+        "progressive": 0.12
+      },
+      "political_engagement": {
+        "high_interest": 0.20,
+        "moderate_interest": 0.42,
+        "low_interest": 0.38
+      },
+      "swing_voter_ratio": 0.16,
+      "notes": "安倍晋三元首相をはじめ多くの首相を輩出。全国最強のLDP地盤の一つ。保守色が極めて強い。"
+    },
+    {
+      "prefecture_code": 36,
+      "prefecture_name": "徳島県",
+      "district_count": 2,
+      "voter_turnout_trend": {
+        "2021_general": 0.502,
+        "2017_general": 0.478,
+        "average": 0.490
+      },
+      "party_support_tendency": {
+        "ldp": 0.40,
+        "cdp": 0.13,
+        "ishin": 0.10,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.48,
+        "moderate": 0.35,
+        "progressive": 0.17
+      },
+      "political_engagement": {
+        "high_interest": 0.19,
+        "moderate_interest": 0.41,
+        "low_interest": 0.40
+      },
+      "swing_voter_ratio": 0.24,
+      "notes": "四国の保守地盤。投票率は低め。過疎化が深刻。関西圏の影響で維新もやや浸透。"
+    },
+    {
+      "prefecture_code": 37,
+      "prefecture_name": "香川県",
+      "district_count": 3,
+      "voter_turnout_trend": {
+        "2021_general": 0.508,
+        "2017_general": 0.486,
+        "average": 0.497
+      },
+      "party_support_tendency": {
+        "ldp": 0.40,
+        "cdp": 0.13,
+        "ishin": 0.10,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.48,
+        "moderate": 0.35,
+        "progressive": 0.17
+      },
+      "political_engagement": {
+        "high_interest": 0.19,
+        "moderate_interest": 0.42,
+        "low_interest": 0.39
+      },
+      "swing_voter_ratio": 0.24,
+      "notes": "四国の保守地盤。高松市は比較的都市的だが全体的にLDPが優勢。"
+    },
+    {
+      "prefecture_code": 38,
+      "prefecture_name": "愛媛県",
+      "district_count": 4,
+      "voter_turnout_trend": {
+        "2021_general": 0.516,
+        "2017_general": 0.492,
+        "average": 0.504
+      },
+      "party_support_tendency": {
+        "ldp": 0.38,
+        "cdp": 0.14,
+        "ishin": 0.09,
+        "dpfp": 0.07,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.03,
+        "other": 0.19
+      },
+      "ideological_spectrum": {
+        "conservative": 0.46,
+        "moderate": 0.36,
+        "progressive": 0.18
+      },
+      "political_engagement": {
+        "high_interest": 0.20,
+        "moderate_interest": 0.42,
+        "low_interest": 0.38
+      },
+      "swing_voter_ratio": 0.26,
+      "notes": "四国最大の県。松山市は比較的競争的だが全体はLDP優勢。柑橘農業が主要産業。"
+    },
+    {
+      "prefecture_code": 39,
+      "prefecture_name": "高知県",
+      "district_count": 2,
+      "voter_turnout_trend": {
+        "2021_general": 0.494,
+        "2017_general": 0.470,
+        "average": 0.482
+      },
+      "party_support_tendency": {
+        "ldp": 0.36,
+        "cdp": 0.15,
+        "ishin": 0.08,
+        "dpfp": 0.07,
+        "jcp": 0.08,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.42,
+        "moderate": 0.36,
+        "progressive": 0.22
+      },
+      "political_engagement": {
+        "high_interest": 0.20,
+        "moderate_interest": 0.40,
+        "low_interest": 0.40
+      },
+      "swing_voter_ratio": 0.28,
+      "notes": "四国の中では比較的革新的。自由民権運動発祥の地。投票率は全国最低レベル。過疎化が深刻。"
+    },
+    {
+      "prefecture_code": 40,
+      "prefecture_name": "福岡県",
+      "district_count": 11,
+      "voter_turnout_trend": {
+        "2021_general": 0.528,
+        "2017_general": 0.504,
+        "average": 0.516
+      },
+      "party_support_tendency": {
+        "ldp": 0.32,
+        "cdp": 0.16,
+        "ishin": 0.10,
+        "dpfp": 0.07,
+        "jcp": 0.07,
+        "reiwa": 0.06,
+        "sansei": 0.03,
+        "other": 0.19
+      },
+      "ideological_spectrum": {
+        "conservative": 0.38,
+        "moderate": 0.40,
+        "progressive": 0.22
+      },
+      "political_engagement": {
+        "high_interest": 0.24,
+        "moderate_interest": 0.44,
+        "low_interest": 0.32
+      },
+      "swing_voter_ratio": 0.34,
+      "notes": "九州最大の都市圏。福岡市は競争的で浮動票が多い。北九州は労組の影響。筑後地方は保守的。"
+    },
+    {
+      "prefecture_code": 41,
+      "prefecture_name": "佐賀県",
+      "district_count": 2,
+      "voter_turnout_trend": {
+        "2021_general": 0.536,
+        "2017_general": 0.510,
+        "average": 0.523
+      },
+      "party_support_tendency": {
+        "ldp": 0.42,
+        "cdp": 0.12,
+        "ishin": 0.07,
+        "dpfp": 0.06,
+        "jcp": 0.05,
+        "reiwa": 0.04,
+        "sansei": 0.04,
+        "other": 0.20
+      },
+      "ideological_spectrum": {
+        "conservative": 0.50,
+        "moderate": 0.34,
+        "progressive": 0.16
+      },
+      "political_engagement": {
+        "high_interest": 0.20,
+        "moderate_interest": 0.43,
+        "low_interest": 0.37
+      },
+      "swing_voter_ratio": 0.22,
+      "notes": "保守的な農村県。オスプレイ配備問題など安全保障が地域課題。LDPが安定的に強い。"
+    },
+    {
+      "prefecture_code": 42,
+      "prefecture_name": "長崎県",
+      "district_count": 4,
+      "voter_turnout_trend": {
+        "2021_general": 0.524,
+        "2017_general": 0.498,
+        "average": 0.511
+      },
+      "party_support_tendency": {
+        "ldp": 0.38,
+        "cdp": 0.14,
+        "ishin": 0.08,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.20
+      },
+      "ideological_spectrum": {
+        "conservative": 0.44,
+        "moderate": 0.36,
+        "progressive": 0.20
+      },
+      "political_engagement": {
+        "high_interest": 0.22,
+        "moderate_interest": 0.43,
+        "low_interest": 0.35
+      },
+      "swing_voter_ratio": 0.28,
+      "notes": "被爆地として平和運動が盛ん。保守地盤だが核・安保政策には敏感。離島も多く地域課題が多様。"
+    },
+    {
+      "prefecture_code": 43,
+      "prefecture_name": "熊本県",
+      "district_count": 4,
+      "voter_turnout_trend": {
+        "2021_general": 0.532,
+        "2017_general": 0.508,
+        "average": 0.520
+      },
+      "party_support_tendency": {
+        "ldp": 0.40,
+        "cdp": 0.13,
+        "ishin": 0.08,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.05,
+        "sansei": 0.04,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.48,
+        "moderate": 0.35,
+        "progressive": 0.17
+      },
+      "political_engagement": {
+        "high_interest": 0.21,
+        "moderate_interest": 0.43,
+        "low_interest": 0.36
+      },
+      "swing_voter_ratio": 0.25,
+      "notes": "保守的な地域。TSMC進出で経済が活性化。水俣病など環境問題の歴史もあり一部で革新的な運動も。"
+    },
+    {
+      "prefecture_code": 44,
+      "prefecture_name": "大分県",
+      "district_count": 3,
+      "voter_turnout_trend": {
+        "2021_general": 0.530,
+        "2017_general": 0.506,
+        "average": 0.518
+      },
+      "party_support_tendency": {
+        "ldp": 0.36,
+        "cdp": 0.16,
+        "ishin": 0.08,
+        "dpfp": 0.07,
+        "jcp": 0.06,
+        "reiwa": 0.05,
+        "sansei": 0.03,
+        "other": 0.19
+      },
+      "ideological_spectrum": {
+        "conservative": 0.42,
+        "moderate": 0.38,
+        "progressive": 0.20
+      },
+      "political_engagement": {
+        "high_interest": 0.21,
+        "moderate_interest": 0.43,
+        "low_interest": 0.36
+      },
+      "swing_voter_ratio": 0.28,
+      "notes": "社会党の源流「大分方式」で知られる。九州では比較的革新的な伝統がある。村山富市元首相の出身地。"
+    },
+    {
+      "prefecture_code": 45,
+      "prefecture_name": "宮崎県",
+      "district_count": 3,
+      "voter_turnout_trend": {
+        "2021_general": 0.504,
+        "2017_general": 0.480,
+        "average": 0.492
+      },
+      "party_support_tendency": {
+        "ldp": 0.42,
+        "cdp": 0.12,
+        "ishin": 0.07,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.04,
+        "sansei": 0.04,
+        "other": 0.19
+      },
+      "ideological_spectrum": {
+        "conservative": 0.50,
+        "moderate": 0.34,
+        "progressive": 0.16
+      },
+      "political_engagement": {
+        "high_interest": 0.18,
+        "moderate_interest": 0.41,
+        "low_interest": 0.41
+      },
+      "swing_voter_ratio": 0.22,
+      "notes": "保守的な農業県。投票率が低い。自衛隊基地もあり安全保障政策への関心がある地域。"
+    },
+    {
+      "prefecture_code": 46,
+      "prefecture_name": "鹿児島県",
+      "district_count": 4,
+      "voter_turnout_trend": {
+        "2021_general": 0.516,
+        "2017_general": 0.492,
+        "average": 0.504
+      },
+      "party_support_tendency": {
+        "ldp": 0.40,
+        "cdp": 0.13,
+        "ishin": 0.08,
+        "dpfp": 0.06,
+        "jcp": 0.06,
+        "reiwa": 0.05,
+        "sansei": 0.04,
+        "other": 0.18
+      },
+      "ideological_spectrum": {
+        "conservative": 0.48,
+        "moderate": 0.35,
+        "progressive": 0.17
+      },
+      "political_engagement": {
+        "high_interest": 0.20,
+        "moderate_interest": 0.42,
+        "low_interest": 0.38
+      },
+      "swing_voter_ratio": 0.24,
+      "notes": "保守的な地域。原発（川内原発）、馬毛島基地問題など安全保障・エネルギーが地域課題。離島問題も。"
+    },
+    {
+      "prefecture_code": 47,
+      "prefecture_name": "沖縄県",
+      "district_count": 4,
+      "voter_turnout_trend": {
+        "2021_general": 0.518,
+        "2017_general": 0.494,
+        "average": 0.506
+      },
+      "party_support_tendency": {
+        "ldp": 0.22,
+        "cdp": 0.14,
+        "ishin": 0.06,
+        "dpfp": 0.05,
+        "jcp": 0.08,
+        "reiwa": 0.08,
+        "sansei": 0.03,
+        "other": 0.34
+      },
+      "ideological_spectrum": {
+        "conservative": 0.25,
+        "moderate": 0.35,
+        "progressive": 0.40
+      },
+      "political_engagement": {
+        "high_interest": 0.30,
+        "moderate_interest": 0.42,
+        "low_interest": 0.28
+      },
+      "swing_voter_ratio": 0.30,
+      "notes": "基地問題が最大の政治テーマ。「オール沖縄」など独自の政治勢力が強い。全国と異なる政党構図。保守・革新の対立軸が基地問題に集約。"
+    }
+  ]
+}

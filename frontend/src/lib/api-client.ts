@@ -2,9 +2,12 @@ import { API_BASE } from "./constants";
 import type {
   BlockWithPredictions,
   District,
+  ModelComparison,
+  NewsSummary,
   Prediction,
   PredictionHistory,
   PredictionSummary,
+  YouTubeSummary,
 } from "@/types";
 
 async function fetchJSON<T>(path: string): Promise<T> {
@@ -51,4 +54,16 @@ export async function fetchProportionalBlocks(): Promise<BlockWithPredictions[]>
 
 export async function fetchPrompts(): Promise<Record<string, unknown>> {
   return fetchJSON("/prompts");
+}
+
+export async function fetchYouTubeSummary(): Promise<YouTubeSummary> {
+  return fetchJSON("/youtube/summary");
+}
+
+export async function fetchNewsSummary(): Promise<NewsSummary> {
+  return fetchJSON("/news/summary");
+}
+
+export async function fetchModelComparison(): Promise<ModelComparison> {
+  return fetchJSON("/news/model-comparison");
 }
