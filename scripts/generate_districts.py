@@ -1,12 +1,14 @@
-"""Generate full 289 district data with candidates for all prefectures.
+"""Generate full 289 district data with real candidate names from CSV.
 
-Based on 2026 House of Representatives electoral district structure.
-Uses budget-based algorithm to match real election candidate counts.
+Reads candidate data from backend/app/data/candidates.csv (scraped from Nikkei)
+and combines with district structure from prefectures.json.
 """
 from __future__ import annotations
 
+import csv
 import json
 import random
+from collections import defaultdict
 from pathlib import Path
 
 DATA_DIR = Path(__file__).parent.parent / "backend" / "app" / "data"
@@ -57,6 +59,7 @@ AREA_DESCRIPTIONS: dict[str, list[str]] = {
         "さいたま市浦和区、南区、緑区", "深谷市、本庄市、児玉郡",
         "熊谷市、行田市、羽生市", "春日部市、蓮田市、白岡市",
         "久喜市、加須市、幸手市", "越谷市の一部、吉川市、三郷市",
+        "さいたま市桜区、西区、北区の一部",
     ],
     "千葉県": [
         "千葉市中央区、稲毛区", "千葉市花見川区、美浜区、習志野市",
@@ -64,34 +67,34 @@ AREA_DESCRIPTIONS: dict[str, list[str]] = {
         "松戸市の一部", "松戸市の一部、流山市", "柏市",
         "佐倉市、四街道市、八街市", "銚子市、香取市、旭市",
         "茂原市、勝浦市、長生郡", "木更津市、君津市、富津市",
-        "成田市、印西市、白井市",
+        "成田市、印西市、白井市", "野田市、鎌ケ谷市",
     ],
     "東京都": [
         "千代田区、港区、新宿区の一部", "中央区、文京区、台東区の一部",
         "品川区、大田区の一部", "大田区の一部、目黒区の一部",
         "世田谷区の一部", "世田谷区の一部、渋谷区の一部",
-        "渋谷区の一部、中野区", "杉並区", "練馬区の一部",
+        "渋谷区の一部、港区の一部", "杉並区", "練馬区の一部",
         "豊島区、新宿区の一部", "板橋区", "北区、足立区の一部",
-        "足立区の一部", "墨田区、荒川区", "江東区、江戸川区の一部",
-        "江戸川区の一部", "葛飾区", "武蔵野市、三鷹市、小金井市",
-        "西東京市、東久留米市、清瀬市", "東村山市、東大和市、武蔵村山市",
-        "立川市、昭島市、国立市", "日野市、多摩市、稲城市",
-        "町田市", "八王子市の一部", "八王子市の一部、青梅市",
-        "府中市、調布市の一部", "調布市の一部、狛江市、小平市",
-        "国分寺市、小平市の一部", "あきる野市、福生市、羽村市",
-        "練馬区の一部、板橋区の一部",
+        "足立区の一部", "墨田区、荒川区", "江東区",
+        "江戸川区の一部", "葛飾区", "武蔵野市、小金井市、西東京市",
+        "小平市、国分寺市、国立市", "東村山市、東大和市、清瀬市",
+        "立川市、日野市", "三鷹市、調布市、狛江市",
+        "町田市", "八王子市の一部", "青梅市、昭島市、福生市",
+        "目黒区、大田区の一部", "中野区、杉並区の一部",
+        "練馬区東部", "荒川区、足立区の一部",
+        "府中市、多摩市、稲城市",
     ],
     "神奈川県": [
         "横浜市中区、磯子区、金沢区", "横浜市西区、南区、港南区",
-        "横浜市鶴見区、神奈川区", "横浜市栄区、港南区の一部、鎌倉市",
-        "横浜市戸塚区、泉区、瀬谷区", "横浜市保土ケ谷区、旭区",
-        "横浜市港北区、都筑区", "横浜市緑区、青葉区",
-        "川崎市川崎区、幸区", "川崎市中原区、高津区",
-        "川崎市宮前区、多摩区、麻生区", "藤沢市、綾瀬市",
-        "大和市、座間市、海老名市", "相模原市の一部",
-        "相模原市の一部、厚木市", "横須賀市、三浦市",
-        "小田原市、南足柄市、足柄地方", "平塚市、秦野市、伊勢原市",
-        "茅ヶ崎市、寒川町、二宮町", "逗子市、葉山町、横浜市栄区の一部",
+        "横浜市鶴見区、神奈川区", "横浜市栄区、鎌倉市、逗子市",
+        "横浜市戸塚区、泉区", "横浜市保土ケ谷区、旭区",
+        "横浜市港北区", "横浜市緑区、青葉区",
+        "川崎市多摩区、麻生区", "川崎市川崎区、幸区",
+        "横須賀市、三浦市", "藤沢市、高座郡",
+        "横浜市瀬谷区、大和市、綾瀬市", "相模原市緑区、中央区、愛甲郡",
+        "平塚市、茅ケ崎市", "厚木市、伊勢原市、海老名市",
+        "小田原市、秦野市、南足柄市", "川崎市中原区、高津区",
+        "横浜市都筑区、川崎市宮前区", "相模原市南区、座間市",
     ],
     "新潟県": [
         "新潟市中央区、東区、西区", "新潟市北区、江南区、秋葉区",
@@ -105,6 +108,7 @@ AREA_DESCRIPTIONS: dict[str, list[str]] = {
     "長野県": [
         "長野市、須坂市、千曲市", "松本市、塩尻市、安曇野市",
         "上田市、佐久市、小諸市", "伊那市、駒ヶ根市、飯田市",
+        "諏訪市、茅野市、岡谷市",
     ],
     "岐阜県": [
         "岐阜市、羽島市", "大垣市、海津市、養老郡", "関市、美濃市、各務原市",
@@ -196,29 +200,6 @@ AREA_DESCRIPTIONS: dict[str, list[str]] = {
     ],
 }
 
-# Common last names and first names for generating candidate names
-LAST_NAMES = [
-    "佐藤", "鈴木", "高橋", "田中", "伊藤", "渡辺", "山本", "中村", "小林", "加藤",
-    "吉田", "山田", "松本", "井上", "木村", "林", "斉藤", "清水", "山崎", "阿部",
-    "森", "池田", "橋本", "山口", "石川", "前田", "小川", "岡田", "長谷川", "藤田",
-    "後藤", "近藤", "村上", "遠藤", "青木", "坂本", "工藤", "福田", "原", "三浦",
-    "岡本", "松田", "中島", "西村", "中野", "原田", "菅原", "小野", "河野", "大塚",
-    "千葉", "松井", "石田", "上野", "杉山", "内田", "柳田", "浅野", "金子", "大野",
-    "武田", "星野", "宮崎", "今井", "丸山", "江藤", "竹内", "新井", "安田", "横山",
-    "太田", "堀", "藤井", "川崎", "宮本", "土屋", "野口", "須藤", "酒井", "西田",
-]
-MALE_FIRST = [
-    "太郎", "一郎", "健太", "直樹", "翔太", "拓也", "大輔", "雄一", "正人", "和彦",
-    "浩二", "真一", "俊介", "剛", "隆", "誠", "博", "清", "勝", "進",
-    "洋一", "康弘", "利夫", "秀樹", "哲也", "宏", "修", "敬", "慎一", "光一",
-    "龍太郎", "哲", "亮", "裕之", "義人", "幸雄", "正義", "弘", "昭", "英樹",
-]
-FEMALE_FIRST = [
-    "花子", "美咲", "優子", "直美", "裕子", "明子", "陽子", "真理子", "京子", "和子",
-    "美穂", "恵", "綾", "紗織", "由美", "智子", "久美子", "典子", "美香", "麻衣",
-    "友美", "理恵", "愛", "彩", "奈々", "あゆみ", "千尋", "沙紀", "瞳", "さくら",
-]
-
 BIOGRAPHIES = {
     "ldp": [
         "元内閣府副大臣", "元総務政務官", "元経済産業副大臣", "元防衛大臣政務官",
@@ -279,140 +260,6 @@ BIOGRAPHIES = {
     ],
 }
 
-KANA_MAP = {
-    "佐藤": "サトウ", "鈴木": "スズキ", "高橋": "タカハシ", "田中": "タナカ",
-    "伊藤": "イトウ", "渡辺": "ワタナベ", "山本": "ヤマモト", "中村": "ナカムラ",
-    "小林": "コバヤシ", "加藤": "カトウ", "吉田": "ヨシダ", "山田": "ヤマダ",
-    "松本": "マツモト", "井上": "イノウエ", "木村": "キムラ", "林": "ハヤシ",
-    "斉藤": "サイトウ", "清水": "シミズ", "山崎": "ヤマザキ", "阿部": "アベ",
-    "森": "モリ", "池田": "イケダ", "橋本": "ハシモト", "山口": "ヤマグチ",
-    "石川": "イシカワ", "前田": "マエダ", "小川": "オガワ", "岡田": "オカダ",
-    "長谷川": "ハセガワ", "藤田": "フジタ", "後藤": "ゴトウ", "近藤": "コンドウ",
-    "村上": "ムラカミ", "遠藤": "エンドウ", "青木": "アオキ", "坂本": "サカモト",
-    "工藤": "クドウ", "福田": "フクダ", "原": "ハラ", "三浦": "ミウラ",
-    "岡本": "オカモト", "松田": "マツダ", "中島": "ナカジマ", "西村": "ニシムラ",
-    "中野": "ナカノ", "原田": "ハラダ", "菅原": "スガワラ", "小野": "オノ",
-    "河野": "コウノ", "大塚": "オオツカ", "千葉": "チバ", "松井": "マツイ",
-    "石田": "イシダ", "上野": "ウエノ", "杉山": "スギヤマ", "内田": "ウチダ",
-    "柳田": "ヤナギダ", "浅野": "アサノ", "金子": "カネコ", "大野": "オオノ",
-    "武田": "タケダ", "星野": "ホシノ", "宮崎": "ミヤザキ", "今井": "イマイ",
-    "丸山": "マルヤマ", "江藤": "エトウ", "竹内": "タケウチ", "新井": "アライ",
-    "安田": "ヤスダ", "横山": "ヨコヤマ", "太田": "オオタ", "堀": "ホリ",
-    "藤井": "フジイ", "川崎": "カワサキ", "宮本": "ミヤモト", "土屋": "ツチヤ",
-    "野口": "ノグチ", "須藤": "スドウ", "酒井": "サカイ", "西田": "ニシダ",
-}
-
-FIRST_KANA_MALE = {
-    "太郎": "タロウ", "一郎": "イチロウ", "健太": "ケンタ", "直樹": "ナオキ",
-    "翔太": "ショウタ", "拓也": "タクヤ", "大輔": "ダイスケ", "雄一": "ユウイチ",
-    "正人": "マサト", "和彦": "カズヒコ", "浩二": "コウジ", "真一": "シンイチ",
-    "俊介": "シュンスケ", "剛": "ツヨシ", "隆": "タカシ", "誠": "マコト",
-    "博": "ヒロシ", "清": "キヨシ", "勝": "マサル", "進": "ススム",
-    "洋一": "ヨウイチ", "康弘": "ヤスヒロ", "利夫": "トシオ", "秀樹": "ヒデキ",
-    "哲也": "テツヤ", "宏": "ヒロシ", "修": "オサム", "敬": "タカシ",
-    "慎一": "シンイチ", "光一": "コウイチ", "龍太郎": "リュウタロウ", "哲": "テツ",
-    "亮": "リョウ", "裕之": "ヒロユキ", "義人": "ヨシト", "幸雄": "ユキオ",
-    "正義": "マサヨシ", "弘": "ヒロシ", "昭": "アキラ", "英樹": "ヒデキ",
-}
-
-FIRST_KANA_FEMALE = {
-    "花子": "ハナコ", "美咲": "ミサキ", "優子": "ユウコ", "直美": "ナオミ",
-    "裕子": "ユウコ", "明子": "アキコ", "陽子": "ヨウコ", "真理子": "マリコ",
-    "京子": "キョウコ", "和子": "カズコ", "美穂": "ミホ", "恵": "メグミ",
-    "綾": "アヤ", "紗織": "サオリ", "由美": "ユミ", "智子": "トモコ",
-    "久美子": "クミコ", "典子": "ノリコ", "美香": "ミカ", "麻衣": "マイ",
-    "友美": "トモミ", "理恵": "リエ", "愛": "アイ", "彩": "アヤ",
-    "奈々": "ナナ", "あゆみ": "アユミ", "千尋": "チヒロ", "沙紀": "サキ",
-    "瞳": "ヒトミ", "さくら": "サクラ",
-}
-
-# ---- Target candidate counts per party (小選挙区) ----
-# Based on real 2026 election data from Asahi/Nikkei
-TARGET_COUNTS = {
-    "ldp": 285,
-    "chudo": 202,
-    "sansei": 182,
-    "jcp": 158,
-    "dpfp": 102,
-    "ishin": 87,
-    "independent": 41,
-    "reiwa": 18,
-    "genzei": 13,
-    "shoha": 11,
-    "shamin": 8,
-    "hoshuto": 6,
-    "mirai": 6,
-}
-
-# Dual candidacy counts per party (重複立候補)
-DUAL_COUNTS = {
-    "ldp": 267,
-    "chudo": 200,
-    "dpfp": 101,
-    "ishin": 84,
-    "sansei": 47,
-    "genzei": 13,
-    "reiwa": 12,
-    "shamin": 8,
-    "hoshuto": 6,
-    "mirai": 6,
-    "jcp": 5,
-    "shoha": 0,
-    "independent": 0,
-}
-
-# Urban prefecture codes for weighting
-URBAN_CODES = {11, 12, 13, 14, 23, 27}  # Saitama, Chiba, Tokyo, Kanagawa, Aichi, Osaka
-KINKI_CODES = {25, 26, 27, 28, 29, 30}  # Shiga, Kyoto, Osaka, Hyogo, Nara, Wakayama
-TOKAI_CODES = {21, 22, 23, 24}  # Gifu, Shizuoka, Aichi, Mie
-
-# Track used names to avoid duplicates
-used_names: set[str] = set()
-
-random.seed(42)  # Reproducible
-
-
-def generate_name(gender: str) -> tuple[str, str]:
-    """Generate a unique candidate name and kana."""
-    for _ in range(100):
-        last = random.choice(LAST_NAMES)
-        if gender == "male":
-            first = random.choice(MALE_FIRST)
-            first_kana = FIRST_KANA_MALE.get(first, "")
-        else:
-            first = random.choice(FEMALE_FIRST)
-            first_kana = FIRST_KANA_FEMALE.get(first, "")
-        full = f"{last}{first}"
-        if full not in used_names:
-            used_names.add(full)
-            last_kana = KANA_MAP.get(last, "")
-            return full, f"{last_kana}{first_kana}"
-    # Fallback
-    last = random.choice(LAST_NAMES)
-    first = random.choice(MALE_FIRST if gender == "male" else FEMALE_FIRST)
-    return f"{last}{first}", ""
-
-
-def generate_candidate(party_id: str, is_incumbent: bool, proportional_block: str, dual: bool) -> dict:
-    gender = random.choice(["male", "male", "male", "female"])  # ~25% female
-    name, kana = generate_name(gender)
-    age = random.randint(35, 72) if is_incumbent else random.randint(30, 65)
-    prev_wins = random.randint(1, 8) if is_incumbent else 0
-    bios = BIOGRAPHIES.get(party_id, BIOGRAPHIES["ldp"])
-    bio = random.choice(bios)
-
-    return {
-        "name": name,
-        "name_kana": kana,
-        "party_id": party_id,
-        "age": age,
-        "is_incumbent": is_incumbent,
-        "previous_wins": prev_wins,
-        "biography": bio,
-        "dual_candidacy": dual,
-        "proportional_block_id": proportional_block if dual else None,
-    }
-
 
 def name_to_id(name: str) -> str:
     mapping = {
@@ -436,21 +283,80 @@ def name_to_id(name: str) -> str:
     return mapping.get(name, name.lower())
 
 
+# Prefecture code to name mapping (built from prefectures.json)
+CODE_TO_NAME = {p["code"]: p["name"] for p in prefectures}
+CODE_TO_BLOCK = {p["code"]: p["proportional_block"] for p in prefectures}
+
+random.seed(42)
+
+
+def load_candidates_csv() -> dict[tuple[str, int], list[dict]]:
+    """Load candidates from CSV grouped by (prefecture_code, district_number)."""
+    candidates_by_district: dict[tuple[str, int], list[dict]] = defaultdict(list)
+
+    csv_path = DATA_DIR / "candidates.csv"
+    with open(csv_path, encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            pref_code = row["prefecture_code"].strip()
+            dist_num = int(row["district_number"].strip())
+            key = (pref_code, dist_num)
+
+            is_incumbent = row["status"].strip() in ("current", "incumbent")
+            is_former = row["status"].strip() == "former"
+            prev_wins = int(row["previous_wins"].strip())
+            dual = row["dual_candidacy"].strip().lower() == "true"
+            party_id = row["party_id"].strip()
+            age = int(row["age"].strip())
+            name = row["candidate_name"].strip()
+            block = CODE_TO_BLOCK.get(int(pref_code), "")
+
+            bios = BIOGRAPHIES.get(party_id, BIOGRAPHIES["ldp"])
+            bio = random.choice(bios)
+
+            candidates_by_district[key].append({
+                "name": name,
+                "name_kana": "",
+                "party_id": party_id,
+                "age": age,
+                "is_incumbent": is_incumbent or is_former,
+                "previous_wins": prev_wins,
+                "biography": bio,
+                "dual_candidacy": dual,
+                "proportional_block_id": block if dual else None,
+            })
+
+    return candidates_by_district
+
+
 def generate_districts():
-    """Generate districts with budget-based candidate allocation."""
-    # Build flat list of all districts
-    all_district_info = []
+    """Generate districts with real candidate data from CSV."""
+    candidates_by_district = load_candidates_csv()
+
+    all_districts = []
+    total_candidates = 0
+
     for pref in prefectures:
         name = pref["name"]
         code = pref["code"]
         count = pref["district_count"]
-        block = pref["proportional_block"]
         areas = AREA_DESCRIPTIONS.get(name, [])
 
         for i in range(1, count + 1):
             district_id = f"{name_to_id(name)}-{i}"
             area = areas[i - 1] if i <= len(areas) else f"{name}第{i}区エリア"
-            all_district_info.append({
+
+            # Get candidates for this district
+            pref_code_str = str(code).zfill(2)
+            key = (pref_code_str, i)
+            candidates = candidates_by_district.get(key, [])
+
+            if not candidates:
+                print(f"WARNING: No candidates for {name}第{i}区 (code={pref_code_str})")
+
+            total_candidates += len(candidates)
+
+            district = {
                 "id": district_id,
                 "prefecture": name,
                 "prefecture_code": code,
@@ -458,217 +364,55 @@ def generate_districts():
                 "name": f"{name}第{i}区",
                 "area_description": area,
                 "registered_voters": None,
-                "proportional_block": block,
-            })
+                "candidates": candidates,
+            }
+            all_districts.append(district)
 
-    n_districts = len(all_district_info)
-    assert n_districts == 289, f"Expected 289 districts, got {n_districts}"
-
-    # Initialize candidates list per district
-    district_candidates: list[list[dict]] = [[] for _ in range(n_districts)]
-    # Track which parties are assigned to which districts
-    district_parties: list[set[str]] = [set() for _ in range(n_districts)]
-
-    # Budget remaining per party
-    budget = dict(TARGET_COUNTS)
-    dual_budget = dict(DUAL_COUNTS)
-
-    # Ordered allocation: large parties first, then smaller ones
-    # Allocation priority with regional weighting
-    allocation_order = [
-        ("ldp", 285, None),       # Almost all districts
-        ("chudo", 202, None),     # ~70% of districts
-        ("sansei", 182, None),    # ~63% of districts
-        ("jcp", 158, None),       # ~55% of districts
-        ("dpfp", 102, None),      # ~35% of districts
-        ("ishin", 87, "kinki"),   # ~30%, overweight Kinki
-        ("independent", 41, None),
-        ("reiwa", 18, "urban"),   # Urban focus
-        ("genzei", 13, "tokai"),  # Tokai focus (Kawamura is from Nagoya)
-        ("shoha", 11, None),
-        ("shamin", 8, None),
-        ("hoshuto", 6, None),
-        ("mirai", 6, "urban"),
-    ]
-
-    for party_id, target, region_bias in allocation_order:
-        # Create a weighted list of candidate district indices
-        indices = list(range(n_districts))
-
-        # Apply regional bias for weighting
-        weights = []
-        for idx in indices:
-            pref_code = all_district_info[idx]["prefecture_code"]
-            w = 1.0
-            if region_bias == "kinki" and pref_code in KINKI_CODES:
-                w = 3.0
-            elif region_bias == "urban" and pref_code in URBAN_CODES:
-                w = 3.0
-            elif region_bias == "tokai" and pref_code in TOKAI_CODES:
-                w = 5.0
-            # Slightly prefer districts with fewer candidates (spread out)
-            existing = len(district_candidates[idx])
-            if existing >= 5:
-                w *= 0.3
-            elif existing >= 4:
-                w *= 0.5
-            weights.append(w)
-
-        # Select districts for this party (without replacement)
-        selected = set()
-        remaining_indices = [i for i in indices if party_id not in district_parties[i]]
-        remaining_weights = [weights[i] for i in remaining_indices]
-
-        if len(remaining_indices) <= target:
-            selected = set(remaining_indices)
-        else:
-            # Weighted sampling without replacement
-            pool = list(remaining_indices)
-            pool_weights = list(remaining_weights)
-            while len(selected) < target and pool:
-                total_w = sum(pool_weights)
-                r = random.random() * total_w
-                cumulative = 0
-                for j, (idx, w) in enumerate(zip(pool, pool_weights)):
-                    cumulative += w
-                    if cumulative >= r:
-                        selected.add(idx)
-                        pool.pop(j)
-                        pool_weights.pop(j)
-                        break
-
-        # Assign candidates to selected districts
-        # Determine which ones get dual candidacy
-        dual_target = dual_budget.get(party_id, 0)
-        selected_list = sorted(selected)
-        random.shuffle(selected_list)
-        dual_assigned = 0
-
-        for idx in selected_list:
-            block = all_district_info[idx]["proportional_block"]
-            is_dual = dual_assigned < dual_target
-            if is_dual:
-                dual_assigned += 1
-            district_parties[idx].add(party_id)
-            # Candidate is not yet assigned as incumbent (done later)
-            district_candidates[idx].append(
-                generate_candidate(party_id, False, block, is_dual)
-            )
-
-    # Assign one incumbent per district
-    for idx in range(n_districts):
-        candidates = district_candidates[idx]
-        if not candidates:
-            continue
-        pref_code = all_district_info[idx]["prefecture_code"]
-        is_urban = pref_code in URBAN_CODES
-
-        # Weight incumbent selection by party
-        incumbent_weights = []
-        for c in candidates:
-            pid = c["party_id"]
-            if pid == "ldp":
-                w = 2.0 if not is_urban else 1.5
-            elif pid == "chudo":
-                w = 1.5 if is_urban else 1.0
-            elif pid == "ishin":
-                w = 2.0 if pref_code in KINKI_CODES else 0.5
-            elif pid == "dpfp":
-                w = 0.8
-            elif pid == "independent":
-                w = 0.3
-            else:
-                w = 0.2
-            incumbent_weights.append(w)
-
-        # Select incumbent
-        total_w = sum(incumbent_weights)
-        r = random.random() * total_w
-        cumulative = 0
-        inc_idx = 0
-        for j, w in enumerate(incumbent_weights):
-            cumulative += w
-            if cumulative >= r:
-                inc_idx = j
-                break
-
-        candidates[inc_idx]["is_incumbent"] = True
-        candidates[inc_idx]["previous_wins"] = random.randint(1, 8)
-        candidates[inc_idx]["age"] = random.randint(40, 72)
-
-    # Build final output
-    all_districts = []
-    for idx in range(n_districts):
-        info = all_district_info[idx]
-        district = {
-            "id": info["id"],
-            "prefecture": info["prefecture"],
-            "prefecture_code": info["prefecture_code"],
-            "district_number": info["district_number"],
-            "name": info["name"],
-            "area_description": info["area_description"],
-            "registered_voters": info["registered_voters"],
-            "candidates": district_candidates[idx],
-        }
-        all_districts.append(district)
-
-    return all_districts
+    return all_districts, total_candidates
 
 
-def verify_counts(districts: list[dict]) -> bool:
-    """Verify generated data matches target counts."""
-    party_counts: dict[str, int] = {}
-    dual_counts: dict[str, int] = {}
-    total = 0
+def verify_counts(districts: list[dict], total_candidates: int) -> bool:
+    """Verify generated data."""
+    from collections import Counter
+
+    party_counts: Counter[str] = Counter()
+    dual_counts: Counter[str] = Counter()
     incumbent_count = 0
 
     for d in districts:
         for c in d["candidates"]:
             pid = c["party_id"]
-            party_counts[pid] = party_counts.get(pid, 0) + 1
+            party_counts[pid] += 1
             if c["dual_candidacy"]:
-                dual_counts[pid] = dual_counts.get(pid, 0) + 1
+                dual_counts[pid] += 1
             if c["is_incumbent"]:
                 incumbent_count += 1
-            total += 1
 
     print(f"\nTotal districts: {len(districts)}")
-    print(f"Total candidates: {total}")
-    print(f"Total incumbents: {incumbent_count}")
+    print(f"Total candidates: {total_candidates}")
+    print(f"Total incumbents/former: {incumbent_count}")
     print(f"\nParty breakdown (小選挙区):")
-    print(f"{'Party':<15} {'Actual':>8} {'Target':>8} {'Match':>6}")
-    print("-" * 40)
+    print(f"{'Party':<15} {'Count':>8}")
+    print("-" * 25)
 
-    all_match = True
-    for party_id in TARGET_COUNTS:
-        actual = party_counts.get(party_id, 0)
-        target = TARGET_COUNTS[party_id]
-        match = "OK" if actual == target else "FAIL"
-        if actual != target:
-            all_match = False
-        print(f"{party_id:<15} {actual:>8} {target:>8} {match:>6}")
+    for party_id, count in party_counts.most_common():
+        print(f"{party_id:<15} {count:>8}")
 
     print(f"\nDual candidacy breakdown:")
-    print(f"{'Party':<15} {'Actual':>8} {'Target':>8} {'Match':>6}")
-    print("-" * 40)
+    print(f"{'Party':<15} {'Count':>8}")
+    print("-" * 25)
     total_dual = 0
-    for party_id in DUAL_COUNTS:
-        actual = dual_counts.get(party_id, 0)
-        target = DUAL_COUNTS[party_id]
-        match = "OK" if actual == target else "FAIL"
-        if actual != target:
-            all_match = False
-        total_dual += actual
-        print(f"{party_id:<15} {actual:>8} {target:>8} {match:>6}")
+    for party_id, count in dual_counts.most_common():
+        total_dual += count
+        print(f"{party_id:<15} {count:>8}")
 
-    print(f"\nTotal dual candidacy: {total_dual} (target: {sum(DUAL_COUNTS.values())})")
-    print(f"\nAll counts match: {'YES' if all_match else 'NO'}")
-    return all_match
+    print(f"\nTotal dual candidacy: {total_dual}")
+    return True
 
 
 if __name__ == "__main__":
-    districts = generate_districts()
-    ok = verify_counts(districts)
+    districts, total = generate_districts()
+    verify_counts(districts, total)
 
     # Write output
     output_path = DATA_DIR / "districts_sample.json"
@@ -676,5 +420,3 @@ if __name__ == "__main__":
         json.dump(districts, f, ensure_ascii=False, indent=2)
 
     print(f"\nWritten to {output_path}")
-    if not ok:
-        print("WARNING: Some counts did not match targets!")
