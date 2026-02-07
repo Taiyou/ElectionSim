@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+import asyncio
 from collections import defaultdict
 from datetime import datetime
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -18,6 +19,13 @@ from app.schemas.prediction import (
     PredictionResponse,
     PredictionSummaryResponse,
 )
+from app.services.prediction_pipeline import PredictionPipeline
+from app.utils.logger import get_logger
+
+_logger = get_logger(__name__)
+
+# Track pipeline status
+_pipeline_status: dict[str, str | None] = {"status": "idle", "batch_id": None, "error": None}
 
 router = APIRouter(prefix="/predictions", tags=["predictions"])
 
@@ -212,3 +220,43 @@ async def get_prefecture_predictions(
         .order_by(District.district_number)
     )
     return result.scalars().all()
+
+
+# ------------------------------------------------------------------
+# Manual trigger endpoint
+# ------------------------------------------------------------------
+
+async def _run_pipeline_background():
+    """Run the prediction pipeline in the background and track status."""
+    global _pipeline_status
+    try:
+        _pipeline_status = {"status": "running", "batch_id": None, "error": None}
+        pipeline = PredictionPipeline()
+        batch_id = await pipeline.run_full_prediction()
+        _pipeline_status = {"status": "completed", "batch_id": batch_id, "error": None}
+        _logger.info("Manual pipeline run completed: %s", batch_id)
+    except Exception as exc:
+        _pipeline_status = {"status": "failed", "batch_id": None, "error": str(exc)}
+        _logger.exception("Manual pipeline run failed")
+
+
+@router.post("/run")
+async def trigger_prediction_run(background_tasks: BackgroundTasks):
+    """Manually trigger the prediction pipeline.
+
+    The pipeline runs in the background. Use GET /predictions/run/status
+    to check progress.
+    """
+    if _pipeline_status["status"] == "running":
+        raise HTTPException(
+            status_code=409,
+            detail="Prediction pipeline is already running",
+        )
+    background_tasks.add_task(_run_pipeline_background)
+    return {"message": "Prediction pipeline started", "status": "running"}
+
+
+@router.get("/run/status")
+async def get_pipeline_status():
+    """Check the status of the prediction pipeline."""
+    return _pipeline_status

@@ -2,6 +2,7 @@ import { API_BASE } from "./constants";
 import type {
   BlockWithPredictions,
   District,
+  ManifestoSummary,
   ModelComparison,
   NewsSummary,
   PersonaSummary,
@@ -9,6 +10,7 @@ import type {
   PredictionHistory,
   PredictionSummary,
   PrefectureMapData,
+  SimulationRunResult,
   YouTubeSummary,
 } from "@/types";
 
@@ -76,4 +78,39 @@ export async function fetchPersonaSummary(): Promise<PersonaSummary> {
 
 export async function fetchMapSummary(): Promise<PrefectureMapData[]> {
   return fetchJSON("/districts/map-summary");
+}
+
+export async function fetchManifestoSummary(): Promise<ManifestoSummary> {
+  return fetchJSON("/manifesto/summary");
+}
+
+export async function fetchSimulationPilot(): Promise<SimulationRunResult> {
+  const res = await fetch(`${API_BASE}/simulation/pilot`, {
+    method: "POST",
+    next: { revalidate: 0 },
+  });
+  if (!res.ok) {
+    throw new Error(`API error: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
+
+export async function fetchSimulationRun(
+  districtIds?: string[],
+  seed?: number,
+): Promise<SimulationRunResult> {
+  const res = await fetch(`${API_BASE}/simulation/run`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      seed: seed ?? 42,
+      personas_per_district: 100,
+      district_ids: districtIds ?? null,
+    }),
+    next: { revalidate: 0 },
+  });
+  if (!res.ok) {
+    throw new Error(`API error: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
 }

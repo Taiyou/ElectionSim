@@ -2,6 +2,9 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
+from app.api.data_fetch import router as data_fetch_router
+from app.api.manifesto import router as manifesto_router
+from app.api.simulation import router as simulation_router
 from app.api.districts import router as districts_router
 from app.api.health import router as health_router
 from app.api.news import router as news_router
@@ -21,3 +24,6 @@ api_router.include_router(prompts_router)
 api_router.include_router(youtube_router)
 api_router.include_router(news_router)
 api_router.include_router(personas_router)
+api_router.include_router(data_fetch_router)
+api_router.include_router(manifesto_router)
+api_router.include_router(simulation_router)

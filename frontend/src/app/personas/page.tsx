@@ -49,6 +49,27 @@ export default async function PersonasPage() {
             highlight
           />
         </div>
+
+        {/* 指標算出方法の説明 */}
+        <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <h3 className="font-bold text-gray-600 text-sm mb-2">各指標の算出方法</h3>
+          <dl className="space-y-3 text-xs text-gray-500">
+            <div>
+              <dt className="font-medium text-gray-700">平均投票率</dt>
+              <dd>
+                投票行動研究に基づき設計した12種類のペルソナ類型それぞれに設定された投票確率（例：学生層 30%、年金生活者層 75% など）の単純平均値です。
+                各ペルソナの投票確率は <code className="bg-gray-200 px-1 rounded text-gray-600">persona_config.json</code> の <code className="bg-gray-200 px-1 rounded text-gray-600">turnout_probability</code> フィールドで定義されています。
+              </dd>
+            </div>
+            <div>
+              <dt className="font-medium text-gray-700">平均浮動票率</dt>
+              <dd>
+                47都道府県ごとに、比例代表得票率や世論調査データから推計した浮動票率（特定政党に固定されていない有権者の割合）の全国平均値です。
+                各都道府県の浮動票率は <code className="bg-gray-200 px-1 rounded text-gray-600">political_tendencies.json</code> の <code className="bg-gray-200 px-1 rounded text-gray-600">swing_voter_ratio</code> フィールドで定義されており、都道府県により 20%〜40% 程度の幅があります。
+              </dd>
+            </div>
+          </dl>
+        </div>
       </section>
 
       {/* Archetype Overview Table */}
@@ -230,22 +251,22 @@ export default async function PersonasPage() {
                     <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium">人口統計</span>
                   </td>
                   <td className="px-4 py-3">総人口・有権者数</td>
-                  <td className="px-4 py-3 text-gray-500">国勢調査（令和2年） — 総務省統計局</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.stat.go.jp/data/kokusei/2020/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">国勢調査（令和2年） — 総務省統計局</a></td>
                   <td className="px-4 py-3 text-center">2020</td>
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="px-4 py-3">年齢分布（6区分）</td>
-                  <td className="px-4 py-3 text-gray-500">国勢調査 年齢別人口 — 総務省統計局</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.stat.go.jp/data/kokusei/2020/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">国勢調査 年齢別人口 — 総務省統計局</a></td>
                   <td className="px-4 py-3 text-center">2020</td>
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="px-4 py-3">世帯構成（5分類）</td>
-                  <td className="px-4 py-3 text-gray-500">国勢調査 世帯類型別 — 総務省統計局</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.stat.go.jp/data/kokusei/2020/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">国勢調査 世帯類型別 — 総務省統計局</a></td>
                   <td className="px-4 py-3 text-center">2020</td>
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="px-4 py-3">都市化率（DID人口比率）</td>
-                  <td className="px-4 py-3 text-gray-500">国勢調査 人口集中地区 — 総務省統計局</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.stat.go.jp/data/kokusei/2020/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">国勢調査 人口集中地区 — 総務省統計局</a></td>
                   <td className="px-4 py-3 text-center">2020</td>
                 </tr>
 
@@ -254,22 +275,22 @@ export default async function PersonasPage() {
                     <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">社会経済</span>
                   </td>
                   <td className="px-4 py-3">産業構造（一次/二次/三次）</td>
-                  <td className="px-4 py-3 text-gray-500">経済センサス — 総務省統計局</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.stat.go.jp/data/e-census/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">経済センサス — 総務省統計局</a></td>
                   <td className="px-4 py-3 text-center">2021</td>
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="px-4 py-3">平均年収・失業率</td>
-                  <td className="px-4 py-3 text-gray-500">賃金構造基本統計調査・労働力調査 — 厚生労働省・総務省</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.mhlw.go.jp/toukei/list/chinginkouzou.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">賃金構造基本統計調査 — 厚生労働省</a>・<a href="https://www.stat.go.jp/data/roudou/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">労働力調査 — 総務省</a></td>
                   <td className="px-4 py-3 text-center">2023</td>
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="px-4 py-3">生活費指数</td>
-                  <td className="px-4 py-3 text-gray-500">消費者物価地域差指数 — 総務省統計局</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.stat.go.jp/data/cpi/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">消費者物価地域差指数 — 総務省統計局</a></td>
                   <td className="px-4 py-3 text-center">2023</td>
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="px-4 py-3">高齢化依存率</td>
-                  <td className="px-4 py-3 text-gray-500">人口推計 — 総務省統計局</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.stat.go.jp/data/jinsui/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">人口推計 — 総務省統計局</a></td>
                   <td className="px-4 py-3 text-center">2023</td>
                 </tr>
 
@@ -278,17 +299,17 @@ export default async function PersonasPage() {
                     <span className="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">政治傾向</span>
                   </td>
                   <td className="px-4 py-3">投票率（2021年・2017年衆院選）</td>
-                  <td className="px-4 py-3 text-gray-500">衆議院議員総選挙結果 — 総務省選挙部</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.soumu.go.jp/senkyo/senkyo_s/data/shugiin49/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">衆議院議員総選挙結果 — 総務省選挙部</a></td>
                   <td className="px-4 py-3 text-center">2017/2021</td>
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="px-4 py-3">政党支持率・浮動票率</td>
-                  <td className="px-4 py-3 text-gray-500">比例代表得票率・世論調査 — 総務省選挙部・各報道機関</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.soumu.go.jp/senkyo/senkyo_s/data/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">比例代表得票率・世論調査 — 総務省選挙部・各報道機関</a></td>
                   <td className="px-4 py-3 text-center">2021-2024</td>
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="px-4 py-3">イデオロギー・政治関心度</td>
-                  <td className="px-4 py-3 text-gray-500">各種世論調査・意識調査 — 明るい選挙推進協会・各報道機関</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.akaruisenkyo.or.jp/research/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">各種世論調査・意識調査 — 明るい選挙推進協会・各報道機関</a></td>
                   <td className="px-4 py-3 text-center">2021-2024</td>
                 </tr>
 
@@ -302,7 +323,7 @@ export default async function PersonasPage() {
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="px-4 py-3">課題別有利政党</td>
-                  <td className="px-4 py-3 text-gray-500">政党公約・マニフェスト比較分析 — 各政党</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.manifesto-jp.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">政党公約・マニフェスト比較分析 — 各政党</a></td>
                   <td className="px-4 py-3 text-center">2024</td>
                 </tr>
 
@@ -311,7 +332,7 @@ export default async function PersonasPage() {
                     <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium">ペルソナ設計</span>
                   </td>
                   <td className="px-4 py-3">12類型定義・投票決定要因ウェイト</td>
-                  <td className="px-4 py-3 text-gray-500">投票行動研究・政治学文献 — 明るい選挙推進協会・学術研究</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.akaruisenkyo.or.jp/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">投票行動研究・政治学文献 — 明るい選挙推進協会・学術研究</a></td>
                   <td className="px-4 py-3 text-center">2021-2024</td>
                 </tr>
 
@@ -320,7 +341,7 @@ export default async function PersonasPage() {
                     <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-medium">選挙区情報</span>
                   </td>
                   <td className="px-4 py-3">289小選挙区定義・候補者情報</td>
-                  <td className="px-4 py-3 text-gray-500">衆議院小選挙区区割り・選挙公報 — 総務省・各選挙管理委員会</td>
+                  <td className="px-4 py-3 text-gray-500"><a href="https://www.soumu.go.jp/senkyo/senkyo_s/news/senkyo/shu_kuwari/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">衆議院小選挙区区割り・選挙公報 — 総務省・各選挙管理委員会</a></td>
                   <td className="px-4 py-3 text-center">2024</td>
                 </tr>
               </tbody>

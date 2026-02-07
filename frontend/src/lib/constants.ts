@@ -55,4 +55,40 @@ export const PREFECTURE_NAMES: Record<number, string> = {
   46: "鹿児島県", 47: "沖縄県",
 };
 
+export const ISSUE_CATEGORY_NAMES: Record<string, string> = {
+  economy: "経済・財政",
+  social_security: "社会保障",
+  national_security: "安全保障・外交",
+  education: "教育・子育て",
+  environment: "環境・エネルギー",
+  local_revitalization: "地方創生",
+  constitutional_reform: "憲法改正",
+  disaster_prevention: "防災・国土強靱化",
+};
+
+export const ISSUE_CATEGORY_COLORS: Record<string, string> = {
+  economy: "#3b82f6",
+  social_security: "#ef4444",
+  national_security: "#6366f1",
+  education: "#22c55e",
+  environment: "#10b981",
+  local_revitalization: "#f59e0b",
+  constitutional_reform: "#8b5cf6",
+  disaster_prevention: "#f97316",
+};
+
+export const MANIFESTO_PARTY_COLORS: Record<string, string> = {
+  ldp: "#E2342B",
+  cdp: "#1E50A2",
+  ishin: "#00A95F",
+  komei: "#F5A623",
+  dpfp: "#FFD700",
+  jcp: "#BE0032",
+  reiwa: "#ED72A0",
+  shamin: "#00BCD4",
+  sansei: "#8BC34A",
+  hoshuto: "#9C27B0",
+  mirai: "#03A9F4",
+};
+
 export const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";

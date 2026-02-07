@@ -1,0 +1,15 @@
+{
+  "total_districts": 10,
+  "total_personas": 1000,
+  "national_turnout_rate": 0.53,
+  "smd_seats": {
+    "chudo": 3,
+    "ldp": 5,
+    "ishin": 2
+  },
+  "simulation_config": {
+    "seed": 99,
+    "personas_per_district": 100,
+    "model": "claude-sonnet-4-20250514"
+  }
+}

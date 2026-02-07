@@ -23,6 +23,9 @@ export default function Header() {
           <Link href="/personas" className="hover:text-purple-300 transition">
             ペルソナ分析
           </Link>
+          <Link href="/manifesto" className="hover:text-amber-300 transition">
+            マニフェスト
+          </Link>
           <Link href="/map" className="hover:text-emerald-300 transition">
             選挙区マップ
           </Link>
@@ -31,6 +34,9 @@ export default function Header() {
           </Link>
           <Link href="/proportional" className="hover:text-blue-300 transition">
             比例代表
+          </Link>
+          <Link href="/simulation" className="hover:text-cyan-300 transition">
+            シミュレーション
           </Link>
           <Link href="/how-it-works" className="hover:text-blue-300 transition">
             仕組み

@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "全国投票率",
+      "passed": true,
+      "detail": "53.0%（期待: 35-70%）"
+    },
+    {
+      "name": "選挙区別投票率（異常値）",
+      "passed": true,
+      "detail": "正常"
+    },
+    {
+      "name": "当選者の得票",
+      "passed": true,
+      "detail": "正常"
+    },
+    {
+      "name": "自民党議席数",
+      "passed": false,
+      "detail": "5議席（期待: 10-250）"
+    },
+    {
+      "name": "自民党比例得票率",
+      "passed": true,
+      "detail": "35.8%（期待: 15-50%）"
+    },
+    {
+      "name": "農村農業従事者のLDP傾向",
+      "passed": true,
+      "detail": "最多投票先: ldp（期待: ldp）"
+    },
+    {
+      "name": "労働組合員のLDP非偏重",
+      "passed": true,
+      "detail": "LDP得票率: 39.1%（期待: <50%）"
+    },
+    {
+      "name": "高齢者投票率 > 若年層投票率",
+      "passed": true,
+      "detail": "高齢者: 66.9%, 若年層: 30.8%"
+    },
+    {
+      "name": "棄権率",
+      "passed": true,
+      "detail": "47.0%（期待: 30-65%）"
+    }
+  ],
+  "warnings": [
+    "自民党議席数: 5議席（期待: 10-250）"
+  ],
+  "errors": []
+}

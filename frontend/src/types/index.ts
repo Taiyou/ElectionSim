@@ -286,6 +286,85 @@ export interface PrefectureMapData {
   districts: DistrictBrief[];
 }
 
+// Manifesto types
+export interface ManifestoPolicy {
+  category: string;
+  title: string;
+  description: string;
+  priority: "high" | "medium" | "low";
+  target_personas: string[];
+}
+
+export interface PartyManifesto {
+  party_id: string;
+  party_name: string;
+  policies: ManifestoPolicy[];
+}
+
+export interface IssueCategoryCount {
+  category: string;
+  category_name: string;
+  party_count: number;
+  total_policies: number;
+}
+
+export interface PersonaBestParty {
+  persona_id: string;
+  persona_name: string;
+  best_party_id: string;
+  best_party_name: string;
+  score: number;
+}
+
+export interface PartyFocus {
+  party_id: string;
+  party_name: string;
+  focus_type: string;
+  focus_label: string;
+  high_priority_count: number;
+  total_policy_count: number;
+}
+
+export interface ManifestoOverview {
+  most_contested_category: {
+    category: string;
+    category_name: string;
+    party_count: number;
+  };
+  least_covered_category: {
+    category: string;
+    category_name: string;
+    total_policies: number;
+  };
+  persona_best_party: PersonaBestParty[];
+  party_focus: PartyFocus[];
+  spectrum_groups: Record<string, string[]>;
+  persona_coverage: {
+    most_targeted: {
+      persona_id: string;
+      persona_name: string;
+      party_count: number;
+    };
+    least_targeted: {
+      persona_id: string;
+      persona_name: string;
+      party_count: number;
+    };
+  };
+}
+
+export interface ManifestoSummary {
+  total_parties: number;
+  total_categories: number;
+  total_policies: number;
+  parties: PartyManifesto[];
+  persona_party_alignment: Record<string, Record<string, number>>;
+  persona_names: Record<string, string>;
+  issue_category_breakdown: IssueCategoryCount[];
+  policy_comparison_matrix: Record<string, Record<string, string>>;
+  overview: ManifestoOverview;
+}
+
 // Model comparison types
 export interface ModelComparisonEntry {
   model_number: number;
@@ -299,4 +378,58 @@ export interface ModelComparison {
   models: ModelComparisonEntry[];
   party_ids: string[];
   majority_line: number;
+}
+
+// --- シミュレーション関連 ---
+
+export interface SimulationDistrictResult {
+  district_id: string;
+  district_name: string;
+  total_personas: number;
+  turnout_count: number;
+  turnout_rate: number;
+  winner: string;
+  winner_party: string;
+  winner_votes: number;
+  runner_up: string;
+  runner_up_party: string;
+  runner_up_votes: number;
+  margin: number;
+  smd_votes: Record<string, number>;
+  proportional_votes: Record<string, number>;
+  archetype_breakdown: Record<string, ArchetypeVoteData>;
+}
+
+export interface ArchetypeVoteData {
+  count: number;
+  voted: number;
+  smd_parties: Record<string, number>;
+  proportional_parties: Record<string, number>;
+}
+
+export interface SimulationSummary {
+  total_districts: number;
+  total_personas: number;
+  national_turnout_rate: number;
+  smd_seats: Record<string, number>;
+  simulation_config: Record<string, unknown>;
+}
+
+export interface ValidationCheck {
+  name: string;
+  passed: boolean;
+  detail: string;
+}
+
+export interface ValidationReport {
+  checks: ValidationCheck[];
+  warnings: string[];
+  errors: string[];
+  passed: boolean;
+}
+
+export interface SimulationRunResult {
+  summary: SimulationSummary;
+  districts: SimulationDistrictResult[];
+  validation: ValidationReport;
 }

@@ -1,0 +1,57 @@
+{
+  "experiment_id": "sim_20260208_025734_seed99",
+  "created_at": "2026-02-08T02:57:34.490359+09:00",
+  "status": "completed",
+  "duration_seconds": 0.01,
+  "description": "シード変更テスト",
+  "tags": [
+    "pilot",
+    "seed-test"
+  ],
+  "parameters": {
+    "seed": 99,
+    "personas_per_district": 100,
+    "llm_batch_size": 15,
+    "model": "claude-sonnet-4-20250514",
+    "use_batch_api": true,
+    "mode": "pilot",
+    "district_ids": [
+      "01_11",
+      "05_1",
+      "13_1",
+      "14_1",
+      "23_1",
+      "26_1",
+      "27_1",
+      "32_1",
+      "40_1",
+      "47_1"
+    ],
+    "district_count": 10,
+    "total_personas": 1000
+  },
+  "config_versions": {
+    "persona_config_hash": "sha256:497a9a5401703901",
+    "manifesto_policies_hash": "sha256:2dca3dae697f9dd7",
+    "factor_weights": {
+      "party_loyalty": 0.3,
+      "candidate_appeal": 0.2,
+      "policy_alignment": 0.25,
+      "media_influence": 0.1,
+      "local_connection": 0.1,
+      "strategic_voting": 0.05
+    }
+  },
+  "results_summary": {
+    "national_turnout_rate": 0.53,
+    "smd_seats": {
+      "chudo": 3,
+      "ldp": 5,
+      "ishin": 2
+    },
+    "validation_passed": true
+  },
+  "environment": {
+    "git_commit": "47a3740"
+  }
+}

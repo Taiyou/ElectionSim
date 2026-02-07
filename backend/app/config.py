@@ -16,6 +16,12 @@ class Settings(BaseSettings):
     GROK_MODEL: str = "x-ai/grok-3"
     CLAUDE_MODEL: str = "anthropic/claude-sonnet-4"
 
+    # YouTube Data API v3
+    YOUTUBE_API_KEY: str = ""
+
+    # NewsAPI.org
+    NEWS_API_KEY: str = ""
+
     # Pipeline Settings
     PARALLEL_PREFECTURES: int = 5
     SCHEDULE_HOURS: str = "8,12,20"

@@ -1,0 +1,126 @@
+{
+  "version": "v1",
+  "name": "pilot_rule_based",
+  "title": "パイロットシミュレーション（ルールベースのみ）",
+  "date": "2026-02-08",
+  "status": "completed",
+
+  "description": "10選挙区×100ペルソナのパイロット実行。LLM呼び出しなし、6要因モデルのルールベースのみで全投票先を決定。ハイブリッドアプローチのTier 1部分の動作確認とバリデーション。",
+
+  "hypothesis": "15アーキタイプの加重サンプリング＋6要因投票モデル（ルールベース）で、各選挙区の政治傾向を妥当に再現できるか検証する。農村部→LDP優勢、大阪→維新優勢、都市部→接戦、高齢者投票率>若年層などの既知パターンが出現することを期待。",
+
+  "design": {
+    "method": "rule_based_only",
+    "tier": "Tier 1 (deterministic + noise)",
+    "llm_calls": 0,
+    "seed": 42,
+    "personas_per_district": 100,
+    "total_personas": 1000,
+    "districts": [
+      {"id": "13_1", "name": "東京1区", "type": "都市・野党優勢"},
+      {"id": "01_11", "name": "北海道11区", "type": "農村・旧CDP地盤"},
+      {"id": "27_1", "name": "大阪1区", "type": "維新地盤"},
+      {"id": "47_1", "name": "沖縄1区", "type": "独自政治"},
+      {"id": "23_1", "name": "愛知1区", "type": "都市・接戦"},
+      {"id": "05_1", "name": "秋田1区", "type": "農村・高齢化"},
+      {"id": "14_1", "name": "神奈川1区", "type": "都市・接戦"},
+      {"id": "26_1", "name": "京都1区", "type": "共産一定勢力"},
+      {"id": "40_1", "name": "福岡1区", "type": "都市・保守"},
+      {"id": "32_1", "name": "島根1区", "type": "農村・保守"}
+    ],
+    "voting_model": {
+      "factors": {
+        "party_loyalty": 0.30,
+        "policy_alignment": 0.25,
+        "candidate_appeal": 0.20,
+        "media_influence": 0.10,
+        "local_connection": 0.10,
+        "strategic_voting": 0.05
+      },
+      "noise_by_swing": {
+        "very_low": 0.05,
+        "low": 0.10,
+        "moderate": 0.20,
+        "moderate_high": 0.25,
+        "high": 0.35,
+        "very_high": 0.45
+      }
+    },
+    "archetype_count": 15,
+    "archetypes": [
+      "urban_young_worker", "suburban_family", "middle_aged_salaryman",
+      "middle_aged_working_woman", "rural_farmer", "active_elderly",
+      "late_elderly", "self_employed", "public_sector_worker",
+      "university_student", "homemaker", "non_regular_worker",
+      "labor_union_member", "tech_worker", "freelance_gig_worker"
+    ],
+    "weather_impact": {
+      "heavy_snow_regions": ["北海道", "青森県", "秋田県", "山形県", "新潟県", "富山県", "石川県", "福井県"],
+      "heavy_snow_modifier": -0.10,
+      "moderate_snow_regions": ["岩手県", "宮城県", "福島県", "長野県", "鳥取県", "島根県"],
+      "moderate_snow_modifier": -0.05
+    }
+  },
+
+  "results_summary": {
+    "national_turnout_rate": 0.546,
+    "smd_seats": {
+      "ldp": 6,
+      "ishin": 2,
+      "chudo": 1,
+      "jcp": 1
+    },
+    "district_highlights": [
+      {"district": "大阪1区", "winner_party": "ishin", "turnout": 0.66, "note": "維新地盤で維新が勝利 - 期待通り"},
+      {"district": "島根1区", "winner_party": "ldp", "turnout": 0.62, "note": "農村保守でLDP勝利 - 期待通り"},
+      {"district": "北海道11区", "winner_party": "chudo", "turnout": 0.59, "note": "旧CDP地盤で中道勝利 - 期待通り"},
+      {"district": "京都1区", "winner_party": "jcp", "turnout": 0.51, "note": "共産勢力圏でJCP勝利 - 僅差だが妥当"},
+      {"district": "神奈川1区", "winner_party": "ishin", "turnout": 0.52, "note": "接戦区で維新が僅差勝利（差1票）"},
+      {"district": "愛知1区", "winner_party": "ldp", "turnout": 0.51, "note": "接戦区でLDPが僅差勝利（差2票）"}
+    ]
+  },
+
+  "validation": {
+    "total_checks": 9,
+    "passed": 8,
+    "failed": 1,
+    "checks": [
+      {"name": "全国投票率", "passed": true, "detail": "54.6%（期待: 35-70%）"},
+      {"name": "選挙区別投票率（異常値）", "passed": true, "detail": "正常"},
+      {"name": "当選者の得票", "passed": true, "detail": "正常"},
+      {"name": "自民党議席数", "passed": false, "detail": "6議席（期待: 10-250） - パイロット10区のみのため範囲外は妥当"},
+      {"name": "自民党比例得票率", "passed": true, "detail": "正常範囲内"},
+      {"name": "農村農業従事者のLDP傾向", "passed": true, "detail": "最多投票先: ldp"},
+      {"name": "労働組合員のLDP非偏重", "passed": true, "detail": "LDP得票率 < 50%"},
+      {"name": "高齢者投票率 > 若年層投票率", "passed": true, "detail": "高齢者 > 若年層"},
+      {"name": "棄権率", "passed": true, "detail": "45.4%（期待: 30-65%）"}
+    ]
+  },
+
+  "files": {
+    "results": [
+      "results/summary.json",
+      "results/district_results.csv",
+      "results/proportional_results.csv"
+    ],
+    "config": [
+      "config/persona_config.json",
+      "config/manifesto_policies.json"
+    ],
+    "source_snapshot": [
+      "source_snapshot/engine.py",
+      "source_snapshot/persona_generator.py",
+      "source_snapshot/vote_calculator.py",
+      "source_snapshot/result_aggregator.py",
+      "source_snapshot/validators.py",
+      "source_snapshot/prompts.py",
+      "source_snapshot/run_pilot_simulation.py"
+    ]
+  },
+
+  "next_steps": [
+    "v2: LLM統合 - 中〜高スイング層にAnthropic Batch APIを使用",
+    "v3: 接戦区50選挙区に拡大",
+    "v4: 全289選挙区フル実行"
+  ]
+}
