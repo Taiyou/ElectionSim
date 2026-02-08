@@ -406,7 +406,7 @@ export default async function ManifestoPage() {
           ペルソナ類型 × 政党 適合度ヒートマップ
         </h2>
         <p className="text-gray-500 text-xs mb-3">
-          12種類の有権者ペルソナ類型と各政党の政策方針がどの程度適合するかを0〜100のスコアで表示。数値が高いほど、その政党の政策がペルソナの関心事項に合致しています。
+          15種類の有権者ペルソナ類型と各政党の政策方針がどの程度適合するかを0〜100のスコアで表示。数値が高いほど、その政党の政策がペルソナの関心事項に合致しています。
         </p>
         <div className="bg-white border border-gray-200 rounded-lg p-4">
           <PersonaPartyHeatmap

@@ -41,3 +41,6 @@ htmlcov/
 # Alembic
 alembic/versions/*.pyc
 .env.save
+
+# Archive (ローカルバックアップ用、リポジトリには含めない)
+archive/

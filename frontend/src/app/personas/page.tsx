@@ -57,7 +57,7 @@ export default async function PersonasPage() {
             <div>
               <dt className="font-medium text-gray-700">平均投票率</dt>
               <dd>
-                投票行動研究に基づき設計した12種類のペルソナ類型それぞれに設定された投票確率（例：学生層 30%、年金生活者層 75% など）の単純平均値です。
+                投票行動研究に基づき設計した15種類のペルソナ類型それぞれに設定された投票確率（例：学生層 30%、年金生活者層 75% など）の単純平均値です。
                 各ペルソナの投票確率は <code className="bg-gray-200 px-1 rounded text-gray-600">persona_config.json</code> の <code className="bg-gray-200 px-1 rounded text-gray-600">turnout_probability</code> フィールドで定義されています。
               </dd>
             </div>
@@ -197,6 +197,42 @@ export default async function PersonasPage() {
       <section className="mb-10">
         <h2 className="text-xl font-bold mb-4">データソース・分析手法</h2>
 
+        {/* Why 15 Archetypes */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+          <h3 className="font-bold text-blue-800 mb-3">ペルソナ類型を15類型に拡張した理由</h3>
+          <p className="text-sm text-gray-700 mb-4">
+            当初の12類型では捕捉できなかった有権者層を3類型追加し、シミュレーション精度を向上させました。
+          </p>
+          <div className="space-y-3 text-sm text-gray-700">
+            <div className="flex items-start gap-3">
+              <span className="bg-blue-200 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">+</span>
+              <div>
+                <p className="font-medium">労働組合員</p>
+                <p className="text-gray-500">組織票の影響を正確にモデル化するため追加。投票率80%・浮動性極低という特徴を持ち、特定政党への固定票として選挙結果に大きく影響する層です。</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="bg-blue-200 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">+</span>
+              <div>
+                <p className="font-medium">IT・テック従事者</p>
+                <p className="text-gray-500">デジタル化・規制緩和など従来の類型では十分に反映されなかった政策関心を持つ層。SNS・テック系メディアを主な情報源とし、浮動性が高く選挙結果を左右する新しい有権者セグメントです。</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="bg-blue-200 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">+</span>
+              <div>
+                <p className="font-medium">フリーランス・ギグワーカー</p>
+                <p className="text-gray-500">インボイス制度導入や社会保険制度の変化により、独自の政策ニーズを持つ急成長中の就業形態。投票率は低いが浮動性が高く、政策争点次第で投票行動が大きく変わる層です。</p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 p-3 bg-blue-100 rounded-lg">
+            <p className="text-xs text-blue-800">
+              この拡張により、組織票（労働組合員）・新興テック産業従事者・非正規就業の多様化（ギグワーカー）という現代日本の有権者構造の変化をより精緻に反映できるようになりました。
+            </p>
+          </div>
+        </div>
+
         {/* Analysis Methodology */}
         <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-6">
           <h3 className="font-bold text-purple-800 mb-3">分析手法</h3>
@@ -204,15 +240,15 @@ export default async function PersonasPage() {
             <div className="flex items-start gap-3">
               <span className="bg-purple-200 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
               <div>
-                <p className="font-medium">ペルソナ類型設計（12類型）</p>
-                <p className="text-gray-500">投票行動研究・政治学文献に基づき、年齢層・職業・政治関心度・投票確率・浮動性を定義した12の有権者ペルソナ類型を設計</p>
+                <p className="font-medium">ペルソナ類型設計（15類型）</p>
+                <p className="text-gray-500">投票行動研究・政治学文献に基づき、年齢層・職業・政治関心度・投票確率・浮動性を定義した15の有権者ペルソナ類型を設計</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <span className="bg-purple-200 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
               <div>
                 <p className="font-medium">都道府県別ペルソナ構成比の算出</p>
-                <p className="text-gray-500">国勢調査（年齢・職業・世帯構成）と労働力調査のデータから、47都道府県ごとに12類型の人口構成比率を加重推計</p>
+                <p className="text-gray-500">国勢調査（年齢・職業・世帯構成）と労働力調査のデータから、47都道府県ごとに15類型の人口構成比率を加重推計</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -331,7 +367,7 @@ export default async function PersonasPage() {
                   <td className="px-4 py-3">
                     <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium">ペルソナ設計</span>
                   </td>
-                  <td className="px-4 py-3">12類型定義・投票決定要因ウェイト</td>
+                  <td className="px-4 py-3">15類型定義・投票決定要因ウェイト</td>
                   <td className="px-4 py-3 text-gray-500"><a href="https://www.akaruisenkyo.or.jp/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">投票行動研究・政治学文献 — 明るい選挙推進協会・学術研究</a></td>
                   <td className="px-4 py-3 text-center">2021-2024</td>
                 </tr>
