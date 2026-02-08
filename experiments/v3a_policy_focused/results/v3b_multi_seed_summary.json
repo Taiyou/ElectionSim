@@ -1,0 +1,1364 @@
+{
+  "n_seeds": 3,
+  "experiment_ids": [
+    "sim_20260208_032908_seed42",
+    "sim_20260208_032909_seed123",
+    "sim_20260208_032909_seed99"
+  ],
+  "seeds": [
+    42,
+    123,
+    99
+  ],
+  "national": {
+    "turnout_mean": 0.5604,
+    "turnout_std": 0.0024,
+    "turnout_min": 0.5589,
+    "turnout_max": 0.5632
+  },
+  "party_seats": {
+    "ldp": {
+      "smd": {
+        "mean": 187.7,
+        "std": 5.7,
+        "min": 183,
+        "max": 194
+      },
+      "pr": {
+        "mean": 92.0,
+        "std": 2.0,
+        "min": 90,
+        "max": 94
+      },
+      "total": {
+        "mean": 279.7,
+        "std": 5.5,
+        "min": 276,
+        "max": 286
+      }
+    },
+    "chudo": {
+      "smd": {
+        "mean": 51.3,
+        "std": 4.6,
+        "min": 46,
+        "max": 54
+      },
+      "pr": {
+        "mean": 42.0,
+        "std": 2.0,
+        "min": 40,
+        "max": 44
+      },
+      "total": {
+        "mean": 93.3,
+        "std": 5.0,
+        "min": 88,
+        "max": 98
+      }
+    },
+    "ishin": {
+      "smd": {
+        "mean": 20.7,
+        "std": 1.2,
+        "min": 20,
+        "max": 22
+      },
+      "pr": {
+        "mean": 10.0,
+        "std": 1.0,
+        "min": 9,
+        "max": 11
+      },
+      "total": {
+        "mean": 30.7,
+        "std": 1.5,
+        "min": 29,
+        "max": 32
+      }
+    },
+    "dpfp": {
+      "smd": {
+        "mean": 8.3,
+        "std": 1.5,
+        "min": 7,
+        "max": 10
+      },
+      "pr": {
+        "mean": 10.0,
+        "std": 0.0,
+        "min": 10,
+        "max": 10
+      },
+      "total": {
+        "mean": 18.3,
+        "std": 1.5,
+        "min": 17,
+        "max": 20
+      }
+    },
+    "jcp": {
+      "smd": {
+        "mean": 2.3,
+        "std": 0.6,
+        "min": 2,
+        "max": 3
+      },
+      "pr": {
+        "mean": 10.0,
+        "std": 1.0,
+        "min": 9,
+        "max": 11
+      },
+      "total": {
+        "mean": 12.3,
+        "std": 0.6,
+        "min": 12,
+        "max": 13
+      }
+    },
+    "sansei": {
+      "smd": {
+        "mean": 1.0,
+        "std": 1.0,
+        "min": 0,
+        "max": 2
+      },
+      "pr": {
+        "mean": 9.7,
+        "std": 0.6,
+        "min": 9,
+        "max": 10
+      },
+      "total": {
+        "mean": 10.7,
+        "std": 1.5,
+        "min": 9,
+        "max": 12
+      }
+    },
+    "independent": {
+      "smd": {
+        "mean": 4.7,
+        "std": 0.6,
+        "min": 4,
+        "max": 5
+      },
+      "pr": {
+        "mean": 1.0,
+        "std": 1.0,
+        "min": 0,
+        "max": 2
+      },
+      "total": {
+        "mean": 5.7,
+        "std": 1.5,
+        "min": 4,
+        "max": 7
+      }
+    },
+    "reiwa": {
+      "smd": {
+        "mean": 0.7,
+        "std": 0.6,
+        "min": 0,
+        "max": 1
+      },
+      "pr": {
+        "mean": 1.3,
+        "std": 0.6,
+        "min": 1,
+        "max": 2
+      },
+      "total": {
+        "mean": 2.0,
+        "std": 1.0,
+        "min": 1,
+        "max": 3
+      }
+    },
+    "genzei": {
+      "smd": {
+        "mean": 0.3,
+        "std": 0.6,
+        "min": 0,
+        "max": 1
+      },
+      "pr": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "total": {
+        "mean": 0.3,
+        "std": 0.6,
+        "min": 0,
+        "max": 1
+      }
+    },
+    "shoha": {
+      "smd": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "pr": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "total": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "hoshuto": {
+      "smd": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "pr": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "total": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "shamin": {
+      "smd": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "pr": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "total": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "mirai": {
+      "smd": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "pr": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "total": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    }
+  },
+  "consensus": {
+    "safe_count": 207,
+    "likely_count": 74,
+    "battleground_count": 8
+  },
+  "battleground_districts": [
+    {
+      "district_id": "12_9",
+      "district_name": "千葉県9区",
+      "consensus_winner": "ldp",
+      "agreement": "1/3",
+      "agreement_rate": 0.3333333333333333,
+      "winner_counts": {
+        "ldp": 1,
+        "chudo": 1,
+        "ishin": 1
+      },
+      "turnout_mean": 0.5767,
+      "turnout_std": 0.0321
+    },
+    {
+      "district_id": "13_1",
+      "district_name": "東京都1区",
+      "consensus_winner": "chudo",
+      "agreement": "1/3",
+      "agreement_rate": 0.3333333333333333,
+      "winner_counts": {
+        "chudo": 1,
+        "jcp": 1,
+        "ldp": 1
+      },
+      "turnout_mean": 0.49,
+      "turnout_std": 0.0458
+    },
+    {
+      "district_id": "13_10",
+      "district_name": "東京都10区",
+      "consensus_winner": "dpfp",
+      "agreement": "1/3",
+      "agreement_rate": 0.3333333333333333,
+      "winner_counts": {
+        "dpfp": 1,
+        "chudo": 1,
+        "ldp": 1
+      },
+      "turnout_mean": 0.49,
+      "turnout_std": 0.07
+    },
+    {
+      "district_id": "13_13",
+      "district_name": "東京都13区",
+      "consensus_winner": "ldp",
+      "agreement": "1/3",
+      "agreement_rate": 0.3333333333333333,
+      "winner_counts": {
+        "ldp": 1,
+        "jcp": 1,
+        "sansei": 1
+      },
+      "turnout_mean": 0.5167,
+      "turnout_std": 0.0153
+    },
+    {
+      "district_id": "13_23",
+      "district_name": "東京都23区",
+      "consensus_winner": "jcp",
+      "agreement": "1/3",
+      "agreement_rate": 0.3333333333333333,
+      "winner_counts": {
+        "jcp": 1,
+        "ldp": 1,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5067,
+      "turnout_std": 0.0551
+    },
+    {
+      "district_id": "13_24",
+      "district_name": "東京都24区",
+      "consensus_winner": "chudo",
+      "agreement": "1/3",
+      "agreement_rate": 0.3333333333333333,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 1,
+        "dpfp": 1
+      },
+      "turnout_mean": 0.5567,
+      "turnout_std": 0.0462
+    },
+    {
+      "district_id": "23_1",
+      "district_name": "愛知県1区",
+      "consensus_winner": "chudo",
+      "agreement": "1/3",
+      "agreement_rate": 0.3333333333333333,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 1,
+        "genzei": 1
+      },
+      "turnout_mean": 0.5433,
+      "turnout_std": 0.0493
+    },
+    {
+      "district_id": "27_5",
+      "district_name": "大阪府5区",
+      "consensus_winner": "ishin",
+      "agreement": "1/3",
+      "agreement_rate": 0.3333333333333333,
+      "winner_counts": {
+        "ishin": 1,
+        "dpfp": 1,
+        "reiwa": 1
+      },
+      "turnout_mean": 0.5267,
+      "turnout_std": 0.0252
+    }
+  ],
+  "likely_districts": [
+    {
+      "district_id": "01_1",
+      "district_name": "北海道1区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "dpfp": 1
+      },
+      "turnout_mean": 0.4533,
+      "turnout_std": 0.0569
+    },
+    {
+      "district_id": "01_4",
+      "district_name": "北海道4区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.4633,
+      "turnout_std": 0.0666
+    },
+    {
+      "district_id": "01_5",
+      "district_name": "北海道5区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.4833,
+      "turnout_std": 0.0473
+    },
+    {
+      "district_id": "01_6",
+      "district_name": "北海道6区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.4667,
+      "turnout_std": 0.0737
+    },
+    {
+      "district_id": "01_8",
+      "district_name": "北海道8区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.4567,
+      "turnout_std": 0.0306
+    },
+    {
+      "district_id": "02_3",
+      "district_name": "青森県3区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.5167,
+      "turnout_std": 0.0379
+    },
+    {
+      "district_id": "03_3",
+      "district_name": "岩手県3区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.5733,
+      "turnout_std": 0.0252
+    },
+    {
+      "district_id": "04_1",
+      "district_name": "宮城県1区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.4867,
+      "turnout_std": 0.0321
+    },
+    {
+      "district_id": "06_1",
+      "district_name": "山形県1区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.4967,
+      "turnout_std": 0.0289
+    },
+    {
+      "district_id": "11_1",
+      "district_name": "埼玉県1区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.5667,
+      "turnout_std": 0.0351
+    },
+    {
+      "district_id": "11_10",
+      "district_name": "埼玉県10区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5,
+      "turnout_std": 0.0624
+    },
+    {
+      "district_id": "11_14",
+      "district_name": "埼玉県14区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "dpfp": 1
+      },
+      "turnout_mean": 0.5133,
+      "turnout_std": 0.0289
+    },
+    {
+      "district_id": "11_15",
+      "district_name": "埼玉県15区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.4933,
+      "turnout_std": 0.0058
+    },
+    {
+      "district_id": "11_7",
+      "district_name": "埼玉県7区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.4967,
+      "turnout_std": 0.0416
+    },
+    {
+      "district_id": "12_4",
+      "district_name": "千葉県4区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5233,
+      "turnout_std": 0.0416
+    },
+    {
+      "district_id": "12_5",
+      "district_name": "千葉県5区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "dpfp": 1
+      },
+      "turnout_mean": 0.59,
+      "turnout_std": 0.0265
+    },
+    {
+      "district_id": "12_8",
+      "district_name": "千葉県8区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.5733,
+      "turnout_std": 0.0723
+    },
+    {
+      "district_id": "13_11",
+      "district_name": "東京都11区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5033,
+      "turnout_std": 0.0586
+    },
+    {
+      "district_id": "13_12",
+      "district_name": "東京都12区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "ishin": 1
+      },
+      "turnout_mean": 0.4833,
+      "turnout_std": 0.0513
+    },
+    {
+      "district_id": "13_15",
+      "district_name": "東京都15区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 1,
+        "chudo": 2
+      },
+      "turnout_mean": 0.56,
+      "turnout_std": 0.0361
+    },
+    {
+      "district_id": "13_16",
+      "district_name": "東京都16区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5033,
+      "turnout_std": 0.0306
+    },
+    {
+      "district_id": "13_18",
+      "district_name": "東京都18区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.5833,
+      "turnout_std": 0.0379
+    },
+    {
+      "district_id": "13_19",
+      "district_name": "東京都19区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5167,
+      "turnout_std": 0.0635
+    },
+    {
+      "district_id": "13_2",
+      "district_name": "東京都2区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "dpfp": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.52,
+      "turnout_std": 0.0529
+    },
+    {
+      "district_id": "13_25",
+      "district_name": "東京都25区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "dpfp": 1
+      },
+      "turnout_mean": 0.5267,
+      "turnout_std": 0.0252
+    },
+    {
+      "district_id": "13_3",
+      "district_name": "東京都3区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "ishin": 1
+      },
+      "turnout_mean": 0.5167,
+      "turnout_std": 0.0208
+    },
+    {
+      "district_id": "13_4",
+      "district_name": "東京都4区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "dpfp": 1
+      },
+      "turnout_mean": 0.5667,
+      "turnout_std": 0.0651
+    },
+    {
+      "district_id": "13_6",
+      "district_name": "東京都6区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.54,
+      "turnout_std": 0.0173
+    },
+    {
+      "district_id": "13_7",
+      "district_name": "東京都7区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 1,
+        "chudo": 2
+      },
+      "turnout_mean": 0.4833,
+      "turnout_std": 0.0666
+    },
+    {
+      "district_id": "13_8",
+      "district_name": "東京都8区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "dpfp": 1,
+        "chudo": 2
+      },
+      "turnout_mean": 0.5833,
+      "turnout_std": 0.0153
+    },
+    {
+      "district_id": "14_1",
+      "district_name": "神奈川県1区",
+      "consensus_winner": "ishin",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ishin": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.52,
+      "turnout_std": 0.0529
+    },
+    {
+      "district_id": "14_10",
+      "district_name": "神奈川県10区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "dpfp": 1
+      },
+      "turnout_mean": 0.57,
+      "turnout_std": 0.0436
+    },
+    {
+      "district_id": "14_11",
+      "district_name": "神奈川県11区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "sansei": 1
+      },
+      "turnout_mean": 0.5333,
+      "turnout_std": 0.0551
+    },
+    {
+      "district_id": "14_13",
+      "district_name": "神奈川県13区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.5767,
+      "turnout_std": 0.0462
+    },
+    {
+      "district_id": "14_14",
+      "district_name": "神奈川県14区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "sansei": 1
+      },
+      "turnout_mean": 0.49,
+      "turnout_std": 0.0854
+    },
+    {
+      "district_id": "14_16",
+      "district_name": "神奈川県16区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.5967,
+      "turnout_std": 0.0058
+    },
+    {
+      "district_id": "14_3",
+      "district_name": "神奈川県3区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.56,
+      "turnout_std": 0.01
+    },
+    {
+      "district_id": "14_4",
+      "district_name": "神奈川県4区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.55,
+      "turnout_std": 0.0529
+    },
+    {
+      "district_id": "14_5",
+      "district_name": "神奈川県5区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.5367,
+      "turnout_std": 0.0379
+    },
+    {
+      "district_id": "14_6",
+      "district_name": "神奈川県6区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.53,
+      "turnout_std": 0.0608
+    },
+    {
+      "district_id": "14_7",
+      "district_name": "神奈川県7区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.54,
+      "turnout_std": 0.03
+    },
+    {
+      "district_id": "15_2",
+      "district_name": "新潟県2区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.5033,
+      "turnout_std": 0.0404
+    },
+    {
+      "district_id": "15_3",
+      "district_name": "新潟県3区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.56,
+      "turnout_std": 0.07
+    },
+    {
+      "district_id": "18_2",
+      "district_name": "福井県2区",
+      "consensus_winner": "independent",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "independent": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5433,
+      "turnout_std": 0.0289
+    },
+    {
+      "district_id": "20_2",
+      "district_name": "長野県2区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5,
+      "turnout_std": 0.0361
+    },
+    {
+      "district_id": "22_2",
+      "district_name": "静岡県2区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.5433,
+      "turnout_std": 0.0208
+    },
+    {
+      "district_id": "23_10",
+      "district_name": "愛知県10区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.57,
+      "turnout_std": 0.0608
+    },
+    {
+      "district_id": "23_12",
+      "district_name": "愛知県12区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 1,
+        "chudo": 2
+      },
+      "turnout_mean": 0.5367,
+      "turnout_std": 0.0208
+    },
+    {
+      "district_id": "23_13",
+      "district_name": "愛知県13区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 1,
+        "chudo": 2
+      },
+      "turnout_mean": 0.6267,
+      "turnout_std": 0.0351
+    },
+    {
+      "district_id": "23_8",
+      "district_name": "愛知県8区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.53,
+      "turnout_std": 0.11
+    },
+    {
+      "district_id": "23_9",
+      "district_name": "愛知県9区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.5933,
+      "turnout_std": 0.0289
+    },
+    {
+      "district_id": "24_3",
+      "district_name": "三重県3区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.6633,
+      "turnout_std": 0.0551
+    },
+    {
+      "district_id": "26_2",
+      "district_name": "京都府2区",
+      "consensus_winner": "jcp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "jcp": 2,
+        "ishin": 1
+      },
+      "turnout_mean": 0.53,
+      "turnout_std": 0.0458
+    },
+    {
+      "district_id": "27_13",
+      "district_name": "大阪府13区",
+      "consensus_winner": "ishin",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "reiwa": 1,
+        "ishin": 2
+      },
+      "turnout_mean": 0.5067,
+      "turnout_std": 0.0321
+    },
+    {
+      "district_id": "27_16",
+      "district_name": "大阪府16区",
+      "consensus_winner": "ishin",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ishin": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.55,
+      "turnout_std": 0.05
+    },
+    {
+      "district_id": "27_3",
+      "district_name": "大阪府3区",
+      "consensus_winner": "ishin",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ishin": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.4967,
+      "turnout_std": 0.0058
+    },
+    {
+      "district_id": "27_7",
+      "district_name": "大阪府7区",
+      "consensus_winner": "ishin",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ishin": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.5533,
+      "turnout_std": 0.0289
+    },
+    {
+      "district_id": "28_1",
+      "district_name": "兵庫県1区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 1,
+        "chudo": 2
+      },
+      "turnout_mean": 0.48,
+      "turnout_std": 0.0557
+    },
+    {
+      "district_id": "28_11",
+      "district_name": "兵庫県11区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ishin": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.5667,
+      "turnout_std": 0.0462
+    },
+    {
+      "district_id": "28_2",
+      "district_name": "兵庫県2区",
+      "consensus_winner": "ishin",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ishin": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5433,
+      "turnout_std": 0.0971
+    },
+    {
+      "district_id": "28_3",
+      "district_name": "兵庫県3区",
+      "consensus_winner": "ishin",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ishin": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.6,
+      "turnout_std": 0.0458
+    },
+    {
+      "district_id": "28_7",
+      "district_name": "兵庫県7区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.6133,
+      "turnout_std": 0.0252
+    },
+    {
+      "district_id": "28_8",
+      "district_name": "兵庫県8区",
+      "consensus_winner": "ishin",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ishin": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.5333,
+      "turnout_std": 0.0351
+    },
+    {
+      "district_id": "29_1",
+      "district_name": "奈良県1区",
+      "consensus_winner": "chudo",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 2,
+        "ldp": 1
+      },
+      "turnout_mean": 0.5933,
+      "turnout_std": 0.0611
+    },
+    {
+      "district_id": "32_1",
+      "district_name": "島根県1区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.6067,
+      "turnout_std": 0.0907
+    },
+    {
+      "district_id": "33_2",
+      "district_name": "岡山県2区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5067,
+      "turnout_std": 0.0586
+    },
+    {
+      "district_id": "34_3",
+      "district_name": "広島県3区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5933,
+      "turnout_std": 0.0473
+    },
+    {
+      "district_id": "34_4",
+      "district_name": "広島県4区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "ishin": 1
+      },
+      "turnout_mean": 0.54,
+      "turnout_std": 0.0557
+    },
+    {
+      "district_id": "40_2",
+      "district_name": "福岡県2区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.5233,
+      "turnout_std": 0.0666
+    },
+    {
+      "district_id": "42_1",
+      "district_name": "長崎県1区",
+      "consensus_winner": "dpfp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 1,
+        "dpfp": 2
+      },
+      "turnout_mean": 0.5733,
+      "turnout_std": 0.0231
+    },
+    {
+      "district_id": "42_2",
+      "district_name": "長崎県2区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.54,
+      "turnout_std": 0.05
+    },
+    {
+      "district_id": "46_3",
+      "district_name": "鹿児島県3区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "chudo": 1,
+        "ldp": 2
+      },
+      "turnout_mean": 0.6267,
+      "turnout_std": 0.0208
+    },
+    {
+      "district_id": "47_1",
+      "district_name": "沖縄県1区",
+      "consensus_winner": "jcp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 1,
+        "jcp": 2
+      },
+      "turnout_mean": 0.5467,
+      "turnout_std": 0.0115
+    },
+    {
+      "district_id": "47_3",
+      "district_name": "沖縄県3区",
+      "consensus_winner": "ldp",
+      "agreement": "2/3",
+      "agreement_rate": 0.6666666666666666,
+      "winner_counts": {
+        "ldp": 2,
+        "chudo": 1
+      },
+      "turnout_mean": 0.55,
+      "turnout_std": 0.0265
+    }
+  ]
+}

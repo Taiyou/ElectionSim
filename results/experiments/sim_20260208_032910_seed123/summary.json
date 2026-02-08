@@ -1,0 +1,114 @@
+{
+  "total_districts": 289,
+  "total_personas": 28900,
+  "national_turnout_rate": 0.6355,
+  "smd_seats": {
+    "chudo": 47,
+    "ldp": 196,
+    "dpfp": 6,
+    "ishin": 21,
+    "genzei": 1,
+    "independent": 3,
+    "reiwa": 2,
+    "jcp": 1
+  },
+  "proportional_seats": {
+    "dpfp": 10,
+    "reiwa": 1,
+    "chudo": 42,
+    "ldp": 97,
+    "jcp": 9,
+    "sansei": 6,
+    "mirai": 0,
+    "ishin": 10,
+    "genzei": 0,
+    "independent": 1,
+    "shamin": 0,
+    "hoshuto": 0,
+    "shoha": 0
+  },
+  "total_seats": {
+    "chudo": {
+      "smd": 47,
+      "pr": 42,
+      "total": 89
+    },
+    "dpfp": {
+      "smd": 6,
+      "pr": 10,
+      "total": 16
+    },
+    "genzei": {
+      "smd": 1,
+      "pr": 0,
+      "total": 1
+    },
+    "hoshuto": {
+      "smd": 0,
+      "pr": 0,
+      "total": 0
+    },
+    "independent": {
+      "smd": 3,
+      "pr": 1,
+      "total": 4
+    },
+    "ishin": {
+      "smd": 21,
+      "pr": 10,
+      "total": 31
+    },
+    "jcp": {
+      "smd": 1,
+      "pr": 9,
+      "total": 10
+    },
+    "ldp": {
+      "smd": 196,
+      "pr": 97,
+      "total": 293
+    },
+    "mirai": {
+      "smd": 0,
+      "pr": 0,
+      "total": 0
+    },
+    "reiwa": {
+      "smd": 2,
+      "pr": 1,
+      "total": 3
+    },
+    "sansei": {
+      "smd": 0,
+      "pr": 6,
+      "total": 6
+    },
+    "shamin": {
+      "smd": 0,
+      "pr": 0,
+      "total": 0
+    },
+    "shoha": {
+      "smd": 0,
+      "pr": 0,
+      "total": 0
+    }
+  },
+  "majority_threshold": 233,
+  "simulation_config": {
+    "seed": 123,
+    "personas_per_district": 100,
+    "model": "claude-sonnet-4-20250514",
+    "factor_weights": {
+      "party_loyalty": 0.22,
+      "policy_alignment": 0.3,
+      "candidate_appeal": 0.2,
+      "media_influence": 0.13,
+      "local_connection": 0.08,
+      "strategic_voting": 0.07
+    },
+    "swing_noise_offset": 0.0,
+    "independent_loyalty_score": 0.25,
+    "turnout_boost": 0.08
+  }
+}

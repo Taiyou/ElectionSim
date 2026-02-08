@@ -1,0 +1,28 @@
+{
+  "version": "v2_full_289_rule_based",
+  "title": "全289選挙区ルールベースフル実行（5シード統計分析付き）",
+  "date": "2026-02-08",
+  "timestamp": "2026-02-08T03:10:38.761107",
+  "status": "completed",
+  "description": "全289選挙区ルールベースフル実行（5シード統計分析付き）",
+  "notes": "5シード(42,99,123,7,314)の統計集計。LDP 292.6±3.6議席（過半数到達）。接戦区5選挙区。190選挙区で全シード一致。",
+  "results_summary": {},
+  "files": {
+    "results": [
+      "results/multi_seed_summary.json"
+    ],
+    "config": [
+      "config/persona_config.json",
+      "config/manifesto_policies.json"
+    ],
+    "source_snapshot": [
+      "source_snapshot/engine.py",
+      "source_snapshot/persona_generator.py",
+      "source_snapshot/vote_calculator.py",
+      "source_snapshot/result_aggregator.py",
+      "source_snapshot/validators.py",
+      "source_snapshot/prompts.py",
+      "source_snapshot/run_pilot_simulation.py"
+    ]
+  }
+}

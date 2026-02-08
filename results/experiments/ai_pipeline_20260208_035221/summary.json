@@ -1,0 +1,57 @@
+{
+  "total_districts_predicted": 289,
+  "total_districts": 289,
+  "total_proportional_seats": 176,
+  "majority_line": 233,
+  "smd_seats": {
+    "ldp": 170,
+    "chudo": 77,
+    "ishin": 28,
+    "dpfp": 6,
+    "independent": 4,
+    "mirai": 2,
+    "sansei": 1,
+    "genzei": 1
+  },
+  "pr_seats": {
+    "ldp": 59,
+    "chudo": 37,
+    "ishin": 31,
+    "dpfp": 18,
+    "jcp": 11,
+    "reiwa": 7,
+    "hoshuto": 6,
+    "genzei": 4,
+    "sansei": 2,
+    "mirai": 1,
+    "shamin": 0
+  },
+  "total_seats": {
+    "ldp": 229,
+    "chudo": 114,
+    "ishin": 59,
+    "dpfp": 24,
+    "jcp": 11,
+    "reiwa": 7,
+    "hoshuto": 6,
+    "genzei": 5,
+    "independent": 4,
+    "sansei": 3,
+    "mirai": 3,
+    "shamin": 0
+  },
+  "confidence_distribution": {
+    "high": 81,
+    "low": 43,
+    "medium": 165
+  },
+  "pipeline_config": {
+    "batch_id": "2026-02-08_03",
+    "models": {
+      "news_analysis": "perplexity/sonar-pro",
+      "sns_analysis": "x-ai/grok-3",
+      "integration": "anthropic/claude-sonnet-4"
+    },
+    "api_gateway": "OpenRouter"
+  }
+}

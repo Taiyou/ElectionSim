@@ -1,0 +1,115 @@
+{
+  "total_districts": 289,
+  "total_personas": 28900,
+  "national_turnout_rate": 0.5592,
+  "smd_seats": {
+    "chudo": 46,
+    "ldp": 194,
+    "dpfp": 8,
+    "ishin": 20,
+    "sansei": 1,
+    "genzei": 1,
+    "jcp": 2,
+    "independent": 4,
+    "reiwa": 1
+  },
+  "proportional_seats": {
+    "sansei": 10,
+    "dpfp": 10,
+    "chudo": 42,
+    "jcp": 11,
+    "ldp": 92,
+    "mirai": 0,
+    "ishin": 9,
+    "reiwa": 2,
+    "shamin": 0,
+    "independent": 0,
+    "genzei": 0,
+    "hoshuto": 0,
+    "shoha": 0
+  },
+  "total_seats": {
+    "chudo": {
+      "smd": 46,
+      "pr": 42,
+      "total": 88
+    },
+    "dpfp": {
+      "smd": 8,
+      "pr": 10,
+      "total": 18
+    },
+    "genzei": {
+      "smd": 1,
+      "pr": 0,
+      "total": 1
+    },
+    "hoshuto": {
+      "smd": 0,
+      "pr": 0,
+      "total": 0
+    },
+    "independent": {
+      "smd": 4,
+      "pr": 0,
+      "total": 4
+    },
+    "ishin": {
+      "smd": 20,
+      "pr": 9,
+      "total": 29
+    },
+    "jcp": {
+      "smd": 2,
+      "pr": 11,
+      "total": 13
+    },
+    "ldp": {
+      "smd": 194,
+      "pr": 92,
+      "total": 286
+    },
+    "mirai": {
+      "smd": 0,
+      "pr": 0,
+      "total": 0
+    },
+    "reiwa": {
+      "smd": 1,
+      "pr": 2,
+      "total": 3
+    },
+    "sansei": {
+      "smd": 1,
+      "pr": 10,
+      "total": 11
+    },
+    "shamin": {
+      "smd": 0,
+      "pr": 0,
+      "total": 0
+    },
+    "shoha": {
+      "smd": 0,
+      "pr": 0,
+      "total": 0
+    }
+  },
+  "majority_threshold": 233,
+  "simulation_config": {
+    "seed": 99,
+    "personas_per_district": 100,
+    "model": "claude-sonnet-4-20250514",
+    "factor_weights": {
+      "party_loyalty": 0.15,
+      "policy_alignment": 0.3,
+      "candidate_appeal": 0.25,
+      "media_influence": 0.15,
+      "local_connection": 0.08,
+      "strategic_voting": 0.07
+    },
+    "swing_noise_offset": 0.05,
+    "independent_loyalty_score": 0.15,
+    "turnout_boost": 0.0
+  }
+}

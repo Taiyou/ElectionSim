@@ -1,0 +1,277 @@
+{
+  "version": "1.0",
+  "description": "ペルソナAI擬似投票シミュレーション設定",
+  "generation_parameters": {
+    "personas_per_district": 100,
+    "sampling_method": "weighted_stratified",
+    "description": "各選挙区の人口構成比に基づき、年齢・性別・職業・政治傾向を加重抽出してペルソナを生成"
+  },
+  "persona_archetypes": [
+    {
+      "id": "urban_young_worker",
+      "name_ja": "都市部若年勤労者",
+      "age_range": [18, 34],
+      "gender": "any",
+      "urbanization": ["大都市", "中核市"],
+      "occupation_type": "tertiary",
+      "political_engagement": "low",
+      "typical_concerns": ["雇用", "賃金", "住宅費", "子育て支援"],
+      "voting_behavior": {
+        "turnout_probability": 0.35,
+        "swing_tendency": "high",
+        "information_source": ["SNS", "ネットニュース"]
+      }
+    },
+    {
+      "id": "suburban_family",
+      "name_ja": "郊外子育て世帯",
+      "age_range": [30, 49],
+      "gender": "any",
+      "urbanization": ["大都市", "中核市"],
+      "occupation_type": "any",
+      "political_engagement": "moderate",
+      "typical_concerns": ["教育", "子育て支援", "住宅ローン", "物価"],
+      "voting_behavior": {
+        "turnout_probability": 0.55,
+        "swing_tendency": "moderate",
+        "information_source": ["テレビ", "ネットニュース", "ママ友ネットワーク"]
+      }
+    },
+    {
+      "id": "middle_aged_salaryman",
+      "name_ja": "中高年会社員",
+      "age_range": [40, 59],
+      "gender": "male",
+      "urbanization": "any",
+      "occupation_type": "secondary_or_tertiary",
+      "political_engagement": "moderate",
+      "typical_concerns": ["経済成長", "税制", "年金", "雇用安定"],
+      "voting_behavior": {
+        "turnout_probability": 0.60,
+        "swing_tendency": "moderate",
+        "information_source": ["新聞", "テレビ", "職場"]
+      }
+    },
+    {
+      "id": "middle_aged_working_woman",
+      "name_ja": "中高年女性労働者",
+      "age_range": [40, 59],
+      "gender": "female",
+      "urbanization": "any",
+      "occupation_type": "tertiary",
+      "political_engagement": "moderate",
+      "typical_concerns": ["社会保障", "介護", "賃金格差", "物価高"],
+      "voting_behavior": {
+        "turnout_probability": 0.55,
+        "swing_tendency": "moderate_high",
+        "information_source": ["テレビ", "新聞", "口コミ"]
+      }
+    },
+    {
+      "id": "rural_farmer",
+      "name_ja": "農村部農業従事者",
+      "age_range": [50, 80],
+      "gender": "any",
+      "urbanization": ["地方都市", "農村部"],
+      "occupation_type": "primary",
+      "political_engagement": "moderate_high",
+      "typical_concerns": ["農業政策", "TPP・貿易", "地方創生", "インフラ"],
+      "voting_behavior": {
+        "turnout_probability": 0.70,
+        "swing_tendency": "low",
+        "information_source": ["新聞", "農協", "地域コミュニティ"]
+      }
+    },
+    {
+      "id": "active_elderly",
+      "name_ja": "前期高齢者（65-74歳）",
+      "age_range": [65, 74],
+      "gender": "any",
+      "urbanization": "any",
+      "occupation_type": "retired_or_parttime",
+      "political_engagement": "high",
+      "typical_concerns": ["年金", "医療", "介護", "社会保障", "生きがい"],
+      "voting_behavior": {
+        "turnout_probability": 0.75,
+        "swing_tendency": "low",
+        "information_source": ["テレビ", "新聞", "地域組織"]
+      }
+    },
+    {
+      "id": "late_elderly",
+      "name_ja": "後期高齢者（75歳以上）",
+      "age_range": [75, 90],
+      "gender": "any",
+      "urbanization": "any",
+      "occupation_type": "retired",
+      "political_engagement": "high",
+      "typical_concerns": ["年金", "医療", "介護", "社会保障"],
+      "voting_behavior": {
+        "turnout_probability": 0.65,
+        "swing_tendency": "very_low",
+        "information_source": ["テレビ", "新聞", "家族"],
+        "note": "外出困難・大雪時は投票率大幅低下"
+      }
+    },
+    {
+      "id": "self_employed",
+      "name_ja": "自営業・中小企業主",
+      "age_range": [35, 69],
+      "gender": "any",
+      "urbanization": "any",
+      "occupation_type": "self_employed",
+      "political_engagement": "high",
+      "typical_concerns": ["減税", "規制緩和", "経済政策", "事業承継"],
+      "voting_behavior": {
+        "turnout_probability": 0.65,
+        "swing_tendency": "moderate",
+        "information_source": ["業界団体", "新聞", "経営者仲間"]
+      }
+    },
+    {
+      "id": "public_sector_worker",
+      "name_ja": "公務員・教職員",
+      "age_range": [25, 64],
+      "gender": "any",
+      "urbanization": "any",
+      "occupation_type": "public_sector",
+      "political_engagement": "high",
+      "typical_concerns": ["公共サービス", "教育", "行政改革", "給与制度"],
+      "voting_behavior": {
+        "turnout_probability": 0.75,
+        "swing_tendency": "low",
+        "information_source": ["労働組合", "新聞", "職場"]
+      }
+    },
+    {
+      "id": "university_student",
+      "name_ja": "大学生・大学院生",
+      "age_range": [18, 25],
+      "gender": "any",
+      "urbanization": ["大都市", "中核市"],
+      "occupation_type": "student",
+      "political_engagement": "low",
+      "typical_concerns": ["学費", "就職", "気候変動", "格差是正"],
+      "voting_behavior": {
+        "turnout_probability": 0.30,
+        "swing_tendency": "very_high",
+        "information_source": ["SNS", "YouTube", "友人"]
+      }
+    },
+    {
+      "id": "homemaker",
+      "name_ja": "専業主婦・主夫",
+      "age_range": [30, 65],
+      "gender": "any",
+      "urbanization": "any",
+      "occupation_type": "homemaker",
+      "political_engagement": "moderate",
+      "typical_concerns": ["物価", "教育", "子育て支援", "食の安全"],
+      "voting_behavior": {
+        "turnout_probability": 0.55,
+        "swing_tendency": "moderate_high",
+        "information_source": ["テレビ", "SNS", "ママ友"]
+      }
+    },
+    {
+      "id": "non_regular_worker",
+      "name_ja": "非正規雇用労働者",
+      "age_range": [20, 59],
+      "gender": "any",
+      "urbanization": "any",
+      "occupation_type": "non_regular",
+      "political_engagement": "low",
+      "typical_concerns": ["雇用安定", "最低賃金", "社会保険", "格差"],
+      "voting_behavior": {
+        "turnout_probability": 0.30,
+        "swing_tendency": "high",
+        "information_source": ["SNS", "ネットニュース"]
+      }
+    },
+    {
+      "id": "labor_union_member",
+      "name_ja": "労働組合員",
+      "age_range": [25, 64],
+      "gender": "any",
+      "urbanization": "any",
+      "occupation_type": "secondary_or_tertiary",
+      "political_engagement": "high",
+      "typical_concerns": ["労働者の権利", "賃金", "雇用", "社会保障"],
+      "voting_behavior": {
+        "turnout_probability": 0.80,
+        "swing_tendency": "very_low",
+        "information_source": ["労働組合", "組合報", "職場"]
+      }
+    },
+    {
+      "id": "tech_worker",
+      "name_ja": "IT・テック従事者",
+      "age_range": [25, 45],
+      "gender": "any",
+      "urbanization": ["大都市", "中核市"],
+      "occupation_type": "tertiary_tech",
+      "political_engagement": "moderate",
+      "typical_concerns": ["テクノロジー政策", "規制緩和", "デジタル化", "働き方改革"],
+      "voting_behavior": {
+        "turnout_probability": 0.50,
+        "swing_tendency": "high",
+        "information_source": ["SNS", "ネットニュース", "テック系メディア", "YouTube"]
+      }
+    },
+    {
+      "id": "freelance_gig_worker",
+      "name_ja": "フリーランス・ギグワーカー",
+      "age_range": [25, 55],
+      "gender": "any",
+      "urbanization": ["大都市", "中核市"],
+      "occupation_type": "freelance",
+      "political_engagement": "low",
+      "typical_concerns": ["社会保険", "インボイス制度", "収入安定", "減税"],
+      "voting_behavior": {
+        "turnout_probability": 0.35,
+        "swing_tendency": "high",
+        "information_source": ["SNS", "ネットニュース", "YouTube"]
+      }
+    }
+  ],
+  "voting_decision_factors": {
+    "party_loyalty": {
+      "weight": 0.30,
+      "description": "過去の支持政党への忠誠度"
+    },
+    "candidate_appeal": {
+      "weight": 0.20,
+      "description": "候補者個人の魅力・知名度"
+    },
+    "policy_alignment": {
+      "weight": 0.25,
+      "description": "政策と個人の課題の一致度"
+    },
+    "media_influence": {
+      "weight": 0.10,
+      "description": "メディア報道・SNSの影響"
+    },
+    "local_connection": {
+      "weight": 0.10,
+      "description": "地域との繋がり・地元活動"
+    },
+    "strategic_voting": {
+      "weight": 0.05,
+      "description": "戦略的投票（死に票回避など）"
+    }
+  },
+  "turnout_modifiers": {
+    "weather": {"snowy_cold": -0.10, "rainy": -0.05, "sunny": 0.02, "normal": 0.0},
+    "election_competitiveness": {"high": 0.05, "medium": 0.0, "low": -0.03},
+    "national_mood": {"high_interest": 0.05, "normal": 0.0, "apathy": -0.05},
+    "early_voting_boost": 0.03,
+    "notes": "2026年2月8日は強烈寒波・大雪予報。特に北海道・東北・北陸・山陰で影響大。後期高齢者は外出困難で投票率大幅低下。期日前投票率26%増が一部緩和"
+  },
+  "data_sources": {
+    "demographics": "persona_data/prefecture_demographics.json",
+    "socioeconomic": "persona_data/socioeconomic_indicators.json",
+    "political": "persona_data/political_tendencies.json",
+    "regional_issues": "persona_data/regional_issues.json",
+    "voter_profiles": "persona_data/voter_profiles.json"
+  }
+}

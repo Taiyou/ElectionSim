@@ -1,0 +1,11 @@
+district_id,district_name,total_personas,turnout_count,turnout_rate,winner,winner_party,winner_votes,runner_up,runner_up_party,runner_up_votes,margin
+01_11,北海道11区,100,79,0.79,石川香織,chudo,37,中川紘一,ldp,36,1
+05_1,秋田県1区,100,77,0.77,冨樫博之,ldp,27,早川周作,chudo,16,11
+13_1,東京都1区,100,77,0.77,海江田万里,chudo,29,山田美樹,ldp,17,12
+14_1,神奈川県1区,100,81,0.81,篠原豪,chudo,51,浅川義治,ishin,19,32
+23_1,愛知県1区,100,70,0.7,吉田統彦,chudo,35,熊田裕通,ldp,20,15
+26_1,京都府1区,100,75,0.75,平竹耕三,chudo,25,勝目康,ldp,20,5
+27_1,大阪府1区,100,71,0.71,井上英孝,ishin,38,大西宏幸,ldp,12,26
+32_1,島根県1区,100,76,0.76,高階恵美子,ldp,43,亀井亜紀子,chudo,23,20
+40_1,福岡県1区,100,72,0.72,井上貴博,ldp,28,丸尾圭祐,chudo,25,3
+47_1,沖縄県1区,100,77,0.77,国場幸之助,ldp,31,赤嶺政賢,jcp,20,11

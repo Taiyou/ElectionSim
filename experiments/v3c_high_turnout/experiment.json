@@ -1,0 +1,31 @@
+{
+  "version": "v3c_high_turnout",
+  "title": "高投票率モデル: turnout_boost=+0.08, party_loyalty=0.22",
+  "date": "2026-02-08",
+  "timestamp": "2026-02-08T03:29:42.245591",
+  "status": "completed",
+  "description": "高投票率モデル: turnout_boost=+0.08, party_loyalty=0.22",
+  "notes": "v3シナリオC: 高投票率。LDP 291.3±7.6, Chudo 91.3±9.7, 投票率63.8%, 接戦6区",
+  "results_summary": {},
+  "files": {
+    "results": [
+      "results/v3b_multi_seed_summary.json",
+      "results/v3a_multi_seed_summary.json",
+      "results/multi_seed_summary.json",
+      "results/v3c_multi_seed_summary.json"
+    ],
+    "config": [
+      "config/persona_config.json",
+      "config/manifesto_policies.json"
+    ],
+    "source_snapshot": [
+      "source_snapshot/engine.py",
+      "source_snapshot/persona_generator.py",
+      "source_snapshot/vote_calculator.py",
+      "source_snapshot/result_aggregator.py",
+      "source_snapshot/validators.py",
+      "source_snapshot/prompts.py",
+      "source_snapshot/run_pilot_simulation.py"
+    ]
+  }
+}

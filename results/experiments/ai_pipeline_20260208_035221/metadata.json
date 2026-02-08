@@ -1,0 +1,88 @@
+{
+  "experiment_id": "ai_pipeline_20260208_035221",
+  "created_at": "2026-02-08T03:52:21.746339+09:00",
+  "status": "completed",
+  "duration_seconds": null,
+  "description": "AIパイプライン予測（Perplexity+Grok+Claude via OpenRouter）",
+  "tags": [
+    "ai_pipeline",
+    "full",
+    "perplexity",
+    "grok",
+    "claude",
+    "openrouter"
+  ],
+  "parameters": {
+    "pipeline_type": "ai_multi_agent",
+    "batch_id": "2026-02-08_03",
+    "models": {
+      "news_analysis": "perplexity/sonar-pro",
+      "sns_analysis": "x-ai/grok-3",
+      "integration": "anthropic/claude-sonnet-4"
+    },
+    "api_gateway": "OpenRouter",
+    "mode": "full",
+    "district_count": 289,
+    "total_districts": 289,
+    "schedule_hours": "8,12,20",
+    "api_rate_limit_per_minute": 30
+  },
+  "config_versions": {
+    "prompt_grok_sentiment_hash": "sha256:3bfe12e166df2e12",
+    "prompt___init___hash": "sha256:e3b0c44298fc1c14",
+    "prompt_perplexity_news_hash": "sha256:fe923802b68d8400",
+    "prompt_claude_integrate_hash": "sha256:ff6725941277883d",
+    "persona_config_hash": "sha256:497a9a5401703901",
+    "manifesto_policies_hash": "sha256:2dca3dae697f9dd7"
+  },
+  "results_summary": {
+    "smd_seats": {
+      "ldp": 170,
+      "chudo": 77,
+      "ishin": 28,
+      "dpfp": 6,
+      "independent": 4,
+      "mirai": 2,
+      "sansei": 1,
+      "genzei": 1
+    },
+    "pr_seats": {
+      "ldp": 59,
+      "chudo": 37,
+      "ishin": 31,
+      "dpfp": 18,
+      "jcp": 11,
+      "reiwa": 7,
+      "hoshuto": 6,
+      "genzei": 4,
+      "sansei": 2,
+      "mirai": 1,
+      "shamin": 0
+    },
+    "total_seats": {
+      "ldp": 229,
+      "chudo": 114,
+      "ishin": 59,
+      "dpfp": 24,
+      "jcp": 11,
+      "reiwa": 7,
+      "hoshuto": 6,
+      "genzei": 5,
+      "independent": 4,
+      "sansei": 3,
+      "mirai": 3,
+      "shamin": 0
+    },
+    "confidence_distribution": {
+      "high": 81,
+      "low": 43,
+      "medium": 165
+    },
+    "districts_predicted": 289,
+    "districts_missing": 0,
+    "validation_passed": true
+  },
+  "environment": {
+    "git_commit": "cf7efb3"
+  }
+}

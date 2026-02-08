@@ -1,0 +1,563 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "各政党のマニフェスト・政策方針を分類整理したデータ（公知の情報に基づく一般的な政策立場の要約）",
+    "last_updated": "2025-01-01",
+    "issue_categories": {
+      "economy": "経済・財政",
+      "social_security": "社会保障",
+      "national_security": "安全保障・外交",
+      "education": "教育・子育て",
+      "environment": "環境・エネルギー",
+      "local_revitalization": "地方創生",
+      "constitutional_reform": "憲法改正",
+      "disaster_prevention": "防災・国土強靱化"
+    },
+    "party_names": {
+      "ldp": "自由民主党",
+      "chudo": "中道改革連合",
+      "ishin": "日本維新の会",
+      "dpfp": "国民民主党",
+      "jcp": "日本共産党",
+      "reiwa": "れいわ新選組",
+      "shamin": "社民党",
+      "sansei": "参政党",
+      "hoshuto": "日本保守党",
+      "mirai": "チームみらい",
+      "genzei": "減税日本・ゆうこく連合",
+      "cdp": "立憲民主党（旧・中道改革連合の前身）",
+      "komei": "公明党（旧・中道改革連合の前身）"
+    },
+    "party_alias_map": {
+      "chudo": ["cdp", "komei"]
+    }
+  },
+  "parties": [
+    {
+      "party_id": "ldp",
+      "policies": [
+        {
+          "category": "economy",
+          "title": "新しい資本主義",
+          "description": "賃上げと投資の好循環を軸に、構造的な経済成長を目指す",
+          "priority": "high",
+          "target_personas": ["middle_aged_salaryman", "self_employed", "rural_farmer"]
+        },
+        {
+          "category": "national_security",
+          "title": "防衛力の抜本的強化",
+          "description": "防衛費のGDP比2%達成と反撃能力の整備",
+          "priority": "high",
+          "target_personas": ["middle_aged_salaryman", "elderly_pensioner", "self_employed"]
+        },
+        {
+          "category": "social_security",
+          "title": "全世代型社会保障",
+          "description": "現役世代から高齢者まで安心できる社会保障制度の構築",
+          "priority": "high",
+          "target_personas": ["elderly_pensioner", "middle_aged_working_woman", "homemaker"]
+        },
+        {
+          "category": "local_revitalization",
+          "title": "デジタル田園都市構想",
+          "description": "デジタル技術で地方の利便性を向上し、地方創生を推進",
+          "priority": "medium",
+          "target_personas": ["rural_farmer", "self_employed"]
+        },
+        {
+          "category": "constitutional_reform",
+          "title": "憲法改正の推進",
+          "description": "自衛隊の明記・緊急事態条項の創設などの改正議論を推進",
+          "priority": "medium",
+          "target_personas": ["elderly_pensioner", "middle_aged_salaryman"]
+        }
+      ]
+    },
+    {
+      "party_id": "cdp",
+      "policies": [
+        {
+          "category": "economy",
+          "title": "分配重視の経済政策",
+          "description": "格差是正と可処分所得の向上を通じた内需主導の経済成長",
+          "priority": "high",
+          "target_personas": ["non_regular_worker", "urban_young_worker", "labor_union_member"]
+        },
+        {
+          "category": "social_security",
+          "title": "医療・介護の充実",
+          "description": "医療・介護従事者の処遇改善と社会保障の安定財源確保",
+          "priority": "high",
+          "target_personas": ["elderly_pensioner", "middle_aged_working_woman", "public_sector_worker"]
+        },
+        {
+          "category": "education",
+          "title": "教育無償化の拡大",
+          "description": "高等教育の無償化と給付型奨学金の拡充",
+          "priority": "high",
+          "target_personas": ["university_student", "suburban_family", "non_regular_worker"]
+        },
+        {
+          "category": "environment",
+          "title": "原発ゼロ・再エネ推進",
+          "description": "原発に依存しないエネルギー政策と再生可能エネルギーの拡大",
+          "priority": "medium",
+          "target_personas": ["urban_young_worker", "university_student", "public_sector_worker"]
+        },
+        {
+          "category": "constitutional_reform",
+          "title": "立憲主義の堅持",
+          "description": "安易な改憲に反対し、現行憲法の価値を守る",
+          "priority": "medium",
+          "target_personas": ["public_sector_worker", "labor_union_member", "university_student"]
+        }
+      ]
+    },
+    {
+      "party_id": "ishin",
+      "policies": [
+        {
+          "category": "economy",
+          "title": "規制改革・成長戦略",
+          "description": "岩盤規制の打破と民間活力の活用で経済成長を実現",
+          "priority": "high",
+          "target_personas": ["self_employed", "urban_young_worker", "middle_aged_salaryman"]
+        },
+        {
+          "category": "education",
+          "title": "教育完全無償化",
+          "description": "幼児教育から大学まで教育費の完全無償化を目指す",
+          "priority": "high",
+          "target_personas": ["suburban_family", "university_student", "urban_young_worker"]
+        },
+        {
+          "category": "local_revitalization",
+          "title": "道州制・地方分権",
+          "description": "統治機構改革による地方の自立と行政の効率化",
+          "priority": "high",
+          "target_personas": ["self_employed", "public_sector_worker"]
+        },
+        {
+          "category": "social_security",
+          "title": "ベーシックインカムの検討",
+          "description": "社会保障制度の抜本的見直しとセーフティネットの再構築",
+          "priority": "medium",
+          "target_personas": ["non_regular_worker", "urban_young_worker", "university_student"]
+        }
+      ]
+    },
+    {
+      "party_id": "komei",
+      "policies": [
+        {
+          "category": "social_security",
+          "title": "安心の社会保障",
+          "description": "年金・医療・介護の持続可能な制度設計と給付充実",
+          "priority": "high",
+          "target_personas": ["elderly_pensioner", "homemaker", "middle_aged_working_woman"]
+        },
+        {
+          "category": "education",
+          "title": "子育て支援の拡充",
+          "description": "児童手当の拡充と保育・教育環境の整備",
+          "priority": "high",
+          "target_personas": ["suburban_family", "homemaker", "urban_young_worker"]
+        },
+        {
+          "category": "disaster_prevention",
+          "title": "防災・減災の推進",
+          "description": "国土強靱化計画の着実な実行とインフラ老朽化対策",
+          "priority": "high",
+          "target_personas": ["elderly_pensioner", "rural_farmer", "homemaker"]
+        },
+        {
+          "category": "economy",
+          "title": "中小企業支援",
+          "description": "中小企業・小規模事業者への金融支援と事業承継の促進",
+          "priority": "medium",
+          "target_personas": ["self_employed", "middle_aged_salaryman"]
+        }
+      ]
+    },
+    {
+      "party_id": "dpfp",
+      "policies": [
+        {
+          "category": "economy",
+          "title": "手取りを増やす経済政策",
+          "description": "減税・社会保険料負担軽減で国民の可処分所得を向上",
+          "priority": "high",
+          "target_personas": ["urban_young_worker", "middle_aged_salaryman", "suburban_family"]
+        },
+        {
+          "category": "environment",
+          "title": "現実的エネルギー政策",
+          "description": "エネルギー安全保障を前提とした脱炭素の段階的推進",
+          "priority": "medium",
+          "target_personas": ["middle_aged_salaryman", "self_employed"]
+        },
+        {
+          "category": "education",
+          "title": "人づくり投資",
+          "description": "教育国債の活用と科学技術投資の拡充",
+          "priority": "high",
+          "target_personas": ["university_student", "suburban_family", "urban_young_worker"]
+        },
+        {
+          "category": "national_security",
+          "title": "現実的安全保障",
+          "description": "日米同盟を基軸としつつ自主防衛力の強化",
+          "priority": "medium",
+          "target_personas": ["middle_aged_salaryman", "elderly_pensioner"]
+        }
+      ]
+    },
+    {
+      "party_id": "jcp",
+      "policies": [
+        {
+          "category": "economy",
+          "title": "大企業・富裕層への課税強化",
+          "description": "内部留保課税や所得税の累進強化で格差を是正",
+          "priority": "high",
+          "target_personas": ["non_regular_worker", "labor_union_member", "urban_young_worker"]
+        },
+        {
+          "category": "social_security",
+          "title": "社会保障の拡充",
+          "description": "国民健康保険料の引き下げと年金の底上げ",
+          "priority": "high",
+          "target_personas": ["elderly_pensioner", "non_regular_worker", "homemaker"]
+        },
+        {
+          "category": "national_security",
+          "title": "平和外交の推進",
+          "description": "日米安保の段階的解消と非核三原則の厳守",
+          "priority": "high",
+          "target_personas": ["university_student", "public_sector_worker", "labor_union_member"]
+        },
+        {
+          "category": "constitutional_reform",
+          "title": "憲法9条の堅持",
+          "description": "戦争放棄・戦力不保持を規定した憲法9条の厳格な維持",
+          "priority": "high",
+          "target_personas": ["public_sector_worker", "labor_union_member", "elderly_pensioner"]
+        }
+      ]
+    },
+    {
+      "party_id": "reiwa",
+      "policies": [
+        {
+          "category": "economy",
+          "title": "消費税廃止",
+          "description": "消費税の廃止と積極財政による景気回復を目指す",
+          "priority": "high",
+          "target_personas": ["non_regular_worker", "urban_young_worker", "university_student"]
+        },
+        {
+          "category": "social_security",
+          "title": "最低賃金1500円",
+          "description": "全国一律の最低賃金引き上げと社会保障の底上げ",
+          "priority": "high",
+          "target_personas": ["non_regular_worker", "urban_young_worker", "labor_union_member"]
+        },
+        {
+          "category": "education",
+          "title": "奨学金の帳消し",
+          "description": "既存の奨学金債務の免除と高等教育の完全無償化",
+          "priority": "high",
+          "target_personas": ["university_student", "urban_young_worker"]
+        },
+        {
+          "category": "environment",
+          "title": "原発即時停止",
+          "description": "すべての原発の即時停止と再生可能エネルギーへの全面転換",
+          "priority": "medium",
+          "target_personas": ["university_student", "urban_young_worker"]
+        }
+      ]
+    },
+    {
+      "party_id": "shamin",
+      "policies": [
+        {
+          "category": "social_security",
+          "title": "いのちと暮らしを守る",
+          "description": "生活保護基準の引き上げと社会的弱者への支援強化",
+          "priority": "high",
+          "target_personas": ["non_regular_worker", "elderly_pensioner", "homemaker"]
+        },
+        {
+          "category": "national_security",
+          "title": "平和憲法の護持",
+          "description": "軍備拡大に反対し、外交による平和構築を推進",
+          "priority": "high",
+          "target_personas": ["public_sector_worker", "labor_union_member", "university_student"]
+        },
+        {
+          "category": "environment",
+          "title": "脱原発・自然エネルギー",
+          "description": "原発の廃止と自然エネルギー100%社会の実現",
+          "priority": "high",
+          "target_personas": ["university_student", "urban_young_worker", "public_sector_worker"]
+        },
+        {
+          "category": "economy",
+          "title": "格差是正・公正な税制",
+          "description": "大企業優遇税制の見直しと労働者の権利保護",
+          "priority": "medium",
+          "target_personas": ["labor_union_member", "non_regular_worker"]
+        }
+      ]
+    },
+    {
+      "party_id": "sansei",
+      "policies": [
+        {
+          "category": "education",
+          "title": "教育の再建",
+          "description": "日本の歴史・伝統に基づいた教育改革と学力向上",
+          "priority": "high",
+          "target_personas": ["suburban_family", "elderly_pensioner", "homemaker"]
+        },
+        {
+          "category": "national_security",
+          "title": "自主防衛力の強化",
+          "description": "自主的な防衛体制の確立と安全保障政策の見直し",
+          "priority": "high",
+          "target_personas": ["middle_aged_salaryman", "elderly_pensioner", "self_employed"]
+        },
+        {
+          "category": "economy",
+          "title": "国内産業の保護",
+          "description": "食料安全保障の確保と国内農業・産業の保護育成",
+          "priority": "medium",
+          "target_personas": ["rural_farmer", "self_employed"]
+        },
+        {
+          "category": "constitutional_reform",
+          "title": "自主憲法の制定",
+          "description": "日本の独自性を反映した新しい憲法の制定を目指す",
+          "priority": "medium",
+          "target_personas": ["elderly_pensioner", "middle_aged_salaryman"]
+        }
+      ]
+    },
+    {
+      "party_id": "hoshuto",
+      "policies": [
+        {
+          "category": "national_security",
+          "title": "国防の強化",
+          "description": "安全保障体制の抜本的強化と領土・主権の防衛",
+          "priority": "high",
+          "target_personas": ["middle_aged_salaryman", "elderly_pensioner", "self_employed"]
+        },
+        {
+          "category": "constitutional_reform",
+          "title": "憲法改正の断行",
+          "description": "自衛隊の国軍化と緊急事態条項の導入",
+          "priority": "high",
+          "target_personas": ["elderly_pensioner", "middle_aged_salaryman"]
+        },
+        {
+          "category": "economy",
+          "title": "経済自立の推進",
+          "description": "サプライチェーンの国内回帰と経済安全保障の確立",
+          "priority": "medium",
+          "target_personas": ["self_employed", "middle_aged_salaryman", "rural_farmer"]
+        }
+      ]
+    },
+    {
+      "party_id": "chudo",
+      "policies": [
+        {
+          "category": "economy",
+          "title": "分配と中小企業支援の両立",
+          "description": "格差是正と可処分所得向上に加え、中小企業・小規模事業者への支援強化で地域経済を活性化",
+          "priority": "high",
+          "target_personas": ["non_regular_worker", "urban_young_worker", "self_employed", "labor_union_member"]
+        },
+        {
+          "category": "social_security",
+          "title": "全世代型安心の社会保障",
+          "description": "医療・介護の充実と年金制度の安定化、給付充実を両立する持続可能な社会保障制度",
+          "priority": "high",
+          "target_personas": ["elderly_pensioner", "middle_aged_working_woman", "homemaker", "public_sector_worker"]
+        },
+        {
+          "category": "education",
+          "title": "教育無償化と子育て支援",
+          "description": "高等教育の無償化・給付型奨学金の拡充と児童手当拡充・保育環境整備の一体推進",
+          "priority": "high",
+          "target_personas": ["university_student", "suburban_family", "homemaker", "urban_young_worker"]
+        },
+        {
+          "category": "disaster_prevention",
+          "title": "防災・減災と国土強靱化",
+          "description": "国土強靱化計画の着実な実行、インフラ老朽化対策、地域防災力の強化",
+          "priority": "high",
+          "target_personas": ["elderly_pensioner", "rural_farmer", "homemaker"]
+        },
+        {
+          "category": "environment",
+          "title": "脱炭素社会への段階的移行",
+          "description": "再生可能エネルギーの拡大を進めつつ、エネルギー安定供給を確保する現実的な脱炭素政策",
+          "priority": "medium",
+          "target_personas": ["urban_young_worker", "university_student", "public_sector_worker"]
+        },
+        {
+          "category": "constitutional_reform",
+          "title": "立憲主義に基づく慎重な議論",
+          "description": "安易な改憲に反対しつつ、時代に即した建設的な憲法議論を推進",
+          "priority": "medium",
+          "target_personas": ["public_sector_worker", "labor_union_member", "university_student"]
+        }
+      ]
+    },
+    {
+      "party_id": "genzei",
+      "policies": [
+        {
+          "category": "economy",
+          "title": "減税による経済活性化",
+          "description": "消費税減税・住民税減税を柱に、国民の手取りを増やし内需を喚起",
+          "priority": "high",
+          "target_personas": ["urban_young_worker", "non_regular_worker", "self_employed", "suburban_family"]
+        },
+        {
+          "category": "economy",
+          "title": "行政改革と無駄削減",
+          "description": "行政の無駄を徹底的に削減し、減税の財源を確保する構造改革",
+          "priority": "high",
+          "target_personas": ["middle_aged_salaryman", "self_employed"]
+        },
+        {
+          "category": "social_security",
+          "title": "社会保険料負担の軽減",
+          "description": "現役世代の社会保険料負担を軽減し、可処分所得の向上を図る",
+          "priority": "medium",
+          "target_personas": ["urban_young_worker", "middle_aged_salaryman", "non_regular_worker"]
+        }
+      ]
+    },
+    {
+      "party_id": "mirai",
+      "policies": [
+        {
+          "category": "economy",
+          "title": "テクノロジーによる経済成長",
+          "description": "AI・ブロックチェーン等の先端技術を活用した新産業創出と経済成長戦略",
+          "priority": "high",
+          "target_personas": ["urban_young_worker", "university_student", "self_employed"]
+        },
+        {
+          "category": "education",
+          "title": "デジタル教育の推進",
+          "description": "プログラミング教育の拡充とSTEM人材の育成、教育のデジタル化",
+          "priority": "high",
+          "target_personas": ["university_student", "suburban_family", "urban_young_worker"]
+        },
+        {
+          "category": "local_revitalization",
+          "title": "スマートシティ構想",
+          "description": "テクノロジーを活用した地方のスマート化と新しい地方自治の実現",
+          "priority": "high",
+          "target_personas": ["urban_young_worker", "self_employed", "public_sector_worker"]
+        },
+        {
+          "category": "social_security",
+          "title": "テクノロジーによる社会保障改革",
+          "description": "マイナンバー活用による給付の効率化と行政手続きのデジタル化",
+          "priority": "medium",
+          "target_personas": ["middle_aged_salaryman", "urban_young_worker", "public_sector_worker"]
+        },
+        {
+          "category": "environment",
+          "title": "グリーンテック推進",
+          "description": "テクノロジーを活用した脱炭素社会の実現とエネルギーイノベーション",
+          "priority": "medium",
+          "target_personas": ["university_student", "urban_young_worker"]
+        }
+      ]
+    }
+  ],
+  "persona_party_alignment": {
+    "urban_young_worker": {
+      "ldp": 0.30, "chudo": 0.35, "ishin": 0.60,
+      "dpfp": 0.55, "jcp": 0.35, "reiwa": 0.70, "shamin": 0.30,
+      "sansei": 0.15, "hoshuto": 0.10, "mirai": 0.65, "genzei": 0.45
+    },
+    "suburban_family": {
+      "ldp": 0.50, "chudo": 0.55, "ishin": 0.55,
+      "dpfp": 0.55, "jcp": 0.25, "reiwa": 0.35, "shamin": 0.25,
+      "sansei": 0.30, "hoshuto": 0.15, "mirai": 0.45, "genzei": 0.40
+    },
+    "middle_aged_salaryman": {
+      "ldp": 0.60, "chudo": 0.35, "ishin": 0.50,
+      "dpfp": 0.55, "jcp": 0.15, "reiwa": 0.20, "shamin": 0.15,
+      "sansei": 0.30, "hoshuto": 0.25, "mirai": 0.40, "genzei": 0.35
+    },
+    "middle_aged_working_woman": {
+      "ldp": 0.40, "chudo": 0.55, "ishin": 0.35,
+      "dpfp": 0.40, "jcp": 0.35, "reiwa": 0.40, "shamin": 0.35,
+      "sansei": 0.20, "hoshuto": 0.10, "mirai": 0.30, "genzei": 0.30
+    },
+    "rural_farmer": {
+      "ldp": 0.75, "chudo": 0.30, "ishin": 0.15,
+      "dpfp": 0.30, "jcp": 0.20, "reiwa": 0.15, "shamin": 0.20,
+      "sansei": 0.35, "hoshuto": 0.25, "mirai": 0.20, "genzei": 0.20
+    },
+    "elderly_pensioner": {
+      "ldp": 0.65, "chudo": 0.50, "ishin": 0.20,
+      "dpfp": 0.30, "jcp": 0.45, "reiwa": 0.25, "shamin": 0.35,
+      "sansei": 0.30, "hoshuto": 0.25, "mirai": 0.15, "genzei": 0.20
+    },
+    "self_employed": {
+      "ldp": 0.60, "chudo": 0.30, "ishin": 0.55,
+      "dpfp": 0.45, "jcp": 0.15, "reiwa": 0.20, "shamin": 0.15,
+      "sansei": 0.35, "hoshuto": 0.30, "mirai": 0.55, "genzei": 0.50
+    },
+    "public_sector_worker": {
+      "ldp": 0.30, "chudo": 0.55, "ishin": 0.25,
+      "dpfp": 0.35, "jcp": 0.55, "reiwa": 0.35, "shamin": 0.50,
+      "sansei": 0.10, "hoshuto": 0.10, "mirai": 0.35, "genzei": 0.25
+    },
+    "university_student": {
+      "ldp": 0.20, "chudo": 0.35, "ishin": 0.50,
+      "dpfp": 0.45, "jcp": 0.40, "reiwa": 0.65, "shamin": 0.40,
+      "sansei": 0.15, "hoshuto": 0.10, "mirai": 0.60, "genzei": 0.35
+    },
+    "homemaker": {
+      "ldp": 0.50, "chudo": 0.55, "ishin": 0.30,
+      "dpfp": 0.40, "jcp": 0.35, "reiwa": 0.30, "shamin": 0.30,
+      "sansei": 0.25, "hoshuto": 0.15, "mirai": 0.25, "genzei": 0.30
+    },
+    "non_regular_worker": {
+      "ldp": 0.20, "chudo": 0.45, "ishin": 0.40,
+      "dpfp": 0.45, "jcp": 0.55, "reiwa": 0.75, "shamin": 0.50,
+      "sansei": 0.10, "hoshuto": 0.10, "mirai": 0.35, "genzei": 0.40
+    },
+    "labor_union_member": {
+      "ldp": 0.15, "chudo": 0.55, "ishin": 0.20,
+      "dpfp": 0.50, "jcp": 0.55, "reiwa": 0.45, "shamin": 0.55,
+      "sansei": 0.05, "hoshuto": 0.05, "mirai": 0.20, "genzei": 0.15
+    }
+  },
+  "persona_names": {
+    "urban_young_worker": "都市部若年勤労者",
+    "suburban_family": "郊外子育て世帯",
+    "middle_aged_salaryman": "中高年会社員",
+    "middle_aged_working_woman": "中高年女性労働者",
+    "rural_farmer": "農村部農業従事者",
+    "elderly_pensioner": "高齢年金受給者",
+    "self_employed": "自営業・中小企業主",
+    "public_sector_worker": "公務員・教職員",
+    "university_student": "大学生・大学院生",
+    "homemaker": "専業主婦・主夫",
+    "non_regular_worker": "非正規雇用労働者",
+    "labor_union_member": "労働組合員"
+  }
+}

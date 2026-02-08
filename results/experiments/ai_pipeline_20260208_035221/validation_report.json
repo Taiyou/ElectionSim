@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "予測選挙区カバー率",
+      "passed": true,
+      "detail": "289/289選挙区 (100.0%)"
+    },
+    {
+      "name": "自民党小選挙区議席数",
+      "passed": true,
+      "detail": "170議席（期待: 50-250）"
+    },
+    {
+      "name": "自民党総議席数",
+      "passed": true,
+      "detail": "229議席（期待: 100-300）"
+    },
+    {
+      "name": "総議席数の整合性",
+      "passed": true,
+      "detail": "465/465議席"
+    },
+    {
+      "name": "比例代表議席合計",
+      "passed": true,
+      "detail": "176/176議席"
+    },
+    {
+      "name": "高信頼度予測の存在",
+      "passed": true,
+      "detail": "high: 81, medium: 165, low: 43"
+    },
+    {
+      "name": "複数政党の当選",
+      "passed": true,
+      "detail": "8政党が小選挙区で当選"
+    }
+  ],
+  "warnings": [],
+  "errors": []
+}
