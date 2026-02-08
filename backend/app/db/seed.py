@@ -68,5 +68,8 @@ async def seed_all(session: AsyncSession) -> None:
     await seed_proportional_blocks(session)
     await seed_districts_and_candidates(session)
 
+    from app.db.seed_predictions import seed_all_predictions
+    await seed_all_predictions(session)
+
     from app.db.seed_youtube_news import seed_youtube_news_all
     await seed_youtube_news_all(session)

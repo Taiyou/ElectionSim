@@ -86,18 +86,20 @@ def validate_results(results: list[DistrictResult]) -> ValidationReport:
         f"{len(zero_vote_districts)}選挙区で当選者0票" if zero_vote_districts else "正常"
     )
 
-    # 4. 政党別小選挙区議席数チェック
+    # 4. 政党別小選挙区議席数チェック（選挙区数に応じて閾値を動的変更）
     party_seats = {}
     for r in results:
         if r.winner_party:
             party_seats[r.winner_party] = party_seats.get(r.winner_party, 0) + 1
 
-    # 自民党が全議席、または0議席は異常
+    total_districts = len(results)
     ldp_seats = party_seats.get("ldp", 0)
+    min_ldp = max(1, int(total_districts * 0.03))
+    max_ldp = int(total_districts * 0.85)
     report.add_check(
         "自民党議席数",
-        10 <= ldp_seats <= 250,
-        f"{ldp_seats}議席（期待: 10-250）"
+        min_ldp <= ldp_seats <= max_ldp,
+        f"{ldp_seats}議席（期待: {min_ldp}-{max_ldp}, {total_districts}選挙区中）"
     )
 
     # 5. 比例代表の政党分布チェック

@@ -73,6 +73,9 @@ def calculate_vote(
     persona: Persona,
     candidates: list[dict],
     district_data: dict,
+    factor_weights: dict | None = None,
+    swing_noise_offset: float = 0.0,
+    independent_loyalty_score: float = 0.3,
 ) -> VoteDecision:
     """
     ペルソナの投票行動を算出する。
@@ -92,6 +95,9 @@ def calculate_vote(
             swing_level=persona.swing_tendency,
         )
 
+    # 使用する重みの決定
+    weights = factor_weights if factor_weights is not None else FACTOR_WEIGHTS
+
     # 2. スイングレベル判定
     swing_level = persona.swing_tendency
     needs_llm = swing_level in ("moderate", "moderate_high", "high", "very_high")
@@ -104,7 +110,8 @@ def calculate_vote(
     for candidate in candidates:
         party_id = candidate.get("party_id", "independent")
         score = _calculate_candidate_score(
-            persona, candidate, party_id, archetype_alignment, district_data
+            persona, candidate, party_id, archetype_alignment, district_data,
+            weights=weights, independent_loyalty_score=independent_loyalty_score,
         )
         candidate_scores[candidate["candidate_name"]] = {
             "score": score,
@@ -119,7 +126,7 @@ def calculate_vote(
         )
 
     # 4. スコアにノイズを加えてランダム性を付与
-    noise_level = SWING_NOISE.get(swing_level, 0.20)
+    noise_level = SWING_NOISE.get(swing_level, 0.20) + swing_noise_offset
     noisy_scores = {}
     for name, data in candidate_scores.items():
         noise = random.gauss(0, noise_level)
@@ -160,8 +167,13 @@ def _calculate_candidate_score(
     party_id: str,
     archetype_alignment: dict,
     district_data: dict,
+    weights: dict | None = None,
+    independent_loyalty_score: float = 0.3,
 ) -> float:
     """6要因モデルで候補者スコアを算出"""
+
+    if weights is None:
+        weights = FACTOR_WEIGHTS
 
     # Factor 1: 政党忠誠度
     party_loyalty_score = 0.0
@@ -173,7 +185,7 @@ def _calculate_candidate_score(
     if persona.party_affinity == party_id or persona.party_affinity == party_name_map.get(party_id, ""):
         party_loyalty_score = 1.0
     elif persona.party_affinity == "支持なし":
-        party_loyalty_score = 0.3  # 無党派: 低い忠誠度
+        party_loyalty_score = independent_loyalty_score  # 無党派: オーバーライド可能
     else:
         party_loyalty_score = 0.1  # 他党支持者
 
@@ -207,12 +219,12 @@ def _calculate_candidate_score(
 
     # 加重合算
     total = (
-        FACTOR_WEIGHTS["party_loyalty"] * party_loyalty_score
-        + FACTOR_WEIGHTS["policy_alignment"] * policy_score
-        + FACTOR_WEIGHTS["candidate_appeal"] * candidate_score
-        + FACTOR_WEIGHTS["media_influence"] * media_score
-        + FACTOR_WEIGHTS["local_connection"] * local_score
-        + FACTOR_WEIGHTS["strategic_voting"] * strategic_score
+        weights["party_loyalty"] * party_loyalty_score
+        + weights["policy_alignment"] * policy_score
+        + weights["candidate_appeal"] * candidate_score
+        + weights["media_influence"] * media_score
+        + weights["local_connection"] * local_score
+        + weights["strategic_voting"] * strategic_score
     )
 
     return total

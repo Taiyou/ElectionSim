@@ -41,12 +41,20 @@ class SimulationEngine:
         llm_batch_size: int = 15,
         model: str = "claude-sonnet-4-20250514",
         use_batch_api: bool = True,
+        factor_weights: dict | None = None,
+        swing_noise_offset: float = 0.0,
+        independent_loyalty_score: float = 0.3,
+        turnout_boost: float = 0.0,
     ):
         self.seed = seed
         self.personas_per_district = personas_per_district
         self.llm_batch_size = llm_batch_size
         self.model = model
         self.use_batch_api = use_batch_api
+        self.factor_weights = factor_weights
+        self.swing_noise_offset = swing_noise_offset
+        self.independent_loyalty_score = independent_loyalty_score
+        self.turnout_boost = turnout_boost
 
         # データ読み込み
         self.archetype_config = load_archetype_config()
@@ -81,12 +89,22 @@ class SimulationEngine:
             alt_id = f"{int(district_row['都道府県コード'])}_{district_row['区番号']}"
             candidates = self.candidates_by_district.get(alt_id, [])
 
-        # 3. ルールベース投票（全ペルソナ）
+        # 3. 投票率ブースト適用
+        if self.turnout_boost != 0.0:
+            for p in personas:
+                p.turnout_probability = max(0.05, min(0.95, p.turnout_probability + self.turnout_boost))
+
+        # 4. ルールベース投票（全ペルソナ）
         decisions: list[VoteDecision] = []
         llm_personas: list[tuple[int, Persona]] = []
 
         for i, persona in enumerate(personas):
-            decision = calculate_vote(persona, candidates, district_row)
+            decision = calculate_vote(
+                persona, candidates, district_row,
+                factor_weights=self.factor_weights,
+                swing_noise_offset=self.swing_noise_offset,
+                independent_loyalty_score=self.independent_loyalty_score,
+            )
             decisions.append(decision)
 
             # LLM処理が必要なペルソナを記録
@@ -209,6 +227,10 @@ class SimulationEngine:
             "district_ids": run_district_ids,
             "district_count": len(results),
             "total_personas": total_personas,
+            "factor_weights": self.factor_weights,
+            "swing_noise_offset": self.swing_noise_offset,
+            "independent_loyalty_score": self.independent_loyalty_score,
+            "turnout_boost": self.turnout_boost,
         }
 
         results_summary = {
@@ -365,7 +387,7 @@ class SimulationEngine:
                     })
 
     def _build_summary(self, results: list[DistrictResult]) -> dict:
-        """全体サマリを構築"""
+        """全体サマリを構築（SMD + 比例代表 + 合計議席）"""
         party_seats = {}
         total_turnout = 0
         total_personas = 0
@@ -376,17 +398,81 @@ class SimulationEngine:
             if r.winner_party:
                 party_seats[r.winner_party] = party_seats.get(r.winner_party, 0) + 1
 
+        # 比例代表議席の算出
+        proportional_seats = self._calc_proportional_seats(results)
+
+        # 合計議席（SMD + PR）
+        all_parties = sorted(set(party_seats.keys()) | set(proportional_seats.keys()))
+        total_seats = {}
+        for party in all_parties:
+            smd = party_seats.get(party, 0)
+            pr = proportional_seats.get(party, 0)
+            total_seats[party] = {"smd": smd, "pr": pr, "total": smd + pr}
+
+        # 過半数判定（衆議院 465議席の過半数 = 233）
+        MAJORITY = 233
+        coalition_totals = {}
+        for party, seats in total_seats.items():
+            coalition_totals[party] = seats["total"]
+
         return {
             "total_districts": len(results),
             "total_personas": total_personas,
             "national_turnout_rate": round(total_turnout / total_personas, 4) if total_personas > 0 else 0,
             "smd_seats": party_seats,
+            "proportional_seats": proportional_seats,
+            "total_seats": total_seats,
+            "majority_threshold": MAJORITY,
             "simulation_config": {
                 "seed": self.seed,
                 "personas_per_district": self.personas_per_district,
                 "model": self.model,
+                "factor_weights": self.factor_weights,
+                "swing_noise_offset": self.swing_noise_offset,
+                "independent_loyalty_score": self.independent_loyalty_score,
+                "turnout_boost": self.turnout_boost,
             },
         }
+
+    def _calc_proportional_seats(self, results: list[DistrictResult]) -> dict[str, int]:
+        """全ブロックの比例代表議席を集計"""
+        blocks_path = DATA_DIR / "proportional_blocks.json"
+        prefs_path = DATA_DIR / "prefectures.json"
+
+        try:
+            with open(blocks_path, "r", encoding="utf-8") as f:
+                blocks = json.load(f)
+            with open(prefs_path, "r", encoding="utf-8") as f:
+                prefectures = json.load(f)
+        except FileNotFoundError:
+            return {}
+
+        pref_to_block = {}
+        for pref in prefectures:
+            pref_to_block[pref["code"]] = pref.get("proportional_block", "")
+
+        # ブロック別の投票集計
+        block_votes: dict[str, dict[str, int]] = {}
+        for r in results:
+            pref_code = int(r.district_id.split("_")[0])
+            block_name = pref_to_block.get(pref_code, "unknown")
+            if block_name not in block_votes:
+                block_votes[block_name] = {}
+            for party, votes in r.proportional_votes.items():
+                block_votes[block_name][party] = block_votes[block_name].get(party, 0) + votes
+
+        block_seats_map = {b["id"]: b.get("total_seats", b.get("seats", 0)) for b in blocks}
+
+        # ブロックごとにドント式配分し全国合計
+        national_pr_seats: dict[str, int] = {}
+        for block_id, votes in block_votes.items():
+            seats = block_seats_map.get(block_id, 0)
+            if seats > 0:
+                allocated = dhondt_allocation(votes, seats)
+                for party, s in allocated.items():
+                    national_pr_seats[party] = national_pr_seats.get(party, 0) + s
+
+        return national_pr_seats
 
 
 def dhondt_allocation(votes: dict[str, int], total_seats: int) -> dict[str, int]:

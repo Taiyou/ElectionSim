@@ -1,6 +1,6 @@
 """シミュレーション API ルーター"""
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from ..schemas.simulation import (
     SimulationRequest,
@@ -9,9 +9,20 @@ from ..schemas.simulation import (
     DistrictResultResponse,
     ValidationReportResponse,
     ValidationCheckResponse,
+    ExperimentMetaResponse,
+    ExperimentListResponse,
+    ExperimentDetailResponse,
+    ComparisonRequest,
+    ComparisonReportResponse,
+    DistrictComparisonResponse,
 )
 from ..services.simulation.engine import SimulationEngine
 from ..services.simulation.validators import validate_results
+from ..services.experiment_manager import ExperimentManager
+from ..services.experiment_comparison import (
+    compare_experiments,
+    compare_with_actual,
+)
 
 router = APIRouter(prefix="/simulation", tags=["simulation"])
 
@@ -92,3 +103,72 @@ async def run_pilot_simulation(seed: int = 42, personas_per_district: int = 100)
         ],
     )
     return await run_simulation(request)
+
+
+# ─── 実験管理エンドポイント ───
+
+
+@router.get("/experiments", response_model=ExperimentListResponse)
+async def list_experiments():
+    """保存済み実験の一覧を取得"""
+    manager = ExperimentManager()
+    experiments = manager.list_experiments()
+    return ExperimentListResponse(
+        experiments=[
+            ExperimentMetaResponse(
+                experiment_id=e["experiment_id"],
+                created_at=e.get("created_at", ""),
+                status=e.get("status", "completed"),
+                duration_seconds=e.get("duration_seconds", 0),
+                description=e.get("description", ""),
+                tags=e.get("tags", []),
+                parameters=e.get("parameters", {}),
+                results_summary=e.get("results_summary", {}),
+            )
+            for e in experiments
+        ]
+    )
+
+
+@router.get("/experiments/{experiment_id}", response_model=ExperimentDetailResponse)
+async def get_experiment(experiment_id: str):
+    """指定実験の詳細を取得"""
+    manager = ExperimentManager()
+    try:
+        data = manager.load_experiment(experiment_id)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    return ExperimentDetailResponse(**data)
+
+
+@router.post("/compare", response_model=ComparisonReportResponse)
+async def compare_two_experiments(request: ComparisonRequest):
+    """2つの実験を比較（experiment_b="actual" で実選挙結果と比較）"""
+    try:
+        if request.experiment_b == "actual":
+            report = compare_with_actual(request.experiment_a)
+        else:
+            report = compare_experiments(request.experiment_a, request.experiment_b)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return ComparisonReportResponse(
+        experiment_a=report.experiment_a,
+        experiment_b=report.experiment_b,
+        common_districts=report.common_districts,
+        winner_match_rate=report.winner_match_rate,
+        seat_diff=report.seat_diff,
+        seat_mae=report.seat_mae,
+        turnout_correlation=report.turnout_correlation,
+        battleground_accuracy=report.battleground_accuracy,
+        district_comparisons=[
+            DistrictComparisonResponse(
+                district_id=c.district_id,
+                district_name=c.district_name,
+                party_a=c.party_a,
+                party_b=c.party_b,
+                match=c.match,
+            )
+            for c in report.district_comparisons
+        ],
+    )
