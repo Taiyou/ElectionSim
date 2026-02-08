@@ -76,3 +76,4 @@ class YouTubeSummaryResponse(BaseModel):
     recent_videos: list[YouTubeVideoResponse]
     issue_distribution: dict[str, int]
     party_video_counts: dict[str, int]
+    last_updated: Optional[str] = None

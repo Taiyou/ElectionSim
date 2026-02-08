@@ -49,6 +49,13 @@ async def fetch_youtube_data(
             days_back=days_back,
         )
 
+        # Only clear old data if we have new data to replace it
+        if not data["channels"] and not data["videos"]:
+            raise HTTPException(
+                status_code=502,
+                detail="YouTube API returned no data (quota may be exceeded). Existing data preserved.",
+            )
+
         # Clear old data
         await session.execute(delete(YouTubeVideo))
         await session.execute(delete(YouTubeSentiment))
@@ -77,6 +84,9 @@ async def fetch_youtube_data(
                     pub_at = datetime.fromisoformat(pub_at.replace("Z", "+00:00"))
                 except (ValueError, TypeError):
                     pub_at = datetime.utcnow()
+            # Strip timezone info to match naive DateTime columns in DB
+            if pub_at and hasattr(pub_at, "tzinfo") and pub_at.tzinfo is not None:
+                pub_at = pub_at.replace(tzinfo=None)
 
             session.add(YouTubeVideo(
                 video_id=v_data["video_id"],

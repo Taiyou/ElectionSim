@@ -1,10 +1,15 @@
 import { API_BASE } from "./constants";
 import type {
+  ActualResults,
+  BatchComparisonResponse,
   BlockWithPredictions,
+  ComparisonReport,
   District,
+  ExperimentListResponse,
   ManifestoSummary,
   ModelComparison,
   NewsSummary,
+  OpinionsSummary,
   PersonaSummary,
   Prediction,
   PredictionHistory,
@@ -112,5 +117,49 @@ export async function fetchSimulationRun(
   if (!res.ok) {
     throw new Error(`API error: ${res.status} ${res.statusText}`);
   }
+  return res.json();
+}
+
+export async function fetchExperimentList(): Promise<ExperimentListResponse> {
+  return fetchJSON("/simulation/experiments");
+}
+
+export async function fetchExperimentOpinions(
+  experimentId: string,
+): Promise<OpinionsSummary> {
+  return fetchJSON(`/simulation/experiments/${experimentId}/opinions`);
+}
+
+// ─── 実績比較 ───
+
+export async function fetchActualResults(): Promise<ActualResults> {
+  return fetchJSON("/simulation/actual-results");
+}
+
+export async function fetchComparison(
+  experimentA: string,
+  experimentB: string,
+): Promise<ComparisonReport> {
+  const res = await fetch(`${API_BASE}/simulation/compare`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      experiment_a: experimentA,
+      experiment_b: experimentB,
+    }),
+  });
+  if (!res.ok) throw new Error(`API error: ${res.status} ${res.statusText}`);
+  return res.json();
+}
+
+export async function fetchBatchComparison(
+  experimentIds: string[],
+): Promise<BatchComparisonResponse> {
+  const res = await fetch(`${API_BASE}/simulation/compare-batch`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ experiment_ids: experimentIds }),
+  });
+  if (!res.ok) throw new Error(`API error: ${res.status} ${res.statusText}`);
   return res.json();
 }

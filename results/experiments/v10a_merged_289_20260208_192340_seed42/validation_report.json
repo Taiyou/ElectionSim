@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "全国投票率",
+      "passed": true,
+      "detail": "54.7%（期待: 35-70%）"
+    },
+    {
+      "name": "選挙区数",
+      "passed": true,
+      "detail": "289区（289区中）"
+    }
+  ],
+  "warnings": [],
+  "errors": []
+}

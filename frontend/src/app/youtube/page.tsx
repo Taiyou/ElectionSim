@@ -29,6 +29,14 @@ export default async function YouTubePage() {
   const sortedIssues = Object.entries(data.issue_distribution)
     .sort(([, a], [, b]) => b - a);
 
+  // Build party_id -> channel_url map for video link fallback
+  const partyChannelUrl: Record<string, string> = {};
+  for (const ch of data.channels) {
+    if (ch.party_id && ch.channel_url) {
+      partyChannelUrl[ch.party_id] = ch.channel_url;
+    }
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Header */}
@@ -37,6 +45,11 @@ export default async function YouTubePage() {
         <p className="text-gray-500 text-sm">
           選挙関連YouTube動画のエンゲージメント・センチメント分析
         </p>
+        {data.last_updated && (
+          <p className="text-xs text-gray-400 mt-1">
+            最終データ更新: {new Date(data.last_updated).toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" })}
+          </p>
+        )}
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
           <StatCard label="分析動画数" value={data.total_videos.toLocaleString()} />
@@ -180,9 +193,23 @@ export default async function YouTubePage() {
       {/* Recent Top Videos */}
       <section>
         <h2 className="text-xl font-bold mb-4">注目動画 (視聴回数上位)</h2>
+        {/* Notice when using sample data */}
+        {data.recent_videos.length > 0 && !data.recent_videos[0].video_url && (
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4">
+            <p className="text-xs text-amber-700">
+              現在はサンプルデータを表示しています。リンクは各政党の公式YouTubeチャンネルに遷移します。
+              YouTube APIキーを設定すると実際の動画データに更新されます。
+            </p>
+          </div>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {data.recent_videos.slice(0, 10).map((video) => {
-            const videoLink = video.video_url || `https://www.youtube.com/watch?v=${video.video_id}`;
+            const hasRealUrl = !!video.video_url;
+            // Real video URL or fallback to party channel URL
+            const videoLink =
+              video.video_url ||
+              (video.party_mention && partyChannelUrl[video.party_mention]) ||
+              `https://www.youtube.com/channel/${video.channel_id}`;
             return (
               <a
                 key={video.id}
@@ -215,6 +242,14 @@ export default async function YouTubePage() {
                       style={{ backgroundColor: PARTY_COLORS[video.party_mention] || "#999" }}
                     >
                       {PARTY_NAMES[video.party_mention] || video.party_mention}
+                    </span>
+                  )}
+                  {!hasRealUrl && (
+                    <span className="text-[10px] text-amber-500 flex items-center gap-0.5">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      チャンネルへ
                     </span>
                   )}
                 </div>

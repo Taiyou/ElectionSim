@@ -1,0 +1,51 @@
+{
+  "experiment_id": "v10a_20260208_174207_seed42",
+  "created_at": "2026-02-08T17:42:07.075609+09:00",
+  "status": "completed",
+  "duration_seconds": 4595.91,
+  "description": "v10a 人口統計ペルソナ + LLM投票（記憶なし）(all, seed=42)",
+  "tags": [
+    "v10a_demographic_full",
+    "seed42",
+    "demographic",
+    "llm_calibrated",
+    "no_memory"
+  ],
+  "parameters": {
+    "seed": 42,
+    "personas_per_district": 100,
+    "model": "anthropic/claude-sonnet-4",
+    "temperature": 0.7,
+    "batch_size": 15,
+    "concurrency": 3,
+    "mode": "all",
+    "district_count": 289,
+    "total_personas": 28900,
+    "method": "demographic_llm_calibrated",
+    "generator_type": "demographic",
+    "calibration_enabled": true,
+    "calibration_strength": 0.3,
+    "memory_enabled": false
+  },
+  "methodology": {
+    "persona_generation": "人口統計データベース（国勢調査CSV直接サンプリング）",
+    "stage1": "ルールベース投票率判定（年齢×属性×天候補正）",
+    "stage2": "LLM投票先決定（全投票者、分布アンカリング付きプロンプト）",
+    "stage3": "事後キャリブレーション（強度=0.3）",
+    "memory": "なし（ベースライン）"
+  },
+  "results_summary": {
+    "national_turnout_rate": 0.5466,
+    "smd_seats": {
+      "chudo": 78,
+      "ldp": 173,
+      "other": 4,
+      "dpfp": 7,
+      "independent": 2,
+      "reiwa": 1,
+      "ishin": 23,
+      "sansei": 1
+    },
+    "validation_passed": true
+  }
+}

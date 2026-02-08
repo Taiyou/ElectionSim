@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "全国投票率",
+      "passed": true,
+      "detail": "51.7%（期待: 35-70%）"
+    },
+    {
+      "name": "選挙区別投票率（異常値）",
+      "passed": true,
+      "detail": "正常"
+    },
+    {
+      "name": "当選者の得票",
+      "passed": true,
+      "detail": "正常"
+    },
+    {
+      "name": "自民党議席数",
+      "passed": true,
+      "detail": "4議席（期待: 1-8, 10選挙区中）"
+    },
+    {
+      "name": "自民党比例得票率",
+      "passed": true,
+      "detail": "36.0%（期待: 15-50%）"
+    },
+    {
+      "name": "棄権率",
+      "passed": true,
+      "detail": "48.3%（期待: 30-65%）"
+    }
+  ],
+  "warnings": [],
+  "errors": []
+}

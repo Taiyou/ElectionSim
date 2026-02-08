@@ -1,0 +1,42 @@
+{
+  "experiment_id": "v9a_20260208_214932_seed42",
+  "created_at": "2026-02-08T21:49:32.150791+09:00",
+  "status": "completed",
+  "duration_seconds": 5178.94,
+  "description": "v9a ハイブリッドアンサンブル (seed=42)",
+  "tags": [
+    "v9a_hybrid_ensemble",
+    "seed42",
+    "hybrid",
+    "ensemble"
+  ],
+  "parameters": {
+    "seed": 42,
+    "personas_per_district": 100,
+    "model": "anthropic/claude-sonnet-4",
+    "temperature": 0.7,
+    "batch_size": 15,
+    "concurrency": 3,
+    "threshold": 1.0,
+    "calibration_strength": 0.3,
+    "method": "hybrid_ensemble",
+    "rule_based_districts": 213,
+    "llm_districts": 76
+  },
+  "methodology": {
+    "classification": "v2多シード合意率 < 1.0 の選挙区でLLM実行",
+    "safe_districts": "ルールベース（v2と同一モデル）",
+    "contested_districts": "v8aデカップリング方式（Stage 1 ルール投票率 + Stage 2 LLM投票先 + Stage 3 キャリブレーション）"
+  },
+  "results_summary": {
+    "national_turnout_rate": 0.5502,
+    "smd_seats": {
+      "chudo": 56,
+      "ldp": 197,
+      "jcp": 4,
+      "ishin": 25,
+      "dpfp": 5,
+      "independent": 2
+    }
+  }
+}

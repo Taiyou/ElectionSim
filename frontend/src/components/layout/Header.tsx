@@ -38,6 +38,12 @@ export default function Header() {
           <Link href="/simulation" className="hover:text-cyan-300 transition">
             シミュレーション
           </Link>
+          <Link href="/opinions" className="hover:text-orange-300 transition">
+            意見分析
+          </Link>
+          <Link href="/comparison" className="hover:text-yellow-300 transition">
+            実績比較
+          </Link>
           <Link href="/how-it-works" className="hover:text-blue-300 transition">
             仕組み
           </Link>

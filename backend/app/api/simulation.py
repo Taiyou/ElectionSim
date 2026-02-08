@@ -1,8 +1,11 @@
 """シミュレーション API ルーター"""
 
+import asyncio
+
 from fastapi import APIRouter, HTTPException
 
 from ..schemas.simulation import (
+    PoliticalClimate,
     SimulationRequest,
     SimulationRunResponse,
     SimulationSummaryResponse,
@@ -15,6 +18,10 @@ from ..schemas.simulation import (
     ComparisonRequest,
     ComparisonReportResponse,
     DistrictComparisonResponse,
+    OpinionsSummaryResponse,
+    ActualResultsResponse,
+    BatchComparisonRequest,
+    BatchComparisonResponse,
 )
 from ..services.simulation.engine import SimulationEngine
 from ..services.simulation.validators import validate_results
@@ -31,20 +38,28 @@ router = APIRouter(prefix="/simulation", tags=["simulation"])
 async def run_simulation(request: SimulationRequest):
     """シミュレーションを実行して結果を返す"""
 
+    political_climate_dict = None
+    if request.political_climate is not None:
+        political_climate_dict = request.political_climate.model_dump()
+
     engine = SimulationEngine(
         seed=request.seed,
         personas_per_district=request.personas_per_district,
+        weather_provider=request.weather_provider,
+        political_climate=political_climate_dict,
     )
 
     if request.district_ids:
-        results = []
-        for district_row in engine.districts:
-            did = f"{district_row['都道府県コード'].zfill(2)}_{district_row['区番号']}"
-            if did in request.district_ids:
-                result = engine.run_district(district_row)
-                results.append(result)
+        target_rows = [
+            row for row in engine.districts
+            if f"{row['都道府県コード'].zfill(2)}_{row['区番号']}" in request.district_ids
+        ]
+        results = await asyncio.to_thread(
+            engine._run_districts_parallel,
+            [(i, row) for i, row in enumerate(target_rows)],
+        )
     else:
-        results = engine.run_all()
+        results = await asyncio.to_thread(engine.run_all)
 
     # バリデーション
     report = validate_results(results)
@@ -124,6 +139,7 @@ async def list_experiments():
                 tags=e.get("tags", []),
                 parameters=e.get("parameters", {}),
                 results_summary=e.get("results_summary", {}),
+                has_opinions=e.get("has_opinions", False),
             )
             for e in experiments
         ]
@@ -152,6 +168,28 @@ async def compare_two_experiments(request: ComparisonRequest):
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
 
+    return _report_to_response(report)
+
+
+@router.get(
+    "/experiments/{experiment_id}/opinions",
+    response_model=OpinionsSummaryResponse,
+)
+async def get_experiment_opinions(experiment_id: str):
+    """指定実験のペルソナ意見集計データを取得"""
+    manager = ExperimentManager()
+    try:
+        data = manager.load_opinions(experiment_id)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    return OpinionsSummaryResponse(**data)
+
+
+# ─── 実績比較エンドポイント ───
+
+
+def _report_to_response(report) -> ComparisonReportResponse:
+    """ComparisonReport dataclass を Response schema に変換"""
     return ComparisonReportResponse(
         experiment_a=report.experiment_a,
         experiment_b=report.experiment_b,
@@ -161,6 +199,9 @@ async def compare_two_experiments(request: ComparisonRequest):
         seat_mae=report.seat_mae,
         turnout_correlation=report.turnout_correlation,
         battleground_accuracy=report.battleground_accuracy,
+        turnout_diff=report.turnout_diff,
+        margin_correlation=report.margin_correlation,
+        government_prediction_correct=report.government_prediction_correct,
         district_comparisons=[
             DistrictComparisonResponse(
                 district_id=c.district_id,
@@ -172,3 +213,39 @@ async def compare_two_experiments(request: ComparisonRequest):
             for c in report.district_comparisons
         ],
     )
+
+
+@router.get("/actual-results", response_model=ActualResultsResponse)
+async def get_actual_results():
+    """実選挙結果の存在確認とデータ取得"""
+    manager = ExperimentManager()
+    actual = manager.load_actual_results()
+
+    if actual is None:
+        return ActualResultsResponse(available=False)
+
+    summary = actual.get("summary", {})
+    district_results = actual.get("district_results", [])
+
+    return ActualResultsResponse(
+        available=True,
+        election_date=summary.get("election_date"),
+        source=summary.get("source"),
+        national_turnout_rate=summary.get("national_turnout_rate"),
+        party_total_seats=summary.get("party_total_seats"),
+        district_count=len(district_results),
+    )
+
+
+@router.post("/compare-batch", response_model=BatchComparisonResponse)
+async def compare_batch_vs_actual(request: BatchComparisonRequest):
+    """複数の実験を一括で実選挙結果と比較"""
+    comparisons = []
+    for exp_id in request.experiment_ids:
+        try:
+            report = compare_with_actual(exp_id)
+            comparisons.append(_report_to_response(report))
+        except FileNotFoundError as e:
+            raise HTTPException(status_code=404, detail=str(e))
+
+    return BatchComparisonResponse(comparisons=comparisons)

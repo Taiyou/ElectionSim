@@ -1,0 +1,130 @@
+{
+  "metadata": {
+    "description": "過去の国政選挙結果データ（v10b記憶エージェント用）",
+    "sources": [
+      "総務省選挙管理委員会 速報結果",
+      "日本経済新聞 選挙データ",
+      "時事通信"
+    ],
+    "last_updated": "2026-02"
+  },
+  "elections": [
+    {
+      "election_id": "2025_sangiin",
+      "type": "参議院選挙",
+      "formal_name": "第27回参議院議員通常選挙",
+      "date": "2025-07-20",
+      "total_seats_contested": 125,
+      "national_turnout": null,
+      "national_results": {
+        "ldp": {"seats": 39, "senkyoku": 27, "hirei": 12},
+        "cdp": {"seats": 22, "senkyoku": 15, "hirei": 7},
+        "dpfp": {"seats": 17, "senkyoku": 10, "hirei": 7},
+        "sansei": {"seats": 14, "senkyoku": 7, "hirei": 7},
+        "komei": {"seats": 8, "senkyoku": 4, "hirei": 4},
+        "ishin": {"seats": 7, "senkyoku": 3, "hirei": 4},
+        "jcp": {"seats": 3, "senkyoku": 0, "hirei": 3},
+        "reiwa": {"seats": 3, "senkyoku": 1, "hirei": 2},
+        "shamin": {"seats": 1, "senkyoku": 0, "hirei": 1},
+        "independent": {"seats": 5, "senkyoku": 5, "hirei": 0}
+      },
+      "key_trends": [
+        "参政党が1議席→14議席に躍進（過去最大の伸び）",
+        "国民民主党が4議席→17議席に4倍増",
+        "維新が12議席→7議席に激減",
+        "自公で過半数125に3議席届かず",
+        "公明党が過去最低の8議席"
+      ]
+    },
+    {
+      "election_id": "2024_general",
+      "type": "衆議院選挙",
+      "formal_name": "第50回衆議院議員総選挙",
+      "date": "2024-10-27",
+      "total_seats": 465,
+      "national_turnout": 0.5340,
+      "national_results": {
+        "ldp": {"seats": 191, "senkyoku": 132, "hirei": 59},
+        "cdp": {"seats": 148, "senkyoku": 104, "hirei": 44},
+        "ishin": {"seats": 38, "senkyoku": 20, "hirei": 18},
+        "dpfp": {"seats": 28, "senkyoku": 11, "hirei": 17},
+        "komei": {"seats": 24, "senkyoku": 4, "hirei": 20},
+        "reiwa": {"seats": 9, "senkyoku": 1, "hirei": 8},
+        "jcp": {"seats": 8, "senkyoku": 1, "hirei": 7},
+        "sansei": {"seats": 3, "senkyoku": 1, "hirei": 2},
+        "hoshuto": {"seats": 3, "senkyoku": 1, "hirei": 2},
+        "shamin": {"seats": 1, "senkyoku": 0, "hirei": 1},
+        "independent": {"seats": 12, "senkyoku": 12, "hirei": 0}
+      },
+      "hirei_vote_share": {
+        "ldp": 0.2660,
+        "cdp": 0.2100,
+        "ishin": 0.0936,
+        "dpfp": 0.1132,
+        "komei": 0.1050,
+        "jcp": 0.0616,
+        "reiwa": 0.0540,
+        "sansei": 0.0330,
+        "hoshuto": 0.0280,
+        "other": 0.0356
+      },
+      "key_trends": [
+        "自公が過半数割れ（215議席、過半数233）",
+        "自民党が比例代表で過去最少の1458万票",
+        "立憲民主党が96→148に大幅増",
+        "国民民主党が11→28に倍増以上",
+        "れいわ新選組が3→9に躍進"
+      ]
+    },
+    {
+      "election_id": "2022_sangiin",
+      "type": "参議院選挙",
+      "formal_name": "第26回参議院議員通常選挙",
+      "date": "2022-07-10",
+      "total_seats_contested": 125,
+      "national_turnout": 0.5205,
+      "national_results": {
+        "ldp": {"seats": 63, "senkyoku": 45, "hirei": 18},
+        "cdp": {"seats": 17, "senkyoku": 10, "hirei": 7},
+        "ishin": {"seats": 12, "senkyoku": 4, "hirei": 8},
+        "dpfp": {"seats": 5, "senkyoku": 2, "hirei": 3},
+        "komei": {"seats": 13, "senkyoku": 7, "hirei": 6},
+        "jcp": {"seats": 4, "senkyoku": 1, "hirei": 3},
+        "reiwa": {"seats": 3, "senkyoku": 0, "hirei": 3},
+        "sansei": {"seats": 1, "senkyoku": 0, "hirei": 1},
+        "shamin": {"seats": 1, "senkyoku": 0, "hirei": 1},
+        "nhk": {"seats": 1, "senkyoku": 0, "hirei": 1},
+        "independent": {"seats": 5, "senkyoku": 5, "hirei": 0}
+      },
+      "key_trends": [
+        "自民大勝（63議席）",
+        "安倍元首相銃撃事件（7/8）直後の選挙",
+        "参政党が初の議席獲得"
+      ]
+    },
+    {
+      "election_id": "2021_general",
+      "type": "衆議院選挙",
+      "formal_name": "第49回衆議院議員総選挙",
+      "date": "2021-10-31",
+      "total_seats": 465,
+      "national_turnout": 0.5593,
+      "national_results": {
+        "ldp": {"seats": 261, "senkyoku": 189, "hirei": 72},
+        "cdp": {"seats": 96, "senkyoku": 57, "hirei": 39},
+        "ishin": {"seats": 41, "senkyoku": 16, "hirei": 25},
+        "dpfp": {"seats": 11, "senkyoku": 6, "hirei": 5},
+        "komei": {"seats": 32, "senkyoku": 9, "hirei": 23},
+        "jcp": {"seats": 10, "senkyoku": 1, "hirei": 9},
+        "reiwa": {"seats": 3, "senkyoku": 0, "hirei": 3},
+        "shamin": {"seats": 1, "senkyoku": 0, "hirei": 1},
+        "independent": {"seats": 10, "senkyoku": 10, "hirei": 0}
+      },
+      "key_trends": [
+        "自民は議席減も安定過半数を維持",
+        "維新が11→41に大躍進",
+        "立憲は微増にとどまる"
+      ]
+    }
+  ]
+}

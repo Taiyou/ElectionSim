@@ -1,0 +1,57 @@
+{
+  "experiment_id": "v10b_20260208_174328_seed42",
+  "created_at": "2026-02-08T17:43:28.593010+09:00",
+  "status": "completed",
+  "duration_seconds": 4686.98,
+  "description": "v10b 人口統計ペルソナ + 記憶付きLLM投票(all, seed=42)",
+  "tags": [
+    "v10b_memory_full",
+    "seed42",
+    "demographic",
+    "llm_calibrated",
+    "with_memory"
+  ],
+  "parameters": {
+    "seed": 42,
+    "personas_per_district": 100,
+    "model": "anthropic/claude-sonnet-4",
+    "temperature": 0.7,
+    "batch_size": 15,
+    "concurrency": 3,
+    "mode": "all",
+    "district_count": 289,
+    "total_personas": 28900,
+    "method": "demographic_llm_memory",
+    "generator_type": "demographic",
+    "calibration_enabled": true,
+    "calibration_strength": 0.3,
+    "memory_enabled": true,
+    "memory_layers": [
+      "real_elections",
+      "economic_context",
+      "episodes",
+      "calibration"
+    ]
+  },
+  "methodology": {
+    "persona_generation": "人口統計データベース（国勢調査CSV直接サンプリング）",
+    "stage1": "ルールベース投票率判定（年齢×属性×天候補正）",
+    "stage2": "記憶付きLLM投票先決定（実選挙データ＋経済指標＋エピソード記憶＋キャリブレーション補正）",
+    "stage3": "事後キャリブレーション（強度=0.3）",
+    "memory": "4層（実選挙・経済状況・エピソード・キャリブレーション）"
+  },
+  "results_summary": {
+    "national_turnout_rate": 0.5418,
+    "smd_seats": {
+      "chudo": 69,
+      "ldp": 182,
+      "dpfp": 7,
+      "sansei": 1,
+      "independent": 4,
+      "other": 2,
+      "ishin": 23,
+      "jcp": 1
+    },
+    "validation_passed": true
+  }
+}

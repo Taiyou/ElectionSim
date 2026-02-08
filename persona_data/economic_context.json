@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "description": "2026年1月時点の日本経済指標（v10b記憶エージェント用）",
+    "sources": [
+      "総務省統計局 CPI",
+      "厚生労働省 雇用統計",
+      "内閣府 GDP速報",
+      "第一生命経済研究所 経済見通し",
+      "大和総研 雇用統計"
+    ],
+    "last_updated": "2026-02"
+  },
+  "snapshot_date": "2026-01",
+  "gdp_growth_rate_2025": 0.009,
+  "gdp_growth_forecast_2026": 0.009,
+  "cpi_year_over_year": 0.021,
+  "cpi_excluding_fresh_food": 0.024,
+  "cpi_excluding_fresh_food_energy": 0.029,
+  "unemployment_rate": 0.026,
+  "job_openings_ratio": 1.19,
+  "job_openings_ratio_new": 2.17,
+  "real_wage_change_2025": -0.008,
+  "real_wage_forecast_2026": 0.005,
+  "nikkei225_all_time_high": 54487,
+  "nikkei225_current": 53000,
+  "yen_usd_rate": 155.0,
+  "key_economic_events": [
+    "2024年10月: 衆院選で自公過半数割れ（自民191議席）、政治不安定化",
+    "2025年: 実質賃金マイナス継続（-0.8%）、物価高が生活圧迫",
+    "2025年7月: 参院選で参政党14議席躍進・国民民主4倍増（17議席）・維新激減（7議席）",
+    "2025年: 有効求人倍率1.22倍、2年連続低下も34年ぶりの人手不足",
+    "2025年12月: CPI前年比+2.1%に鈍化（2022年3月以来の低水準）",
+    "2026年1月: 日経平均54,487円の過去最高値更新",
+    "2026年1月: 通常国会冒頭解散、戦後最短16日間の真冬選挙へ",
+    "2026年2月: トランプ大統領が高市首相を支持表明"
+  ],
+  "consumer_sentiment": "物価高による生活圧迫感が継続するも、株高・雇用堅調で経済実感は二極化",
+  "labor_market": "完全失業率2.6%で横ばい、有効求人倍率1.19倍（12月）、人手不足深刻化",
+  "political_context": {
+    "pm": "高市早苗（自民党総裁）",
+    "cabinet_approval": "63-67%",
+    "coalition": "自民党＋日本維新の会",
+    "election_type": "通常国会冒頭解散",
+    "campaign_days": 16,
+    "election_date": "2026-02-08",
+    "weather": "強烈寒波・大雪予報（36年ぶりの真冬選挙）"
+  }
+}

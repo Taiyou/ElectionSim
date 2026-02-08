@@ -43,6 +43,9 @@ class ComparisonReport:
     seat_mae: float = 0.0
     turnout_correlation: float | None = None
     battleground_accuracy: float | None = None  # 接戦区精度
+    turnout_diff: float | None = None  # 全国投票率の差（絶対値）
+    margin_correlation: float | None = None  # 得票差のPearson相関
+    government_prediction_correct: bool | None = None  # 与党過半数予測の正否
 
 
 def _pearson_r(xs: list[float], ys: list[float]) -> float | None:
@@ -148,6 +151,35 @@ def compare_results(
     # 投票率相関
     turnout_corr = _pearson_r(turnouts_a, turnouts_b)
 
+    # 投票率差（全国平均）
+    turnout_diff = None
+    if turnouts_a and turnouts_b:
+        avg_a = sum(turnouts_a) / len(turnouts_a)
+        avg_b = sum(turnouts_b) / len(turnouts_b)
+        turnout_diff = round(abs(avg_a - avg_b), 4)
+
+    # 得票差の相関（marginの相関）
+    margins_a = []
+    margins_b = []
+    for did in common_ids:
+        ma = map_a[did].get("margin")
+        mb = map_b[did].get("margin")
+        if ma is not None and mb is not None:
+            margins_a.append(float(ma))
+            margins_b.append(float(mb))
+    margin_corr = _pearson_r(margins_a, margins_b)
+
+    # 与党（自公）過半数予測の正否
+    ruling_parties = {"ldp", "komei"}
+    ruling_a = sum(seats_a.get(p, 0) for p in ruling_parties)
+    ruling_b = sum(seats_b.get(p, 0) for p in ruling_parties)
+    # 10選挙区パイロットの場合は判定不能とする
+    gov_correct = None
+    if len(common_ids) >= 50:
+        majority_a = ruling_a >= MAJORITY_THRESHOLD
+        majority_b = ruling_b >= MAJORITY_THRESHOLD
+        gov_correct = majority_a == majority_b
+
     # 接戦区精度（margin下位25%）
     battleground_accuracy = _calc_battleground_accuracy(comparisons, map_a)
 
@@ -161,6 +193,9 @@ def compare_results(
         seat_mae=round(seat_mae, 2),
         turnout_correlation=round(turnout_corr, 4) if turnout_corr is not None else None,
         battleground_accuracy=round(battleground_accuracy, 4) if battleground_accuracy is not None else None,
+        turnout_diff=turnout_diff,
+        margin_correlation=round(margin_corr, 4) if margin_corr is not None else None,
+        government_prediction_correct=gov_correct,
     )
 
 

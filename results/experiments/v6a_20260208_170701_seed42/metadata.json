@@ -1,0 +1,31 @@
+{
+  "experiment_id": "v6a_20260208_170701_seed42",
+  "created_at": "2026-02-08T17:07:01.010501+09:00",
+  "status": "completed",
+  "duration_seconds": 10794.63,
+  "description": "v6a 時系列イベント反応シミュレーション (seed=42)",
+  "tags": [
+    "v6a_timeline",
+    "seed42",
+    "llm_timeline"
+  ],
+  "parameters": {
+    "seed": 42,
+    "personas_per_district": 100,
+    "model": "anthropic/claude-sonnet-4",
+    "temperature": 0.7,
+    "batch_size": 15,
+    "timeline_days": 5,
+    "mode": "pilot",
+    "district_count": 10,
+    "method": "llm_timeline_reaction"
+  },
+  "results_summary": {
+    "national_turnout_rate": 0.723,
+    "smd_seats": {
+      "chudo": 6,
+      "ldp": 3,
+      "ishin": 1
+    }
+  }
+}

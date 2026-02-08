@@ -161,6 +161,8 @@ class ExperimentManager:
             if metadata_path.exists():
                 with open(metadata_path, "r", encoding="utf-8") as f:
                     metadata = json.load(f)
+                # persona_decisions.json の有無をフラグに追加
+                metadata["has_opinions"] = (exp_dir / "persona_decisions.json").exists()
                 experiments.append(metadata)
 
         return experiments
@@ -203,6 +205,112 @@ class ExperimentManager:
             "metadata": metadata,
             "district_results": district_results,
             "summary": summary,
+        }
+
+    def load_opinions(self, experiment_id: str) -> dict:
+        """指定実験のペルソナ投票判断データを読み込み集計する"""
+        exp_dir = RESULTS_DIR / experiment_id
+        if not exp_dir.exists():
+            raise FileNotFoundError(f"実験が見つかりません: {experiment_id}")
+
+        decisions_path = exp_dir / "persona_decisions.json"
+        if not decisions_path.exists():
+            raise FileNotFoundError(f"persona_decisions.json が見つかりません: {experiment_id}")
+
+        with open(decisions_path, "r", encoding="utf-8") as f:
+            raw = json.load(f)
+
+        # --- 集計 ---
+        total_personas = 0
+        total_voters = 0
+        total_abstainers = 0
+
+        # 政党別投票理由
+        party_reasons: dict[str, list[dict]] = {}
+        # swing_factors 出現頻度
+        swing_factor_counts: dict[str, int] = {}
+        # 政党×swing_factor マトリクス
+        party_swing_factors: dict[str, dict[str, int]] = {}
+        # 棄権理由
+        abstention_reasons: dict[str, int] = {}
+        # 選挙区サマリ
+        district_summaries: list[dict] = []
+
+        for district_id, personas in raw.items():
+            d_total = len(personas)
+            d_voters = 0
+            d_party_counts: dict[str, int] = {}
+
+            for p in personas:
+                total_personas += 1
+                if p.get("will_vote"):
+                    total_voters += 1
+                    d_voters += 1
+                    party = p.get("smd_party", "unknown")
+
+                    # 政党別得票カウント
+                    d_party_counts[party] = d_party_counts.get(party, 0) + 1
+
+                    # 投票理由を収集
+                    if party not in party_reasons:
+                        party_reasons[party] = []
+                    reason_entry = {
+                        "persona_id": p.get("persona_id", ""),
+                        "smd_reason": p.get("smd_reason", ""),
+                        "proportional_reason": p.get("proportional_reason", ""),
+                        "confidence": p.get("confidence", 0),
+                        "district_id": district_id,
+                    }
+                    party_reasons[party].append(reason_entry)
+
+                    # swing_factors
+                    for factor in p.get("swing_factors", []):
+                        swing_factor_counts[factor] = swing_factor_counts.get(factor, 0) + 1
+                        if party not in party_swing_factors:
+                            party_swing_factors[party] = {}
+                        party_swing_factors[party][factor] = party_swing_factors[party].get(factor, 0) + 1
+                else:
+                    total_abstainers += 1
+                    reason = p.get("abstention_reason", "不明")
+                    abstention_reasons[reason] = abstention_reasons.get(reason, 0) + 1
+
+            district_summaries.append({
+                "district_id": district_id,
+                "total": d_total,
+                "voters": d_voters,
+                "turnout_rate": round(d_voters / d_total, 3) if d_total > 0 else 0,
+                "party_distribution": d_party_counts,
+            })
+
+        # swing_factors を出現頻度順にソート
+        sorted_factors = sorted(swing_factor_counts.items(), key=lambda x: x[1], reverse=True)
+
+        # 棄権理由を出現頻度順にソート
+        sorted_abstentions = sorted(abstention_reasons.items(), key=lambda x: x[1], reverse=True)
+
+        # 政党別の代表的理由（各政党上位5件）
+        party_top_reasons: dict[str, list[dict]] = {}
+        for party, reasons in party_reasons.items():
+            sorted_reasons = sorted(reasons, key=lambda x: x.get("confidence", 0), reverse=True)
+            party_top_reasons[party] = sorted_reasons[:5]
+
+        return {
+            "experiment_id": experiment_id,
+            "overview": {
+                "total_personas": total_personas,
+                "total_voters": total_voters,
+                "total_abstainers": total_abstainers,
+                "turnout_rate": round(total_voters / total_personas, 3) if total_personas > 0 else 0,
+                "total_districts": len(raw),
+            },
+            "party_reasons": party_top_reasons,
+            "party_vote_counts": {
+                party: len(reasons) for party, reasons in party_reasons.items()
+            },
+            "swing_factors": [{"factor": f, "count": c} for f, c in sorted_factors],
+            "party_swing_factors": party_swing_factors,
+            "abstention_reasons": [{"reason": r, "count": c} for r, c in sorted_abstentions],
+            "district_summaries": district_summaries,
         }
 
     def load_actual_results(self) -> dict | None:

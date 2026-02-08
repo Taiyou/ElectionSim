@@ -1,0 +1,18 @@
+{
+  "total_districts": 277,
+  "total_personas": 27700,
+  "national_turnout_rate": 0.5416,
+  "smd_seats": {
+    "chudo": 66,
+    "dpfp": 6,
+    "ldp": 174,
+    "sansei": 1,
+    "independent": 4,
+    "other": 2,
+    "ishin": 23,
+    "jcp": 1
+  },
+  "method": "demographic_llm_memory",
+  "generator_type": "demographic",
+  "memory": true
+}

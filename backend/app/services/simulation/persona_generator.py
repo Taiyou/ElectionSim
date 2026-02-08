@@ -12,9 +12,16 @@ import random
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent.parent
+_FILE_DIR = Path(__file__).resolve().parent  # .../simulation/
+# Docker: /app/app/services/simulation/ → /app/app/data/
+# Local:  .../backend/app/services/simulation/ → .../backend/app/data/
+DATA_DIR = _FILE_DIR.parent.parent / "data"
+
+# プロジェクトルート（ローカル用）: backend/ の親
+# Docker の場合は /app の親 = / になるが persona_data は使わないので問題なし
+_BACKEND_DIR = _FILE_DIR.parent.parent.parent  # .../backend/ or /app/
+BASE_DIR = _BACKEND_DIR.parent
 PERSONA_DIR = BASE_DIR / "persona_data"
-DATA_DIR = BASE_DIR / "backend" / "app" / "data"
 
 
 @dataclass
@@ -155,10 +162,12 @@ def get_archetype_distribution(district_row: dict) -> dict[str, float]:
     return distribution
 
 
-def weighted_random_choice(options: dict) -> str:
+def weighted_random_choice(options: dict, rng: random.Random | None = None) -> str:
     """加重ランダム選択"""
     items = list(options.keys())
     weights = list(options.values())
+    if rng is not None:
+        return rng.choices(items, weights=weights, k=1)[0]
     return random.choices(items, weights=weights, k=1)[0]
 
 
@@ -167,13 +176,19 @@ def generate_personas_for_district(
     archetype_configs: list[dict],
     num_personas: int = 100,
     seed: int | None = None,
+    rng: random.Random | None = None,
+    weather_modifier_override: float | None = None,
 ) -> list[Persona]:
     """1つの選挙区に対して指定数のペルソナを生成"""
 
     district_id = f"{district_row['都道府県コード'].zfill(2)}_{district_row['区番号']}"
 
-    if seed is not None:
-        random.seed(seed + hash(district_id) % 10000)
+    # スレッドセーフなローカルRNGを使用
+    if rng is None:
+        if seed is not None:
+            rng = random.Random(seed + hash(district_id) % 10000)
+        else:
+            rng = random.Random()
 
     # アーキタイプ分布を取得
     distribution = get_archetype_distribution(district_row)
@@ -194,13 +209,16 @@ def generate_personas_for_district(
         "支持なし": float(district_row.get("浮動票率", 0.30)),
     }
 
-    # 天候修正
-    weather_region = _get_weather_impact(district_row.get("都道府県", ""))
+    # 天候修正（APIデータ優先、なければ静的ロジック）
+    if weather_modifier_override is not None:
+        weather_region = weather_modifier_override
+    else:
+        weather_region = _get_weather_impact(district_row.get("都道府県", ""))
 
     personas = []
     for i in range(num_personas):
         # アーキタイプを加重サンプリング
-        archetype_id = weighted_random_choice(distribution)
+        archetype_id = weighted_random_choice(distribution, rng=rng)
         config = archetype_map.get(archetype_id)
 
         if config is None:
@@ -225,7 +243,7 @@ def generate_personas_for_district(
 
         # 年齢
         age_min, age_max = config["age_range"]
-        age = random.randint(age_min, age_max)
+        age = rng.randint(age_min, age_max)
 
         # 性別
         if config.get("gender") == "male":
@@ -233,11 +251,11 @@ def generate_personas_for_district(
         elif config.get("gender") == "female":
             gender = "女性"
         else:
-            gender = "男性" if random.random() < GENDER_RATIO["男性"] else "女性"
+            gender = "男性" if rng.random() < GENDER_RATIO["男性"] else "女性"
 
         # 職業
         occupations = OCCUPATION_MAP.get(archetype_id, ["その他"])
-        occupation = random.choice(occupations)
+        occupation = rng.choice(occupations)
 
         # 政治関心度
         engagement = config.get("political_engagement", "moderate")
@@ -257,10 +275,10 @@ def generate_personas_for_district(
 
         # 政党支持傾向（アーキタイプ×選挙区の政治傾向を組み合わせ）
         ideology_dist = IDEOLOGY_MAP.get(archetype_id, {"中道": 1.0})
-        ideology = weighted_random_choice(ideology_dist)
+        ideology = weighted_random_choice(ideology_dist, rng=rng)
 
         # 政党親和性（簡略化: 選挙区の支持率分布からサンプリング）
-        party_affinity = weighted_random_choice(district_party_support)
+        party_affinity = weighted_random_choice(district_party_support, rng=rng)
 
         persona = Persona(
             persona_id=f"{district_id}_{str(i + 1).zfill(3)}",

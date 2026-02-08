@@ -85,6 +85,12 @@ async def get_youtube_summary(session: AsyncSession = Depends(get_session)):
     )
     party_video_counts = {row[0]: row[1] for row in party_result.all()}
 
+    # Last updated: most recent collected_at from videos
+    last_updated_result = await session.execute(
+        select(func.max(YouTubeVideo.collected_at))
+    )
+    last_updated = last_updated_result.scalar()
+
     return YouTubeSummaryResponse(
         total_videos=total_videos,
         total_views=total_views,
@@ -96,6 +102,7 @@ async def get_youtube_summary(session: AsyncSession = Depends(get_session)):
         recent_videos=recent_videos,
         issue_distribution=issue_distribution,
         party_video_counts=party_video_counts,
+        last_updated=last_updated.isoformat() if last_updated else None,
     )
 
 

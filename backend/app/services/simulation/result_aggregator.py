@@ -96,10 +96,10 @@ def aggregate_district_results(
                 proportional_votes.get(d.proportional_party, 0) + 1
             )
 
-    # アーキタイプ別投票内訳
+    # アーキタイプ別（または属性別）投票内訳
     archetype_breakdown: dict[str, dict] = {}
     for persona, decision in zip(personas, decisions):
-        arch = persona.archetype_id
+        arch = getattr(persona, "archetype_id", getattr(persona, "industry_sector", "unknown"))
         if arch not in archetype_breakdown:
             archetype_breakdown[arch] = {
                 "count": 0, "voted": 0, "smd_parties": {}, "proportional_parties": {}
@@ -266,3 +266,67 @@ def calibrate_decisions(
             )
 
     return calibrated
+
+
+def compute_calibration_signals(
+    decisions: list[VoteDecision],
+    district_context: dict,
+) -> list[dict]:
+    """LLM予測と選挙区支持率分布の乖離をキャリブレーション信号として算出する
+
+    Returns:
+        各政党の {"party_id", "target_share", "predicted_share", "correction"} のリスト
+    """
+    support_keys = [
+        ("支持率_自民党", "ldp"),
+        ("支持率_立憲民主党", "chudo"),
+        ("支持率_維新", "ishin"),
+        ("支持率_国民民主党", "dpfp"),
+        ("支持率_共産党", "jcp"),
+        ("支持率_れいわ", "reiwa"),
+        ("支持率_参政党", "sansei"),
+        ("支持率_その他", "other"),
+    ]
+
+    target_distribution: dict[str, float] = {}
+    for key, party_id in support_keys:
+        val = float(district_context.get(key, 0))
+        if val > 0:
+            target_distribution[party_id] = val
+
+    if not target_distribution:
+        return []
+
+    # 目標分布を正規化
+    target_total = sum(target_distribution.values())
+    if target_total > 0:
+        target_distribution = {p: v / target_total for p, v in target_distribution.items()}
+
+    # LLM出力の政党分布を集計
+    voted = [d for d in decisions if d.will_vote and d.smd_party]
+    if not voted:
+        return []
+
+    current_counts: dict[str, int] = {}
+    for d in voted:
+        current_counts[d.smd_party] = current_counts.get(d.smd_party, 0) + 1
+
+    total_voted = len(voted)
+    predicted_distribution: dict[str, float] = {
+        p: c / total_voted for p, c in current_counts.items()
+    }
+
+    # 各政党の信号を算出
+    signals = []
+    all_parties = set(list(target_distribution.keys()) + list(predicted_distribution.keys()))
+    for party_id in all_parties:
+        target = target_distribution.get(party_id, 0.0)
+        predicted = predicted_distribution.get(party_id, 0.0)
+        signals.append({
+            "party_id": party_id,
+            "target_share": round(target, 4),
+            "predicted_share": round(predicted, 4),
+            "correction": round(target - predicted, 4),
+        })
+
+    return signals

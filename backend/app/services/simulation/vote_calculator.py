@@ -13,7 +13,9 @@ from pathlib import Path
 
 from .persona_generator import Persona
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent.parent
+_FILE_DIR = Path(__file__).resolve().parent  # .../simulation/
+_BACKEND_DIR = _FILE_DIR.parent.parent.parent  # .../backend/ or /app/
+BASE_DIR = _BACKEND_DIR.parent
 PERSONA_DIR = BASE_DIR / "persona_data"
 
 # 投票決定要因の重み（persona_config.json と同期）
@@ -73,6 +75,7 @@ def get_party_alignment() -> dict:
 def determine_turnout(
     persona: Persona,
     weather_modifier: float = 0.0,
+    rng: random.Random | None = None,
 ) -> tuple[bool, str | None]:
     """投票/棄権をルールベースで判定する（v8a Stage 1用）
 
@@ -82,16 +85,19 @@ def determine_turnout(
     Args:
         persona: 対象ペルソナ
         weather_modifier: 天候による投票率補正（負の値で低下、例: -0.10）
+        rng: スレッドセーフなランダム生成器（Noneの場合はグローバルrandomを使用）
 
     Returns:
         (will_vote, abstention_reason) のタプル
     """
+    if rng is None:
+        rng = random.Random()
     adjusted_prob = persona.turnout_probability + weather_modifier
     adjusted_prob = max(0.05, min(0.95, adjusted_prob))
 
-    will_vote = random.random() < adjusted_prob
+    will_vote = rng.random() < adjusted_prob
     if not will_vote:
-        reason = _generate_abstention_reason(persona)
+        reason = _generate_abstention_reason(persona, rng=rng)
         return False, reason
     return True, None
 
@@ -103,6 +109,7 @@ def calculate_vote(
     factor_weights: dict | None = None,
     swing_noise_offset: float = 0.0,
     independent_loyalty_score: float = 0.3,
+    rng: random.Random | None = None,
 ) -> VoteDecision:
     """
     ペルソナの投票行動を算出する。
@@ -110,11 +117,13 @@ def calculate_vote(
     低スイング層: ルールベースで確定的に投票先を決定
     中〜高スイング層: needs_llm=True を返し、LLMに委託
     """
+    if rng is None:
+        rng = random.Random()
 
     # 1. 投票/棄権判定
-    will_vote = random.random() < persona.turnout_probability
+    will_vote = rng.random() < persona.turnout_probability
     if not will_vote:
-        reason = _generate_abstention_reason(persona)
+        reason = _generate_abstention_reason(persona, rng=rng)
         return VoteDecision(
             persona_id=persona.persona_id,
             will_vote=False,
@@ -156,7 +165,7 @@ def calculate_vote(
     noise_level = SWING_NOISE.get(swing_level, 0.20) + swing_noise_offset
     noisy_scores = {}
     for name, data in candidate_scores.items():
-        noise = random.gauss(0, noise_level)
+        noise = rng.gauss(0, noise_level)
         noisy_scores[name] = data["score"] + noise
 
     # 5. 最高スコアの候補者を選択
@@ -172,7 +181,7 @@ def calculate_vote(
 
     # 7. 比例投票先（小選挙区と同じ政党 or 支持政党に基づく）
     proportional_party = _decide_proportional_vote(
-        persona, winner_party, archetype_alignment, noise_level
+        persona, winner_party, archetype_alignment, noise_level, rng=rng
     )
 
     return VoteDecision(
@@ -262,23 +271,28 @@ def _decide_proportional_vote(
     smd_party: str,
     archetype_alignment: dict,
     noise_level: float,
+    rng: random.Random | None = None,
 ) -> str:
     """比例投票先を決定（票割れの可能性あり）"""
+    if rng is None:
+        rng = random.Random()
 
     # 基本: 小選挙区と同じ政党
     split_ticket_prob = noise_level * 0.5  # スイング度が高いほど票割れしやすい
 
-    if random.random() < split_ticket_prob:
+    if rng.random() < split_ticket_prob:
         # 票割れ: アライメントスコアに基づいて別の政党を選択
-        party_scores = {p: s + random.gauss(0, 0.1) for p, s in archetype_alignment.items()}
+        party_scores = {p: s + rng.gauss(0, 0.1) for p, s in archetype_alignment.items()}
         if party_scores:
             return max(party_scores, key=party_scores.get)
 
     return smd_party
 
 
-def _generate_abstention_reason(persona: Persona) -> str:
+def _generate_abstention_reason(persona: Persona, rng: random.Random | None = None) -> str:
     """棄権理由を生成"""
+    if rng is None:
+        rng = random.Random()
     reasons_by_engagement = {
         "low": [
             "政治に関心がない",
@@ -305,4 +319,4 @@ def _generate_abstention_reason(persona: Persona) -> str:
         engagement = "moderate"
 
     reasons = reasons_by_engagement.get(engagement, reasons_by_engagement["moderate"])
-    return random.choice(reasons)
+    return rng.choice(reasons)

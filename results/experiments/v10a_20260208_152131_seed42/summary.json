@@ -1,0 +1,13 @@
+{
+  "total_districts": 10,
+  "total_personas": 1000,
+  "national_turnout_rate": 0.517,
+  "smd_seats": {
+    "chudo": 5,
+    "ldp": 4,
+    "ishin": 1
+  },
+  "method": "demographic_llm_calibrated",
+  "generator_type": "demographic",
+  "memory": false
+}

@@ -7,10 +7,14 @@
 """
 from __future__ import annotations
 
+import asyncio
 import csv
 import json
 import logging
+import os
+import random
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict
 from pathlib import Path
 
@@ -21,15 +25,23 @@ from .persona_generator import (
     load_candidates,
     load_district_data,
 )
+from .demographic_persona_generator import (
+    DemographicPersona,
+    generate_demographic_personas_for_district,
+    load_district_data as load_district_data_demographic,
+    load_candidates as load_candidates_demographic,
+)
 from .vote_calculator import VoteDecision, calculate_vote
 from .prompts import SYSTEM_PROMPT, build_batch_prompt
 from .result_aggregator import aggregate_district_results, DistrictResult
 from .validators import validate_results
+from .weather_service import WeatherService, PrefectureWeather
 
 logger = logging.getLogger(__name__)
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent.parent
-DATA_DIR = BASE_DIR / "backend" / "app" / "data"
+_FILE_DIR = Path(__file__).resolve().parent  # .../simulation/
+DATA_DIR = _FILE_DIR.parent.parent / "data"  # .../app/data/
+BASE_DIR = _FILE_DIR.parent.parent.parent.parent  # project root (local) or / (Docker)
 
 
 class SimulationEngine:
@@ -46,6 +58,10 @@ class SimulationEngine:
         swing_noise_offset: float = 0.0,
         independent_loyalty_score: float = 0.3,
         turnout_boost: float = 0.0,
+        generator_type: str = "archetype",
+        max_workers: int | None = None,
+        weather_provider: str = "open-meteo",
+        political_climate: dict | None = None,
     ):
         self.seed = seed
         self.personas_per_district = personas_per_district
@@ -56,31 +72,87 @@ class SimulationEngine:
         self.swing_noise_offset = swing_noise_offset
         self.independent_loyalty_score = independent_loyalty_score
         self.turnout_boost = turnout_boost
+        self.generator_type = generator_type  # "archetype" or "demographic"
+        self.max_workers = max_workers or int(os.environ.get("MAX_DISTRICT_WORKERS", "8"))
+        self.political_climate = political_climate
+
+        # 天気サービス
+        self.weather_service = WeatherService(
+            provider=weather_provider,
+            openweathermap_api_key=os.environ.get("OPENWEATHERMAP_API_KEY", ""),
+            target_date=os.environ.get("WEATHER_TARGET_DATE"),
+        )
+        self.weather_cache: dict[str, PrefectureWeather] = {}
 
         # データ読み込み
-        self.archetype_config = load_archetype_config()
-        self.archetypes = self.archetype_config["persona_archetypes"]
-        self.districts = load_district_data()
-        self.candidates_by_district = load_candidates()
+        if generator_type == "demographic":
+            self.archetype_config = None
+            self.archetypes = None
+            self.districts = load_district_data_demographic()
+            self.candidates_by_district = load_candidates_demographic()
+        else:
+            self.archetype_config = load_archetype_config()
+            self.archetypes = self.archetype_config["persona_archetypes"]
+            self.districts = load_district_data()
+            self.candidates_by_district = load_candidates()
 
         # 政党名マスタ
         parties_path = DATA_DIR / "parties.json"
         with open(parties_path, "r", encoding="utf-8") as f:
             self.parties = {p["id"]: p for p in json.load(f)}
 
+    def fetch_weather(self):
+        """天気データを同期的に取得してキャッシュに保存"""
+        try:
+            loop = asyncio.get_running_loop()
+        except RuntimeError:
+            loop = None
+
+        if loop and loop.is_running():
+            # 既にイベントループ内の場合はスレッドで実行
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
+                future = pool.submit(asyncio.run, self.weather_service.fetch_all_prefectures())
+                self.weather_cache = future.result()
+        else:
+            self.weather_cache = asyncio.run(self.weather_service.fetch_all_prefectures())
+        logger.info(f"天気データ取得完了: {len(self.weather_cache)}都道府県 (provider={self.weather_service.provider})")
+
+    async def fetch_weather_async(self):
+        """天気データを非同期的に取得してキャッシュに保存"""
+        self.weather_cache = await self.weather_service.fetch_all_prefectures()
+        logger.info(f"天気データ取得完了: {len(self.weather_cache)}都道府県 (provider={self.weather_service.provider})")
+
     def run_district(self, district_row: dict) -> DistrictResult:
-        """1つの選挙区のシミュレーションを実行"""
+        """1つの選挙区のシミュレーションを実行（スレッドセーフ）"""
 
         district_id = f"{district_row['都道府県コード'].zfill(2)}_{district_row['区番号']}"
         district_name = district_row.get("選挙区", district_id)
 
         logger.info(f"シミュレーション開始: {district_name}")
 
-        # 1. ペルソナ生成
-        personas = generate_personas_for_district(
-            district_row, self.archetypes,
-            self.personas_per_district, self.seed
+        # スレッドセーフなローカルRNG
+        rng = random.Random(self.seed + hash(district_id) % 10000)
+
+        # 天気データ取得
+        weather_data = self.weather_cache.get(
+            district_row['都道府県コード'].zfill(2)
         )
+        weather_modifier = weather_data.turnout_modifier if weather_data else None
+
+        # 1. ペルソナ生成
+        if self.generator_type == "demographic":
+            personas = generate_demographic_personas_for_district(
+                district_row, self.personas_per_district, self.seed,
+                weather_modifier_override=weather_modifier,
+            )
+        else:
+            personas = generate_personas_for_district(
+                district_row, self.archetypes,
+                self.personas_per_district, self.seed,
+                rng=rng,
+                weather_modifier_override=weather_modifier,
+            )
 
         # 2. 候補者データ取得
         candidates = self.candidates_by_district.get(district_id, [])
@@ -105,6 +177,7 @@ class SimulationEngine:
                 factor_weights=self.factor_weights,
                 swing_noise_offset=self.swing_noise_offset,
                 independent_loyalty_score=self.independent_loyalty_score,
+                rng=rng,
             )
             decisions.append(decision)
 
@@ -131,6 +204,8 @@ class SimulationEngine:
 
     def run_pilot(self, district_ids: list[str] | None = None) -> list[DistrictResult]:
         """パイロット実行（指定選挙区 or デフォルト10選挙区）"""
+        if not self.weather_cache:
+            self.fetch_weather()
 
         if district_ids is None:
             # デフォルトパイロット選挙区（多様性を確保）
@@ -147,24 +222,52 @@ class SimulationEngine:
                 "32_1",   # 島根1区（農村・保守）
             ]
 
-        results = []
-        for district_row in self.districts:
-            did = f"{district_row['都道府県コード'].zfill(2)}_{district_row['区番号']}"
-            if did in district_ids:
-                result = self.run_district(district_row)
-                results.append(result)
+        target_rows = [
+            (i, row) for i, row in enumerate(self.districts)
+            if f"{row['都道府県コード'].zfill(2)}_{row['区番号']}" in district_ids
+        ]
 
-        return results
+        return self._run_districts_parallel(target_rows)
 
     def run_all(self) -> list[DistrictResult]:
-        """全289選挙区のシミュレーションを実行"""
-        results = []
-        for i, district_row in enumerate(self.districts):
-            result = self.run_district(district_row)
-            results.append(result)
-            if (i + 1) % 50 == 0:
-                logger.info(f"進捗: {i + 1}/{len(self.districts)} 選挙区完了")
-        return results
+        """全289選挙区のシミュレーションを並列実行"""
+        if not self.weather_cache:
+            self.fetch_weather()
+        target_rows = list(enumerate(self.districts))
+        return self._run_districts_parallel(target_rows)
+
+    def _run_districts_parallel(self, indexed_rows: list[tuple[int, dict]]) -> list[DistrictResult]:
+        """選挙区を並列実行する共通メソッド"""
+        total = len(indexed_rows)
+        if total == 0:
+            return []
+
+        # max_workers=1 の場合は逐次実行（後方互換・デバッグ用）
+        if self.max_workers <= 1:
+            results = []
+            for seq, (_, row) in enumerate(indexed_rows):
+                result = self.run_district(row)
+                results.append(result)
+                if (seq + 1) % 50 == 0:
+                    logger.info(f"進捗: {seq + 1}/{total} 選挙区完了")
+            return results
+
+        results_map: dict[int, DistrictResult] = {}
+        completed = 0
+
+        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            futures = {
+                executor.submit(self.run_district, row): seq
+                for seq, (_, row) in enumerate(indexed_rows)
+            }
+            for future in as_completed(futures):
+                seq = futures[future]
+                results_map[seq] = future.result()
+                completed += 1
+                if completed % 50 == 0 or completed == total:
+                    logger.info(f"進捗: {completed}/{total} 選挙区完了")
+
+        return [results_map[i] for i in range(total)]
 
     def run_experiment(
         self,
@@ -232,6 +335,10 @@ class SimulationEngine:
             "swing_noise_offset": self.swing_noise_offset,
             "independent_loyalty_score": self.independent_loyalty_score,
             "turnout_boost": self.turnout_boost,
+            "generator_type": self.generator_type,
+            "weather_provider": self.weather_service.provider,
+            "weather_data": self.weather_service.export_weather_data(),
+            "political_climate": self.political_climate,
         }
 
         results_summary = {
@@ -275,12 +382,20 @@ class SimulationEngine:
             batch_indices = llm_persona_indices[batch_start:batch_start + self.llm_batch_size]
             batch_personas = [asdict(personas[i]) for i in batch_indices]
 
+            # 天気説明を取得
+            pref_code = district_row['都道府県コード'].zfill(2)
+            weather_desc = "大雪・強烈寒波"
+            if pref_code in self.weather_cache:
+                weather_desc = self.weather_cache[pref_code].weather_description_ja
+
             prompt = build_batch_prompt(
                 district_name=district_row.get("選挙区", district_id),
                 area_description=district_row.get("対象地域", ""),
                 candidates=candidates,
                 district_context=district_row,
                 personas=batch_personas,
+                weather=weather_desc,
+                political_climate=self.political_climate,
             )
 
             batch_request = {
@@ -432,6 +547,8 @@ class SimulationEngine:
                 "swing_noise_offset": self.swing_noise_offset,
                 "independent_loyalty_score": self.independent_loyalty_score,
                 "turnout_boost": self.turnout_boost,
+                "generator_type": self.generator_type,
+                "political_climate": self.political_climate,
             },
         }
 

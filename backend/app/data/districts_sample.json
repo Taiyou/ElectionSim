@@ -3217,7 +3217,7 @@
     "prefecture_code": 11,
     "district_number": 16,
     "name": "埼玉県第16区",
-    "area_description": "さいたま市桜区、西区、北区の一部",
+    "area_description": "春日部市、蓮田市、白岡市、杉戸町、宮代町",
     "registered_voters": null,
     "candidates": [
       {
@@ -3932,7 +3932,7 @@
     "prefecture_code": 12,
     "district_number": 14,
     "name": "千葉県第14区",
-    "area_description": "野田市、鎌ケ谷市",
+    "area_description": "船橋市の一部、習志野市",
     "registered_voters": null,
     "candidates": [
       {
@@ -5670,7 +5670,7 @@
     "prefecture_code": 13,
     "district_number": 26,
     "name": "東京都第26区",
-    "area_description": "目黒区、大田区の一部",
+    "area_description": "目黒区の一部、大田区の一部",
     "registered_voters": null,
     "candidates": [
       {
@@ -5711,7 +5711,7 @@
         "name_kana": "",
         "party_id": "mirai",
         "age": 55,
-        "is_incumbent": true,
+        "is_incumbent": false,
         "previous_wins": 2,
         "biography": "元テレビプロデューサー",
         "dual_candidacy": true,
@@ -5802,7 +5802,7 @@
     "prefecture_code": 13,
     "district_number": 28,
     "name": "東京都第28区",
-    "area_description": "練馬区東部",
+    "area_description": "練馬区の一部",
     "registered_voters": null,
     "candidates": [
       {
@@ -5898,7 +5898,7 @@
         "name_kana": "",
         "party_id": "chudo",
         "age": 54,
-        "is_incumbent": true,
+        "is_incumbent": false,
         "previous_wins": 2,
         "biography": "元厚生労働政務官",
         "dual_candidacy": true,
@@ -5931,7 +5931,7 @@
         "name_kana": "",
         "party_id": "dpfp",
         "age": 58,
-        "is_incumbent": true,
+        "is_incumbent": false,
         "previous_wins": 1,
         "biography": "技術者出身",
         "dual_candidacy": true,
@@ -6825,7 +6825,7 @@
     "prefecture_code": 14,
     "district_number": 18,
     "name": "神奈川県第18区",
-    "area_description": "川崎市中原区、高津区",
+    "area_description": "川崎市中原区、川崎市高津区",
     "registered_voters": null,
     "candidates": [
       {
@@ -9465,7 +9465,7 @@
     "prefecture_code": 23,
     "district_number": 16,
     "name": "愛知県第16区",
-    "area_description": "愛知県第16区エリア",
+    "area_description": "犬山市、江南市、小牧市、北名古屋市、豊山町、大口町、扶桑町",
     "registered_voters": null,
     "candidates": [
       {
@@ -9484,7 +9484,7 @@
         "name_kana": "",
         "party_id": "genzei",
         "age": 66,
-        "is_incumbent": true,
+        "is_incumbent": false,
         "previous_wins": 3,
         "biography": "不動産業",
         "dual_candidacy": true,
@@ -15427,7 +15427,7 @@
     "prefecture_code": 47,
     "district_number": 4,
     "name": "沖縄県第4区",
-    "area_description": "名護市、糸満市、豊見城市",
+    "area_description": "石垣市、糸満市、豊見城市、宮古島市、南城市、与那原町、南風原町、八重瀬町、多良間村、竹富町、与那国町",
     "registered_voters": null,
     "candidates": [
       {

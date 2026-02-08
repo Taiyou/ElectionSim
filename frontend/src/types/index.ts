@@ -174,6 +174,7 @@ export interface YouTubeSummary {
   recent_videos: YouTubeVideo[];
   issue_distribution: Record<string, number>;
   party_video_counts: Record<string, number>;
+  last_updated: string | null;
 }
 
 // News types
@@ -440,4 +441,114 @@ export interface SimulationRunResult {
   summary: SimulationSummary;
   districts: SimulationDistrictResult[];
   validation: ValidationReport;
+}
+
+// --- 意見集計関連 ---
+
+export interface OpinionOverview {
+  total_personas: number;
+  total_voters: number;
+  total_abstainers: number;
+  turnout_rate: number;
+  total_districts: number;
+}
+
+export interface PartyReasonEntry {
+  persona_id: string;
+  smd_reason: string;
+  proportional_reason: string;
+  confidence: number;
+  district_id: string;
+}
+
+export interface SwingFactorEntry {
+  factor: string;
+  count: number;
+}
+
+export interface AbstentionReasonEntry {
+  reason: string;
+  count: number;
+}
+
+export interface DistrictOpinionSummary {
+  district_id: string;
+  total: number;
+  voters: number;
+  turnout_rate: number;
+  party_distribution: Record<string, number>;
+}
+
+export interface OpinionsSummary {
+  experiment_id: string;
+  overview: OpinionOverview;
+  party_reasons: Record<string, PartyReasonEntry[]>;
+  party_vote_counts: Record<string, number>;
+  swing_factors: SwingFactorEntry[];
+  party_swing_factors: Record<string, Record<string, number>>;
+  abstention_reasons: AbstentionReasonEntry[];
+  district_summaries: DistrictOpinionSummary[];
+}
+
+export interface ExperimentMeta {
+  experiment_id: string;
+  created_at: string;
+  status: string;
+  duration_seconds: number | null;
+  description: string;
+  tags: string[];
+  parameters: Record<string, unknown>;
+  results_summary: Record<string, unknown>;
+  has_opinions: boolean;
+}
+
+export interface ExperimentListResponse {
+  experiments: ExperimentMeta[];
+}
+
+// ─── 実績比較 ───
+
+export interface DistrictComparison {
+  district_id: string;
+  district_name: string;
+  party_a: string;
+  party_b: string;
+  match: boolean;
+}
+
+export interface SeatDiff {
+  a: number;
+  b: number;
+  diff: number;
+}
+
+export interface ComparisonReport {
+  experiment_a: string;
+  experiment_b: string;
+  common_districts: number;
+  winner_match_rate: number;
+  seat_diff: Record<string, SeatDiff>;
+  seat_mae: number;
+  turnout_correlation: number | null;
+  battleground_accuracy: number | null;
+  turnout_diff: number | null;
+  margin_correlation: number | null;
+  government_prediction_correct: boolean | null;
+  district_comparisons: DistrictComparison[];
+}
+
+export interface ActualResults {
+  available: boolean;
+  election_date: string | null;
+  source: string | null;
+  national_turnout_rate: number | null;
+  party_total_seats: Record<
+    string,
+    { district?: number; proportional?: number; total: number }
+  > | null;
+  district_count: number;
+}
+
+export interface BatchComparisonResponse {
+  comparisons: ComparisonReport[];
 }

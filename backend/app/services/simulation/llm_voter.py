@@ -24,7 +24,9 @@ from .vote_calculator import VoteDecision
 
 logger = logging.getLogger(__name__)
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent.parent
+_FILE_DIR = Path(__file__).resolve().parent  # .../simulation/
+_BACKEND_DIR = _FILE_DIR.parent.parent.parent  # .../backend/ or /app/
+BASE_DIR = _BACKEND_DIR.parent
 
 # .env からAPIキーを読み込む
 def _load_env():
@@ -130,7 +132,7 @@ def parse_llm_response(response_text: str, personas: list[Persona], candidates: 
                 persona_id=persona.persona_id,
                 will_vote=False,
                 abstention_reason=item.get("abstention_reason", "LLM判定による棄権"),
-                swing_level=persona.swing_tendency,
+                swing_level=getattr(persona, "swing_tendency", "moderate"),
             ))
             continue
 
@@ -160,7 +162,7 @@ def parse_llm_response(response_text: str, personas: list[Persona], candidates: 
             proportional_party=prop_party,
             confidence=confidence,
             needs_llm=False,  # LLM処理済み
-            swing_level=persona.swing_tendency,
+            swing_level=getattr(persona, "swing_tendency", "moderate"),
             score_breakdown={
                 "method": "llm",
                 "smd_reason": smd_vote.get("reason", ""),
@@ -183,6 +185,7 @@ async def run_llm_batch(
     temperature: float = 0.7,
     concurrency: int = 5,
     delay_between_batches: float = 1.0,
+    political_climate: dict | None = None,
 ) -> list[VoteDecision]:
     """
     1選挙区のペルソナをバッチでLLM処理する。
@@ -206,6 +209,7 @@ async def run_llm_batch(
                 candidates=candidates,
                 district_context=district_context,
                 personas=persona_dicts,
+                political_climate=political_climate,
             )
 
             for attempt in range(3):

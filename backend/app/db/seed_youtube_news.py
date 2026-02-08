@@ -251,6 +251,9 @@ async def _seed_youtube_from_api(session: AsyncSession) -> bool:
                     pub_at = datetime.fromisoformat(pub_at.replace("Z", "+00:00"))
                 except (ValueError, TypeError):
                     pub_at = datetime.utcnow()
+            # Strip timezone info to match naive DateTime columns in DB
+            if pub_at and hasattr(pub_at, "tzinfo") and pub_at.tzinfo is not None:
+                pub_at = pub_at.replace(tzinfo=None)
 
             view_count = v_data.get("view_count", 0)
             like_count = v_data.get("like_count", 0)
