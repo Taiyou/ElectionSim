@@ -4,6 +4,7 @@
 ルールベースで低スイング層の投票先を決定し、
 中〜高スイング層はLLMに委託するかどうかのフラグを返す。
 """
+from __future__ import annotations
 
 import json
 import random
@@ -67,6 +68,32 @@ def get_party_alignment() -> dict:
     if _party_alignment_cache is None:
         _party_alignment_cache = load_party_alignment()
     return _party_alignment_cache
+
+
+def determine_turnout(
+    persona: Persona,
+    weather_modifier: float = 0.0,
+) -> tuple[bool, str | None]:
+    """投票/棄権をルールベースで判定する（v8a Stage 1用）
+
+    LLMの投票率過大予測を回避するため、投票率の判定はルールベースで行い、
+    投票先の選択のみをLLMに委ねるデカップリング方式の第1段階。
+
+    Args:
+        persona: 対象ペルソナ
+        weather_modifier: 天候による投票率補正（負の値で低下、例: -0.10）
+
+    Returns:
+        (will_vote, abstention_reason) のタプル
+    """
+    adjusted_prob = persona.turnout_probability + weather_modifier
+    adjusted_prob = max(0.05, min(0.95, adjusted_prob))
+
+    will_vote = random.random() < adjusted_prob
+    if not will_vote:
+        reason = _generate_abstention_reason(persona)
+        return False, reason
+    return True, None
 
 
 def calculate_vote(

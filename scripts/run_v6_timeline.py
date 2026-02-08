@@ -7,6 +7,8 @@ v6a ニュース・イベント時系列反応シミュレーション（パイ�
   python scripts/run_v6_timeline.py --seed 42
 """
 
+from __future__ import annotations
+
 import asyncio
 import argparse
 import csv

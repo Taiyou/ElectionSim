@@ -139,7 +139,21 @@ export default async function NewsPage() {
               {data.articles.slice(0, 20).map((article) => (
                 <tr key={article.id} className="hover:bg-gray-50">
                   <td className="px-4 py-3 whitespace-nowrap">{article.source}</td>
-                  <td className="px-4 py-3 max-w-xs truncate">{article.title}</td>
+                  <td className="px-4 py-3 max-w-xs">
+                    {article.url ? (
+                      <a
+                        href={article.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 hover:underline line-clamp-2"
+                        title={article.title}
+                      >
+                        {article.title}
+                      </a>
+                    ) : (
+                      <span className="line-clamp-2">{article.title}</span>
+                    )}
+                  </td>
                   <td className="px-4 py-3 text-right">{article.page_views.toLocaleString()}</td>
                   <td className="px-4 py-3 text-center">
                     <span

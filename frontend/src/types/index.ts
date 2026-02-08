@@ -353,6 +353,13 @@ export interface ManifestoOverview {
   };
 }
 
+export interface ManifestoLink {
+  party_id: string;
+  party_name: string;
+  manifesto_url: string;
+  description: string;
+}
+
 export interface ManifestoSummary {
   total_parties: number;
   total_categories: number;
@@ -363,6 +370,7 @@ export interface ManifestoSummary {
   issue_category_breakdown: IssueCategoryCount[];
   policy_comparison_matrix: Record<string, Record<string, string>>;
   overview: ManifestoOverview;
+  manifesto_links: ManifestoLink[];
 }
 
 // Model comparison types

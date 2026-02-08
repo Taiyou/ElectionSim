@@ -11,6 +11,8 @@
     python scripts/create_archive.py --tag "pre_election"
 """
 
+from __future__ import annotations
+
 import argparse
 import hashlib
 import json

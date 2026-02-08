@@ -5,6 +5,7 @@
 - Tier 1: ルールベース（低スイング層の投票先を確定）
 - Tier 2: LLM（中〜高スイング層をバッチプロンプトでまとめて処理）
 """
+from __future__ import annotations
 
 import csv
 import json

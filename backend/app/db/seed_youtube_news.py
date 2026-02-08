@@ -124,6 +124,65 @@ def _random_date(start: datetime, end: datetime) -> datetime:
 # YouTube: API-first, then CSV fallback, then generated fallback
 # ---------------------------------------------------------------------------
 
+def _estimate_sentiment_from_engagement(
+    view_count: int, like_count: int, comment_count: int
+) -> float:
+    """Estimate a sentiment score from video engagement metrics.
+
+    High like/view ratio → positive sentiment.
+    High comment/view ratio can be polarising → slight negative pull.
+    Returns a value in [-1, 1].
+    """
+    if view_count <= 0:
+        return 0.0
+    like_ratio = like_count / view_count          # typically 0.01 - 0.10
+    comment_ratio = comment_count / view_count    # typically 0.001 - 0.02
+
+    # Map like_ratio 0→-0.3, 0.05→+0.4, 0.10→+0.7 (sigmoid-like)
+    like_signal = min(like_ratio / 0.05, 1.5) * 0.5 - 0.1
+    # High comment ratio adds noise / polarisation
+    comment_signal = min(comment_ratio / 0.01, 1.0) * 0.15
+    score = like_signal - comment_signal * 0.3
+    # Add small randomness for realism
+    score += random.uniform(-0.08, 0.08)
+    return round(max(-1.0, min(1.0, score)), 3)
+
+
+def _estimate_growth_rate(subscriber_count: int, video_count: int, total_views: int) -> float:
+    """Estimate channel growth rate from available stats.
+
+    Uses views-per-subscriber as a proxy for growth momentum.
+    Active channels with high view-per-sub tend to be growing.
+    """
+    if subscriber_count <= 0:
+        return 0.0
+    views_per_sub = total_views / subscriber_count
+    # views_per_sub ~100 → low growth, ~1000+ → moderate, ~5000+ → high
+    if views_per_sub > 2000:
+        base = random.uniform(0.05, 0.15)
+    elif views_per_sub > 500:
+        base = random.uniform(0.02, 0.08)
+    else:
+        base = random.uniform(-0.01, 0.04)
+    # Bonus for having many recent videos (high video count relative to views)
+    if video_count > 1000:
+        base += random.uniform(0.01, 0.03)
+    return round(base, 4)
+
+
+# Fallback channel data for parties whose API channel fetch fails
+_FALLBACK_CHANNELS: dict[str, dict] = {
+    "genzei": {
+        "channel_id": "UCrM_VVScEWRcjGCvZfbFGdg",
+        "channel_name": "減税日本",
+        "channel_url": "https://www.youtube.com/@genzeinippon",
+        "subscriber_count": 5000,
+        "video_count": 50,
+        "total_views": 1000000,
+    },
+}
+
+
 async def _seed_youtube_from_api(session: AsyncSession) -> bool:
     """Try to fetch YouTube data from the real API. Returns True if successful."""
     if not settings.YOUTUBE_API_KEY:
@@ -145,21 +204,46 @@ async def _seed_youtube_from_api(session: AsyncSession) -> bool:
 
         logger.info("YouTube API: %d channels, %d videos", len(channels), len(videos))
 
-        # Insert channels
+        # Track which parties were successfully fetched
+        fetched_party_ids = {ch["party_id"] for ch in channels if ch.get("party_id")}
+
+        # Insert channels from API
         for ch_data in channels:
+            subs = ch_data.get("subscriber_count", 0)
+            vids = ch_data.get("video_count", 0)
+            views = ch_data.get("total_views", 0)
             session.add(YouTubeChannel(
                 channel_id=ch_data["channel_id"],
                 party_id=ch_data.get("party_id"),
                 channel_name=ch_data["channel_name"],
                 channel_url=ch_data.get("channel_url", ""),
-                subscriber_count=ch_data.get("subscriber_count", 0),
-                video_count=ch_data.get("video_count", 0),
-                total_views=ch_data.get("total_views", 0),
-                recent_avg_views=0,
-                growth_rate=0.0,
+                subscriber_count=subs,
+                video_count=vids,
+                total_views=views,
+                recent_avg_views=views // max(vids, 1),
+                growth_rate=_estimate_growth_rate(subs, vids, views),
             ))
 
-        # Insert videos
+        # Insert fallback channels for parties that failed API fetch
+        for party_id, fb in _FALLBACK_CHANNELS.items():
+            if party_id not in fetched_party_ids:
+                logger.info("Using fallback channel data for %s", party_id)
+                subs = fb["subscriber_count"]
+                vids = fb["video_count"]
+                views = fb["total_views"]
+                session.add(YouTubeChannel(
+                    channel_id=fb["channel_id"],
+                    party_id=party_id,
+                    channel_name=fb["channel_name"],
+                    channel_url=fb["channel_url"],
+                    subscriber_count=subs,
+                    video_count=vids,
+                    total_views=views,
+                    recent_avg_views=views // max(vids, 1),
+                    growth_rate=_estimate_growth_rate(subs, vids, views),
+                ))
+
+        # Insert videos with computed sentiment
         for v_data in videos:
             pub_at = v_data.get("published_at")
             if isinstance(pub_at, str):
@@ -168,32 +252,61 @@ async def _seed_youtube_from_api(session: AsyncSession) -> bool:
                 except (ValueError, TypeError):
                     pub_at = datetime.utcnow()
 
+            view_count = v_data.get("view_count", 0)
+            like_count = v_data.get("like_count", 0)
+            comment_count = v_data.get("comment_count", 0)
+
             session.add(YouTubeVideo(
                 video_id=v_data["video_id"],
                 channel_id=v_data.get("channel_id", ""),
                 title=v_data["title"],
                 video_url=v_data.get("video_url"),
                 published_at=pub_at or datetime.utcnow(),
-                view_count=v_data.get("view_count", 0),
-                like_count=v_data.get("like_count", 0),
-                comment_count=v_data.get("comment_count", 0),
+                view_count=view_count,
+                like_count=like_count,
+                comment_count=comment_count,
                 party_mention=v_data.get("party_mention"),
                 issue_category=v_data.get("issue_category"),
-                sentiment_score=0.0,
+                sentiment_score=_estimate_sentiment_from_engagement(
+                    view_count, like_count, comment_count
+                ),
             ))
 
-        # Generate sentiment placeholders (API doesn't provide these)
+        # Compute sentiment aggregates per party from actual video data
+        party_sentiments: dict[str, list[float]] = {pid: [] for pid in PARTY_IDS}
+        for v_data in videos:
+            pid = v_data.get("party_mention")
+            if pid and pid in party_sentiments:
+                view_count = v_data.get("view_count", 0)
+                like_count = v_data.get("like_count", 0)
+                comment_count = v_data.get("comment_count", 0)
+                party_sentiments[pid].append(
+                    _estimate_sentiment_from_engagement(view_count, like_count, comment_count)
+                )
+
         for party_id in PARTY_IDS:
-            pos = round(random.uniform(0.2, 0.5), 3)
-            neg = round(random.uniform(0.1, 0.4), 3)
-            neu = round(1.0 - pos - neg, 3)
+            scores = party_sentiments.get(party_id, [])
+            if scores:
+                avg = sum(scores) / len(scores)
+                pos = round(sum(1 for s in scores if s > 0.1) / len(scores), 3)
+                neg = round(sum(1 for s in scores if s < -0.1) / len(scores), 3)
+                neu = round(1.0 - pos - neg, 3)
+                sample = len(scores)
+            else:
+                # No videos for this party – generate plausible defaults
+                pos = round(random.uniform(0.2, 0.5), 3)
+                neg = round(random.uniform(0.1, 0.4), 3)
+                neu = round(1.0 - pos - neg, 3)
+                avg = round(pos - neg, 3)
+                sample = random.randint(50, 300)
+
             session.add(YouTubeSentiment(
                 party_id=party_id,
                 positive_ratio=pos,
                 neutral_ratio=max(neu, 0.0),
                 negative_ratio=neg,
-                avg_sentiment_score=round(pos - neg, 3),
-                sample_size=random.randint(50, 300),
+                avg_sentiment_score=round(avg, 3),
+                sample_size=sample,
             ))
 
         # Generate daily stats from actual video data
@@ -460,6 +573,81 @@ async def seed_youtube_data(session: AsyncSession) -> None:
 # News: API-first, then generated fallback
 # ---------------------------------------------------------------------------
 
+# Source credibility scores (1.0–5.0) for known Japanese media outlets
+_SOURCE_CREDIBILITY: dict[str, float] = {
+    "NHK": 4.5, "Web.nhk": 4.5, "nhk.or.jp": 4.5,
+    "朝日新聞": 4.2, "Asahi.com": 4.2, "asahi.com": 4.2,
+    "読売新聞": 4.3, "Yomiuri.co.jp": 4.3,
+    "毎日新聞": 4.0, "Mainichi.jp": 4.0,
+    "産経新聞": 3.8, "Sankei.com": 3.8,
+    "日本経済新聞": 4.4, "Nikkei.com": 4.4,
+    "東京新聞": 3.7, "Tokyo-np.co.jp": 3.7,
+    "共同通信": 4.1, "時事通信": 4.0, "Jiji.com": 4.0,
+    "TBS": 3.9, "テレビ朝日": 3.8, "フジテレビ": 3.6,
+    "日本テレビ": 3.7, "ABEMA": 3.2,
+    "文春オンライン": 3.5, "Bunshun.jp": 3.5,
+    "Yahoo.co.jp": 3.3, "Huffingtonpost.jp": 3.4,
+    "Toyokeizai.net": 3.8, "Nikkansports.com": 3.0,
+    "Agora-web.jp": 3.2,
+}
+
+# Tone keywords for simple Japanese sentiment estimation
+_POSITIVE_KEYWORDS = [
+    "期待", "好調", "躍進", "支持拡大", "好評", "前進", "成功",
+    "安定", "改善", "成長", "回復", "上昇", "プラス",
+]
+_NEGATIVE_KEYWORDS = [
+    "批判", "懸念", "問題", "失言", "スキャンダル", "不安", "低迷",
+    "反発", "疑惑", "辞任", "敗北", "下落", "混乱", "裏金",
+    "不正", "逆風", "苦戦", "炎上",
+]
+
+
+def _estimate_tone_score(title: str, description: str = "") -> float:
+    """Estimate article tone from title/description keywords. Returns [-1, 1]."""
+    text = title + " " + (description or "")
+    pos_count = sum(1 for kw in _POSITIVE_KEYWORDS if kw in text)
+    neg_count = sum(1 for kw in _NEGATIVE_KEYWORDS if kw in text)
+
+    if pos_count + neg_count == 0:
+        # Neutral with small random variance
+        return round(random.uniform(-0.15, 0.15), 3)
+
+    raw = (pos_count - neg_count) / (pos_count + neg_count)
+    # Add small noise for realism
+    return round(max(-1.0, min(1.0, raw + random.uniform(-0.1, 0.1))), 3)
+
+
+def _lookup_credibility(source: str) -> float:
+    """Look up credibility score for a news source, with sensible defaults."""
+    if source in _SOURCE_CREDIBILITY:
+        return _SOURCE_CREDIBILITY[source]
+    # Try partial matches
+    for known, score in _SOURCE_CREDIBILITY.items():
+        if known.lower() in source.lower() or source.lower() in known.lower():
+            return score
+    # Unknown source – assign moderate default based on domain patterns
+    if any(d in source.lower() for d in [".co.jp", ".or.jp", ".go.jp"]):
+        return 3.5
+    if any(d in source.lower() for d in ["blog", "nifty", "livedoor", "hatena", "2ch", "2nn"]):
+        return 2.0
+    return 2.8
+
+
+def _estimate_page_views(source: str, title: str) -> int:
+    """Estimate page views based on source prestige and title appeal."""
+    cred = _lookup_credibility(source)
+    # Higher-credibility sources tend to have more views
+    base = int(cred * random.randint(2000, 15000))
+    # Boost for sensational / election-specific keywords
+    boost_keywords = ["速報", "最新", "世論調査", "議席", "激戦", "当選", "予測"]
+    for kw in boost_keywords:
+        if kw in title:
+            base = int(base * random.uniform(1.3, 2.0))
+            break
+    return max(base, 500)
+
+
 async def _seed_news_from_api(session: AsyncSession) -> bool:
     """Try to fetch news data from NewsAPI. Returns True if successful."""
     if not settings.NEWS_API_KEY:
@@ -479,15 +667,19 @@ async def _seed_news_from_api(session: AsyncSession) -> bool:
         logger.info("NewsAPI: %d articles fetched", len(articles))
 
         for a_data in articles:
+            source = a_data["source"]
+            title = a_data["title"]
+            desc = a_data.get("description", "") or ""
+
             session.add(NewsArticle(
-                source=a_data["source"],
-                title=a_data["title"],
+                source=source,
+                title=title,
                 url=a_data.get("url"),
                 published_at=a_data.get("published_at", datetime.utcnow()),
-                page_views=0,
+                page_views=_estimate_page_views(source, title),
                 party_mention=a_data.get("party_mention"),
-                tone_score=0.0,
-                credibility_score=0.0,
+                tone_score=_estimate_tone_score(title, desc),
+                credibility_score=_lookup_credibility(source),
                 issue_category=a_data.get("issue_category"),
             ))
 

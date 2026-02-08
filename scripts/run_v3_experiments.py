@@ -15,6 +15,8 @@ v2（ルールベース・デフォルト重み）との比較を目的に、
   python scripts/run_v3_experiments.py --scenario B --seeds 42 99
 """
 
+from __future__ import annotations
+
 import argparse
 import json
 import logging

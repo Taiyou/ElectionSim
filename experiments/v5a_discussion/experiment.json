@@ -1,0 +1,32 @@
+{
+  "experiment_id": "v5a_20260208_123916_seed42",
+  "created_at": "2026-02-08T12:39:16.126589+09:00",
+  "status": "completed",
+  "duration_seconds": 6118.75,
+  "description": "v5a ペルソナ間議論シミュレーション (seed=42)",
+  "tags": [
+    "v5a_discussion",
+    "seed42",
+    "llm_discussion"
+  ],
+  "parameters": {
+    "seed": 42,
+    "personas_per_district": 100,
+    "model": "anthropic/claude-sonnet-4",
+    "temperature": 0.7,
+    "group_size": 5,
+    "groups_per_district": 10,
+    "discussion_turns": 3,
+    "mode": "pilot",
+    "district_count": 10,
+    "method": "llm_group_discussion"
+  },
+  "results_summary": {
+    "national_turnout_rate": 0.495,
+    "smd_seats": {
+      "chudo": 4,
+      "ldp": 5,
+      "ishin": 1
+    }
+  }
+}

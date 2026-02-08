@@ -183,18 +183,13 @@ export default async function YouTubePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {data.recent_videos.slice(0, 10).map((video) => {
             const videoLink = video.video_url || `https://www.youtube.com/watch?v=${video.video_id}`;
-            const hasValidLink = !!video.video_url;
-            const Wrapper = hasValidLink ? "a" : "div";
-            const linkProps = hasValidLink
-              ? { href: videoLink, target: "_blank" as const, rel: "noopener noreferrer" }
-              : {};
             return (
-              <Wrapper
+              <a
                 key={video.id}
-                {...linkProps}
-                className={`bg-white border border-gray-200 rounded-lg p-4 transition-shadow block ${
-                  hasValidLink ? "hover:shadow-md hover:border-gray-300 cursor-pointer" : ""
-                }`}
+                href={videoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white border border-gray-200 rounded-lg p-4 transition-shadow block hover:shadow-md hover:border-gray-300 cursor-pointer"
               >
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="text-sm font-medium line-clamp-2">{video.title}</h3>
@@ -223,7 +218,7 @@ export default async function YouTubePage() {
                     </span>
                   )}
                 </div>
-              </Wrapper>
+              </a>
             );
           })}
         </div>

@@ -1,0 +1,32 @@
+{
+  "experiment_id": "v7a_20260208_132154_seed42",
+  "created_at": "2026-02-08T13:21:54.422273+09:00",
+  "status": "completed",
+  "duration_seconds": 2413.91,
+  "description": "v7a 理由付き投票シミュレーション (pilot, seed=42)",
+  "tags": [
+    "v7a_reasoned_pilot",
+    "seed42",
+    "llm_reasoned_vote",
+    "exit_poll"
+  ],
+  "parameters": {
+    "seed": 42,
+    "personas_per_district": 100,
+    "model": "anthropic/claude-sonnet-4",
+    "temperature": 0.7,
+    "batch_size": 10,
+    "concurrency": 3,
+    "mode": "pilot",
+    "district_count": 10,
+    "method": "llm_reasoned_vote"
+  },
+  "results_summary": {
+    "national_turnout_rate": 0.887,
+    "smd_seats": {
+      "chudo": 3,
+      "ldp": 6,
+      "ishin": 1
+    }
+  }
+}

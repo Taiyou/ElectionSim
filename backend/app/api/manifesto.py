@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import json
 from collections import defaultdict
 from functools import lru_cache
@@ -19,6 +20,16 @@ def _load_manifesto():
         raise FileNotFoundError(f"Manifesto data file not found: {path}")
     with open(path, encoding="utf-8") as f:
         return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def _load_manifesto_links() -> list[dict]:
+    path = PERSONA_DATA_DIR / "manifesto_links.csv"
+    if not path.exists():
+        return []
+    with open(path, encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        return [row for row in reader]
 
 
 @router.get("/summary")
@@ -179,6 +190,9 @@ async def get_manifesto_summary():
         },
     }
 
+    # Load manifesto links from CSV
+    manifesto_links = _load_manifesto_links()
+
     return {
         "total_parties": len(parties_data),
         "total_categories": len(issue_categories),
@@ -189,4 +203,5 @@ async def get_manifesto_summary():
         "issue_category_breakdown": issue_breakdown,
         "policy_comparison_matrix": comparison_matrix,
         "overview": overview,
+        "manifesto_links": manifesto_links,
     }

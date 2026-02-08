@@ -1,4 +1,5 @@
 """シミュレーション関連のPydanticスキーマ"""
+from __future__ import annotations
 
 from pydantic import BaseModel
 

@@ -10,6 +10,7 @@
 - 接戦区精度: margin下位25%選挙区での当選者一致率
 - 政権予測正否: 過半数連合の正誤
 """
+from __future__ import annotations
 
 import logging
 import math

@@ -1,0 +1,72 @@
+{
+  "experiment_id": "v8a_calibrated",
+  "version": "v8a",
+  "status": "planned",
+  "description": "キャリブレーション付きLLM投票（デカップリング方式）",
+  "hypothesis": "投票率決定をルールベースに委ね、LLMは投票先選択のみに使用することで、v4aの投票率過大予測（75-88%）を解消し、選挙区支持率分布へのアンカリングにより中道政党バイアスを軽減できる",
+  "prior_research": [
+    {
+      "title": "Out of One, Many: Using Language Models to Simulate Human Samples",
+      "authors": "Argyle et al.",
+      "year": 2023,
+      "relevance": "事後キャリブレーション（raking）手法を参考。LLMの出力を過去の支持率分布に向けてソフトに補正"
+    },
+    {
+      "title": "LLM Political Bias Studies",
+      "relevance": "LLMの市民的義務バイアス（投票率過大予測）と進歩的バイアスへの対処としてデカップリングアーキテクチャを採用"
+    }
+  ],
+  "methodology": {
+    "stage1": {
+      "name": "ルールベース投票率判定",
+      "description": "vote_calculator.pyのdetermine_turnout()関数でペルソナの投票/棄権を判定。天候補正（weather_modifier）付き",
+      "rationale": "LLMは投票率を75-88%と過大予測するため、ルールベースで制御（目標: 55±5%）"
+    },
+    "stage2": {
+      "name": "LLM投票先決定",
+      "description": "投票するペルソナのみをLLMに渡し、候補者選択を予測。プロンプトに選挙区支持率分布をアンカーとして明示",
+      "model": "anthropic/claude-sonnet-4",
+      "temperature": 0.7,
+      "rationale": "LLMの強み（文脈理解、ペルソナのリアルな判断）を活かしつつ、投票率バイアスを排除"
+    },
+    "stage3": {
+      "name": "事後キャリブレーション",
+      "description": "LLM出力の政党分布を選挙区の過去支持率分布に向けてソフトに補正（strength=0.3）",
+      "rationale": "Argyle et al.のraking手法を簡易化。過剰代表の政党から過少代表の政党へ確率的に票を移動"
+    }
+  },
+  "parameters": {
+    "seed": 42,
+    "personas_per_district": 100,
+    "model": "anthropic/claude-sonnet-4",
+    "temperature": 0.7,
+    "batch_size": 15,
+    "concurrency": 3,
+    "calibration_strength": 0.3
+  },
+  "success_criteria": [
+    {
+      "metric": "national_turnout_rate",
+      "target": "55% ± 5%",
+      "comparison": "v4a: 75.5%, v7a: 88.7%",
+      "rationale": "ルールベース投票率判定により過大予測を解消"
+    },
+    {
+      "metric": "chudo_seat_reduction",
+      "target": "v4aよりchudo議席が減少",
+      "comparison": "v4a: chudo 5/10区",
+      "rationale": "分布アンカリングにより中道政党バイアスを軽減"
+    },
+    {
+      "metric": "v1_match_rate",
+      "target": "> 70%",
+      "comparison": "v4a: 60%, v5a: 70%, v7a: 80%",
+      "rationale": "バイアス補正により既存実験との整合性が向上"
+    }
+  ],
+  "estimated_cost": {
+    "pilot_10districts": "$5-10",
+    "full_289districts_3seeds": "$30-45"
+  },
+  "execution_command": "python scripts/run_v8_calibrated_vote.py --mode pilot --seed 42"
+}

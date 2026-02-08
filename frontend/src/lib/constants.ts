@@ -91,4 +91,38 @@ export const MANIFESTO_PARTY_COLORS: Record<string, string> = {
   mirai: "#03A9F4",
 };
 
+export const PARTY_MANIFESTO_URLS: Record<string, string> = {
+  ldp: "https://www.jimin.jp/policy/manifesto/",
+  cdp: "https://cdp-japan.jp/visions",
+  ishin: "https://o-ishin.jp/policy/",
+  komei: "https://www.komei.or.jp/campaign/shuin2024/manifesto/",
+  dpfp: "https://new-kokumin.jp/policies",
+  jcp: "https://www.jcp.or.jp/web_policy/",
+  reiwa: "https://reiwa-shinsengumi.com/policy/",
+  shamin: "https://sdp.or.jp/policy/",
+  sansei: "https://www.sanseito.jp/policy/",
+  hoshuto: "https://hoshuto.jp/policy/",
+  chudo: "https://cdp-japan.jp/visions",
+  genzei: "https://genzeinippon.com/policy/",
+  mirai: "https://team-mirai.org/policy/",
+};
+
+export const PARTY_FULL_NAMES: Record<string, string> = {
+  ldp: "自由民主党",
+  cdp: "立憲民主党",
+  ishin: "日本維新の会",
+  komei: "公明党",
+  dpfp: "国民民主党",
+  jcp: "日本共産党",
+  reiwa: "れいわ新選組",
+  shamin: "社会民主党",
+  sansei: "参政党",
+  hoshuto: "日本保守党",
+  chudo: "中道改革連合",
+  genzei: "減税日本",
+  mirai: "チームみらい",
+  shoha: "諸派",
+  independent: "無所属",
+};
+
 export const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";

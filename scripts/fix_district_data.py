@@ -5,6 +5,8 @@
 修正: 対象地域から都市化レベルを判定し、人口按分、年齢分布・ペルソナ分布を変調
 """
 
+from __future__ import annotations
+
 import csv
 import json
 import re

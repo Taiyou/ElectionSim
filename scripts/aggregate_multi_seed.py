@@ -11,6 +11,8 @@
   python scripts/aggregate_multi_seed.py --tag full  # タグでフィルタ
 """
 
+from __future__ import annotations
+
 import argparse
 import json
 import math

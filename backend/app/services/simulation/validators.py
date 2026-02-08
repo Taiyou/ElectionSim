@@ -3,6 +3,7 @@
 
 世論調査との整合性、投票率の妥当性、属性別傾向の確認を行う。
 """
+from __future__ import annotations
 
 import logging
 from .result_aggregator import DistrictResult

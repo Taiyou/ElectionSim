@@ -1,17 +1,25 @@
 """
-v4 LLMペルソナ投票実験
+v8a キャリブレーション付きLLM投票実験（デカップリング方式）
 
-全ペルソナの投票行動をLLM（Claude Sonnet via OpenRouter）に判断させる。
-ルールベース（v2）との比較が目的。
+投票率決定（Stage 1）とLLM投票先決定（Stage 2）を分離し、
+事後キャリブレーション（Stage 3）でバイアスを補正する。
+
+v4aとの主な違い:
+  - Stage 1: 投票/棄権をルールベースで判定（LLMの投票率過大予測を回避）
+  - Stage 2: 投票するペルソナのみLLMで投票先を予測
+  - Stage 3: 選挙区の支持率分布に向けてソフトにキャリブレーション
+
+先行研究: Argyle et al. (2023) "Out of One, Many" の事後キャリブレーション手法を参考
 
 使い方:
-  # v4a: パイロット10区
-  python scripts/run_v4_llm_persona.py --mode pilot --seed 42
+  # v8a: パイロット10区
+  python scripts/run_v8_calibrated_vote.py --mode pilot --seed 42
 
-  # v4b: 全289区（3シード）
-  python scripts/run_v4_llm_persona.py --mode all --seed 42
-  python scripts/run_v4_llm_persona.py --mode all --seed 99
-  python scripts/run_v4_llm_persona.py --mode all --seed 123
+  # v8b: 分布アンカリング + キャリブレーションなし（比較用）
+  python scripts/run_v8_calibrated_vote.py --mode pilot --seed 42 --no-calibration
+
+  # 全289区
+  python scripts/run_v8_calibrated_vote.py --mode all --seed 42
 """
 
 from __future__ import annotations
@@ -21,6 +29,7 @@ import argparse
 import csv
 import json
 import logging
+import random
 import sys
 import time
 from dataclasses import asdict
@@ -36,8 +45,23 @@ from backend.app.services.simulation.persona_generator import (
     load_candidates,
     load_district_data,
 )
-from backend.app.services.simulation.llm_voter import run_llm_batch, DEFAULT_MODEL
-from backend.app.services.simulation.result_aggregator import aggregate_district_results
+from backend.app.services.simulation.llm_voter import (
+    call_openrouter_async,
+    parse_llm_response,
+    DEFAULT_MODEL,
+)
+from backend.app.services.simulation.prompts import (
+    CALIBRATED_SYSTEM_PROMPT,
+    build_calibrated_batch_prompt,
+)
+from backend.app.services.simulation.result_aggregator import (
+    aggregate_district_results,
+    calibrate_decisions,
+)
+from backend.app.services.simulation.vote_calculator import (
+    VoteDecision,
+    determine_turnout,
+)
 from backend.app.services.simulation.validators import validate_results
 from backend.app.services.simulation.engine import dhondt_allocation
 
@@ -57,8 +81,24 @@ PILOT_DISTRICTS = [
     "05_1", "14_1", "26_1", "40_1", "32_1",
 ]
 
+# 天候補正マップ（都道府県コード → 投票率補正）
+WEATHER_MODIFIERS = {
+    # 大雪地域（北海道、東北、日本海側）
+    "01": -0.10, "02": -0.08, "03": -0.05, "05": -0.08,
+    "06": -0.07, "07": -0.04, "15": -0.07, "16": -0.05,
+    "17": -0.05, "18": -0.05, "19": -0.03, "20": -0.04,
+    # 太平洋側は軽微
+    "04": -0.03, "08": -0.02, "09": -0.02, "10": -0.02,
+}
 
-async def run_district_llm(
+
+def get_weather_modifier(district_id: str) -> float:
+    """選挙区IDから天候補正値を取得"""
+    pref_code = district_id.split("_")[0]
+    return WEATHER_MODIFIERS.get(pref_code, -0.02)  # デフォルト: 冬季の軽微な低下
+
+
+async def run_district_calibrated(
     district_row: dict,
     archetypes: list[dict],
     candidates_by_district: dict,
@@ -68,15 +108,18 @@ async def run_district_llm(
     temperature: float,
     batch_size: int,
     concurrency: int,
+    calibration_strength: float,
+    enable_calibration: bool,
 ):
-    """1選挙区のLLMペルソナシミュレーション"""
+    """1選挙区のキャリブレーション付きLLMシミュレーション"""
 
     district_id = f"{district_row['都道府県コード'].zfill(2)}_{district_row['区番号']}"
     district_name = district_row.get("選挙区", district_id)
 
     logger.info(f"選挙区開始: {district_name} ({district_id})")
 
-    # ペルソナ生成（ルールベースと同一）
+    # ペルソナ生成（全実験で同一シード）
+    random.seed(seed)
     personas = generate_personas_for_district(
         district_row, archetypes, personas_per_district, seed
     )
@@ -91,49 +134,158 @@ async def run_district_llm(
         logger.warning(f"  候補者データなし: {district_id}")
         return None
 
-    # LLM投票
-    decisions = await run_llm_batch(
-        district_name=district_name,
-        area_description=district_row.get("対象地域", ""),
-        candidates=candidates,
-        district_context=district_row,
-        personas=personas,
-        batch_size=batch_size,
-        model=model,
-        temperature=temperature,
-        concurrency=concurrency,
+    # ===== Stage 1: ルールベース投票率判定 =====
+    random.seed(seed + hash(district_id))
+    weather_mod = get_weather_modifier(district_id)
+
+    voting_personas = []
+    abstaining_decisions = []
+
+    for persona in personas:
+        will_vote, reason = determine_turnout(persona, weather_modifier=weather_mod)
+        if will_vote:
+            voting_personas.append(persona)
+        else:
+            abstaining_decisions.append(VoteDecision(
+                persona_id=persona.persona_id,
+                will_vote=False,
+                abstention_reason=reason,
+                swing_level=persona.swing_tendency,
+            ))
+
+    logger.info(
+        f"  Stage 1: {len(voting_personas)}/{len(personas)}名が投票 "
+        f"(天候補正: {weather_mod:+.2f})"
     )
+
+    if not voting_personas:
+        logger.warning(f"  投票者なし: {district_id}")
+        return None
+
+    # ===== Stage 2: LLM投票先決定（投票者のみ） =====
+    all_llm_decisions = [None] * len(voting_personas)
+    semaphore = asyncio.Semaphore(concurrency)
+
+    async def process_batch(batch_start: int, batch_personas):
+        async with semaphore:
+            persona_dicts = [asdict(p) for p in batch_personas]
+            prompt = build_calibrated_batch_prompt(
+                district_name=district_name,
+                area_description=district_row.get("対象地域", ""),
+                candidates=candidates,
+                district_context=district_row,
+                personas=persona_dicts,
+            )
+
+            for attempt in range(3):
+                try:
+                    response = await call_openrouter_async(
+                        model=model,
+                        system_prompt=CALIBRATED_SYSTEM_PROMPT,
+                        user_prompt=prompt,
+                        temperature=temperature,
+                    )
+                    decisions = parse_llm_response(response, batch_personas, candidates)
+
+                    for j, decision in enumerate(decisions):
+                        global_idx = batch_start + j
+                        if global_idx < len(all_llm_decisions):
+                            # will_voteを強制的にTrue（Stage 1で判定済み）
+                            decision.will_vote = True
+                            all_llm_decisions[global_idx] = decision
+
+                    logger.info(
+                        f"  Stage 2 バッチ {batch_start}-{batch_start + len(batch_personas) - 1}: "
+                        f"{len(decisions)}件完了"
+                    )
+                    break
+                except Exception as e:
+                    logger.warning(f"  バッチ {batch_start} リトライ {attempt + 1}/3: {e}")
+                    if attempt < 2:
+                        await asyncio.sleep(2 ** attempt)
+                    else:
+                        logger.error(f"  バッチ {batch_start} 失敗")
+
+            await asyncio.sleep(1.0)
+
+    tasks = []
+    for i in range(0, len(voting_personas), batch_size):
+        batch = voting_personas[i:i + batch_size]
+        tasks.append(process_batch(i, batch))
+
+    await asyncio.gather(*tasks)
+
+    # LLM失敗分のフォールバック（投票したが候補者不明 → 最も知名度の高い候補者）
+    llm_decisions = []
+    for i, decision in enumerate(all_llm_decisions):
+        if decision is None:
+            # フォールバック: 現職候補者に投票
+            fallback_candidate = candidates[0]
+            for c in candidates:
+                if c.get("status") == "incumbent":
+                    fallback_candidate = c
+                    break
+            llm_decisions.append(VoteDecision(
+                persona_id=voting_personas[i].persona_id,
+                will_vote=True,
+                smd_candidate=fallback_candidate["candidate_name"],
+                smd_party=fallback_candidate.get("party_id", ""),
+                proportional_party=fallback_candidate.get("party_id", ""),
+                confidence=0.3,
+                swing_level=voting_personas[i].swing_tendency,
+                score_breakdown={"method": "fallback"},
+            ))
+        else:
+            llm_decisions.append(decision)
+
+    # ===== Stage 3: 事後キャリブレーション =====
+    if enable_calibration:
+        calibrated_decisions = calibrate_decisions(
+            llm_decisions,
+            district_context=district_row,
+            strength=calibration_strength,
+            seed=seed,
+        )
+        logger.info(f"  Stage 3: キャリブレーション適用 (強度={calibration_strength})")
+    else:
+        calibrated_decisions = llm_decisions
+        logger.info("  Stage 3: キャリブレーションなし")
+
+    # 全決定を統合（棄権 + 投票）
+    all_decisions = abstaining_decisions + calibrated_decisions
 
     # 集計
     result = aggregate_district_results(
         district_id=district_id,
         district_name=district_name,
         personas=personas,
-        decisions=decisions,
+        decisions=all_decisions,
         candidates=candidates,
     )
 
-    voted = sum(1 for d in decisions if d.will_vote)
     logger.info(
-        f"  完了: {district_name} 投票{voted}/{len(personas)}名 "
+        f"  完了: {district_name} 投票{len(voting_personas)}/{len(personas)}名 "
         f"当選: {result.winner} ({result.winner_party})"
     )
 
-    return result, decisions
+    return result, all_decisions
 
 
 async def run_experiment(args):
-    """実験全体を実行"""
+    """v8a 実験実行"""
+
+    tag = "v8a_calibrated_pilot" if args.mode == "pilot" else "v8a_calibrated_full"
+    if not args.calibration:
+        tag = tag.replace("v8a", "v8b")  # キャリブレーションなし = v8b
 
     logger.info("=" * 70)
-    tag = "v4a_llm_pilot" if args.mode == "pilot" else "v4b_llm_full"
-    logger.info(f"v4 LLMペルソナ投票実験: {tag}")
+    logger.info(f"v8 キャリブレーション付きLLM投票実験: {tag}")
     logger.info(f"  モード: {args.mode}")
     logger.info(f"  シード: {args.seed}")
     logger.info(f"  モデル: {args.model}")
     logger.info(f"  温度: {args.temperature}")
-    logger.info(f"  バッチサイズ: {args.batch_size}")
-    logger.info(f"  同時実行数: {args.concurrency}")
+    logger.info(f"  キャリブレーション: {'有効' if args.calibration else '無効'}")
+    logger.info(f"  キャリブレーション強度: {args.calibration_strength}")
     logger.info("=" * 70)
 
     # データ読み込み
@@ -158,7 +310,7 @@ async def run_experiment(args):
 
     for i, district_row in enumerate(target_districts):
         district_id = f"{district_row['都道府県コード'].zfill(2)}_{district_row['区番号']}"
-        result_tuple = await run_district_llm(
+        result_tuple = await run_district_calibrated(
             district_row=district_row,
             archetypes=archetypes,
             candidates_by_district=candidates_by_district,
@@ -168,6 +320,8 @@ async def run_experiment(args):
             temperature=args.temperature,
             batch_size=args.batch_size,
             concurrency=args.concurrency,
+            calibration_strength=args.calibration_strength,
+            enable_calibration=args.calibration,
         )
 
         if result_tuple is not None:
@@ -190,9 +344,7 @@ async def run_experiment(args):
         duration=duration,
     )
 
-    # サマリ表示
     _print_summary(results, experiment_id)
-
     return experiment_id
 
 
@@ -201,9 +353,9 @@ def _save_results(results, all_decisions, args, tag, duration):
     from datetime import datetime, timezone, timedelta
     JST = timezone(timedelta(hours=9))
     now = datetime.now(JST)
-    experiment_id = f"v4_{now.strftime('%Y%m%d_%H%M%S')}_seed{args.seed}"
+    version = "v8a" if args.calibration else "v8b"
+    experiment_id = f"{version}_{now.strftime('%Y%m%d_%H%M%S')}_seed{args.seed}"
 
-    # results/experiments/ に保存
     exp_dir = RESULTS_DIR / experiment_id
     exp_dir.mkdir(parents=True, exist_ok=True)
 
@@ -235,7 +387,7 @@ def _save_results(results, all_decisions, args, tag, duration):
     # 比例代表結果
     _save_proportional(results, exp_dir)
 
-    # LLM投票理由を含む詳細JSON
+    # LLM投票決定の詳細JSON
     decisions_data = {}
     for district_id, decisions in all_decisions.items():
         decisions_data[district_id] = []
@@ -283,8 +435,8 @@ def _save_results(results, all_decisions, args, tag, duration):
         "created_at": now.isoformat(),
         "status": "completed",
         "duration_seconds": round(duration, 2),
-        "description": f"v4 LLMペルソナ投票 ({args.mode}, seed={args.seed})",
-        "tags": [tag, f"seed{args.seed}", "llm_persona"],
+        "description": f"v8 キャリブレーション付きLLM投票 ({args.mode}, seed={args.seed})",
+        "tags": [tag, f"seed{args.seed}", "llm_calibrated", "decoupled"],
         "parameters": {
             "seed": args.seed,
             "personas_per_district": args.personas,
@@ -295,7 +447,15 @@ def _save_results(results, all_decisions, args, tag, duration):
             "mode": args.mode,
             "district_count": len(results),
             "total_personas": sum(r.total_personas for r in results),
-            "method": "llm_all_personas",
+            "method": "llm_calibrated_decoupled",
+            "calibration_enabled": args.calibration,
+            "calibration_strength": args.calibration_strength,
+        },
+        "methodology": {
+            "stage1": "ルールベース投票率判定（weather_modifier付き）",
+            "stage2": "LLM投票先決定（投票者のみ、分布アンカリング付きプロンプト）",
+            "stage3": f"事後キャリブレーション（強度={args.calibration_strength}）" if args.calibration else "なし",
+            "prior_research": "Argyle et al. (2023) 'Out of One, Many' の事後キャリブレーション手法",
         },
         "results_summary": {
             "national_turnout_rate": summary["national_turnout_rate"],
@@ -307,11 +467,10 @@ def _save_results(results, all_decisions, args, tag, duration):
     with open(metadata_path, "w", encoding="utf-8") as f:
         json.dump(metadata, f, ensure_ascii=False, indent=2)
 
-    # experiments/ にも experiment.json を保存
+    # experiments/ にも保存
     exp_log_dir = EXPERIMENTS_DIR / tag
     exp_log_dir.mkdir(parents=True, exist_ok=True)
-    exp_json_path = exp_log_dir / "experiment.json"
-    with open(exp_json_path, "w", encoding="utf-8") as f:
+    with open(exp_log_dir / "experiment.json", "w", encoding="utf-8") as f:
         json.dump(metadata, f, ensure_ascii=False, indent=2)
 
     logger.info(f"結果保存: {exp_dir}")
@@ -379,7 +538,7 @@ def _build_summary(results):
         "total_personas": total_personas,
         "national_turnout_rate": round(total_turnout / total_personas, 4) if total_personas else 0,
         "smd_seats": party_seats,
-        "method": "llm_all_personas",
+        "method": "llm_calibrated_decoupled",
     }
 
 
@@ -399,7 +558,7 @@ def _print_summary(results, experiment_id):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="v4 LLMペルソナ投票実験")
+    parser = argparse.ArgumentParser(description="v8 キャリブレーション付きLLM投票実験")
     parser.add_argument("--mode", choices=["pilot", "all"], default="pilot")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--personas", type=int, default=100)
@@ -407,6 +566,15 @@ def main():
     parser.add_argument("--temperature", type=float, default=0.7)
     parser.add_argument("--batch-size", type=int, default=15)
     parser.add_argument("--concurrency", type=int, default=3)
+    parser.add_argument(
+        "--no-calibration", dest="calibration", action="store_false",
+        help="事後キャリブレーションを無効化（v8b相当）",
+    )
+    parser.add_argument(
+        "--calibration-strength", type=float, default=0.3,
+        help="キャリブレーション強度 (0.0-1.0, default=0.3)",
+    )
+    parser.set_defaults(calibration=True)
     args = parser.parse_args()
 
     asyncio.run(run_experiment(args))

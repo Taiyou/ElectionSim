@@ -19,6 +19,9 @@ services:
     environment:
       DATABASE_URL: postgresql+asyncpg://user:password@db:5432/election_ai
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+    volumes:
+      - ./backend/app:/app/app
+      - ./persona_data:/persona_data
     depends_on:
       - db
 

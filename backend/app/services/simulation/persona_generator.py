@@ -4,6 +4,7 @@
 12+3アーキタイプの加重分布に基づき、各選挙区100名のペルソナを生成する。
 ルールベースで属性を決定し、LLM呼び出しは不要。
 """
+from __future__ import annotations
 
 import csv
 import json

@@ -9,6 +9,8 @@ v4bとの違い: 投票理由の記述により多くのトークンを割き、
   python scripts/run_v7_reasoned_vote.py --mode all --seed 42
 """
 
+from __future__ import annotations
+
 import asyncio
 import argparse
 import csv

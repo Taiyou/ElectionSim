@@ -8,6 +8,7 @@
 - 実験一覧・ロード
 - 実選挙結果のロード
 """
+from __future__ import annotations
 
 import csv
 import hashlib

@@ -5,6 +5,8 @@ OpenRouter経由でClaude Sonnetを呼び出し、ペルソナの投票行動を
 ルールベース（vote_calculator.py）の代替として使用。
 """
 
+from __future__ import annotations
+
 import asyncio
 import json
 import logging

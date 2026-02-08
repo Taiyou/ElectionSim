@@ -8,6 +8,8 @@ SNS/井戸端会議での情報交換・説得の影響をモデル化する。
   python scripts/run_v5_discussion.py --seed 42
 """
 
+from __future__ import annotations
+
 import asyncio
 import argparse
 import csv
