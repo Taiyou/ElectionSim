@@ -110,6 +110,7 @@ async def run_district_calibrated(
     concurrency: int,
     calibration_strength: float,
     enable_calibration: bool,
+    global_semaphore: asyncio.Semaphore | None = None,
 ):
     """1選挙区のキャリブレーション付きLLMシミュレーション"""
 
@@ -177,14 +178,21 @@ async def run_district_calibrated(
                 personas=persona_dicts,
             )
 
+            async def _call_api():
+                return await call_openrouter_async(
+                    model=model,
+                    system_prompt=CALIBRATED_SYSTEM_PROMPT,
+                    user_prompt=prompt,
+                    temperature=temperature,
+                )
+
             for attempt in range(3):
                 try:
-                    response = await call_openrouter_async(
-                        model=model,
-                        system_prompt=CALIBRATED_SYSTEM_PROMPT,
-                        user_prompt=prompt,
-                        temperature=temperature,
-                    )
+                    if global_semaphore is not None:
+                        async with global_semaphore:
+                            response = await _call_api()
+                    else:
+                        response = await _call_api()
                     decisions = parse_llm_response(response, batch_personas, candidates)
 
                     for j, decision in enumerate(decisions):
@@ -308,29 +316,54 @@ async def run_experiment(args):
     results = []
     all_decisions_by_district = {}
 
-    for i, district_row in enumerate(target_districts):
-        district_id = f"{district_row['都道府県コード'].zfill(2)}_{district_row['区番号']}"
-        result_tuple = await run_district_calibrated(
-            district_row=district_row,
-            archetypes=archetypes,
-            candidates_by_district=candidates_by_district,
-            seed=args.seed,
-            personas_per_district=args.personas,
-            model=args.model,
-            temperature=args.temperature,
-            batch_size=args.batch_size,
-            concurrency=args.concurrency,
-            calibration_strength=args.calibration_strength,
-            enable_calibration=args.calibration,
-        )
+    # 選挙区レベル並列化
+    global_api_semaphore = asyncio.Semaphore(args.max_api_concurrency)
+    district_semaphore = asyncio.Semaphore(args.max_district_concurrency)
+    completed_count = 0
+    completed_lock = asyncio.Lock()
+    total_districts = len(target_districts)
 
+    async def run_one_district(idx, district_row):
+        nonlocal completed_count
+        async with district_semaphore:
+            district_id = f"{district_row['都道府県コード'].zfill(2)}_{district_row['区番号']}"
+            result_tuple = await run_district_calibrated(
+                district_row=district_row,
+                archetypes=archetypes,
+                candidates_by_district=candidates_by_district,
+                seed=args.seed,
+                personas_per_district=args.personas,
+                model=args.model,
+                temperature=args.temperature,
+                batch_size=args.batch_size,
+                concurrency=args.concurrency,
+                calibration_strength=args.calibration_strength,
+                enable_calibration=args.calibration,
+                global_semaphore=global_api_semaphore,
+            )
+            async with completed_lock:
+                completed_count += 1
+                if completed_count % 10 == 0 or completed_count == total_districts:
+                    elapsed = time.time() - start_time
+                    logger.info(
+                        f"進捗: {completed_count}/{total_districts} 選挙区完了 "
+                        f"({elapsed:.1f}秒経過)"
+                    )
+            return idx, district_id, result_tuple
+
+    tasks = [
+        run_one_district(i, row)
+        for i, row in enumerate(target_districts)
+    ]
+    task_results = await asyncio.gather(*tasks)
+
+    # 元の順序でソートして結果を格納
+    task_results.sort(key=lambda x: x[0])
+    for _, district_id, result_tuple in task_results:
         if result_tuple is not None:
             result, decisions = result_tuple
             results.append(result)
             all_decisions_by_district[district_id] = decisions
-
-        if (i + 1) % 10 == 0:
-            logger.info(f"進捗: {i + 1}/{len(target_districts)} 選挙区完了")
 
     duration = time.time() - start_time
     logger.info(f"\n全選挙区完了: {len(results)}区, {duration:.1f}秒")
@@ -573,6 +606,14 @@ def main():
     parser.add_argument(
         "--calibration-strength", type=float, default=0.3,
         help="キャリブレーション強度 (0.0-1.0, default=0.3)",
+    )
+    parser.add_argument(
+        "--max-district-concurrency", type=int, default=20,
+        help="最大同時実行選挙区数 (default=20)",
+    )
+    parser.add_argument(
+        "--max-api-concurrency", type=int, default=10,
+        help="最大同時API呼び出し数 (default=10)",
     )
     parser.set_defaults(calibration=True)
     args = parser.parse_args()

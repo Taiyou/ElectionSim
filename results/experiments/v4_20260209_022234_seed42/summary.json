@@ -1,0 +1,14 @@
+{
+  "total_districts": 289,
+  "total_personas": 5780,
+  "national_turnout_rate": 0.7953,
+  "smd_seats": {
+    "chudo": 22,
+    "ldp": 252,
+    "dpfp": 4,
+    "independent": 2,
+    "ishin": 8,
+    "genzei": 1
+  },
+  "method": "llm_all_personas"
+}
