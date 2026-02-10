@@ -87,36 +87,48 @@ EXPERIMENTS = [
         "label": "v2 ルールベース",
         "method": "ルールベース (6要因加重)",
         "path": "sim_20260208_030926_seed42",
+        "model": "なし（ルールベース）",
+        "model_family": "rule",
     },
     {
         "id": "v4b",
         "label": "v4b LLM全ペルソナ",
         "method": "LLM全ペルソナ (20人/区)",
         "path": "v4_20260209_022234_seed42",
+        "model": "anthropic/claude-sonnet-4",
+        "model_family": "claude",
     },
     {
         "id": "v8a",
         "label": "v8a キャリブレーションLLM",
         "method": "デカップリング + 事後キャリブレーション",
         "path": "v8a_20260209_023203_seed42",
+        "model": "deepseek/deepseek-chat",
+        "model_family": "deepseek",
     },
     {
         "id": "v9a",
         "label": "v9a ハイブリッド",
         "method": "ルール(安定区) + LLM(接戦区)",
         "path": "v9a_20260208_185241_seed42",
+        "model": "anthropic/claude-sonnet-4",
+        "model_family": "claude",
     },
     {
         "id": "v10a",
         "label": "v10a 人口統計LLM",
         "method": "census-based ペルソナ + LLM",
         "path": "v10a_merged_289_20260208_230409_seed42",
+        "model": "deepseek/deepseek-chat",
+        "model_family": "deepseek",
     },
     {
         "id": "v10b",
         "label": "v10b メモリ付きLLM",
         "method": "人口統計 + 記憶レイヤー + LLM",
         "path": "v10b_merged_289_20260208_193403_seed42",
+        "model": "anthropic/claude-sonnet-4",
+        "model_family": "claude",
     },
 ]
 
@@ -1067,6 +1079,152 @@ def main():
 
             print()
 
+    # --- モデル別比較 (DeepSeek vs Claude) ---
+    print("■ モデル別比較（DeepSeek vs Claude）")
+    print()
+
+    model_groups: dict[str, list[dict]] = {}
+    for r in results:
+        family = r["exp"].get("model_family", "unknown")
+        if family == "rule":
+            continue  # ルールベースはLLMではないので除外
+        model_groups.setdefault(family, []).append(r)
+
+    model_summary: dict[str, dict] = {}
+    for family, group in model_groups.items():
+        avg_total_abs = sum(r["total_abs"] for r in group) / len(group)
+        avg_ldp_diff = sum(r["ldp_diff"] for r in group) / len(group)
+        avg_chudo_diff = sum(r["smd"].get("chudo", 0) - ACTUAL_SMD_SEATS["chudo"]
+                            for r in group) / len(group)
+        avg_turnout_diff = sum(r["turnout_diff"] for r in group) / len(group)
+
+        match_rates = [r["district_comp"]["match_rate"]
+                       for r in group if r["district_comp"]]
+        avg_match = sum(match_rates) / len(match_rates) if match_rates else 0
+
+        bg_accs = [r["battleground"]["battleground_accuracy"]
+                   for r in group if r.get("battleground")]
+        avg_bg = sum(bg_accs) / len(bg_accs) if bg_accs else 0
+
+        majority_hits = sum(1 for r in group if r["majority_correct"])
+
+        model_summary[family] = {
+            "count": len(group),
+            "experiments": [r["exp"]["label"] for r in group],
+            "avg_total_abs": avg_total_abs,
+            "avg_ldp_diff": avg_ldp_diff,
+            "avg_chudo_diff": avg_chudo_diff,
+            "avg_turnout_diff": avg_turnout_diff,
+            "avg_match_rate": avg_match,
+            "avg_battleground_accuracy": avg_bg,
+            "majority_hits": majority_hits,
+            "best_experiment": min(group, key=lambda r: r["total_abs"]),
+        }
+
+    MODEL_DISPLAY = {"claude": "Claude Sonnet 4", "deepseek": "DeepSeek Chat"}
+
+    mc_header = (f"{'モデル':20s} {'実験数':>5s} {'平均総誤差':>8s} {'平均LDP差':>8s} "
+                 f"{'平均中道差':>8s} {'平均区一致':>8s} {'平均接戦':>7s} {'過半数正解':>8s}")
+    print(mc_header)
+    print("-" * 90)
+    for family in ["deepseek", "claude"]:
+        if family not in model_summary:
+            continue
+        ms = model_summary[family]
+        print(f"{MODEL_DISPLAY.get(family, family):20s} {ms['count']:>5d} "
+              f"{ms['avg_total_abs']:>8.0f} {ms['avg_ldp_diff']:>+8.1f} "
+              f"{ms['avg_chudo_diff']:>+8.1f} {ms['avg_match_rate']:>7.1%} "
+              f"{ms['avg_battleground_accuracy']:>7.1%} "
+              f"{ms['majority_hits']}/{ms['count']}")
+
+    print()
+
+    # 同一手法でのモデル比較（v10a DeepSeek vs v10b Claude）
+    print("  【同一フレームワーク比較: 人口統計ペルソナ方式】")
+    v10a_r = next((r for r in results if r["exp"]["id"] == "v10a"), None)
+    v10b_r = next((r for r in results if r["exp"]["id"] == "v10b"), None)
+    if v10a_r and v10b_r:
+        print(f"    v10a (DeepSeek, メモリなし): "
+              f"区一致率={v10a_r['district_comp']['match_rate']:.1%}, "
+              f"LDP={v10a_r['smd'].get('ldp', 0)}, "
+              f"中道={v10a_r['smd'].get('chudo', 0)}, "
+              f"総誤差={v10a_r['total_abs']}")
+        print(f"    v10b (Claude,   メモリ付き): "
+              f"区一致率={v10b_r['district_comp']['match_rate']:.1%}, "
+              f"LDP={v10b_r['smd'].get('ldp', 0)}, "
+              f"中道={v10b_r['smd'].get('chudo', 0)}, "
+              f"総誤差={v10b_r['total_abs']}")
+        print()
+        # 選挙区レベルの不一致分析
+        if v10a_r["full_district_list"] and v10b_r["full_district_list"]:
+            v10a_map = {d["district_id"]: d for d in v10a_r["full_district_list"]}
+            v10b_map = {d["district_id"]: d for d in v10b_r["full_district_list"]}
+            common = set(v10a_map.keys()) & set(v10b_map.keys())
+            both_hit = sum(1 for did in common if v10a_map[did]["hit"] and v10b_map[did]["hit"])
+            a_only = sum(1 for did in common if v10a_map[did]["hit"] and not v10b_map[did]["hit"])
+            b_only = sum(1 for did in common if not v10a_map[did]["hit"] and v10b_map[did]["hit"])
+            both_miss = sum(1 for did in common if not v10a_map[did]["hit"] and not v10b_map[did]["hit"])
+            print(f"    選挙区レベル一致分析 ({len(common)}区):")
+            print(f"      両方的中: {both_hit}区")
+            print(f"      DeepSeekのみ的中: {a_only}区")
+            print(f"      Claudeのみ的中: {b_only}区")
+            print(f"      両方不的中: {both_miss}区")
+            print()
+
+    # v4b (Claude) vs v8a (DeepSeek) — 最も精度が高かった2実験
+    print("  【最高精度2実験比較: v4b Claude vs v8a DeepSeek】")
+    v4b_r = next((r for r in results if r["exp"]["id"] == "v4b"), None)
+    v8a_r = next((r for r in results if r["exp"]["id"] == "v8a"), None)
+    if v4b_r and v8a_r:
+        print(f"    v4b (Claude Sonnet 4, 全ペルソナ方式): "
+              f"区一致率={v4b_r['district_comp']['match_rate']:.1%}, "
+              f"LDP={v4b_r['smd'].get('ldp', 0)}, "
+              f"中道={v4b_r['smd'].get('chudo', 0)}, "
+              f"総誤差={v4b_r['total_abs']}")
+        print(f"    v8a (DeepSeek Chat, デカップリング方式): "
+              f"区一致率={v8a_r['district_comp']['match_rate']:.1%}, "
+              f"LDP={v8a_r['smd'].get('ldp', 0)}, "
+              f"中道={v8a_r['smd'].get('chudo', 0)}, "
+              f"総誤差={v8a_r['total_abs']}")
+        print()
+        if v4b_r["full_district_list"] and v8a_r["full_district_list"]:
+            v4b_map = {d["district_id"]: d for d in v4b_r["full_district_list"]}
+            v8a_map = {d["district_id"]: d for d in v8a_r["full_district_list"]}
+            common = set(v4b_map.keys()) & set(v8a_map.keys())
+            both_hit = sum(1 for did in common if v4b_map[did]["hit"] and v8a_map[did]["hit"])
+            v4b_only = sum(1 for did in common if v4b_map[did]["hit"] and not v8a_map[did]["hit"])
+            v8a_only = sum(1 for did in common if not v4b_map[did]["hit"] and v8a_map[did]["hit"])
+            both_miss = sum(1 for did in common if not v4b_map[did]["hit"] and not v8a_map[did]["hit"])
+            print(f"    選挙区レベル一致分析 ({len(common)}区):")
+            print(f"      両方的中: {both_hit}区")
+            print(f"      Claudeのみ的中: {v4b_only}区")
+            print(f"      DeepSeekのみ的中: {v8a_only}区")
+            print(f"      両方不的中: {both_miss}区")
+            # どちらかのみ的中の選挙区リスト（上位10件）
+            diff_districts = []
+            for did in common:
+                if v4b_map[did]["hit"] != v8a_map[did]["hit"]:
+                    diff_districts.append({
+                        "district_id": did,
+                        "district_name": v4b_map[did].get("district_name", did),
+                        "v4b_pred": v4b_map[did]["predicted"],
+                        "v8a_pred": v8a_map[did]["predicted"],
+                        "actual": v4b_map[did]["actual"],
+                        "v4b_hit": v4b_map[did]["hit"],
+                    })
+            if diff_districts:
+                print()
+                print(f"    予測が分かれた選挙区（上位10件）:")
+                for d in diff_districts[:10]:
+                    winner = "Claude" if d["v4b_hit"] else "DeepSeek"
+                    actual_ja = PARTY_NAMES_JA.get(d["actual"], d["actual"])
+                    v4b_ja = PARTY_NAMES_JA.get(d["v4b_pred"], d["v4b_pred"])
+                    v8a_ja = PARTY_NAMES_JA.get(d["v8a_pred"], d["v8a_pred"])
+                    print(f"      {d['district_name']:12s} 実際:{actual_ja:6s} "
+                          f"Claude:{v4b_ja:6s} DeepSeek:{v8a_ja:6s} → {winner}的中")
+
+    print()
+
     # --- 主要な知見 ---
     print("■ 主な知見")
     print()
@@ -1502,6 +1660,157 @@ def main():
                     f"{mark} | {d['margin']} |"
                 )
             md_lines.append("")
+
+    # モデル別比較セクション
+    md_lines.append("---")
+    md_lines.append("")
+    md_lines.append("## 7.5. モデル別比較（DeepSeek vs Claude）")
+    md_lines.append("")
+    md_lines.append("LLM実験で使用したモデル別の精度比較。ルールベース(v2)は除外。")
+    md_lines.append("")
+
+    md_lines.append("### モデル・実験対応表")
+    md_lines.append("")
+    md_lines.append("| 実験 | モデル | 手法 |")
+    md_lines.append("|------|--------|------|")
+    for r in results:
+        md_lines.append(
+            f"| {r['exp']['label']} | {r['exp'].get('model', '-')} | {r['exp']['method']} |"
+        )
+    md_lines.append("")
+
+    md_lines.append("### モデル別集計")
+    md_lines.append("")
+    md_lines.append("| モデル | 実験数 | 平均総誤差 | 平均LDP差 | 平均中道差 | 平均区一致率 | 平均接戦区精度 | 過半数正解 |")
+    md_lines.append("|--------|--------|----------|----------|----------|-----------|------------|----------|")
+    for family in ["deepseek", "claude"]:
+        if family not in model_summary:
+            continue
+        ms = model_summary[family]
+        md_lines.append(
+            f"| **{MODEL_DISPLAY.get(family, family)}** | {ms['count']} | "
+            f"{ms['avg_total_abs']:.0f}席 | {ms['avg_ldp_diff']:+.1f} | "
+            f"{ms['avg_chudo_diff']:+.1f} | {ms['avg_match_rate']:.1%} | "
+            f"{ms['avg_battleground_accuracy']:.1%} | "
+            f"{ms['majority_hits']}/{ms['count']} |"
+        )
+    md_lines.append("")
+
+    md_lines.append("### 同一フレームワーク比較: 人口統計ペルソナ方式")
+    md_lines.append("")
+    md_lines.append("v10a（DeepSeek, メモリなし）と v10b（Claude, メモリ付き）は同じ人口統計ペルソナ生成方式を使用。")
+    md_lines.append("")
+    if v10a_r and v10b_r:
+        md_lines.append("| 指標 | v10a (DeepSeek) | v10b (Claude) | 差 |")
+        md_lines.append("|------|----------------|--------------|-----|")
+        v10a_match = v10a_r["district_comp"]["match_rate"] if v10a_r["district_comp"] else 0
+        v10b_match = v10b_r["district_comp"]["match_rate"] if v10b_r["district_comp"] else 0
+        md_lines.append(f"| 区一致率 | {v10a_match:.1%} | {v10b_match:.1%} | {v10a_match - v10b_match:+.1%} |")
+        md_lines.append(f"| LDP議席 | {v10a_r['smd'].get('ldp', 0)} | {v10b_r['smd'].get('ldp', 0)} | "
+                        f"{v10a_r['smd'].get('ldp', 0) - v10b_r['smd'].get('ldp', 0):+d} |")
+        md_lines.append(f"| 中道議席 | {v10a_r['smd'].get('chudo', 0)} | {v10b_r['smd'].get('chudo', 0)} | "
+                        f"{v10a_r['smd'].get('chudo', 0) - v10b_r['smd'].get('chudo', 0):+d} |")
+        md_lines.append(f"| 総誤差 | {v10a_r['total_abs']}席 | {v10b_r['total_abs']}席 | "
+                        f"{v10a_r['total_abs'] - v10b_r['total_abs']:+d} |")
+        md_lines.append(f"| 投票率 | {v10a_r['turnout']:.1%} | {v10b_r['turnout']:.1%} | "
+                        f"{v10a_r['turnout'] - v10b_r['turnout']:+.1%} |")
+        md_lines.append("")
+
+        if v10a_r["full_district_list"] and v10b_r["full_district_list"]:
+            v10a_map_md = {d["district_id"]: d for d in v10a_r["full_district_list"]}
+            v10b_map_md = {d["district_id"]: d for d in v10b_r["full_district_list"]}
+            common_md = set(v10a_map_md.keys()) & set(v10b_map_md.keys())
+            bh = sum(1 for did in common_md if v10a_map_md[did]["hit"] and v10b_map_md[did]["hit"])
+            ao = sum(1 for did in common_md if v10a_map_md[did]["hit"] and not v10b_map_md[did]["hit"])
+            bo = sum(1 for did in common_md if not v10a_map_md[did]["hit"] and v10b_map_md[did]["hit"])
+            bm = sum(1 for did in common_md if not v10a_map_md[did]["hit"] and not v10b_map_md[did]["hit"])
+            md_lines.append("**選挙区レベル一致分析:**")
+            md_lines.append("")
+            md_lines.append(f"| パターン | 選挙区数 |")
+            md_lines.append(f"|---------|---------|")
+            md_lines.append(f"| 両方的中 | {bh} |")
+            md_lines.append(f"| DeepSeekのみ的中 | {ao} |")
+            md_lines.append(f"| Claudeのみ的中 | {bo} |")
+            md_lines.append(f"| 両方不的中 | {bm} |")
+            md_lines.append("")
+
+    md_lines.append("### 最高精度2実験比較: v4b Claude vs v8a DeepSeek")
+    md_lines.append("")
+    if v4b_r and v8a_r:
+        v4b_match = v4b_r["district_comp"]["match_rate"] if v4b_r["district_comp"] else 0
+        v8a_match = v8a_r["district_comp"]["match_rate"] if v8a_r["district_comp"] else 0
+        md_lines.append("| 指標 | v4b (Claude) | v8a (DeepSeek) | 差 |")
+        md_lines.append("|------|-------------|---------------|-----|")
+        md_lines.append(f"| 区一致率 | **{v4b_match:.1%}** | {v8a_match:.1%} | {v4b_match - v8a_match:+.1%} |")
+        md_lines.append(f"| LDP議席 | {v4b_r['smd'].get('ldp', 0)} | {v8a_r['smd'].get('ldp', 0)} | "
+                        f"{v4b_r['smd'].get('ldp', 0) - v8a_r['smd'].get('ldp', 0):+d} |")
+        md_lines.append(f"| 中道議席 | {v4b_r['smd'].get('chudo', 0)} | {v8a_r['smd'].get('chudo', 0)} | "
+                        f"{v4b_r['smd'].get('chudo', 0) - v8a_r['smd'].get('chudo', 0):+d} |")
+        md_lines.append(f"| 総誤差 | **{v4b_r['total_abs']}席** | {v8a_r['total_abs']}席 | "
+                        f"{v4b_r['total_abs'] - v8a_r['total_abs']:+d} |")
+        md_lines.append(f"| 投票率 | {v4b_r['turnout']:.1%} | {v8a_r['turnout']:.1%} | "
+                        f"{v4b_r['turnout'] - v8a_r['turnout']:+.1%} |")
+        md_lines.append(f"| 過半数予測 | {'O' if v4b_r['majority_correct'] else 'X'} | "
+                        f"{'O' if v8a_r['majority_correct'] else 'X'} | - |")
+        md_lines.append("")
+
+        if v4b_r["full_district_list"] and v8a_r["full_district_list"]:
+            v4b_map_md = {d["district_id"]: d for d in v4b_r["full_district_list"]}
+            v8a_map_md = {d["district_id"]: d for d in v8a_r["full_district_list"]}
+            common_md2 = set(v4b_map_md.keys()) & set(v8a_map_md.keys())
+            bh2 = sum(1 for did in common_md2 if v4b_map_md[did]["hit"] and v8a_map_md[did]["hit"])
+            co2 = sum(1 for did in common_md2 if v4b_map_md[did]["hit"] and not v8a_map_md[did]["hit"])
+            do2 = sum(1 for did in common_md2 if not v4b_map_md[did]["hit"] and v8a_map_md[did]["hit"])
+            bm2 = sum(1 for did in common_md2 if not v4b_map_md[did]["hit"] and not v8a_map_md[did]["hit"])
+            md_lines.append("**選挙区レベル一致分析:**")
+            md_lines.append("")
+            md_lines.append(f"| パターン | 選挙区数 |")
+            md_lines.append(f"|---------|---------|")
+            md_lines.append(f"| 両方的中 | {bh2} |")
+            md_lines.append(f"| Claudeのみ的中 | {co2} |")
+            md_lines.append(f"| DeepSeekのみ的中 | {do2} |")
+            md_lines.append(f"| 両方不的中 | {bm2} |")
+            md_lines.append("")
+
+            # 予測が分かれた選挙区
+            diff_md = []
+            for did in sorted(common_md2):
+                if v4b_map_md[did]["hit"] != v8a_map_md[did]["hit"]:
+                    diff_md.append({
+                        "name": v4b_map_md[did].get("district_name", did),
+                        "actual": PARTY_NAMES_JA.get(v4b_map_md[did]["actual"], v4b_map_md[did]["actual"]),
+                        "v4b": PARTY_NAMES_JA.get(v4b_map_md[did]["predicted"], v4b_map_md[did]["predicted"]),
+                        "v8a": PARTY_NAMES_JA.get(v8a_map_md[did]["predicted"], v8a_map_md[did]["predicted"]),
+                        "winner": "Claude" if v4b_map_md[did]["hit"] else "DeepSeek",
+                    })
+            if diff_md:
+                md_lines.append("**予測が分かれた選挙区:**")
+                md_lines.append("")
+                md_lines.append("| 選挙区 | 実際 | Claude予測 | DeepSeek予測 | 的中 |")
+                md_lines.append("|--------|------|-----------|-------------|------|")
+                for d in diff_md:
+                    md_lines.append(
+                        f"| {d['name']} | {d['actual']} | {d['v4b']} | {d['v8a']} | {d['winner']} |"
+                    )
+                md_lines.append("")
+
+    md_lines.append("### モデル別の特徴まとめ")
+    md_lines.append("")
+    md_lines.append("| 特徴 | DeepSeek Chat | Claude Sonnet 4 |")
+    md_lines.append("|------|-------------|-----------------|")
+    if "deepseek" in model_summary and "claude" in model_summary:
+        ds = model_summary["deepseek"]
+        cl = model_summary["claude"]
+        md_lines.append(f"| 使用実験 | {', '.join(ds['experiments'])} | {', '.join(cl['experiments'])} |")
+        md_lines.append(f"| 平均総誤差 | {ds['avg_total_abs']:.0f}席 | {cl['avg_total_abs']:.0f}席 |")
+        md_lines.append(f"| 平均区一致率 | {ds['avg_match_rate']:.1%} | {cl['avg_match_rate']:.1%} |")
+        better_abs = "DeepSeek" if ds["avg_total_abs"] < cl["avg_total_abs"] else "Claude"
+        better_match = "DeepSeek" if ds["avg_match_rate"] > cl["avg_match_rate"] else "Claude"
+        md_lines.append(f"| 総誤差で優位 | {'**勝ち**' if better_abs == 'DeepSeek' else '-'} | "
+                        f"{'**勝ち**' if better_abs == 'Claude' else '-'} |")
+        md_lines.append(f"| 区一致率で優位 | {'**勝ち**' if better_match == 'DeepSeek' else '-'} | "
+                        f"{'**勝ち**' if better_match == 'Claude' else '-'} |")
+    md_lines.append("")
 
     # 知見
     md_lines.append("---")
